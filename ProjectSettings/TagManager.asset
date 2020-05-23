@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Moveable
+  - Enemy
+  - Fader
+  - Moving Platform
+  - Buddy
+  - Patrol Bot
+  - EMP
+  - Terminal
+  - Electrical
+  - Trip Laser
+  - Mirror
+  - Light Beam
+  - Prism
+  - Beam Blocker
+  - spawnedBeamTag
+  - Beam Receiver
+  - Dotween Platform
+  - Zorb
+  - Gravity
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - Environmental
+  - Moveable
+  - Beam
+  - 
+  - Mirror
+  - Player
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0

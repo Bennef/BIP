@@ -1,0 +1,243 @@
+fileFormatVersion: 2
+guid: a415857efaef8a64492430e9b204fe3a
+timeCreated: 1457794641
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: BipMesh
+    100004: Bone_Chest
+    100006: Bone_Head
+    100008: Bone_Hip
+    100010: Bone_L_CollarBone
+    100012: Bone_L_Ear
+    100014: Bone_L_Lower_Leg
+    100016: Bone_L_LowerArm
+    100018: Bone_L_Upper_Leg
+    100020: Bone_L_UpperArm
+    100022: Bone_R_CollarBone
+    100024: Bone_R_Ear
+    100026: Bone_R_Lower_Leg
+    100028: Bone_R_LowerArm
+    100030: Bone_R_Upper_Leg
+    100032: Bone_R_UpperArm
+    100034: CTRL_Chest
+    100036: CTRL_Chest003
+    100038: CTRL_Chest004
+    100040: CTRL_Chest005
+    100042: CTRL_Chest006
+    100044: CTRL_Chest007
+    100046: CTRL_Chest008
+    100048: CTRL_Head
+    100050: CTRL_Hip
+    100052: CTRL_L_Ear
+    100054: CTRL_L_Foot
+    100056: CTRL_R_Ear
+    100058: CTRL_R_Foot
+    100060: CTRL_World
+    100062: End_Bone_L_Foot
+    100064: End_Bone_R_Foot
+    100066: IK Chain001
+    100068: IK Chain002
+    400000: //RootNode
+    400002: BipMesh
+    400004: Bone_Chest
+    400006: Bone_Head
+    400008: Bone_Hip
+    400010: Bone_L_CollarBone
+    400012: Bone_L_Ear
+    400014: Bone_L_Lower_Leg
+    400016: Bone_L_LowerArm
+    400018: Bone_L_Upper_Leg
+    400020: Bone_L_UpperArm
+    400022: Bone_R_CollarBone
+    400024: Bone_R_Ear
+    400026: Bone_R_Lower_Leg
+    400028: Bone_R_LowerArm
+    400030: Bone_R_Upper_Leg
+    400032: Bone_R_UpperArm
+    400034: CTRL_Chest
+    400036: CTRL_Chest003
+    400038: CTRL_Chest004
+    400040: CTRL_Chest005
+    400042: CTRL_Chest006
+    400044: CTRL_Chest007
+    400046: CTRL_Chest008
+    400048: CTRL_Head
+    400050: CTRL_Hip
+    400052: CTRL_L_Ear
+    400054: CTRL_L_Foot
+    400056: CTRL_R_Ear
+    400058: CTRL_R_Foot
+    400060: CTRL_World
+    400062: End_Bone_L_Foot
+    400064: End_Bone_R_Foot
+    400066: IK Chain001
+    400068: IK Chain002
+    4300000: BipMesh
+    7400000: Dmg_HIT
+    9500000: //RootNode
+    13700000: BipMesh
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Dmg_HIT
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: BipMesh
+        weight: 1
+      - path: CTRL_World
+        weight: 1
+      - path: CTRL_World/CTRL_Hip
+        weight: 1
+      - path: CTRL_World/CTRL_Hip/Bone_Hip
+        weight: 1
+      - path: CTRL_World/CTRL_Hip/Bone_Hip/Bone_L_Upper_Leg
+        weight: 1
+      - path: CTRL_World/CTRL_Hip/Bone_Hip/Bone_L_Upper_Leg/Bone_L_Lower_Leg
+        weight: 1
+      - path: CTRL_World/CTRL_Hip/Bone_Hip/Bone_L_Upper_Leg/Bone_L_Lower_Leg/End_Bone_L_Foot
+        weight: 1
+      - path: CTRL_World/CTRL_Hip/Bone_Hip/Bone_R_Upper_Leg
+        weight: 1
+      - path: CTRL_World/CTRL_Hip/Bone_Hip/Bone_R_Upper_Leg/Bone_R_Lower_Leg
+        weight: 1
+      - path: CTRL_World/CTRL_Hip/Bone_Hip/Bone_R_Upper_Leg/Bone_R_Lower_Leg/End_Bone_R_Foot
+        weight: 1
+      - path: CTRL_World/CTRL_Hip/CTRL_Chest
+        weight: 1
+      - path: CTRL_World/CTRL_Hip/CTRL_Chest/Bone_Chest
+        weight: 1
+      - path: CTRL_World/CTRL_Hip/CTRL_Chest/CTRL_Chest003
+        weight: 1
+      - path: CTRL_World/CTRL_Hip/CTRL_Chest/CTRL_Chest003/Bone_R_CollarBone
+        weight: 1
+      - path: CTRL_World/CTRL_Hip/CTRL_Chest/CTRL_Chest003/Bone_R_CollarBone/CTRL_Chest005
+        weight: 1
+      - path: CTRL_World/CTRL_Hip/CTRL_Chest/CTRL_Chest003/Bone_R_CollarBone/CTRL_Chest005/Bone_R_UpperArm
+        weight: 1
+      - path: CTRL_World/CTRL_Hip/CTRL_Chest/CTRL_Chest003/Bone_R_CollarBone/CTRL_Chest005/Bone_R_UpperArm/CTRL_Chest006
+        weight: 1
+      - path: CTRL_World/CTRL_Hip/CTRL_Chest/CTRL_Chest003/Bone_R_CollarBone/CTRL_Chest005/Bone_R_UpperArm/CTRL_Chest006/Bone_R_LowerArm
+        weight: 1
+      - path: CTRL_World/CTRL_Hip/CTRL_Chest/CTRL_Chest004
+        weight: 1
+      - path: CTRL_World/CTRL_Hip/CTRL_Chest/CTRL_Chest004/Bone_L_CollarBone
+        weight: 1
+      - path: CTRL_World/CTRL_Hip/CTRL_Chest/CTRL_Chest004/Bone_L_CollarBone/CTRL_Chest008
+        weight: 1
+      - path: CTRL_World/CTRL_Hip/CTRL_Chest/CTRL_Chest004/Bone_L_CollarBone/CTRL_Chest008/Bone_L_UpperArm
+        weight: 1
+      - path: CTRL_World/CTRL_Hip/CTRL_Chest/CTRL_Chest004/Bone_L_CollarBone/CTRL_Chest008/Bone_L_UpperArm/CTRL_Chest007
+        weight: 1
+      - path: CTRL_World/CTRL_Hip/CTRL_Chest/CTRL_Chest004/Bone_L_CollarBone/CTRL_Chest008/Bone_L_UpperArm/CTRL_Chest007/Bone_L_LowerArm
+        weight: 1
+      - path: CTRL_World/CTRL_Hip/CTRL_Chest/CTRL_Head
+        weight: 1
+      - path: CTRL_World/CTRL_Hip/CTRL_Chest/CTRL_Head/Bone_Head
+        weight: 1
+      - path: CTRL_World/CTRL_Hip/CTRL_Chest/CTRL_Head/CTRL_L_Ear
+        weight: 1
+      - path: CTRL_World/CTRL_Hip/CTRL_Chest/CTRL_Head/CTRL_L_Ear/Bone_L_Ear
+        weight: 1
+      - path: CTRL_World/CTRL_Hip/CTRL_Chest/CTRL_Head/CTRL_R_Ear
+        weight: 1
+      - path: CTRL_World/CTRL_Hip/CTRL_Chest/CTRL_Head/CTRL_R_Ear/Bone_R_Ear
+        weight: 1
+      - path: CTRL_World/CTRL_L_Foot
+        weight: 1
+      - path: CTRL_World/CTRL_L_Foot/IK Chain002
+        weight: 1
+      - path: CTRL_World/CTRL_R_Foot
+        weight: 1
+      - path: CTRL_World/CTRL_R_Foot/IK Chain001
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

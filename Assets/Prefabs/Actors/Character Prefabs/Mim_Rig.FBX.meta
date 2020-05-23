@@ -1,0 +1,146 @@
+fileFormatVersion: 2
+guid: cc7b200687b9ab4448a115d1755c5f47
+timeCreated: 1444248860
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Bone_Chest
+    100002: Bone_Head
+    100004: Bone_Hip
+    100006: Bone_L_Collarbone
+    100008: Bone_L_Ear
+    100010: Bone_L_Lower_Arm
+    100012: Bone_L_Lower_Leg
+    100014: Bone_L_Upper_Arm
+    100016: Bone_L_Upper_Leg
+    100018: Bone_R_Collarbone
+    100020: Bone_R_Ear
+    100022: Bone_R_Lower_Arm
+    100024: Bone_R_Lower_Leg
+    100026: Bone_R_Upper_Arm
+    100028: Bone_R_Upper_Leg
+    100030: CTRL_Chest
+    100032: CTRL_Head
+    100034: CTRL_Hip
+    100036: CTRL_L_Collar_Bone
+    100038: CTRL_L_Ear
+    100040: CTRL_L_Foot
+    100042: CTRL_L_Knee
+    100044: CTRL_L_Lower_Arm
+    100046: CTRL_L_Upper_Arm
+    100048: CTRL_R_Collar_Bone
+    100050: CTRL_R_Ear
+    100052: CTRL_R_Foot
+    100054: CTRL_R_Knee
+    100056: CTRL_R_Lower_Arm
+    100058: CTRL_R_Upper_Arm
+    100060: CTRL_World
+    100062: EndBone_L_Leg
+    100064: EndBone_R_Leg
+    100066: IK Chain001
+    100068: IK Chain002
+    100070: MIM_Mesh
+    100072: //RootNode
+    400000: Bone_Chest
+    400002: Bone_Head
+    400004: Bone_Hip
+    400006: Bone_L_Collarbone
+    400008: Bone_L_Ear
+    400010: Bone_L_Lower_Arm
+    400012: Bone_L_Lower_Leg
+    400014: Bone_L_Upper_Arm
+    400016: Bone_L_Upper_Leg
+    400018: Bone_R_Collarbone
+    400020: Bone_R_Ear
+    400022: Bone_R_Lower_Arm
+    400024: Bone_R_Lower_Leg
+    400026: Bone_R_Upper_Arm
+    400028: Bone_R_Upper_Leg
+    400030: CTRL_Chest
+    400032: CTRL_Head
+    400034: CTRL_Hip
+    400036: CTRL_L_Collar_Bone
+    400038: CTRL_L_Ear
+    400040: CTRL_L_Foot
+    400042: CTRL_L_Knee
+    400044: CTRL_L_Lower_Arm
+    400046: CTRL_L_Upper_Arm
+    400048: CTRL_R_Collar_Bone
+    400050: CTRL_R_Ear
+    400052: CTRL_R_Foot
+    400054: CTRL_R_Knee
+    400056: CTRL_R_Lower_Arm
+    400058: CTRL_R_Upper_Arm
+    400060: CTRL_World
+    400062: EndBone_L_Leg
+    400064: EndBone_R_Leg
+    400066: IK Chain001
+    400068: IK Chain002
+    400070: MIM_Mesh
+    400072: //RootNode
+    2300000: MIM_Mesh
+    3300000: MIM_Mesh
+    4300000: MIM_Mesh
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

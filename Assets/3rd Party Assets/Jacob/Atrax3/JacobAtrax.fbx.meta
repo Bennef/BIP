@@ -1,0 +1,306 @@
+fileFormatVersion: 2
+guid: 19a609c5d77c31148931d7a48f89d556
+timeCreated: 1459168723
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Armature
+    100002: Bone
+    100004: Bone.001
+    100006: Bone.001_end
+    100008: Bone.002
+    100010: Bone.002_L
+    100012: Bone.002_L.001
+    100014: Bone.002_L.002
+    100016: Bone.002_L.003
+    100018: Bone.002_L.003_end
+    100020: Bone.002_R
+    100022: Bone.002_R.001
+    100024: Bone.002_R.002
+    100026: Bone.002_R.003
+    100028: Bone.002_R.003_end
+    100030: Bone_L
+    100032: Bone_L.001
+    100034: Bone_L.002
+    100036: Bone_L.003
+    100038: Bone_L.004
+    100040: Bone_L.005
+    100042: Bone_L.006
+    100044: Bone_L.006_end
+    100046: Bone_L.007
+    100048: Bone_L.007_end
+    100050: Bone_R
+    100052: Bone_R.001
+    100054: Bone_R.002
+    100056: Bone_R.003
+    100058: Bone_R.004
+    100060: Bone_R.005
+    100062: Bone_R.006
+    100064: Bone_R.006_end
+    100066: Bone_R.007
+    100068: Bone_R.007_end
+    100070: //RootNode
+    100072: Leg_Lower
+    100074: Leg_Lower.001
+    100076: Leg_Lower.002
+    100078: Leg_Lower.003
+    100080: Leg_Lower.004
+    100082: Leg_Lower.005
+    100084: Leg_Middle
+    100086: Leg_Middle.001
+    100088: Leg_Middle.002
+    100090: Leg_Middle.003
+    100092: Leg_Middle.004
+    100094: Leg_Middle.005
+    100096: Leg_Upper
+    100098: Leg_Upper.001
+    100100: Leg_Upper.002
+    100102: Leg_Upper.003
+    100104: Leg_Upper.004
+    100106: Leg_Upper.005
+    100108: Shoulder_Joint_1.001
+    100110: Shoulder_Joint_2.001
+    100112: Shoulder_Joint_3.001
+    100114: Shoulder_Joint_4.001
+    100116: Shoulder_Joint_5.001
+    100118: Shoulder_Joint_6.001
+    100120: Torso.002
+    100122: Torso_Back.001
+    400000: Armature
+    400002: Bone
+    400004: Bone.001
+    400006: Bone.001_end
+    400008: Bone.002
+    400010: Bone.002_L
+    400012: Bone.002_L.001
+    400014: Bone.002_L.002
+    400016: Bone.002_L.003
+    400018: Bone.002_L.003_end
+    400020: Bone.002_R
+    400022: Bone.002_R.001
+    400024: Bone.002_R.002
+    400026: Bone.002_R.003
+    400028: Bone.002_R.003_end
+    400030: Bone_L
+    400032: Bone_L.001
+    400034: Bone_L.002
+    400036: Bone_L.003
+    400038: Bone_L.004
+    400040: Bone_L.005
+    400042: Bone_L.006
+    400044: Bone_L.006_end
+    400046: Bone_L.007
+    400048: Bone_L.007_end
+    400050: Bone_R
+    400052: Bone_R.001
+    400054: Bone_R.002
+    400056: Bone_R.003
+    400058: Bone_R.004
+    400060: Bone_R.005
+    400062: Bone_R.006
+    400064: Bone_R.006_end
+    400066: Bone_R.007
+    400068: Bone_R.007_end
+    400070: //RootNode
+    400072: Leg_Lower
+    400074: Leg_Lower.001
+    400076: Leg_Lower.002
+    400078: Leg_Lower.003
+    400080: Leg_Lower.004
+    400082: Leg_Lower.005
+    400084: Leg_Middle
+    400086: Leg_Middle.001
+    400088: Leg_Middle.002
+    400090: Leg_Middle.003
+    400092: Leg_Middle.004
+    400094: Leg_Middle.005
+    400096: Leg_Upper
+    400098: Leg_Upper.001
+    400100: Leg_Upper.002
+    400102: Leg_Upper.003
+    400104: Leg_Upper.004
+    400106: Leg_Upper.005
+    400108: Shoulder_Joint_1.001
+    400110: Shoulder_Joint_2.001
+    400112: Shoulder_Joint_3.001
+    400114: Shoulder_Joint_4.001
+    400116: Shoulder_Joint_5.001
+    400118: Shoulder_Joint_6.001
+    400120: Torso.002
+    400122: Torso_Back.001
+    2300000: //RootNode
+    2300002: Leg_Lower
+    2300004: Leg_Lower.001
+    2300006: Leg_Lower.002
+    2300008: Leg_Lower.003
+    2300010: Leg_Lower.004
+    2300012: Leg_Lower.005
+    2300014: Leg_Middle
+    2300016: Leg_Middle.001
+    2300018: Leg_Middle.002
+    2300020: Leg_Middle.003
+    2300022: Leg_Middle.004
+    2300024: Leg_Middle.005
+    2300026: Leg_Upper
+    2300028: Leg_Upper.001
+    2300030: Leg_Upper.002
+    2300032: Leg_Upper.003
+    2300034: Leg_Upper.004
+    2300036: Leg_Upper.005
+    2300038: Shoulder_Joint_1.001
+    2300040: Shoulder_Joint_2.001
+    2300042: Shoulder_Joint_3.001
+    2300044: Shoulder_Joint_4.001
+    2300046: Shoulder_Joint_5.001
+    2300048: Shoulder_Joint_6.001
+    2300050: Torso.002
+    2300052: Torso_Back.001
+    3300000: //RootNode
+    3300002: Leg_Lower
+    3300004: Leg_Lower.001
+    3300006: Leg_Lower.002
+    3300008: Leg_Lower.003
+    3300010: Leg_Lower.004
+    3300012: Leg_Lower.005
+    3300014: Leg_Middle
+    3300016: Leg_Middle.001
+    3300018: Leg_Middle.002
+    3300020: Leg_Middle.003
+    3300022: Leg_Middle.004
+    3300024: Leg_Middle.005
+    3300026: Leg_Upper
+    3300028: Leg_Upper.001
+    3300030: Leg_Upper.002
+    3300032: Leg_Upper.003
+    3300034: Leg_Upper.004
+    3300036: Leg_Upper.005
+    3300038: Shoulder_Joint_1.001
+    3300040: Shoulder_Joint_2.001
+    3300042: Shoulder_Joint_3.001
+    3300044: Shoulder_Joint_4.001
+    3300046: Shoulder_Joint_5.001
+    3300048: Shoulder_Joint_6.001
+    3300050: Torso.002
+    3300052: Torso_Back.001
+    4300000: PARENT
+    4300002: Shoulder_Joint_1.001
+    4300004: Shoulder_Joint_2.001
+    4300006: Shoulder_Joint_3.001
+    4300008: Shoulder_Joint_4.001
+    4300010: Shoulder_Joint_5.001
+    4300012: Shoulder_Joint_6.001
+    4300014: Torso.002
+    4300016: Torso_Back.001
+    4300018: Leg_Upper.002
+    4300020: Leg_Middle.002
+    4300022: Leg_Lower.002
+    4300024: Leg_Upper.005
+    4300026: Leg_Middle.005
+    4300028: Leg_Lower.005
+    4300030: Leg_Upper.001
+    4300032: Leg_Middle.001
+    4300034: Leg_Lower.001
+    4300036: Leg_Upper.004
+    4300038: Leg_Middle.004
+    4300040: Leg_Lower.004
+    4300042: Leg_Upper
+    4300044: Leg_Middle
+    4300046: Leg_Lower
+    4300048: Leg_Upper.003
+    4300050: Leg_Middle.003
+    4300052: Leg_Lower.003
+    7400000: PARENT|camera1|Take 001|BaseLayer
+    7400002: Armature|camera1|Take 001|BaseLayer
+    7400004: Armature|Timeline
+    7400006: Shoulder_Joint_1.001|camera1|Take 001|BaseLayer
+    7400008: Shoulder_Joint_2.001|camera1|Take 001|BaseLayer
+    7400010: Shoulder_Joint_3.001|camera1|Take 001|BaseLayer
+    7400012: Shoulder_Joint_4.001|camera1|Take 001|BaseLayer
+    7400014: Shoulder_Joint_5.001|camera1|Take 001|BaseLayer
+    7400016: Shoulder_Joint_6.001|camera1|Take 001|BaseLayer
+    7400018: Torso.002|camera1|Take 001|BaseLayer
+    7400020: Torso_Back.001|camera1|Take 001|BaseLayer
+    7400022: Leg_Upper.002|camera1|Take 001|BaseLayer
+    7400024: Leg_Middle.002|camera1|Take 001|BaseLayer
+    7400026: Leg_Lower.002|camera1|Take 001|BaseLayer
+    7400028: Leg_Upper.001|camera1|Take 001|BaseLayer
+    7400030: Leg_Middle.001|camera1|Take 001|BaseLayer
+    7400032: Leg_Lower.001|camera1|Take 001|BaseLayer
+    7400034: Leg_Lower|camera1|Take 001|BaseLayer
+    7400036: Leg_Middle|camera1|Take 001|BaseLayer
+    7400038: Leg_Upper|camera1|Take 001|BaseLayer
+    7400040: Leg_Upper.003|camera1|Take 001|BaseLayer
+    7400042: Leg_Middle.003|camera1|Take 001|BaseLayer
+    7400044: Leg_Lower.003|camera1|Take 001|BaseLayer
+    7400046: Leg_Lower.004|camera1|Take 001|BaseLayer
+    7400048: Leg_Middle.004|camera1|Take 001|BaseLayer
+    7400050: Leg_Upper.004|camera1|Take 001|BaseLayer
+    7400052: Leg_Upper.005|camera1|Take 001|BaseLayer
+    7400054: Leg_Middle.005|camera1|Take 001|BaseLayer
+    7400056: Leg_Lower.005|camera1|Take 001|BaseLayer
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,157 @@
+fileFormatVersion: 2
+guid: c90ac01df6bdba24a9f698100c1e33ea
+timeCreated: 1439498289
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: All_Claws_Support
+    100002: Arm_1
+    100004: Arm_2
+    100006: Arm_3
+    100008: Armor_Arm_1
+    100010: Armor_Arm_2
+    100012: Armor_Arm_3
+    100014: Base
+    100016: Claw1
+    100018: Claw2
+    100020: Claw3
+    100022: Claw4
+    100024: //RootNode
+    100026: Claw_Support1
+    100028: Claw_Support2
+    100030: Claw_Support3
+    100032: Claw_Support4
+    100034: Claws_Connect
+    400000: All_Claws_Support
+    400002: Arm_1
+    400004: Arm_2
+    400006: Arm_3
+    400008: Armor_Arm_1
+    400010: Armor_Arm_2
+    400012: Armor_Arm_3
+    400014: Base
+    400016: Claw1
+    400018: Claw2
+    400020: Claw3
+    400022: Claw4
+    400024: //RootNode
+    400026: Claw_Support1
+    400028: Claw_Support2
+    400030: Claw_Support3
+    400032: Claw_Support4
+    400034: Claws_Connect
+    2300000: All_Claws_Support
+    2300002: Arm_1
+    2300004: Arm_2
+    2300006: Arm_3
+    2300008: Armor_Arm_1
+    2300010: Armor_Arm_2
+    2300012: Armor_Arm_3
+    2300014: Base
+    2300016: Claw1
+    2300018: Claw2
+    2300020: Claw3
+    2300022: Claw4
+    2300024: Claw_Support1
+    2300026: Claw_Support2
+    2300028: Claw_Support3
+    2300030: Claw_Support4
+    2300032: Claws_Connect
+    3300000: All_Claws_Support
+    3300002: Arm_1
+    3300004: Arm_2
+    3300006: Arm_3
+    3300008: Armor_Arm_1
+    3300010: Armor_Arm_2
+    3300012: Armor_Arm_3
+    3300014: Base
+    3300016: Claw1
+    3300018: Claw2
+    3300020: Claw3
+    3300022: Claw4
+    3300024: Claw_Support1
+    3300026: Claw_Support2
+    3300028: Claw_Support3
+    3300030: Claw_Support4
+    3300032: Claws_Connect
+    4300000: Claw4
+    4300002: Claw_Support4
+    4300004: Claw3
+    4300006: Claw_Support3
+    4300008: Claw2
+    4300010: Claw_Support2
+    4300012: Claw1
+    4300014: Claw_Support1
+    4300016: All_Claws_Support
+    4300018: Claws_Connect
+    4300020: Armor_Arm_3
+    4300022: Armor_Arm_2
+    4300024: Arm_3
+    4300026: Arm_2
+    4300028: Armor_Arm_1
+    4300030: Arm_1
+    4300032: Base
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

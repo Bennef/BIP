@@ -1,0 +1,162 @@
+fileFormatVersion: 2
+guid: 7c6196093c9d87446871de1e1f38c4ae
+timeCreated: 1452628982
+licenseType: Free
+ModelImporter:
+  serializedVersion: 21
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: BipMesh
+    100004: Bone_Chest
+    100006: Bone_Head
+    100008: Bone_Hip
+    100010: Bone_L_CollarBone
+    100012: Bone_L_Ear
+    100014: Bone_L_Lower_Leg
+    100016: Bone_L_LowerArm
+    100018: Bone_L_Upper_Leg
+    100020: Bone_R_CollarBone
+    100022: Bone_R_Ear
+    100024: Bone_R_Lower_Leg
+    100026: Bone_R_LowerArm
+    100028: Bone_R_LowerArm 1
+    100030: Bone_R_Upper_Leg
+    100032: Bone_R_UpperArm
+    100034: CTRL_Chest
+    100036: CTRL_Chest001
+    100038: CTRL_Chest002
+    100040: CTRL_Chest003
+    100042: CTRL_Chest004
+    100044: CTRL_Chest005
+    100046: CTRL_Chest006
+    100048: CTRL_Chest007
+    100050: CTRL_Chest008
+    100052: CTRL_Head
+    100054: CTRL_Hip
+    100056: CTRL_L_Ear
+    100058: CTRL_R_Ear
+    100060: CTRL_World
+    100062: End_Bone_L_Foot
+    100064: End_Bone_R_Foot
+    100066: FacePlate
+    100068: IK Chain001
+    100070: IK Chain002
+    400000: //RootNode
+    400002: BipMesh
+    400004: Bone_Chest
+    400006: Bone_Head
+    400008: Bone_Hip
+    400010: Bone_L_CollarBone
+    400012: Bone_L_Ear
+    400014: Bone_L_Lower_Leg
+    400016: Bone_L_LowerArm
+    400018: Bone_L_Upper_Leg
+    400020: Bone_R_CollarBone
+    400022: Bone_R_Ear
+    400024: Bone_R_Lower_Leg
+    400026: Bone_R_LowerArm
+    400028: Bone_R_LowerArm 1
+    400030: Bone_R_Upper_Leg
+    400032: Bone_R_UpperArm
+    400034: CTRL_Chest
+    400036: CTRL_Chest001
+    400038: CTRL_Chest002
+    400040: CTRL_Chest003
+    400042: CTRL_Chest004
+    400044: CTRL_Chest005
+    400046: CTRL_Chest006
+    400048: CTRL_Chest007
+    400050: CTRL_Chest008
+    400052: CTRL_Head
+    400054: CTRL_Hip
+    400056: CTRL_L_Ear
+    400058: CTRL_R_Ear
+    400060: CTRL_World
+    400062: End_Bone_L_Foot
+    400064: End_Bone_R_Foot
+    400066: FacePlate
+    400068: IK Chain001
+    400070: IK Chain002
+    2300000: BipMesh
+    2300002: FacePlate
+    3300000: BipMesh
+    3300002: FacePlate
+    4300000: BipMesh
+    4300002: FacePlate
+    7400000: Take 001
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 0
+    importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,186 @@
+fileFormatVersion: 2
+guid: 2d8bd54a18334a041ab530dd40299200
+timeCreated: 1457540202
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Body
+    100002: Camera
+    100004: Cube.002
+    100006: //RootNode
+    100008: Pupil
+    100010: Sphere.001
+    100012: Sphere.002
+    100014: Sphere.003
+    400000: Body
+    400002: Camera
+    400004: Cube.002
+    400006: //RootNode
+    400008: Pupil
+    400010: Sphere.001
+    400012: Sphere.002
+    400014: Sphere.003
+    2300000: Body
+    2300002: Camera
+    2300004: Cube.002
+    2300006: Pupil
+    2300008: Sphere.001
+    2300010: Sphere.002
+    2300012: Sphere.003
+    3300000: Body
+    3300002: Camera
+    3300004: Cube.002
+    3300006: Pupil
+    3300008: Sphere.001
+    3300010: Sphere.002
+    3300012: Sphere.003
+    4300000: Pupil
+    4300002: Body
+    4300004: Camera
+    4300006: Sphere.003
+    4300008: Sphere.002
+    4300010: Sphere.001
+    4300012: Cube.002
+    7400000: Pupil|Body|Take 001|BaseLayer
+    7400002: Pupil|Camera|Take 001|BaseLayer
+    7400004: Pupil|Leg_Lower001|Take 001|BaseLayer
+    7400006: Pupil|Leg_Lower002|Take 001|BaseLayer
+    7400008: Pupil|Leg_Lower|Take 001|BaseLayer
+    7400010: Pupil|Leg_Middle001|Take 001|BaseLayer
+    7400012: Pupil|Leg_Middle002|Take 001|BaseLayer
+    7400014: Pupil|Leg_Middle|Take 001|BaseLayer
+    7400016: Pupil|Leg_Upper001|Take 001|BaseLayer
+    7400018: Pupil|Leg_Upper002|Take 001|BaseLayer
+    7400020: Pupil|Leg_Upper|Take 001|BaseLayer
+    7400022: Body|Body|Take 001|BaseLayer
+    7400024: Body|Camera|Take 001|BaseLayer
+    7400026: Body|Leg_Lower001|Take 001|BaseLayer
+    7400028: Body|Leg_Lower002|Take 001|BaseLayer
+    7400030: Body|Leg_Lower|Take 001|BaseLayer
+    7400032: Body|Leg_Middle001|Take 001|BaseLayer
+    7400034: Body|Leg_Middle002|Take 001|BaseLayer
+    7400036: Body|Leg_Middle|Take 001|BaseLayer
+    7400038: Body|Leg_Upper001|Take 001|BaseLayer
+    7400040: Body|Leg_Upper002|Take 001|BaseLayer
+    7400042: Body|Leg_Upper|Take 001|BaseLayer
+    7400044: Camera|Body|Take 001|BaseLayer
+    7400046: Camera|Camera|Take 001|BaseLayer
+    7400048: Camera|Leg_Lower001|Take 001|BaseLayer
+    7400050: Camera|Leg_Lower002|Take 001|BaseLayer
+    7400052: Camera|Leg_Lower|Take 001|BaseLayer
+    7400054: Camera|Leg_Middle001|Take 001|BaseLayer
+    7400056: Camera|Leg_Middle002|Take 001|BaseLayer
+    7400058: Camera|Leg_Middle|Take 001|BaseLayer
+    7400060: Camera|Leg_Upper001|Take 001|BaseLayer
+    7400062: Camera|Leg_Upper002|Take 001|BaseLayer
+    7400064: Camera|Leg_Upper|Take 001|BaseLayer
+    7400066: Sphere.003|Body|Take 001|BaseLayer
+    7400068: Sphere.003|Camera|Take 001|BaseLayer
+    7400070: Sphere.003|Leg_Lower001|Take 001|BaseLayer
+    7400072: Sphere.003|Leg_Lower002|Take 001|BaseLayer
+    7400074: Sphere.003|Leg_Lower|Take 001|BaseLayer
+    7400076: Sphere.003|Leg_Middle001|Take 001|BaseLayer
+    7400078: Sphere.003|Leg_Middle002|Take 001|BaseLayer
+    7400080: Sphere.003|Leg_Middle|Take 001|BaseLayer
+    7400082: Sphere.003|Leg_Upper001|Take 001|BaseLayer
+    7400084: Sphere.003|Leg_Upper002|Take 001|BaseLayer
+    7400086: Sphere.003|Leg_Upper|Take 001|BaseLayer
+    7400088: Sphere.002|Body|Take 001|BaseLayer
+    7400090: Sphere.002|Camera|Take 001|BaseLayer
+    7400092: Sphere.002|Leg_Lower001|Take 001|BaseLayer
+    7400094: Sphere.002|Leg_Lower002|Take 001|BaseLayer
+    7400096: Sphere.002|Leg_Lower|Take 001|BaseLayer
+    7400098: Sphere.002|Leg_Middle001|Take 001|BaseLayer
+    7400100: Sphere.002|Leg_Middle002|Take 001|BaseLayer
+    7400102: Sphere.002|Leg_Middle|Take 001|BaseLayer
+    7400104: Sphere.002|Leg_Upper001|Take 001|BaseLayer
+    7400106: Sphere.002|Leg_Upper002|Take 001|BaseLayer
+    7400108: Sphere.002|Leg_Upper|Take 001|BaseLayer
+    7400110: Sphere.001|Body|Take 001|BaseLayer
+    7400112: Sphere.001|Camera|Take 001|BaseLayer
+    7400114: Sphere.001|Leg_Lower001|Take 001|BaseLayer
+    7400116: Sphere.001|Leg_Lower002|Take 001|BaseLayer
+    7400118: Sphere.001|Leg_Lower|Take 001|BaseLayer
+    7400120: Sphere.001|Leg_Middle001|Take 001|BaseLayer
+    7400122: Sphere.001|Leg_Middle002|Take 001|BaseLayer
+    7400124: Sphere.001|Leg_Middle|Take 001|BaseLayer
+    7400126: Sphere.001|Leg_Upper001|Take 001|BaseLayer
+    7400128: Sphere.001|Leg_Upper002|Take 001|BaseLayer
+    7400130: Sphere.001|Leg_Upper|Take 001|BaseLayer
+    7400132: Cube.002|Body|Take 001|BaseLayer
+    7400134: Cube.002|Camera|Take 001|BaseLayer
+    7400136: Cube.002|Leg_Lower001|Take 001|BaseLayer
+    7400138: Cube.002|Leg_Lower002|Take 001|BaseLayer
+    7400140: Cube.002|Leg_Lower|Take 001|BaseLayer
+    7400142: Cube.002|Leg_Middle001|Take 001|BaseLayer
+    7400144: Cube.002|Leg_Middle002|Take 001|BaseLayer
+    7400146: Cube.002|Leg_Middle|Take 001|BaseLayer
+    7400148: Cube.002|Leg_Upper001|Take 001|BaseLayer
+    7400150: Cube.002|Leg_Upper002|Take 001|BaseLayer
+    7400152: Cube.002|Leg_Upper|Take 001|BaseLayer
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

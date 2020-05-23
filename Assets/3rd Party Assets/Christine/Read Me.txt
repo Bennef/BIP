@@ -1,0 +1,7 @@
+Read Me
+
+Each section has been made snap able so different shaped platforms can be made.
+If you would like the platforms to have a base duplicate the platform that has been created and place a - on the x axis then you are able to snap top and bottom panels together. The models have a reflective material applied unity may deactivate it so you may wish to re-enable.
+
+
+=]

@@ -1,0 +1,187 @@
+fileFormatVersion: 2
+guid: 95f9e2cb2f550d741bfa1e1757a74823
+timeCreated: 1449399398
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Finger_Upper
+    100002: Finger_Upper_1
+    100004: Finger_Upper_2
+    100006: Finger_Upper_3
+    100008: Finger_Upper_4
+    100010: //RootNode
+    100012: Lower_Arm_Armor
+    100014: Lower_Arm_Frame
+    100016: Lower_Finger_Armor
+    100018: Lower_Finger_Armor_1
+    100020: Lower_Finger_Armor_2
+    100022: Lower_Finger_Armor_3
+    100024: Lower_Finger_Armor_4
+    100026: Lower_Finger_Frame
+    100028: Lower_Finger_Frame_1
+    100030: Lower_Finger_Frame_2
+    100032: Lower_Finger_Frame_3
+    100034: Lower_Finger_Frame_4
+    100036: Palm
+    100038: Palm_Mount
+    100040: Thumb_Lower_Armor
+    100042: Thumb_Lower_Frame
+    100044: Thumb_Upper
+    100046: Upper_Arm_Armor
+    100048: Upper_Arm_Frame
+    400000: Finger_Upper
+    400002: Finger_Upper_1
+    400004: Finger_Upper_2
+    400006: Finger_Upper_3
+    400008: Finger_Upper_4
+    400010: //RootNode
+    400012: Lower_Arm_Armor
+    400014: Lower_Arm_Frame
+    400016: Lower_Finger_Armor
+    400018: Lower_Finger_Armor_1
+    400020: Lower_Finger_Armor_2
+    400022: Lower_Finger_Armor_3
+    400024: Lower_Finger_Armor_4
+    400026: Lower_Finger_Frame
+    400028: Lower_Finger_Frame_1
+    400030: Lower_Finger_Frame_2
+    400032: Lower_Finger_Frame_3
+    400034: Lower_Finger_Frame_4
+    400036: Palm
+    400038: Palm_Mount
+    400040: Thumb_Lower_Armor
+    400042: Thumb_Lower_Frame
+    400044: Thumb_Upper
+    400046: Upper_Arm_Armor
+    400048: Upper_Arm_Frame
+    2300000: Finger_Upper_1
+    2300002: Finger_Upper_2
+    2300004: Finger_Upper_3
+    2300006: Finger_Upper_4
+    2300008: //RootNode
+    2300010: Lower_Arm_Armor
+    2300012: Lower_Arm_Frame
+    2300014: Lower_Finger_Armor_1
+    2300016: Lower_Finger_Armor_2
+    2300018: Lower_Finger_Armor_3
+    2300020: Lower_Finger_Armor_4
+    2300022: Lower_Finger_Frame_1
+    2300024: Lower_Finger_Frame_2
+    2300026: Lower_Finger_Frame_3
+    2300028: Lower_Finger_Frame_4
+    2300030: Palm
+    2300032: Palm_Mount
+    2300034: Thumb_Lower_Armor
+    2300036: Thumb_Lower_Frame
+    2300038: Thumb_Upper
+    2300040: Upper_Arm_Armor
+    2300042: Upper_Arm_Frame
+    3300000: Finger_Upper_1
+    3300002: Finger_Upper_2
+    3300004: Finger_Upper_3
+    3300006: Finger_Upper_4
+    3300008: //RootNode
+    3300010: Lower_Arm_Armor
+    3300012: Lower_Arm_Frame
+    3300014: Lower_Finger_Armor_1
+    3300016: Lower_Finger_Armor_2
+    3300018: Lower_Finger_Armor_3
+    3300020: Lower_Finger_Armor_4
+    3300022: Lower_Finger_Frame_1
+    3300024: Lower_Finger_Frame_2
+    3300026: Lower_Finger_Frame_3
+    3300028: Lower_Finger_Frame_4
+    3300030: Palm
+    3300032: Palm_Mount
+    3300034: Thumb_Lower_Armor
+    3300036: Thumb_Lower_Frame
+    3300038: Thumb_Upper
+    3300040: Upper_Arm_Armor
+    3300042: Upper_Arm_Frame
+    4300000: Shoulder
+    4300002: Upper_Arm_Frame
+    4300004: Upper_Arm_Armor
+    4300006: Lower_Arm_Frame
+    4300008: Lower_Arm_Armor
+    4300010: Palm_Mount
+    4300012: Palm
+    4300014: Thumb_Lower_Frame
+    4300016: Thumb_Lower_Armor
+    4300018: Thumb_Upper
+    4300020: Lower_Finger_Frame_1
+    4300022: Lower_Finger_Frame_2
+    4300024: Lower_Finger_Frame_3
+    4300026: Lower_Finger_Frame_4
+    4300028: Lower_Finger_Armor_1
+    4300030: Lower_Finger_Armor_2
+    4300032: Lower_Finger_Armor_3
+    4300034: Lower_Finger_Armor_4
+    4300036: Finger_Upper_1
+    4300038: Finger_Upper_2
+    4300040: Finger_Upper_3
+    4300042: Finger_Upper_4
+    7400000: Take 001
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

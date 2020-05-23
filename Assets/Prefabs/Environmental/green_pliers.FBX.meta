@@ -1,0 +1,154 @@
+fileFormatVersion: 2
+guid: 81fd153b5e4360f4a8244ae977d76b07
+timeCreated: 1495598335
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: black_capacitor
+    100002: blue_capacitor
+    100004: blue_wires
+    100006: green_capacitor
+    100008: //RootNode
+    100010: green_pliers
+    100012: red_capacitor
+    100014: red_wires
+    100016: screwdriver_1
+    100018: screwdriver_2
+    100020: screwdriver_3
+    100022: screwdriver_4
+    100024: tweezers_long
+    100026: tweezers_Short
+    100028: yellow_pliers
+    100030: yellow_wires
+    400000: black_capacitor
+    400002: blue_capacitor
+    400004: blue_wires
+    400006: green_capacitor
+    400008: //RootNode
+    400010: green_pliers
+    400012: red_capacitor
+    400014: red_wires
+    400016: screwdriver_1
+    400018: screwdriver_2
+    400020: screwdriver_3
+    400022: screwdriver_4
+    400024: tweezers_long
+    400026: tweezers_Short
+    400028: yellow_pliers
+    400030: yellow_wires
+    2300000: black_capacitor
+    2300002: blue_capacitor
+    2300004: blue_wires
+    2300006: green_capacitor
+    2300008: green_pliers
+    2300010: red_capacitor
+    2300012: red_wires
+    2300014: screwdriver_1
+    2300016: screwdriver_2
+    2300018: screwdriver_3
+    2300020: screwdriver_4
+    2300022: tweezers_long
+    2300024: tweezers_Short
+    2300026: yellow_pliers
+    2300028: yellow_wires
+    3300000: black_capacitor
+    3300002: blue_capacitor
+    3300004: blue_wires
+    3300006: green_capacitor
+    3300008: green_pliers
+    3300010: red_capacitor
+    3300012: red_wires
+    3300014: screwdriver_1
+    3300016: screwdriver_2
+    3300018: screwdriver_3
+    3300020: screwdriver_4
+    3300022: tweezers_long
+    3300024: tweezers_Short
+    3300026: yellow_pliers
+    3300028: yellow_wires
+    4300000: screwdriver_4
+    4300002: green_pliers
+    4300004: yellow_pliers
+    4300006: blue_wires
+    4300008: red_wires
+    4300010: yellow_wires
+    4300012: black_capacitor
+    4300014: blue_capacitor
+    4300016: green_capacitor
+    4300018: red_capacitor
+    4300020: tweezers_long
+    4300022: tweezers_Short
+    4300024: screwdriver_1
+    4300026: screwdriver_2
+    4300028: screwdriver_3
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

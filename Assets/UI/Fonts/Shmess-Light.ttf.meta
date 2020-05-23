@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: f3484d6f062f73c44911bcb3a650b4af
+timeCreated: 1499426632
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Shmess
+  fontNames:
+  - Shmess
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: dcc44f9ff8f1d92459014cbb83e9b301, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

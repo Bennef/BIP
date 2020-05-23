@@ -1,0 +1,1 @@
+To give Bip more facial expressions create a new alpha map using the template called Bip_Face_UVW.  If the new facial expression was created using the template you should be able to switch between them using code and no errors.  Facial expressions need to be in white as other colours won’t be visible due to rendering.

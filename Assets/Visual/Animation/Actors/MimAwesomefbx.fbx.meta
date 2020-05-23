@@ -1,0 +1,179 @@
+fileFormatVersion: 2
+guid: 04f1c7d17f623694e83a2dc099a40691
+timeCreated: 1472061074
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: BONE.Bip.Ear.L
+    100002: BONE.Bip.Ear.L_end
+    100004: BONE.Bip.Ear.R
+    100006: BONE.Bip.Ear.R_end
+    100008: Bone.Chest
+    100010: Bone.Head
+    100012: Bone.Hip
+    100014: Bone.Lower.Arm.L
+    100016: Bone.Lower.Arm.L_end
+    100018: Bone.Lower.Arm.R
+    100020: Bone.Lower.Arm.R_end
+    100022: Bone.Lower.Leg.L
+    100024: Bone.Lower.Leg.L_end
+    100026: Bone.Lower.Leg.R
+    100028: Bone.Lower.Leg.R_end
+    100030: BONE.Mim.Ear.L
+    100032: BONE.Mim.Ear.L_end
+    100034: BONE.Mim.Ear.R
+    100036: BONE.Mim.Ear.R_end
+    100038: BONE.Pop.Ear.L
+    100040: BONE.Pop.Ear.L_end
+    100042: BONE.Pop.Ear.R
+    100044: BONE.Pop.Ear.R_end
+    100046: Bone.Shoulder.L
+    100048: Bone.Shoulder.R
+    100050: Bone.Upper.Arm.L
+    100052: Bone.Upper.Arm.R
+    100054: Bone.Upper.Leg.L
+    100056: Bone.Upper.Leg.R
+    100058: Character_RIG
+    100060: CTRL.Foot.L
+    100062: CTRL.Foot.L_end
+    100064: CTRL.Foot.R
+    100066: CTRL.Foot.R_end
+    100068: CTRL.World
+    100070: MESH_Bip_Blender
+    100072: MESH_Mim_Blender
+    100074: MESH_Pop_Blender
+    100076: MESH_Pop_Blender_Cane
+    100078: //RootNode
+    400000: BONE.Bip.Ear.L
+    400002: BONE.Bip.Ear.L_end
+    400004: BONE.Bip.Ear.R
+    400006: BONE.Bip.Ear.R_end
+    400008: Bone.Chest
+    400010: Bone.Head
+    400012: Bone.Hip
+    400014: Bone.Lower.Arm.L
+    400016: Bone.Lower.Arm.L_end
+    400018: Bone.Lower.Arm.R
+    400020: Bone.Lower.Arm.R_end
+    400022: Bone.Lower.Leg.L
+    400024: Bone.Lower.Leg.L_end
+    400026: Bone.Lower.Leg.R
+    400028: Bone.Lower.Leg.R_end
+    400030: BONE.Mim.Ear.L
+    400032: BONE.Mim.Ear.L_end
+    400034: BONE.Mim.Ear.R
+    400036: BONE.Mim.Ear.R_end
+    400038: BONE.Pop.Ear.L
+    400040: BONE.Pop.Ear.L_end
+    400042: BONE.Pop.Ear.R
+    400044: BONE.Pop.Ear.R_end
+    400046: Bone.Shoulder.L
+    400048: Bone.Shoulder.R
+    400050: Bone.Upper.Arm.L
+    400052: Bone.Upper.Arm.R
+    400054: Bone.Upper.Leg.L
+    400056: Bone.Upper.Leg.R
+    400058: Character_RIG
+    400060: CTRL.Foot.L
+    400062: CTRL.Foot.L_end
+    400064: CTRL.Foot.R
+    400066: CTRL.Foot.R_end
+    400068: CTRL.World
+    400070: MESH_Bip_Blender
+    400072: MESH_Mim_Blender
+    400074: MESH_Pop_Blender
+    400076: MESH_Pop_Blender_Cane
+    400078: //RootNode
+    2300000: MESH_Pop_Blender_Cane
+    3300000: MESH_Pop_Blender_Cane
+    4300000: MESH_Mim_Blender
+    4300002: MESH_Pop_Blender
+    4300004: MESH_Bip_Blender
+    4300006: MESH_Pop_Blender_Cane
+    7400000: Character_RIG|Bone_Chest001|Take 001|BaseLayer
+    7400002: Character_RIG|Bone_Head001|Take 001|BaseLayer
+    7400004: Character_RIG|Bone_Hip001|Take 001|BaseLayer
+    7400006: Character_RIG|Bone_L_CollarBone001|Take 001|BaseLayer
+    7400008: Character_RIG|Bone_L_Ear001|Take 001|BaseLayer
+    7400010: Character_RIG|Bone_L_Lower_Leg001|Take 001|BaseLayer
+    7400012: Character_RIG|Bone_L_LowerArm001|Take 001|BaseLayer
+    7400014: Character_RIG|Bone_L_Upper_Leg001|Take 001|BaseLayer
+    7400016: Character_RIG|Bone_L_UpperArm001|Take 001|BaseLayer
+    7400018: Character_RIG|Bone_R_CollarBone001|Take 001|BaseLayer
+    7400020: Character_RIG|Bone_R_Ear001|Take 001|BaseLayer
+    7400022: Character_RIG|Bone_R_Lower_Leg001|Take 001|BaseLayer
+    7400024: Character_RIG|Bone_R_LowerArm001|Take 001|BaseLayer
+    7400026: Character_RIG|Bone_R_Upper_Leg001|Take 001|BaseLayer
+    7400028: Character_RIG|Bone_R_UpperArm001|Take 001|BaseLayer
+    7400030: Character_RIG|Character_RIGAction
+    7400032: Character_RIG|End_Bone_L_Foot001|Take 001|BaseLayer
+    7400034: Character_RIG|End_Bone_R_Foot001|Take 001|BaseLayer
+    9500000: //RootNode
+    13700000: MESH_Bip_Blender
+    13700002: MESH_Mim_Blender
+    13700004: MESH_Pop_Blender
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
