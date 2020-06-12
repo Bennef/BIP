@@ -5,11 +5,11 @@ public class TeleportSend : MonoBehaviour
 {
     // ----------------------------------------------- Data members ----------------------------------------------
     public TeleportReceive teleportToGoTo;
-    public bool hasBeenEntered, changeScene, demo, isOn, activateRoom;
+    public bool hasBeenEntered, changeScene, demo, isOn, activateRoom, fadeOutMusic;
     public PlayerMovement playerMovement;
     public Animator anim;
     public Transform bip, telePos, sparkPos, destinationPos, newCamPos;
-    public AudioSource aSrc1, aSrc2;
+    public AudioSource aSrc1, aSrc2, audioToFadeOut;
     Rigidbody bipRigidbody;
 
     public SkinnedMeshRenderer bipMesh;
@@ -42,6 +42,10 @@ public class TeleportSend : MonoBehaviour
     // --------------------------------------------------------------------
     public IEnumerator Teleport()
     {
+        if (fadeOutMusic)
+        {
+            StartCoroutine(AudioFadeOut.FadeOut(audioToFadeOut, 4.0f));
+        }
         playerMovement.isHandlingInput = false;
         mainCam.isFixed = true;
         bipRigidbody.velocity = new Vector3(0, 0, 0);
@@ -66,7 +70,7 @@ public class TeleportSend : MonoBehaviour
         {
             if (demo)
             {
-                LocalSceneManager.Instance.LoadScene("4 Act 2");  //Load DEMO END
+                LocalSceneManager.Instance.LoadScene("Main Menu Web");  //Load DEMO END
             }
             else
             {

@@ -55,7 +55,8 @@ public class PauseMenu : MonoBehaviour
     public void CheckInput()
     {
         if (Input.GetButtonDown("Pause") && SceneManager.GetActiveScene().name != "0 Main Menu" 
-            && SceneManager.GetActiveScene().name != "Main Menu Portfolio")
+            && SceneManager.GetActiveScene().name != "Main Menu Portfolio"
+            && SceneManager.GetActiveScene().name != "Main Menu Web")
         {
             if (paused)
             {

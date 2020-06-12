@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
         scene = SceneManager.GetActiveScene();
         string str = UnityEngine.StackTraceUtility.ExtractStackTrace();
         // If we are not in the main menu scene...
-        if (scene.name != "Main Menu Portfolio")
+        if (scene.name != "Main Menu Portfolio" && scene.name != "Main Menu Web")
         {
             charController = GameObject.Find("Bip").GetComponent<CharacterController>();
             pauseMenu = GameObject.Find("Pause Menu Canvas").GetComponent<AudioSource>();
@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviour
     // --------------------------------------------------------------------
     void OnLevelWasLoaded()
     {
-        if (scene.name == "Main Menu Portfolio")
+        if (scene.name == "Main Menu Portfolio" || scene.name == "Main Menu Web")
         {
             GameManager.Instance.isPaused = false;
         }

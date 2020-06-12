@@ -144,17 +144,21 @@ public class GrabbableObject : MonoBehaviour
                     cube.isGrabbable = false;
                 }
             }
-		}
+            if (other.gameObject.tag == "Player")
+            {
+                isGrabbable = true;
+            }
+        }
 	}
     // --------------------------------------------------------------------
-    public void OnTriggerEnter(Collider other)
+    /*public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
             //Debug.Log(other.name);
             isGrabbable = true;
         }
-    }
+    }*/
     // --------------------------------------------------------------------
     public void OnTriggerExit(Collider other)
 	{

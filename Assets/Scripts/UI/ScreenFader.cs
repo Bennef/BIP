@@ -20,7 +20,7 @@ public class ScreenFader : MonoBehaviour
 		canvasGroup = gameObject.GetComponent<CanvasGroup>();
         whitePanel.gameObject.SetActive(false);
         Scene scene = SceneManager.GetActiveScene();
-        if (scene.name == "0 Main Menu" || scene.name == "Main Menu Portfolio")
+        if (scene.name == "0 Main Menu" || scene.name == "Main Menu Portfolio" || scene.name == "Main Menu Web")
         {
             StartCoroutine(FadeToClear());
         }
