@@ -1,5 +1,6 @@
 // Cinema Suite
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace CinemaDirector
 {
@@ -7,11 +8,11 @@ namespace CinemaDirector
     /// An action that fades in a texture over the first 25% of length, shows for 50% of time length
     /// and fades away over the final 25%.
     /// </summary>
-    [CutsceneItem("GUITexture", "Fade Texture", CutsceneItemGenre.GlobalItem)]
+    [CutsceneItem("Image", "Fade Texture", CutsceneItemGenre.GlobalItem)]
     public class FadeTexture : CinemaGlobalAction
     {
-        // The GUITexture to show
-        public GUITexture target;
+        // The Image to show
+        public Image target;
 
         // Optional Tint
         public Color tint = Color.grey;

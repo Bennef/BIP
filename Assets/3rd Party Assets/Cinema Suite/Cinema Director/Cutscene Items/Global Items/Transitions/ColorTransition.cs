@@ -1,5 +1,6 @@
 // Cinema Suite
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace CinemaDirector
 {
@@ -20,15 +21,15 @@ namespace CinemaDirector
         /// </summary>
         void Awake()
         {
-			if (gameObject.GetComponent<GUITexture>() == null)
+			if (gameObject.GetComponent<Image>() == null)
             {
                 gameObject.transform.position = Vector3.zero;
                 gameObject.transform.localScale = new Vector3(100, 100, 100);
-				GUITexture texture = gameObject.AddComponent<GUITexture>();
+				Image texture = gameObject.AddComponent<Image>();
 
 				texture.enabled = false;
-				texture.texture = new Texture2D(1, 1);
-				texture.pixelInset = new Rect(0f, 0f, Screen.width, Screen.height);
+				//texture.texture = new Texture2D(1, 1);
+				//texture.pixelInset = new Rect(0f, 0f, Screen.width, Screen.height);
 				texture.color = Color.clear;
             }
         }
@@ -38,12 +39,12 @@ namespace CinemaDirector
         /// </summary>
         public override void Trigger()
         {
-			GUITexture guiTexture = gameObject.GetComponent<GUITexture> ();
-			if(guiTexture != null)
+			Image image = gameObject.GetComponent<Image> ();
+			if(image != null)
 			{
-	            guiTexture.enabled = true;
-	            guiTexture.pixelInset = new Rect(0f, 0f, Screen.width, Screen.height);
-	            guiTexture.color = From;
+	            image.enabled = true;
+	           // image.pixelInset = new Rect(0f, 0f, Screen.width, Screen.height);
+	            image.color = From;
 			}
         }
 
@@ -73,15 +74,15 @@ namespace CinemaDirector
         /// <param name="deltaTime">the deltaTime since the last update call.</param>
         public override void SetTime(float time, float deltaTime)
         {
-			GUITexture guiTexture = gameObject.GetComponent<GUITexture> ();
-			if (guiTexture != null) 
+			Image image = gameObject.GetComponent<Image> ();
+			if (image != null) 
 			{
 				if (time >= 0 && time <= Duration) 
 				{
-					guiTexture.enabled = true;
+					image.enabled = true;
 					UpdateTime (time, deltaTime);
-				} else if (guiTexture.enabled) {
-					guiTexture.enabled = false;
+				} else if (image.enabled) {
+					image.enabled = false;
 				}
 			}
         }
@@ -91,9 +92,9 @@ namespace CinemaDirector
         /// </summary>
         public override void End()
         {
-			GUITexture guiTexture = gameObject.GetComponent<GUITexture> ();
-			if (guiTexture != null) {
-								guiTexture.enabled = false;
+			Image image = gameObject.GetComponent<Image> ();
+			if (image != null) {
+								image.enabled = false;
 						}
         }
 
@@ -102,11 +103,11 @@ namespace CinemaDirector
         /// </summary>
         public override void ReverseEnd()
         {
-			GUITexture guiTexture = gameObject.GetComponent<GUITexture> ();
-			if (guiTexture != null) {
-						guiTexture.enabled = true;
-						guiTexture.pixelInset = new Rect (0f, 0f, Screen.width, Screen.height);
-						guiTexture.color = To;
+			Image image = gameObject.GetComponent<Image> ();
+			if (image != null) {
+						image.enabled = true;
+						//image.pixelInset = new Rect (0f, 0f, Screen.width, Screen.height);
+						image.color = To;
 				}
         }
 
@@ -115,10 +116,10 @@ namespace CinemaDirector
         /// </summary>
         public override void Stop()
         {
-			GUITexture guiTexture = gameObject.GetComponent<GUITexture> ();
-            if (guiTexture != null)
+			Image image = gameObject.GetComponent<Image> ();
+            if (image != null)
             {
-                guiTexture.enabled = false;
+                image.enabled = false;
             }
         }
 
@@ -130,9 +131,9 @@ namespace CinemaDirector
         /// <param name="transition">the Lerp transition value</param>
         private void FadeToColor(Color from, Color to, float transition)
         {
-			GUITexture guiTexture = gameObject.GetComponent<GUITexture> ();
-			if (guiTexture != null) {
-								guiTexture.color = Color.Lerp (from, to, transition);
+			Image image = gameObject.GetComponent<Image> ();
+			if (image != null) {
+								image.color = Color.Lerp (from, to, transition);
 						}
         }
 

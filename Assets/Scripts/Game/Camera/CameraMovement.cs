@@ -78,7 +78,7 @@ public class CameraMovement : MonoBehaviour
             CameraCollision();
 
             // Make Bip transparent if camera is too close.
-            ApplyTransparencyToBip();
+            //ApplyTransparencyToBip();
 		}
 
         // If we are loading a checkpoint, reset the position here...  
