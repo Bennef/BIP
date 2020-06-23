@@ -8,7 +8,6 @@ public class GameManager : MonoBehaviour
 {
     public CheckPoint currentCheckpoint;       // To access the current check point.
     public Vector3 currentCheckpointPos;       // The position of the current CheckPoint.
-    private GameObject mainCam;                 // Main Game Camera.
     public CompassionChoices compChoices;      // Compassion choices.
 	public GameOptions options;
 	public Snapshot save;

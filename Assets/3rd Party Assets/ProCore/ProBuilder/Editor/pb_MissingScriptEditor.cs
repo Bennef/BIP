@@ -131,8 +131,8 @@ namespace ProBuilder2.EditorCommon
 				{
 					if (go.GetComponents<Component>().Any(x => x == null) && !unfixable.Contains(go))
 					{
-						if (	(PrefabUtility.GetPrefabType(go) == PrefabType.PrefabInstance ||
-							 PrefabUtility.GetPrefabType(go) == PrefabType.Prefab ) )
+						if (	PrefabUtility.GetPrefabType(go) == PrefabType.PrefabInstance ||
+							 PrefabUtility.GetPrefabType(go) == PrefabType.Prefab  )
 						{
 							GameObject pref = (GameObject)PrefabUtility.GetPrefabParent(go);
 

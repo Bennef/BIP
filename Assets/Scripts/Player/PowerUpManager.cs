@@ -20,6 +20,7 @@ public class PowerUpManager : MonoBehaviour
         EMPObject = GameObject.Find("EMP Object");
 		playerMovement = GetComponent<PlayerMovement>();
 		powerBar = GetComponent<PlayerPower>();
+
         if (EMPObject != null)
             EMPObject.SetActive(false);   // Set EMP object to non-active until we perform an EMP Blast.
         SoundManager = GetComponent<CharacterSoundManager>();

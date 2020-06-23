@@ -90,10 +90,18 @@ public class DroneBotMind : MindActor
 	{
 		switch (currentState) 
 		{
-			case State.IDLE:	break;
-			case State.CHASE:	ChaseTarget(); laserScript.inChaseRange = true;	break;
-			case State.RETURN:	ReturnToPath();	break;
-			case State.JAMMED:	JammingDrone();	break;
+			case State.IDLE:	
+				break;
+			case State.CHASE:	
+				ChaseTarget(); 
+				laserScript.inChaseRange = true;	
+				break;
+			case State.RETURN:	
+				ReturnToPath();	
+				break;
+			case State.JAMMED:	
+				//JammingDrone();	
+				break;
 			// Error Handling...
 			default: Debug.LogError ("Invalid State. Check if currentState is defined.");
 				break;
@@ -133,9 +141,7 @@ public class DroneBotMind : MindActor
 	{
 		// Checks if Bip as the collide object.
 		if (other.CompareTag("Player"))
-		{
 			StartCoroutine("CheckDistance");
-		}
 	}
 
 	void FixedUpdate()
@@ -199,7 +205,7 @@ public class DroneBotMind : MindActor
             audioSource.PlayOneShot(alert);
         currentState = State.CHASE;
     }
-	
+	/*
 	void JammingDrone()
 	{
 		// Wait or do something whilst jammed/disabled...
@@ -209,7 +215,7 @@ public class DroneBotMind : MindActor
 			currentState = State.IDLE;				//@Notes: If Bip is still within proximity sphere the bot wont go to CHASE state. (testing needed)
 		}
 	}
-
+	*/
 	public void TurnAlarmOn()
 	{
 		EnterChaseState();                          // Needed as just turning the alarm to TRUE, doesn't seem to work at all.

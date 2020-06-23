@@ -63,7 +63,7 @@ public class CharacterController : MonoBehaviour
         anim.SetBool(state.IsClimbingBool, false);
         transform.position = GameManager.Instance.currentCheckpointPos;// Move Bip to last checkpoint.
         //transform.forward = GameManager.Instance.currentCheckpoint.transform.forward; // Orient Bip how the checkpoint wants him.     // Put this somewhere that happens later, after Bip hits CP
-        _cameraMovement.shouldReset = true;
+        _cameraMovement.ShouldReset = true;
         
         if (this.gameObject.GetComponent<PlayerHealth>())
             this.gameObject.GetComponent<PlayerHealth>().Reset();

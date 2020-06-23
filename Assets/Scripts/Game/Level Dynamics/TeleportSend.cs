@@ -41,7 +41,7 @@ public class TeleportSend : MonoBehaviour
         if (fadeOutMusic)
             StartCoroutine(AudioFadeOut.FadeOut(audioToFadeOut, 4.0f));
         playerMovement.isHandlingInput = false;
-        mainCam.isFixed = true;
+        mainCam.IsFixed = true;
         bipRigidbody.velocity = new Vector3(0, 0, 0);
         bipRigidbody.isKinematic = true;
         StartCoroutine(MoveBip());

@@ -43,7 +43,6 @@ public class PlayerMovement: MonoBehaviour
 	
 	void Awake()
 	{
-        //DontDestroyOnLoad(this);
 		rigidbody = GetComponent<Rigidbody>();
 		anim = GetComponent<Animator>();
 		state = GetComponent<PlayerStates>();
@@ -58,17 +57,14 @@ public class PlayerMovement: MonoBehaviour
     void FixedUpdate()
 	{
         // Create a sphere at the player's feet. If the sphere collides with anything on the layer(s) layerMask
-        // return true
         if (Physics.CheckSphere(transform.position, 0.1f, layerMask))
             anim.SetBool(state.IsGroundedBool, true); // If sphere collides, we're touching ground.
         else
             anim.SetBool(state.IsGroundedBool, false); // Otherwise, we're in the air.
 
+        // We can double jump if we're airbourne and not grabbing a ledge
         if (!anim.GetBool(state.IsGroundedBool) && !anim.GetBool(state.IsClimbingBool))
-        {
-            // We can double jump if we're airbourne and not grabbing a ledge
             canDoubleJump = true;
-        }
         else
         {
             canDoubleJump = false;
@@ -150,7 +146,6 @@ public class PlayerMovement: MonoBehaviour
 
         // Multiply the direction vectors by the Input.GetAxis floats.
         movement = forwardMove * v + horizontalMove * h;
-		
 		// Normalise the movement vector and make it proportional to the speed per second.
 		movement = movement.normalized * speed;
 		// Set velocity for animation states
@@ -183,13 +178,10 @@ public class PlayerMovement: MonoBehaviour
             moveValue = v;
 
         anim.SetFloat(state.SpeedFloat, moveValue);
-
 		// Multiply the direction vectors by the Input.GetAxis floats.	
 		movement = forwardMove * moveValue;
-
 		// Normalise the movement vector and make it proportional to the speed per second.
 		movement = movement.normalized * speed;
-
 		// Set velocity for animation states.
 		state.Velocity = movement;
     }

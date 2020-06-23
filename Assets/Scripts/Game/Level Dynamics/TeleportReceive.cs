@@ -45,8 +45,8 @@ public class TeleportReceive : MonoBehaviour
     public IEnumerator TeleportIn()
     {
         mainCam.transform.position = camPos.position;
-        mainCam.transform.LookAt(mainCam.target.transform.position);
-        mainCam.isFixed = true;
+        mainCam.transform.LookAt(mainCam.Target.transform.position);
+        mainCam.IsFixed = true;
         if (shouldFade)
             fader.GetComponent<ScreenFader>().StartCoroutine("FadeToClear");  
         bipMesh.enabled = false; 
@@ -90,7 +90,7 @@ public class TeleportReceive : MonoBehaviour
         yield return new WaitForSeconds(1f);
         playerMovement.isHandlingInput = true;
         bipRigidbody.isKinematic = false;
-        mainCam.isFixed = false;
+        mainCam.IsFixed = false;
     }
     
     public void SwapMats()
