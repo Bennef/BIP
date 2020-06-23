@@ -2,36 +2,29 @@
 
 public class BeamReceiver : MonoBehaviour
 {
-    // ----------------------------------------------- Data members ----------------------------------------------
     public bool isHit, a, b;
     public MeshRenderer litBulb, unlitBulb;
     public Light bulbLight;
     public RaycastReflection[] beams;
     public string receiverName;
-    // ----------------------------------------------- End Data members ------------------------------------------
-
-    // --------------------------------------------------- Methods -----------------------------------------------
-    // --------------------------------------------------------------------
+    
     // Update is called once per frame
-    void LateUpdate()
-    {
-        CheckForHits();
-    }
-    // --------------------------------------------------------------------
+    void LateUpdate() => CheckForHits();
+ 
     public void LightOn()
     {
         unlitBulb.enabled = false;
         litBulb.enabled = true;
         bulbLight.enabled = true;
     }
-    // --------------------------------------------------------------------
+    
     public void LightOff()
     {
         unlitBulb.enabled = true;
         litBulb.enabled = false;
         bulbLight.enabled = false;
     }
-    // --------------------------------------------------------------------
+    
     public void CheckForHits()
     {
         a = b = false;
@@ -48,9 +41,7 @@ public class BeamReceiver : MonoBehaviour
                     }
                 }
                 else if (a == false)
-                {
                     LightOff();
-                }
             }
 
             else if (receiverName == "Unlit Bulb B")
@@ -64,12 +55,8 @@ public class BeamReceiver : MonoBehaviour
                     }
                 }
                 else if (b == false)
-                {
                     LightOff();
-                }
             }
         }
     }
-    // --------------------------------------------------------------------
-    // --------------------------------------------------- End Methods --------------------------------------------
 }

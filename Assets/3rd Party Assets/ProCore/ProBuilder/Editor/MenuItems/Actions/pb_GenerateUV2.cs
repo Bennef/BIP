@@ -19,10 +19,10 @@ namespace ProBuilder2.Actions
 		{
 			pb_Object[] sel = Selection.transforms.GetComponents<pb_Object>();
 
-			if( !Menu_GenerateUV2(sel) )
+			if ( !Menu_GenerateUV2(sel) )
 				return;	// user canceled
 
-			if(sel.Length > 0)
+			if (sel.Length > 0)
 				pb_EditorUtility.ShowNotification("Generated UV2 for " + sel.Length + " Meshes");
 			else
 				pb_EditorUtility.ShowNotification("Nothing Selected");
@@ -33,10 +33,10 @@ namespace ProBuilder2.Actions
 		{
 			pb_Object[] sel = (pb_Object[])FindObjectsOfType(typeof(pb_Object));
 
-			if( !Menu_GenerateUV2(sel) )
+			if ( !Menu_GenerateUV2(sel) )
 				return;
 
-			if(sel.Length > 0)
+			if (sel.Length > 0)
 				pb_EditorUtility.ShowNotification("Generated UV2 for " + sel.Length + " Meshes");
 			else
 				pb_EditorUtility.ShowNotification("No ProBuilder Objects Found");
@@ -46,9 +46,9 @@ namespace ProBuilder2.Actions
 		{
 			for(int i = 0; i < selected.Length; i++)
 			{
-				if(selected.Length > 3)
+				if (selected.Length > 3)
 				{
-					if( EditorUtility.DisplayCancelableProgressBar(
+					if ( EditorUtility.DisplayCancelableProgressBar(
 						"Generating UV2 Channel",
 						"pb_Object: " + selected[i].name + ".",
 						(((float)i+1) / selected.Length)))

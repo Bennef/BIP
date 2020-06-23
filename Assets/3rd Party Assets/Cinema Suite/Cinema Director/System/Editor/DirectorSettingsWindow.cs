@@ -47,7 +47,7 @@ public class DirectorSettingsWindow : EditorWindow
         // Defaults
 
         TangentMode tempTangentMode = (TangentMode)EditorGUILayout.EnumPopup(new GUIContent("Tangent Mode"), defaultTangentMode);
-        if(tempTangentMode != defaultTangentMode)
+        if (tempTangentMode != defaultTangentMode)
         {
             defaultTangentMode = tempTangentMode;
             EditorPrefs.SetInt("DirectorControl.DefaultTangentMode", (int)defaultTangentMode);
@@ -55,14 +55,14 @@ public class DirectorSettingsWindow : EditorWindow
         
         
         bool tempBetaFeatures = EditorGUILayout.Toggle(new GUIContent("Enable Beta Features"), enableBetaFeatures);
-        if(tempBetaFeatures!=enableBetaFeatures)
+        if (tempBetaFeatures!=enableBetaFeatures)
         {
             enableBetaFeatures = tempBetaFeatures;
             EditorPrefs.SetBool("DirectorControl.EnableBetaFeatures", enableBetaFeatures);
         }
 
         GUILayout.FlexibleSpace();
-        if(GUILayout.Button("Apply"))
+        if (GUILayout.Button("Apply"))
         {
             EditorWindow.GetWindow<DirectorWindow>().LoadSettings();
         }

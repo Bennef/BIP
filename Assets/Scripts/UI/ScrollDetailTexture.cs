@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-
 [RequireComponent(typeof(Image))]
 public class ScrollDetailTexture : MonoBehaviour
 {
@@ -14,7 +13,7 @@ public class ScrollDetailTexture : MonoBehaviour
 	Image mSprite;
 	Material m_Mat;
 
-	void OnEnable ()
+	void OnEnable()
 	{
 		mSprite = GetComponent<Image>();
 		mOriginal = mSprite.material;
@@ -28,7 +27,7 @@ public class ScrollDetailTexture : MonoBehaviour
 		}
 	}
 
-	void OnDisable ()
+	void OnDisable()
 	{
 		if (mCopy != null)
 		{
@@ -42,7 +41,7 @@ public class ScrollDetailTexture : MonoBehaviour
 		mOriginal = null;
 	}
 
-	void Update ()
+	void Update()
 	{
 		Material mat = (mCopy != null) ? mCopy : mOriginal;
 

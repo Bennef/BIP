@@ -22,14 +22,14 @@ namespace ProGrids
 
 			snap = EditorGUILayout.FloatField("Snap Value", snap);
 
-			if(EditorGUI.EndChangeCheck())
+			if (EditorGUI.EndChangeCheck())
 				editor.SetSnapIncrement(snap);
 
 			EditorGUI.BeginChangeCheck();
 			int majorLineIncrement = EditorPrefs.GetInt(pg_Constant.MajorLineIncrement, 10);
 			majorLineIncrement = EditorGUILayout.IntField("Major Line Increment", majorLineIncrement);
 			majorLineIncrement = majorLineIncrement < 2 ? 2 : majorLineIncrement > 128 ? 128 : majorLineIncrement;
-			if(EditorGUI.EndChangeCheck())
+			if (EditorGUI.EndChangeCheck())
 			{
 				EditorPrefs.SetInt(pg_Constant.MajorLineIncrement, majorLineIncrement);
 				pg_GridRenderer.majorLineIncrement = majorLineIncrement;
@@ -42,7 +42,7 @@ namespace ProGrids
 
 			bool snapAsGroup = editor.snapAsGroup;
 			snapAsGroup = EditorGUILayout.Toggle(gc_snapAsGroup, snapAsGroup);
-			if(snapAsGroup != editor.snapAsGroup)
+			if (snapAsGroup != editor.snapAsGroup)
 				editor.snapAsGroup = snapAsGroup;
 
 			EditorGUI.BeginChangeCheck();
@@ -51,10 +51,10 @@ namespace ProGrids
 
 			EditorGUI.BeginChangeCheck();
 			editor.angleValue = EditorGUILayout.Slider("Angle", editor.angleValue, 0f, 180f);
-			if(EditorGUI.EndChangeCheck())
+			if (EditorGUI.EndChangeCheck())
 				SceneView.RepaintAll();
 
-			if( EditorGUI.EndChangeCheck() )
+			if ( EditorGUI.EndChangeCheck() )
 			{
 				EditorPrefs.SetInt(pg_Constant.GridUnit, (int) _gridUnits);
 				editor.LoadPreferences();
@@ -62,7 +62,7 @@ namespace ProGrids
 
 			bool tmp = editor.predictiveGrid;
 			tmp = EditorGUILayout.Toggle(gc_predictiveGrid, tmp);
-			if( tmp != editor.predictiveGrid )
+			if ( tmp != editor.predictiveGrid )
 			{
 				editor.predictiveGrid = tmp;
 				EditorPrefs.SetBool(pg_Constant.PredictiveGrid, tmp);
@@ -70,7 +70,7 @@ namespace ProGrids
 
 			GUILayout.FlexibleSpace();
 
-			if( GUILayout.Button("Done"))
+			if ( GUILayout.Button("Done"))
 				this.Close();
 		}
 	}

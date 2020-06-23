@@ -31,7 +31,7 @@ namespace ProGrids
 
 			gridObject = EditorUtility.CreateGameObjectWithHideFlags(PREVIEW_OBJECT_NAME, PG_HIDE_FLAGS, new System.Type[2]{typeof(MeshFilter), typeof(MeshRenderer)});
 			majorLineIncrement = EditorPrefs.GetInt(pg_Constant.MajorLineIncrement, 10);
-			if(majorLineIncrement < 2)
+			if (majorLineIncrement < 2)
 				majorLineIncrement = 2;
 
 			// Force the mesh to only render in SceneView
@@ -73,7 +73,7 @@ namespace ProGrids
 		 */
 		public static float DrawPlane(Camera cam, Vector3 pivot, Vector3 tangent, Vector3 bitangent, float snapValue, Color color, float alphaBump)
 		{
-			if(!gridMesh || !gridMaterial || !gridObject)
+			if (!gridMesh || !gridMaterial || !gridObject)
 				Init();
 
 			gridMaterial.SetFloat("_AlphaCutoff", .1f);
@@ -88,7 +88,7 @@ namespace ProGrids
 
 			float[] distances = GetDistanceToFrustumPlanes(cam, pivot, tangent, bitangent, 24f);
 
-			if(inFrustum)
+			if (inFrustum)
 			{
 				tan_iter = (int)(Mathf.Ceil( (Mathf.Abs(distances[0]) + Mathf.Abs(distances[2]))/snapValue ));
 				bit_iter = (int)(Mathf.Ceil( (Mathf.Abs(distances[1]) + Mathf.Abs(distances[3]))/snapValue ));
@@ -97,16 +97,16 @@ namespace ProGrids
 
 				// if the max is around 3x greater than min, we're probably skewing the camera at near-plane
 				// angle, so use the min instead.
-				if(max > Mathf.Min(tan_iter, bit_iter) * 2)
+				if (max > Mathf.Min(tan_iter, bit_iter) * 2)
 					max = (int) Mathf.Min(tan_iter, bit_iter) * 2;
 
 				div = 1;
 
 				float dot = Vector3.Dot( cam.transform.position-pivot, Vector3.Cross(tangent, bitangent) );
 
-				if(max > MAX_LINES)
+				if (max > MAX_LINES)
 				{
-					if(Vector3.Distance(cam.transform.position, pivot) > 50f * snapValue && Mathf.Abs(dot) > .8f)
+					if (Vector3.Distance(cam.transform.position, pivot) > 50f * snapValue && Mathf.Abs(dot) > .8f)
 					{
 						while(max/div > MAX_LINES)
 							div += div;
@@ -126,7 +126,7 @@ namespace ProGrids
 
 		public static void DrawGridPerspective(Camera cam, Vector3 pivot, float snapValue, Color[] colors, float alphaBump)
 		{
-			if(!gridMesh || !gridMaterial || !gridObject)
+			if (!gridMesh || !gridMaterial || !gridObject)
 				Init();
 
 			gridMaterial.SetFloat("_AlphaCutoff", 0f);
@@ -155,30 +155,30 @@ namespace ProGrids
 				float dist;
 				float t = 0;
 
-				if(p.Raycast(ray_x, out dist))
+				if (p.Raycast(ray_x, out dist))
 				{
 					t = Vector3.Distance(pivot, ray_x.GetPoint(dist));
-					if(t < x_dist || !x_intersect)
+					if (t < x_dist || !x_intersect)
 					{
 						x_intersect = true;
 						x_dist = t;
 					}
 				}
 
-				if(p.Raycast(ray_y, out dist))
+				if (p.Raycast(ray_y, out dist))
 				{
 					t = Vector3.Distance(pivot, ray_y.GetPoint(dist));
-					if(t < y_dist || !y_intersect)
+					if (t < y_dist || !y_intersect)
 					{
 						y_intersect = true;
 						y_dist = t;
 					}
 				}
 
-				if(p.Raycast(ray_z, out dist))
+				if (p.Raycast(ray_z, out dist))
 				{
 					t = Vector3.Distance(pivot, ray_z.GetPoint(dist));
-					if(t < z_dist || !z_intersect)
+					if (t < z_dist || !z_intersect)
 					{
 						z_intersect = true;
 						z_dist = t;
@@ -433,11 +433,11 @@ namespace ProGrids
 
 				for(int i = 0; i < 4; i++)
 				{
-					if(p.Raycast(rays[i], out dist))
+					if (p.Raycast(rays[i], out dist))
 					{
 						t = Vector3.Distance(pivot, rays[i].GetPoint(dist));
 
-						if(t < intersects[i] || !intersection_found[i])
+						if (t < intersects[i] || !intersection_found[i])
 						{
 							intersection_found[i] = true;
 							intersects[i] = Mathf.Max(minDist, t);

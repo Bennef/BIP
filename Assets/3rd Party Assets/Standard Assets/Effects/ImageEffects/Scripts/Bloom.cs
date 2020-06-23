@@ -80,7 +80,7 @@ namespace UnityStandardAssets.ImageEffects
         private Material brightPassFilterMaterial;
 
 
-        public override bool CheckResources ()
+        public override bool CheckResources()
         {
             CheckSupport (false);
 
@@ -90,7 +90,7 @@ namespace UnityStandardAssets.ImageEffects
             brightPassFilterMaterial = CheckShaderAndCreateMaterial(brightPassFilterShader, brightPassFilterMaterial);
 
             if (!isSupported)
-                ReportAutoDisable ();
+                ReportAutoDisable();
             return isSupported;
         }
 

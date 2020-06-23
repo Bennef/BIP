@@ -203,7 +203,7 @@ Shader "Hidden/ScreenSpaceAmbientObscurance"
 		float3 C = GetPosition(ssC);
 
 		//return abs(float4(C.xyz,0));
-		//if(abs(C.z)<0.31)
+		//if (abs(C.z)<0.31)
 		//	return 1;
 		//return abs(C.z);
 

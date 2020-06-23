@@ -18,14 +18,14 @@ public class F3DTrailExample : MonoBehaviour
     public rotType rotation;
 
     // Use this for initialization
-    void Start ()
+    void Start()
     {
         // Store initial position
         defaultPos = transform.position;
     }
     
     // Update is called once per frame
-    void Update ()
+    void Update()
     {
         // Used in the example scene
         // Moves the trail by circular trajectory 

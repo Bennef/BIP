@@ -2,55 +2,40 @@
 
 public class PowerLight : MonoBehaviour
 {
-    public Light light;
-    public PowerTerminal terminal;
-    public bool shouldBeLit;
+    private Light _theLight;
+    private PowerTerminal _terminal;
+    private bool _shouldBeLit;
 
-	// Use this for initialization
-	void Start()
-    {
-        light.enabled = false;
-	}
-    // --------------------------------------------------------------------
+    // Use this for initialization
+    void Start() => _theLight.enabled = false;
+    
     private void Update()
     {
-        if (shouldBeLit)
-        {
-            light.enabled = true;
-        }
+        if (_shouldBeLit)
+            _theLight.enabled = true;
         else
-        {
-            light.enabled = false;
-        }
+            _theLight.enabled = false;
     }
-    // --------------------------------------------------------------------
+    
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "Terminal")
+        if (other.CompareTag("Terminal"))
         {
-            terminal = other.gameObject.GetComponent<PowerTerminal>();
-            if (terminal.isPowered)
-            {
-                shouldBeLit = true;
-            }
+            _terminal = other.gameObject.GetComponent<PowerTerminal>();
+            if (_terminal.isPowered)
+                _shouldBeLit = true;
             else
-            {
-                shouldBeLit = false;
-            }
+                _shouldBeLit = false;
         }
     }
-    // --------------------------------------------------------------------
+    
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Terminal")
+        if (other.CompareTag("Terminal"))
         {
-            terminal = other.gameObject.GetComponent<PowerTerminal>();
-            if (!terminal.isPowered)
-            {
-                shouldBeLit = false;
-            }
+            _terminal = other.gameObject.GetComponent<PowerTerminal>();
+            if (!_terminal.isPowered)
+                _shouldBeLit = false;
         }
     }
-    // --------------------------------------------------------------------
-    // --------------------------------------------------- End Methods --------------------------------------------
 }

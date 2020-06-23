@@ -2,27 +2,17 @@
 
 public class JumpRangeDetector : MonoBehaviour
 {
-    // ----------------------------------------------- Data members ----------------------------------------------
-    public AtraxAnimationController anim;
-    // ----------------------------------------------- End Data members ------------------------------------------
-
-    // --------------------------------------------------- Methods -----------------------------------------------
-    // --------------------------------------------------------------------
+    [SerializeField] private AtraxAnimationController anim;
+    
     private void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.tag == "Player")
-        {
+        if (col.gameObject.CompareTag("Player"))
             anim.StartJumpState();
-        }
     }
-    // --------------------------------------------------------------------
+    
     private void OnTriggerExit(Collider col)
     {
-        if (col.gameObject.tag == "Player")
-        {
+        if (col.gameObject.CompareTag("Player"))
             anim.StopJumpState();
-        }
     }
-    // --------------------------------------------------------------------
-    // --------------------------------------------------- End Methods --------------------------------------------
 }

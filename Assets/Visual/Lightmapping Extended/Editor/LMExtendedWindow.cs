@@ -34,13 +34,13 @@ public class LMExtendedWindow : EditorWindow
 	public SerializedConfig sc {
 		get {
 			if (_sc == null)
-				_sc = ScriptableObject.CreateInstance<SerializedConfig> ();
+				_sc = ScriptableObject.CreateInstance<SerializedConfig>();
 			return _sc;
 		}
 	}
 
 	[MenuItem ("Window/Lightmapping Extended", false, 2098)]
-	static void Init ()
+	static void Init()
 	{
 		var window = EditorWindow.GetWindow<LMExtendedWindow> (false, "LM Extended");
 		window.autoRepaintOnSceneChange = true;
@@ -60,7 +60,7 @@ public class LMExtendedWindow : EditorWindow
 		}
 	}
 	
-	void SaveConfig ()
+	void SaveConfig()
 	{
 		sc.config.SerializeToPath (ConfigFilePath);
 	}
@@ -70,32 +70,32 @@ public class LMExtendedWindow : EditorWindow
 	
 	#region Unity Events
 	
-	void OnEnable ()
+	void OnEnable()
 	{
-		presetsFolderPath = GetPresetsFolderPath ();
+		presetsFolderPath = GetPresetsFolderPath();
 	}
 	
-	void OnSelectionChange ()
+	void OnSelectionChange()
 	{
 		if (!File.Exists (ConfigFilePath)) {
-			SetPresetToDefault ();
+			SetPresetToDefault();
 			sc.config = null;
 		}
-		Repaint ();
+		Repaint();
 	}
 
-	void OnFocus ()
+	void OnFocus()
 	{
 		if (!File.Exists (ConfigFilePath))
 			sc.config = null;
-		Repaint ();
+		Repaint();
 	}
 
-	void OnProjectChange ()
+	void OnProjectChange()
 	{
 		if (!File.Exists (ConfigFilePath))
 			sc.config = null;
-		Repaint ();
+		Repaint();
 	}
 	
 	
@@ -104,7 +104,7 @@ public class LMExtendedWindow : EditorWindow
 	[SerializeField]
 	Vector2 scroll;
 
-	void OnGUI ()
+	void OnGUI()
 	{
 		string path = ConfigFilePath;
 		if (string.IsNullOrEmpty (path)) {
@@ -125,26 +125,26 @@ public class LMExtendedWindow : EditorWindow
 
 		// Option to generate a config file
 		if (!haveConfigFile) {
-			EditorGUILayout.Space ();
+			EditorGUILayout.Space();
 			if (GUILayout.Button ("Generate Beast settings file for current scene")) {
-				SetPresetToDefault ();
-				ILConfig newConfig = new ILConfig ();
+				SetPresetToDefault();
+				ILConfig newConfig = new ILConfig();
 				var dir = Path.GetDirectoryName (ConfigFilePath);
 				if (!Directory.Exists (dir))
 					Directory.CreateDirectory (dir);
 				newConfig.SerializeToPath (ConfigFilePath);
 				sc.config = ILConfig.DeserializeFromPath (path);
-				AssetDatabase.Refresh ();
-				GUIUtility.ExitGUI ();
+				AssetDatabase.Refresh();
+				GUIUtility.ExitGUI();
 			}
 			return;
 		}
 		
-		EditorGUILayout.Space ();
+		EditorGUILayout.Space();
 		
-		PresetSelectionGUI ();
+		PresetSelectionGUI();
 		
-		EditorGUILayout.Space ();
+		EditorGUILayout.Space();
 		
 		int lastSelected = toolbarSelected;
 		toolbarSelected = GUILayout.Toolbar (toolbarSelected, new string[] {"Settings", "Global Illum", "Environment"});
@@ -153,7 +153,7 @@ public class LMExtendedWindow : EditorWindow
 			GUI.FocusControl ("");
 		}
 		
-		EditorGUILayout.Space ();
+		EditorGUILayout.Space();
 
 		scroll = EditorGUILayout.BeginScrollView (scroll);
 		{
@@ -174,20 +174,20 @@ public class LMExtendedWindow : EditorWindow
 			}
 			
 			if (GUI.changed) {
-				configObj.ApplyModifiedProperties ();
-				SaveConfig ();
+				configObj.ApplyModifiedProperties();
+				SaveConfig();
 			}
 		}
 		
-		EditorGUILayout.EndScrollView ();
+		EditorGUILayout.EndScrollView();
 		
-		EditorGUILayout.Space ();
-		GUILayout.BeginHorizontal ();
+		EditorGUILayout.Space();
+		GUILayout.BeginHorizontal();
 		{
-			BakeButtonsGUI ();
+			BakeButtonsGUI();
 		}
-		GUILayout.EndHorizontal ();
-		EditorGUILayout.Space ();
+		GUILayout.EndHorizontal();
+		EditorGUILayout.Space();
 		
 		// Use FocusControl to release focus from text fields when switching tabs
 		GUI.SetNextControlName ("");
@@ -201,16 +201,16 @@ public class LMExtendedWindow : EditorWindow
 	string presetsFolderPath;
 	string currentPresetName = "";
 	
-	void PresetSelectionGUI ()
+	void PresetSelectionGUI()
 	{
-		GUILayout.BeginHorizontal ();
+		GUILayout.BeginHorizontal();
 		{
 			GUILayout.Label ("Preset: ");
 			currentPresetName = PresetsPopup (currentPresetName);
-			EditorGUILayout.BeginHorizontal ();
+			EditorGUILayout.BeginHorizontal();
 			{
 				int width = 42;
-				GUILayout.FlexibleSpace ();
+				GUILayout.FlexibleSpace();
 				if (IsCurrentPresetDefault)
 					GUI.enabled = false;
 				if (GUILayout.Button ("Delete", EditorStyles.miniButtonLeft, GUILayout.Width (width))) {
@@ -227,21 +227,21 @@ public class LMExtendedWindow : EditorWindow
 				}
 				GUI.enabled = true;
 				if (GUILayout.Button ("Create", EditorStyles.miniButtonRight, GUILayout.Width (width))) {
-					SetPresetToDefault ();
-					CreatePreset ();
+					SetPresetToDefault();
+					CreatePreset();
 				}
 			}
-			EditorGUILayout.EndHorizontal ();
+			EditorGUILayout.EndHorizontal();
 			if (GUI.changed && !IsCurrentPresetDefault) {
 				LoadPreset (currentPresetName);
 			}
 		}
-		GUILayout.EndHorizontal ();
+		GUILayout.EndHorizontal();
 	}
 	
 	private string PresetsPopup (string presetString)
 	{
-		List<string> presets = new List<string> (GetPresetNames ());
+		List<string> presets = new List<string> (GetPresetNames());
 		int presetIndex = presets.IndexOf (presetString);
 		
 		// Include a "Custom" option at the beginning of the list
@@ -249,23 +249,23 @@ public class LMExtendedWindow : EditorWindow
 		// Shift the indexes forward to account for the new "Custom" option
 		presetIndex++;
 		
-		presetIndex = EditorGUILayout.Popup (presetIndex, presets.ToArray ());
+		presetIndex = EditorGUILayout.Popup (presetIndex, presets.ToArray());
 		string newPresetName = presets [presetIndex];
 		return newPresetName;
 	}
 	
-	void CreatePreset ()
+	void CreatePreset()
 	{
-		var w = EditorWindow.GetWindow<LMExtendedWindow> ();
+		var w = EditorWindow.GetWindow<LMExtendedWindow>();
 		Rect pos = new Rect (w.position.x, w.position.y, w.position.width, 55);
 		var window = EditorWindow.GetWindowWithRect<SavePresetWindow> (pos, true, "Create Lightmapping Preset", true);
 		window.position = pos;
 		window.lmExtendedWindow = this;
 	}
 	
-	static string GetPresetsFolderPath ()
+	static string GetPresetsFolderPath()
 	{
-		string[] assets = AssetDatabase.GetAllAssetPaths ();
+		string[] assets = AssetDatabase.GetAllAssetPaths();
 		foreach (var a in assets) {
 			if (Path.GetFileName (a) == assetFolderName) {
 				if (Directory.Exists (a)) {
@@ -276,11 +276,11 @@ public class LMExtendedWindow : EditorWindow
 		return null;
 	}
 	
-	string[] GetPresetNames ()
+	string[] GetPresetNames()
 	{
 		if (Directory.Exists (presetsFolderPath)) {
 			string[] files = Directory.GetFiles (presetsFolderPath, "*.xml", SearchOption.AllDirectories);
-			string[] presetNames = files.Select (s => s.Remove (0, presetsFolderPath.Length + 1).Replace (".xml", "")).ToArray ();
+			string[] presetNames = files.Select (s => s.Remove (0, presetsFolderPath.Length + 1).Replace (".xml", "")).ToArray();
 			return presetNames;
 		} else {
 			return new string[0];
@@ -295,7 +295,7 @@ public class LMExtendedWindow : EditorWindow
 			Directory.CreateDirectory (dir);
 		}
 		sc.config.SerializeToPath (GetPresetPath (name));
-		AssetDatabase.Refresh ();
+		AssetDatabase.Refresh();
 		currentPresetName = name;
 	}
 	
@@ -303,7 +303,7 @@ public class LMExtendedWindow : EditorWindow
 	{
 		if (Directory.Exists (presetsFolderPath)) {
 			AssetDatabase.DeleteAsset (GetPresetPath (name));
-			SetPresetToDefault ();
+			SetPresetToDefault();
 		}
 	}
 	
@@ -312,7 +312,7 @@ public class LMExtendedWindow : EditorWindow
 		// Load the preset config file
 		sc.config = ILConfig.DeserializeFromPath (GetPresetPath (name));
 		// Save preset data back out to our scene's config file
-		SaveConfig ();
+		SaveConfig();
 	}
 	
 	string GetPresetPath (string presetName)
@@ -320,7 +320,7 @@ public class LMExtendedWindow : EditorWindow
 		return presetsFolderPath + "/" + presetName + ".xml";
 	}
 	
-	void SetPresetToDefault ()
+	void SetPresetToDefault()
 	{
 		currentPresetName = "Custom";
 	}
@@ -441,7 +441,7 @@ public class LMExtendedWindow : EditorWindow
 		EditorGUI.indentLevel++;
 		
 		// FIXME add undo
-		sc.config.renderSettings.shadowDepth = (int)((ILConfig.ShadowDepth)EditorGUILayout.EnumPopup (new GUIContent ("Shadow Depth", "Controls which rays that spawn shadow rays."), (ILConfig.ShadowDepth)System.Enum.Parse (typeof(ILConfig.ShadowDepth), sc.config.renderSettings.shadowDepth.ToString ())));
+		sc.config.renderSettings.shadowDepth = (int)((ILConfig.ShadowDepth)EditorGUILayout.EnumPopup (new GUIContent ("Shadow Depth", "Controls which rays that spawn shadow rays."), (ILConfig.ShadowDepth)System.Enum.Parse (typeof(ILConfig.ShadowDepth), sc.config.renderSettings.shadowDepth.ToString())));
 		
 		EditorGUILayout.PropertyField (minShadowRays, new GUIContent ("Min Shadow Rays", "The minimum number of shadow rays that will be sent to determine if a point is lit by a specific light source. Use this value to ensure that you get enough quality in soft shadows at the price of render times. This will raise the minimum number of rays sent for any light sources that have a minShadowSamples setting lower than this value, but will not lower the number if minShadowSamples is set to a higher value. Setting this to a value higher than maxShadowRays will not send more rays than maxShadowRays."));
 		EditorGUILayout.PropertyField (maxShadowRays, new GUIContent ("Max Shadow Rays", "The maximum number of shadow rays per point that will be used to generate a soft shadow for any light source. Use this to shorten render times at the price of soft shadow quality. This will lower the maximum number of rays sent for any light sources that have a shadow samples setting higher than this value, but will not raise the number if shadow samples is set to a lower value."));
@@ -470,20 +470,20 @@ public class LMExtendedWindow : EditorWindow
 		// Caustics have no effect as of Unity 4.0
 //		Toggle ("Enable Caustics", ref config.giSettings.enableCaustics, "");
 
-		EditorGUILayout.Space ();
+		EditorGUILayout.Space();
 
 		GUILayout.Label ("Primary Integrator", EditorStyles.boldLabel);
 		IntegratorPopup (serializedConfig, true);
 		IntegratorSettings (serializedConfig, sc.config.giSettings.primaryIntegrator, true);
 
-		EditorGUILayout.Space ();
+		EditorGUILayout.Space();
 
 		GUILayout.Label ("Secondary Integrator", EditorStyles.boldLabel);
 		IntegratorPopup (serializedConfig, false);
 		IntegratorSettings (serializedConfig, sc.config.giSettings.secondaryIntegrator, false);
 
 		if (sc.config.giSettings.primaryIntegrator == ILConfig.GISettings.Integrator.FinalGather && sc.config.giSettings.secondaryIntegrator == ILConfig.GISettings.Integrator.PathTracer) {
-			EditorGUILayout.Space ();
+			EditorGUILayout.Space();
 			GUILayout.Label ("Final Gather & Path Tracer Blending", EditorStyles.boldLabel);
 			EditorGUILayout.PropertyField (fgLightLeakReduction, new GUIContent ("Light Leak Reduction", "This setting can be used to reduce light leakage through walls when using final gather as primary GI and path tracing as secondary GI. Leakage, which can happen when e.g. the path tracer filters in values on the other side of a wall, is reduced by using final gather as a secondary GI fallback when sampling close to walls or corners. When this is enabled a final gather depth of 3 will be used automatically, but the higher depths will only be used close to walls or corners. Note that this is only used when path tracing is set as secondary GI."));
 			if (!sc.config.giSettings.fgLightLeakReduction)
@@ -493,7 +493,7 @@ public class LMExtendedWindow : EditorWindow
 				GUI.enabled = true;
 		}
 		
-		EditorGUI.EndDisabledGroup ();
+		EditorGUI.EndDisabledGroup();
 	}
 
 	void IntegratorPopup (SerializedObject serializedObject, bool isPrimary)
@@ -726,9 +726,9 @@ public class LMExtendedWindow : EditorWindow
 			GUILayout.Label ("IBL Image", EditorStyles.boldLabel);
 			EditorGUILayout.PrefixLabel (new GUIContent ("Image Path", "The absolute image file path to use for IBL. Accepts hdr or OpenEXR format. The file should be long-lat. Use giEnvironmentIntensity to boost the intensity of the image."));
 			EditorGUILayout.PropertyField (iblImageFile, new GUIContent (""));
-			GUILayout.BeginHorizontal ();
+			GUILayout.BeginHorizontal();
 			{
-				GUILayout.FlexibleSpace ();
+				GUILayout.FlexibleSpace();
 				if (!string.IsNullOrEmpty (sc.config.environmentSettings.iblImageFile)) {
 					if (GUILayout.Button ("Reveal", GUILayout.Width (55))) {
 						EditorUtility.OpenWithDefaultApp (Path.GetDirectoryName (sc.config.environmentSettings.iblImageFile));
@@ -745,16 +745,16 @@ public class LMExtendedWindow : EditorWindow
 							sc.config.environmentSettings.iblImageFile = file;
 							iblImageFile.stringValue = file;
 							GUI.changed = true;
-							Repaint ();
-							SaveConfig ();
-							GUIUtility.ExitGUI ();
+							Repaint();
+							SaveConfig();
+							GUIUtility.ExitGUI();
 						} else {
 							Debug.LogError ("IBL image files must use the extension .exr or .hdr");
 						}
 					}
 				}
 			}
-			GUILayout.EndHorizontal ();
+			GUILayout.EndHorizontal();
 			EditorGUILayout.PropertyField (iblSwapYZ, new GUIContent ("Swap Y/Z", "Swap the Up Axis. Default value is false, meaning that Y is up."));
 			EditorGUILayout.Slider (iblTurnDome, 0, 360, new GUIContent ("Dome Rotation", "The sphere that the image is projected on can be rotated around the up axis. The amount of rotation is given in degrees. Default value is 0.0."));
 			EditorGUILayout.PropertyField (iblGIEnvBlur, new GUIContent ("Blur", "Pre-blur the environment image for Global Illumination calculations. Can help to reduce noise and flicker in images rendered with Final Gather. May increase render time as it is blurred at render time. It is always cheaper to pre-blur the image itself in an external application before loading it into Beast."));
@@ -793,13 +793,13 @@ public class LMExtendedWindow : EditorWindow
 				}
 				EditorGUI.indentLevel--;
 			}
-			EditorGUI.EndDisabledGroup ();
+			EditorGUI.EndDisabledGroup();
 			
-			EditorGUILayout.Space ();
+			EditorGUILayout.Space();
 		}
 		EditorGUI.indentLevel--;
 		
-		EditorGUI.EndDisabledGroup ();
+		EditorGUI.EndDisabledGroup();
 	}
 	
 	void TextureBakeGUI (SerializedObject serializedConfig)
@@ -841,44 +841,44 @@ public class LMExtendedWindow : EditorWindow
 		BakeProbes,
 	}
 	
-	void BakeButtonsGUI ()
+	void BakeButtonsGUI()
 	{
 		float width = 120;
-		bool disabled = LightmapSettings.lightmapsMode == LightmapsMode.CombinedDirectional && !InternalEditorUtility.HasPro ();
+		bool disabled = LightmapSettings.lightmapsMode == LightmapsMode.CombinedDirectional && !InternalEditorUtility.HasPro();
 		EditorGUI.BeginDisabledGroup (disabled);
 		{
-			GUILayout.BeginHorizontal ();
+			GUILayout.BeginHorizontal();
 			{
-				GUILayout.FlexibleSpace ();
+				GUILayout.FlexibleSpace();
 				if (GUILayout.Button ("Clear", GUILayout.Width (width))) {
-					Lightmapping.Clear ();
+					Lightmapping.Clear();
 				}
 				if (!Lightmapping.isRunning) {
 					if (BakeButton (GUILayout.Width (width))) {
-						this.DoBake ();
-						GUIUtility.ExitGUI ();
+						this.DoBake();
+						GUIUtility.ExitGUI();
 					}
 				} else {
 					if (GUILayout.Button ("Cancel", GUILayout.Width (width))) {
-						Lightmapping.Cancel ();
+						Lightmapping.Cancel();
 					}
 				}
 			}
-			GUILayout.EndHorizontal ();
+			GUILayout.EndHorizontal();
 		}
-		EditorGUI.EndDisabledGroup ();
+		EditorGUI.EndDisabledGroup();
 	}
 	
 	private bool BakeButton (params GUILayoutOption[] options)
 	{
-		GUIContent content = new GUIContent (ObjectNames.NicifyVariableName (bakeMode.ToString ()));
+		GUIContent content = new GUIContent (ObjectNames.NicifyVariableName (bakeMode.ToString()));
 		
 		Rect dropdownRect = GUILayoutUtility.GetRect (content, (GUIStyle)"DropDownButton", options);
 		Rect buttonRect = dropdownRect;
 		buttonRect.xMin = buttonRect.xMax - 20;
 		if (Event.current.type != EventType.MouseDown || !buttonRect.Contains (Event.current.mousePosition))
 			return GUI.Button (dropdownRect, content, (GUIStyle)"DropDownButton");
-		GenericMenu genericMenu = new GenericMenu ();
+		GenericMenu genericMenu = new GenericMenu();
 		string[] names = Enum.GetNames (typeof(BakeMode));
 		int num1 = Array.IndexOf<string> (names, Enum.GetName (typeof(BakeMode), this.bakeMode));
 		int num2 = 0;
@@ -886,14 +886,14 @@ public class LMExtendedWindow : EditorWindow
 			genericMenu.AddItem (new GUIContent (text), num2 == num1, new GenericMenu.MenuFunction2 (this.BakeDropDownCallback), num2++);
 		}
 		genericMenu.DropDown (dropdownRect);
-		Event.current.Use ();
+		Event.current.Use();
 		return false;
 	}
 	
 	void BakeDropDownCallback (object data)
 	{	
 		bakeMode = (BakeMode)data;
-		DoBake ();
+		DoBake();
 	}
 	
 	BakeMode bakeMode {
@@ -905,25 +905,25 @@ public class LMExtendedWindow : EditorWindow
 		}
 	}
 	
-	void DoBake ()
+	void DoBake()
 	{
-		if (!CheckSettingsIntegrity ())
+		if (!CheckSettingsIntegrity())
 			return;
 		
 		switch (bakeMode) {
 		case BakeMode.BakeScene:
-			Lightmapping.BakeAsync ();
+			Lightmapping.BakeAsync();
 			break;
 		case BakeMode.BakeSelected:
-			Lightmapping.BakeAsync ();
+			Lightmapping.BakeAsync();
 			break;
 		case BakeMode.BakeProbes:
-			Lightmapping.BakeAsync ();
+			Lightmapping.BakeAsync();
 			break;
 		}
 	}
 	
-	bool CheckSettingsIntegrity ()
+	bool CheckSettingsIntegrity()
 	{
 		if (sc.config.environmentSettings.giEnvironment == ILConfig.EnvironmentSettings.Environment.IBL) {
 			if (string.IsNullOrEmpty (sc.config.environmentSettings.iblImageFile)) {

@@ -22,7 +22,7 @@ namespace UnityStandardAssets.ImageEffects
         private Material creaseApplyMaterial = null;
 
 
-        public override bool CheckResources ()
+        public override bool CheckResources()
 		{
             CheckSupport (true);
 
@@ -31,7 +31,7 @@ namespace UnityStandardAssets.ImageEffects
             creaseApplyMaterial = CheckShaderAndCreateMaterial (creaseApplyShader, creaseApplyMaterial);
 
             if (!isSupported)
-                ReportAutoDisable ();
+                ReportAutoDisable();
             return isSupported;
         }
 

@@ -27,11 +27,11 @@ namespace CinemaDirector
                 // Save the existing keyframe data. (Unity changes the tangent info).
                 Keyframe temp = curve[0];
                 int newIndex = curve.AddKey(keyframe);
-                if(newIndex == -1)
+                if (newIndex == -1)
                 {
                     return 0;
                 }
-                else if(newIndex == 0)
+                else if (newIndex == 0)
                 {
                     curve.MoveKey(1, temp);
                 }

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
-public class MazeDoors : MonoBehaviour {
-    // ----------------------------------------------- Data members ----------------------------------------------
+public class MazeDoors : MonoBehaviour 
+{    
     public GameObject key;		// To check key type against door type.
 	public bool isPassable;		// True if the door is passable.
 	
@@ -15,25 +15,16 @@ public class MazeDoors : MonoBehaviour {
 	};
 	
 	public eDoorType doorType;
-    // ----------------------------------------------- End Data members ------------------------------------------
-
-    // --------------------------------------------------- Methods -----------------------------------------------
-    // --------------------------------------------------------------------
+ 
     // Use this for initialization
-    void Start ()
-    {	
-		//doorType = eDoorType.RED;
-		isPassable = false;
-	}
-    // --------------------------------------------------------------------
-    void OnCollisionEnter(Collision other)
+    void Start() => isPassable = false;
+
+	void OnCollisionEnter(Collision other)
 	{
-		if (other.transform.tag == "Player")
-		{
+		if (other.transform.CompareTag("Player"))
 			SetPassable();
-		}
 	}
-    // --------------------------------------------------------------------
+    
     public void SetPassable()
 	{
 		// If player has a key. 
@@ -64,6 +55,4 @@ public class MazeDoors : MonoBehaviour {
 			}
 		}
 	}
-    // --------------------------------------------------------------------
-    // --------------------------------------------------- End Methods --------------------------------------------
 }

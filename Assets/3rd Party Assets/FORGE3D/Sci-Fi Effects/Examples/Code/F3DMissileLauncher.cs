@@ -16,7 +16,7 @@ public class F3DMissileLauncher : MonoBehaviour {
     public Text missileTypeLabel;
 
 	// Use this for initialization
-	void Start ()
+	void Start()
     {
         instance = this;
         missileType = F3DMissile.MissileType.Unguided;
@@ -30,7 +30,7 @@ public class F3DMissileLauncher : MonoBehaviour {
 
     void ProcessInput()
     {
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
             Transform tMissile = F3DPool.instance.Spawn(missilePrefab, transform.position + Vector3.up * 2, Quaternion.identity, null);
 
@@ -40,7 +40,7 @@ public class F3DMissileLauncher : MonoBehaviour {
 
                 missile.missileType = missileType;
 
-                if(target != null)
+                if (target != null)
                     missile.target = target;                
             }
         }
@@ -63,7 +63,7 @@ public class F3DMissileLauncher : MonoBehaviour {
     }
 
 	// Update is called once per frame
-	void Update () 
+	void Update() 
     {
         ProcessInput();
 	}

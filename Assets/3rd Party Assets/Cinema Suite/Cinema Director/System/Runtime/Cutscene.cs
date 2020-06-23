@@ -516,7 +516,7 @@ namespace CinemaDirector
                 if (revertable != null)
                 {
                     RevertInfo[] ri = revertable.CacheState();
-                    if(ri == null || ri.Length < 1)
+                    if (ri == null || ri.Length < 1)
                     {
                         Debug.Log(string.Format("Cinema Director tried to cache the state of {0}, but failed.", mbArray[i].name));
                     }

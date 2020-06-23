@@ -47,7 +47,7 @@ Shader "Hidden/Post FX/Bloom"
         float3 _Curve;
         float _SampleScale;
 
-        // -----------------------------------------------------------------------------
+        
         // Vertex shaders
 
         struct VaryingsMultitex
@@ -72,7 +72,7 @@ Shader "Hidden/Post FX/Bloom"
             return o;
         }
 
-        // -----------------------------------------------------------------------------
+        
         // Fragment shaders
 
         half4 FetchAutoExposed(sampler2D tex, float2 uv)

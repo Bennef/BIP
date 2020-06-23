@@ -2,20 +2,13 @@
 
 public class ElectricalDischarge : MonoBehaviour
 {
-    // ----------------------------------------------- Data members ----------------------------------------------
     public int numberOfElecs;
     public float spawnTime;
     public GameObject[] elecs;
-    // ----------------------------------------------- End Data members ------------------------------------------
-
-    // --------------------------------------------------- Methods -----------------------------------------------
-    // --------------------------------------------------------------------
+    
     // Use this for initialization
-    void Start()
-    {
-        SpawnElec();
-    }
-    // --------------------------------------------------------------------
+    void Start() => SpawnElec();
+
     public void SpawnElec()
     {
         for (int i = 0; i < numberOfElecs; i++)
@@ -27,16 +20,12 @@ public class ElectricalDischarge : MonoBehaviour
             elec.transform.rotation = Quaternion.LookRotation(elec.transform.position - this.transform.position);
         }
     }
-    // --------------------------------------------------------------------
+    
     public void HideElec()
     {
         elecs = GameObject.FindGameObjectsWithTag("Electrical");
 
         foreach (GameObject elec in elecs)
-        {
             elec.SetActive(false);
-        }
     }
-    // --------------------------------------------------------------------
-    // --------------------------------------------------- End Methods --------------------------------------------
 }

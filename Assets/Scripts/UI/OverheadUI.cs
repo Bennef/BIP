@@ -4,13 +4,9 @@ using System.Collections;
 
 public class OverheadUI : MonoBehaviour 
 {
-    // ----------------------------------------------- Data members ----------------------------------------------
     public float AnimationSpeed;    // The speed of the grow/shrink.
     public Image image;             // The image GameObject that holds the sprite.
-    // ----------------------------------------------- End Data members ------------------------------------------
-
-    // --------------------------------------------------- Methods -----------------------------------------------
-    // --------------------------------------------------------------------
+        
     public IEnumerator Grow()
     {
         float growth = 0;
@@ -24,7 +20,7 @@ public class OverheadUI : MonoBehaviour
         transform.localScale = new Vector3(1, 1, 1);
         yield return null;
     }
-    // --------------------------------------------------------------------
+    
     public IEnumerator Shrink()
     {
         float growth = 1;
@@ -38,18 +34,15 @@ public class OverheadUI : MonoBehaviour
         ShrinkImmediately();
         yield return null;
     }
-    // --------------------------------------------------------------------
-	public void ShrinkImmediately()
-	{
-		transform.localScale = Vector3.zero;
-	}
-	// --------------------------------------------------------------------
+    
+	public void ShrinkImmediately() => transform.localScale = Vector3.zero;
+
     public void ShowUI(Sprite sprite, float displayTime)
     {
         image.sprite = sprite;
         StartCoroutine(CoShowTemporaryUI(image, displayTime));
     }
-    // --------------------------------------------------------------------
+
     public IEnumerator CoShowTemporaryUI(Image image, float displayTime)
     {
         if (transform.localScale.x == 0f)
@@ -58,7 +51,5 @@ public class OverheadUI : MonoBehaviour
             yield return new WaitForSeconds(displayTime);
             StartCoroutine(Shrink());
         }
-    }
-    // --------------------------------------------------------------------
-    // --------------------------------------------------- End Methods --------------------------------------------
+    }   
 }

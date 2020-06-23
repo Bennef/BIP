@@ -1,9 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class AtraxSetFootIKTarget : SetFootIKTarget
 {
-    // ----------------------------------------------- Data members ----------------------------------------------
     [Tooltip("How high should this limb be allowed to go from the ground if it is being animated?")]
     public float animationOffset;
     [Tooltip("The starting frame of the foot step, when the foot leaves the ground.")]
@@ -15,16 +13,13 @@ public class AtraxSetFootIKTarget : SetFootIKTarget
 
     private Animator anim;
     private AtraxStates state;
-    // ----------------------------------------------- End Data members ------------------------------------------
-
-    // --------------------------------------------------- Methods -----------------------------------------------
-    // --------------------------------------------------------------------
+    
     void Awake()
     {
         anim = GetComponentInParent<Animator>();
         state = GetComponentInParent<AtraxStates>();
     }
-    // --------------------------------------------------------------------
+    
     void Update()
     {
         RaycastHit hit;
@@ -64,7 +59,7 @@ public class AtraxSetFootIKTarget : SetFootIKTarget
             ikSolver.SetTarget(Vector3.zero);
         }
     }
-    // --------------------------------------------------------------------
+    
     int GetCurrentAnimationFrame(int numberOfFrames)
     {
         // Get the current animation frame.
@@ -73,5 +68,4 @@ public class AtraxSetFootIKTarget : SetFootIKTarget
         // I did something similar in my final year project at Uni to ensure animation was framerate independant. - Luke
         return ((int)(anim.GetCurrentAnimatorStateInfo(0).normalizedTime * (numberOfFrames))) % numberOfFrames;
     }
-    // --------------------------------------------------- End Methods --------------------------------------------
 }

@@ -1,26 +1,15 @@
 ﻿using UnityEngine;
-using System;
 
 // Handles CoBot behaviour. 
 public class CoBotMind : FriendlyMind
 {
-    // ----------------------------------------------- Data members ----------------------------------------------  
     public float brakingSpeed;          // Speed that CoBot brakes.
     public float hoverHeight;
     public Vector3 MaxVelocity;         // So CoBot does not fly too fast.
-
     public bool isControllable;         // True if the player is controlling CoBot.
+    
+    void Awake() => rigidbody = GetComponent<Rigidbody>();
 
-    private Vector3 targetPosition;     // World osition of the target.
-    // ----------------------------------------------- End Data members ------------------------------------------
-
-    // --------------------------------------------------- Methods -----------------------------------------------
-    // --------------------------------------------------------------------
-    void Awake()
-    {
-        rigidbody = GetComponent<Rigidbody>();
-    }
-    // --------------------------------------------------------------------
     void FixedUpdate()
     {
         if (Camera.main)
@@ -35,20 +24,14 @@ public class CoBotMind : FriendlyMind
         rigidbody.MoveRotation(Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * speed));
         Move();
         if (shouldFollow)
-        {
             rigidbody.drag = 0.2f;
-        }
         else
-        {
             rigidbody.drag = 1.0f;  // So he doesn't float off into the distance.
-        }
 
-        // Cap velocity to prevent super speeds.
-        CapVelocity();
-        // Get CoBot Unstuck, should he be stuck.
-        Unstuck();
+        CapVelocity(); // Cap velocity to prevent super speeds.
+        Unstuck(); // Get CoBot Unstuck, should he be stuck.
     }
-    // --------------------------------------------------------------------
+    
     // Move Cobot.
     protected override void Move()
     {
@@ -84,7 +67,7 @@ public class CoBotMind : FriendlyMind
             rigidbody.AddForce(Vector3.up * (target.position.y - transform.position.y), ForceMode.VelocityChange);
         }
     }
-    // --------------------------------------------------------------------
+    
     // Make sure CoBot does not fly faster than we want.
     void CapVelocity()
     {
@@ -94,6 +77,4 @@ public class CoBotMind : FriendlyMind
         _velocity.z = Mathf.Clamp(_velocity.z, -MaxVelocity.z, MaxVelocity.z);
         rigidbody.velocity = _velocity;
     }
-    // --------------------------------------------------------------------
-    // --------------------------------------------------- End Methods --------------------------------------------
 }

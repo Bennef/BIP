@@ -3,13 +3,6 @@ using System.Collections;
 
 public static class AudioFadeOut
 {
-    // ----------------------------------------------- Data members ----------------------------------------------
-
-
-    // ----------------------------------------------- End Data members ------------------------------------------
-
-    // --------------------------------------------------- Methods -----------------------------------------------
-    // --------------------------------------------------------------------
     public static IEnumerator FadeOut(AudioSource audioSource, float FadeTime)
     {
         float startVolume = audioSource.volume;
@@ -22,7 +15,7 @@ public static class AudioFadeOut
         audioSource.Stop();
         audioSource.volume = startVolume;
     }
-    // --------------------------------------------------------------------
+    
     public static IEnumerator FadeIn(AudioSource audioSource, float FadeTime)
     {
         float startVolume = 0.2f;
@@ -35,7 +28,5 @@ public static class AudioFadeOut
             yield return null;
         }
         audioSource.volume = 1f;
-    }
-    // --------------------------------------------------------------------
-    // --------------------------------------------------- End Methods --------------------------------------------
+    }    
 }

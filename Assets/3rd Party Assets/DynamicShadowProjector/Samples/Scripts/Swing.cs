@@ -1,21 +1,22 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-namespace DynamicShadowProjector.Sample {
-	public class Swing : MonoBehaviour {
+namespace DynamicShadowProjector.Sample 
+{
+	public class Swing : MonoBehaviour 
+	{
 		public float m_minAngle = -30;
 		public float m_maxAngle = 30;
 		public float m_swingSpeed = 0.1f;
 
 		private Quaternion m_initialRotation;
 		private float m_swing;
-		void Start ()
+		void Start()
 		{
 			m_initialRotation = transform.rotation;
 			m_swing = 0.0f;
 		}
 		
-		void Update ()
+		void Update()
 		{
 			m_swing += m_swingSpeed*Time.deltaTime;
 			m_swing -= Mathf.Floor(m_swing);

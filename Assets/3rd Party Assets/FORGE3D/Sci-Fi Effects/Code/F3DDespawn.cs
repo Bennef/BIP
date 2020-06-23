@@ -55,7 +55,7 @@ public class F3DDespawn : MonoBehaviour {
     {
         // Despawn on mouse up        
         if (Input.GetMouseButtonUp(0))
-            if(aSrc != null && aSrc.loop || DespawnOnMouseUp)                
+            if (aSrc != null && aSrc.loop || DespawnOnMouseUp)                
                 Despawn();       
     }
 }

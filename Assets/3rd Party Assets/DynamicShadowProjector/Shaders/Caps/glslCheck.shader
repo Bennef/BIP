@@ -3,13 +3,13 @@
 		Pass {
 			GLSLPROGRAM
 #ifdef VERTEX
-			void main ()
+			void main()
 			{
 				gl_Position = gl_Vertex;
 			}
 #endif
 #ifdef FRAGMENT
-			void main ()
+			void main()
 			{
 				gl_FragColor = vec4(0,0,0,0);
 			}

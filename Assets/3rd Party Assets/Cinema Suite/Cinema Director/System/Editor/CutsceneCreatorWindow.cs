@@ -108,7 +108,7 @@ public class CutsceneCreatorWindow : EditorWindow
             // Director Group
             directorTrackGroupsSelection = EditorGUILayout.Popup(AddDirectorGroupContent, directorTrackGroupsSelection, intValues1.ToArray());
             
-            if(directorTrackGroupsSelection > 0)
+            if (directorTrackGroupsSelection > 0)
             {
                 EditorGUI.indentLevel++;
 

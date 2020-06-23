@@ -3,23 +3,16 @@ using UnityEngine;
 
 public class LightningFlash : MonoBehaviour
 {
-    // ----------------------------------------------- Data members ----------------------------------------------
     public AudioSource aSrc;
     public Light lightningLight;
     public ParticleSystem strike;
-    // ----------------------------------------------- End Data members ------------------------------------------
-
-    // --------------------------------------------------- Methods -----------------------------------------------
-    // --------------------------------------------------------------------
-    // Update is called once per frame
-    void Update ()
+    
+    void Update()
     {
 		if (Input.GetKeyDown(KeyCode.L))
-        {
             StartCoroutine(Flash());
-        }
 	}
-    // --------------------------------------------------------------------
+    
     public IEnumerator Flash()
     {
         strike.Play();
@@ -31,7 +24,7 @@ public class LightningFlash : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         StartCoroutine(FadeLight(5f, 0f, 1f));
     }
-    // --------------------------------------------------------------------
+    
     public IEnumerator FadeLight(float fadeStart, float fadeEnd, float fadeTime)
     {
         float t = 0f;
@@ -39,11 +32,8 @@ public class LightningFlash : MonoBehaviour
         while (t < fadeTime)
         {
             t += Time.deltaTime;
-
             lightningLight.intensity = Mathf.Lerp(fadeStart, fadeEnd, t / fadeTime);
             yield return null;
         }
     }
-    // --------------------------------------------------------------------
-    // --------------------------------------------------- End Methods --------------------------------------------
 }

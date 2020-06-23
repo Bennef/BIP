@@ -1,9 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class LabDrone : MonoBehaviour 
 {
-    // ----------------------------------------------- Data members ----------------------------------------------
 	public Transform target;
 	public Vector3 newtarget;
     public float bipHeadOffset;
@@ -13,10 +11,7 @@ public class LabDrone : MonoBehaviour
     public float damping = 5.0f;        // For chasing.
     public Vector3 startPosition;       // Start position of drone.
     public Vector3 tempPosition;		// For hovering.
-    // ----------------------------------------------- End Data members ------------------------------------------
-
-    // --------------------------------------------------- Methods -----------------------------------------------
-    // --------------------------------------------------------------------
+        
     // Use this for initialization
     void Update() 
     {
@@ -24,7 +19,7 @@ public class LabDrone : MonoBehaviour
 		// Rotate the camera every frame so it keeps looking at the target 
 		transform.LookAt(newtarget);
 	}
-    // --------------------------------------------------------------------
+    
     void FixedUpdate()
     {
         // Hover in current position.
@@ -33,5 +28,4 @@ public class LabDrone : MonoBehaviour
         tempPosition.z = transform.position.z;
         transform.position = tempPosition;
     }
-    // --------------------------------------------------- End Methods --------------------------------------------
 }

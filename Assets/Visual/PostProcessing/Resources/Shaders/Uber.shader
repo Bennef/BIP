@@ -109,7 +109,7 @@ Shader "Hidden/Post FX/Uber Shader"
 
             //
             // HDR effects
-            // ---------------------------------------------------------
+            // ---
 
             // Chromatic Aberration
             // Inspired by the method described in "Rendering Inside" [Playdead 2016]
@@ -259,7 +259,7 @@ Shader "Hidden/Post FX/Uber Shader"
 
             //
             // All the following effects happen in LDR
-            // ---------------------------------------------------------
+            // ---
 
             color = saturate(color);
 

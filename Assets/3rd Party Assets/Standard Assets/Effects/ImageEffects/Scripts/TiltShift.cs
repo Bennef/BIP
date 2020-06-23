@@ -1,11 +1,11 @@
-using System;
 using UnityEngine;
 
 namespace UnityStandardAssets.ImageEffects
 {
     [RequireComponent (typeof(Camera))]
     [AddComponentMenu ("Image Effects/Camera/Tilt Shift (Lens Blur)")]
-    class TiltShift : PostEffectsBase {
+    class TiltShift : PostEffectsBase 
+    {
         public enum TiltShiftMode
         {
             TiltShiftMode,
@@ -34,18 +34,21 @@ namespace UnityStandardAssets.ImageEffects
         private Material tiltShiftMaterial = null;
 
 
-        public override bool CheckResources () {
+        public override bool CheckResources() 
+        {
             CheckSupport (true);
 
             tiltShiftMaterial = CheckShaderAndCreateMaterial (tiltShiftShader, tiltShiftMaterial);
 
             if (!isSupported)
-                ReportAutoDisable ();
+                ReportAutoDisable();
             return isSupported;
         }
 
-        void OnRenderImage (RenderTexture source, RenderTexture destination) {
-            if (CheckResources() == false) {
+        void OnRenderImage (RenderTexture source, RenderTexture destination) 
+        {
+            if (CheckResources() == false) 
+            {
                 Graphics.Blit (source, destination);
                 return;
             }
@@ -55,7 +58,8 @@ namespace UnityStandardAssets.ImageEffects
             source.filterMode = FilterMode.Bilinear;
 
             RenderTexture rt = destination;
-            if (downsample > 0f) {
+            if (downsample > 0f) 
+            {
                 rt = RenderTexture.GetTemporary (source.width>>downsample, source.height>>downsample, 0, source.format);
                 rt.filterMode = FilterMode.Bilinear;
             }
@@ -63,7 +67,8 @@ namespace UnityStandardAssets.ImageEffects
             int basePassNr = (int) quality; basePassNr *= 2;
             Graphics.Blit (source, rt, tiltShiftMaterial, mode == TiltShiftMode.TiltShiftMode ? basePassNr : basePassNr + 1);
 
-            if (downsample > 0) {
+            if (downsample > 0) 
+            {
                 tiltShiftMaterial.SetTexture ("_Blurred", rt);
                 Graphics.Blit (source, destination, tiltShiftMaterial, 6);
             }

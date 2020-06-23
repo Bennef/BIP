@@ -32,28 +32,28 @@ namespace UnityStandardAssets.ImageEffects
         private EdgeDetectMode oldMode = EdgeDetectMode.SobelDepthThin;
 
 
-        public override bool CheckResources ()
+        public override bool CheckResources()
 		{
             CheckSupport (true);
 
             edgeDetectMaterial = CheckShaderAndCreateMaterial (edgeDetectShader,edgeDetectMaterial);
             if (mode != oldMode)
-                SetCameraFlag ();
+                SetCameraFlag();
 
             oldMode = mode;
 
             if (!isSupported)
-                ReportAutoDisable ();
+                ReportAutoDisable();
             return isSupported;
         }
 
 
-        new void Start ()
+        new void Start()
 		{
             oldMode	= mode;
         }
 
-        void SetCameraFlag ()
+        void SetCameraFlag()
 		{
             if (mode == EdgeDetectMode.SobelDepth || mode == EdgeDetectMode.SobelDepthThin)
                 GetComponent<Camera>().depthTextureMode |= DepthTextureMode.Depth;
@@ -61,7 +61,7 @@ namespace UnityStandardAssets.ImageEffects
                 GetComponent<Camera>().depthTextureMode |= DepthTextureMode.DepthNormals;
         }
 
-        void OnEnable ()
+        void OnEnable()
 		{
             SetCameraFlag();
         }
@@ -69,7 +69,7 @@ namespace UnityStandardAssets.ImageEffects
         [ImageEffectOpaque]
         void OnRenderImage (RenderTexture source, RenderTexture destination)
 		{
-            if (CheckResources () == false)
+            if (CheckResources() == false)
 			{
                 Graphics.Blit (source, destination);
                 return;

@@ -1,14 +1,10 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-//using UnityEditor;
 
 public class Menu : MonoBehaviour
 {
-    // ----------------------------------------------- Data members ----------------------------------------------
     public enum NavigationMode { Vertical, Horizontal }
 
     public NavigationMode navigationMode = NavigationMode.Vertical;
@@ -18,20 +14,11 @@ public class Menu : MonoBehaviour
 
     // All selectable UI elements inherit from UnityEngine.UI.Selectable - using this type in the list allows for mixing of different elements
     private List<Selectable> menuElements = null;
-    // ----------------------------------------------- End Data members ------------------------------------------
+    
+    void Start() => BuildNavigation();
 
-    // --------------------------------------------------- Methods -----------------------------------------------
-    // --------------------------------------------------------------------
-    void Start()
-    {
-        BuildNavigation();
-    }
-    // --------------------------------------------------------------------
-    void OnEnable()
-    {
-        BuildNavigation();
-    }
-    // --------------------------------------------------------------------
+    void OnEnable() => BuildNavigation();
+    
     private void BuildNavigation()
     {
         // grab all Selectables that are children of the gameObject this is attatched to.
@@ -41,7 +28,7 @@ public class Menu : MonoBehaviour
         // Set the first interactable element as selected in the EventSystem
         ResetSelection();
     }
-    // --------------------------------------------------------------------
+    
     private void FindMenuElements()
     {
         // Populate the menuElements list.
@@ -56,7 +43,7 @@ public class Menu : MonoBehaviour
             }
         }
     }
-    // --------------------------------------------------------------------
+    
     private void CreateNavigation()
     {
         for (int i = 0; i < menuElements.Count; i++)
@@ -87,7 +74,7 @@ public class Menu : MonoBehaviour
             menuElements[i].navigation = navigation;
         }
     }
-    // --------------------------------------------------------------------
+    
     private void FindNeighbours(int i, ref Selectable next, ref Selectable previous)
     {
         // Set up which objects can be navigated to from currently selected.
@@ -104,16 +91,12 @@ public class Menu : MonoBehaviour
         else
         {
             if (nextIndex < menuElements.Count)
-            {
                 next = menuElements[nextIndex];
-            }
             if (previousIndex >= 0)
-            {
                 previous = menuElements[previousIndex];
-            }
         }
     }
-    // --------------------------------------------------------------------
+    
     public void ResetSelection()
     {
         // Set currently selected to null
@@ -124,6 +107,4 @@ public class Menu : MonoBehaviour
             //EventSystem.current.SetSelectedGameObject(menuElements[0].gameObject, new BaseEventData(EventSystem.current));
         }
     }
-    // --------------------------------------------------------------------
-    // --------------------------------------------------- End Methods --------------------------------------------
 }

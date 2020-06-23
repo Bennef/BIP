@@ -3,11 +3,11 @@ using System.Collections;
 
 /* _____________________________________________
  * Information Regarding Units and Distances
- * ---------------------------------------------
+ * 
  * 10cm = ~1.4 Units in Unity
  * attackRange has to been > chaseLimit and < detectionRange.
  * _____________________________________________
- * Outlined Brief: -----------------------------
+ * Outlined Brief: --
  * 
 -	Traverse on a set path.
 -	Will sound an alarm if the player comes within their line of sight.
@@ -17,9 +17,7 @@ using System.Collections;
 
 public class PatrolBotMind : MindActor 
 {	
-	// Unique PatrolBot Variables -------------------------------------------------
-	// ----------------------------------------------------------------------------
-
+	// Unique PatrolBot Variables ----
 	public Transform target;
 	public float attackRate = 2.0f;				// Rate at which the PatrolBot will shock Bip at in Seconds.
 	public float attackRange = 1.5f;			// Range at which the PatrolBot will shock its target.
@@ -59,8 +57,8 @@ public class PatrolBotMind : MindActor
 	private uint scanCount = 0;
 	private float hoverTimer = 270;
 
-	// Quick fix for MindController issues ----------------------------------------
-	// ----------------------------------------------------------------------------
+	// Quick fix for MindController issues ----
+	
 	void Awake()
 	{
 		pathingScript = GetComponent<AIPathingScript>();
@@ -79,26 +77,22 @@ public class PatrolBotMind : MindActor
 	void Update()
 	{
 		if (!Think())
-		{
 			Destroy();
-		}
 	}
 
-	// Overriden Method Implementations for PatrolBot -----------------------------
-	// ----------------------------------------------------------------------------
+	// Overriden Method Implementations for PatrolBot --
 
 	// Main "Thought" process of the AI. Return 'false' if the bot has died.
 	public override bool Think()
 	{
 		switch (currentState) 
         {
-			case State.IDLE:	IdleFeatures();	break;
-
+			case State.IDLE:	IdleFeatures();	
+				break;
 			// Error Handling...
 			default: Debug.LogError ("Invalid BotState. Check if currentState is defined.");
 				break;
 		}
-
 		return true;
 	}
 
@@ -107,20 +101,17 @@ public class PatrolBotMind : MindActor
 	{
 	}
 
-	// Unique PatrolBot Method Implemenations -------------------------------------
-	// ----------------------------------------------------------------------------
+	// Unique PatrolBot Method Implemenations -
 	void OnTriggerStay(Collider other)
 	{
 		// Check if Bip is in line of sight.
-		if (other.tag == Tags.Enemies) 
+		if (other.CompareTag(Tags.Enemies)) 
 		{	
 			// Check if drones are within Alarm range.
 			if (inLineOfSight && other.transform.GetComponent<DroneBotMind>() != null) 
-			{
-				other.gameObject.GetComponent<DroneBotMind>().TurnAlarmOn ();
-			}
+				other.gameObject.GetComponent<DroneBotMind>().TurnAlarmOn();
             alarmLight.enabled = true;
-			DetectionCheck ();
+			DetectionCheck();
 		}
 	}
 
@@ -151,11 +142,11 @@ public class PatrolBotMind : MindActor
 
 	void IdleFeatures()
 	{
-		if(idleFeature != IdleFeatureTypes.NONE && (pathingScript.nextDestination == transform.position || pathingScript.preformingIdleAction))
+		if (idleFeature != IdleFeatureTypes.NONE && (pathingScript.nextDestination == transform.position || pathingScript.performingIdleAction))
 		{
-			if(!pathingScript.preformingIdleAction)
+			if (!pathingScript.performingIdleAction)
 			{
-				pathingScript.preformingIdleAction = true;
+				pathingScript.performingIdleAction = true;
 
 				switch(idleFeature)
 				{
@@ -178,18 +169,17 @@ public class PatrolBotMind : MindActor
 		}
 	}
 
-	// Idle Feature List ---------------------------------------------------------
-	// ---------------------------------------------------------------------------
+	// Idle Feature List ---
 	void Scanning()
 	{
-		if(transform.eulerAngles.y < scanAngle + 0.1f && transform.eulerAngles.y > scanAngle - 0.1f)
+		if (transform.eulerAngles.y < scanAngle + 0.1f && transform.eulerAngles.y > scanAngle - 0.1f)
 		{
 			scanAngle = Random.Range(0.0f, 360.0f);			// Angle to scan towards.
 
             if (++scanCount > 3)        // How many scans happen before moving onto next position.
             {							
 				scanCount = 0;
-				pathingScript.preformingIdleAction = false;
+				pathingScript.performingIdleAction = false;
 				//ChangeTarget();
 			}
 		}
@@ -217,7 +207,7 @@ public class PatrolBotMind : MindActor
 			//tempPos.y = 1.4f;
 			transform.position = pathingScript.nextDestination;
 		}
-		pathingScript.preformingIdleAction = false;
-		//ChangeTarget ();
+		pathingScript.performingIdleAction = false;
+		//ChangeTarget();
 	}
 }

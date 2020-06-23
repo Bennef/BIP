@@ -94,7 +94,7 @@ ENDCG
 		}
 	}
 
-	// ------------------------------------------------------------------
+	// ---
 	// Fallback for older cards and Unity non-Pro
 
 	SubShader {

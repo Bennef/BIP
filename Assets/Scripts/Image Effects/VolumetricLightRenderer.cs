@@ -28,7 +28,6 @@
 
 
 using UnityEngine;
-using System.Collections;
 using UnityEngine.Rendering;
 using System;
 
@@ -71,37 +70,21 @@ public class VolumetricLightRenderer : MonoBehaviour
 
     public CommandBuffer GlobalCommandBuffer { get { return _preLightPass; } }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <returns></returns>
     public static Material GetLightMaterial()
     {
         return _lightMaterial;
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <returns></returns>
     public static Mesh GetPointLightMesh()
     {
         return _pointLightMesh;
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <returns></returns>
     public static Mesh GetSpotLightMesh()
     {
         return _spotLightMesh;
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <returns></returns>
     public RenderTexture GetVolumeLightBuffer()
     {
         if (Resolution == VolumtericResolution.Quarter)
@@ -112,10 +95,6 @@ public class VolumetricLightRenderer : MonoBehaviour
             return _volumeLightTexture;
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <returns></returns>
     public RenderTexture GetVolumeLightDepthBuffer()
     {
         if (Resolution == VolumtericResolution.Quarter)
@@ -126,18 +105,11 @@ public class VolumetricLightRenderer : MonoBehaviour
             return null;
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <returns></returns>
     public static Texture GetDefaultSpotCookie()
     {
         return _defaultSpotCookie;
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     void Awake()
     {
         _camera = GetComponent<Camera>();
@@ -190,33 +162,24 @@ public class VolumetricLightRenderer : MonoBehaviour
         GenerateDitherTexture();
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     void OnEnable()
     {
         //_camera.RemoveAllCommandBuffers();
-        if(_camera.actualRenderingPath == RenderingPath.Forward)
+        if (_camera.actualRenderingPath == RenderingPath.Forward)
             _camera.AddCommandBuffer(CameraEvent.AfterDepthTexture, _preLightPass);
         else
             _camera.AddCommandBuffer(CameraEvent.BeforeLighting, _preLightPass);
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     void OnDisable()
     {
         //_camera.RemoveAllCommandBuffers();
-        if(_camera.actualRenderingPath == RenderingPath.Forward)
+        if (_camera.actualRenderingPath == RenderingPath.Forward)
             _camera.RemoveCommandBuffer(CameraEvent.AfterDepthTexture, _preLightPass);
         else
             _camera.RemoveCommandBuffer(CameraEvent.BeforeLighting, _preLightPass);
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     void ChangeResolution()
     {
         int width = _camera.pixelWidth;
@@ -264,9 +227,6 @@ public class VolumetricLightRenderer : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public void OnPreRender()
     {
         // use very low value for near clip plane to simplify cone/frustum intersection 
@@ -371,9 +331,6 @@ public class VolumetricLightRenderer : MonoBehaviour
         Shader.SetGlobalTexture("_NoiseTexture", _noiseTexture);
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     void Update()
     {
         //#if UNITY_EDITOR
@@ -388,9 +345,6 @@ public class VolumetricLightRenderer : MonoBehaviour
         //#endif
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     void LoadNoise3dTexture()
     {
         // basic dds loader for 3d texture - !not very robust!
@@ -456,9 +410,6 @@ public class VolumetricLightRenderer : MonoBehaviour
         _noiseTexture.Apply();
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     private void GenerateDitherTexture()
     {
         if (_ditheringTexture != null)
@@ -575,10 +526,6 @@ public class VolumetricLightRenderer : MonoBehaviour
         _ditheringTexture.Apply();
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <returns></returns>
     private Mesh CreateSpotLightMesh()
     {
         // copy & pasted from other project, the geometry is too complex, should be simplified
@@ -642,7 +589,7 @@ public class VolumetricLightRenderer : MonoBehaviour
         indices[index++] = 1 + segmentCount;
         indices[index++] = 1 + segmentCount + segmentCount;
 
-        //------------
+        //---
         for (int i = 2 + segmentCount; i < segmentCount + 1 + segmentCount; ++i)
         {
             indices[index++] = i;
@@ -662,7 +609,7 @@ public class VolumetricLightRenderer : MonoBehaviour
         indices[index++] = 1 + segmentCount * 2;
         indices[index++] = 1 + segmentCount * 3;
 
-        ////-------------------------------------
+        ////-
         for (int i = 2 + segmentCount * 2; i < segmentCount * 3 + 1; ++i)
         {
             indices[index++] = 1;

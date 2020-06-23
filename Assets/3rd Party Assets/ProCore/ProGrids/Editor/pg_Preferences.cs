@@ -1,11 +1,10 @@
 using UnityEngine;
 using UnityEditor;
-using System.Collections;
 
 namespace ProGrids
 {
-	public class pg_Preferences {
-
+	public class pg_Preferences 
+	{
 		static Color _gridColorX;
 		static Color _gridColorY;
 		static Color _gridColorZ;
@@ -37,9 +36,9 @@ namespace ProGrids
 		static Rect resetRect = new Rect(0f, 0f, 0f, 0f);
 
 		[PreferenceItem ("ProGrids")]
-		public static void PreferencesGUI ()
+		public static void PreferencesGUI()
 		{
-			if(!prefsLoaded)
+			if (!prefsLoaded)
 			{
 				prefsLoaded = LoadPreferences();
 				OnWindowResize();
@@ -68,13 +67,13 @@ namespace ProGrids
 
 			// GUILayout.EndHorizontal();
 
-			if(GUI.Button(resetRect, "Reset"))
+			if (GUI.Button(resetRect, "Reset"))
 			{
-				if(EditorUtility.DisplayDialog("Delete ProGrids editor preferences?", "Are you sure you want to delete these?, this action cannot be undone.", "Yes", "No"))
+				if (EditorUtility.DisplayDialog("Delete ProGrids editor preferences?", "Are you sure you want to delete these?, this action cannot be undone.", "Yes", "No"))
 					ResetPrefs();
 			}
 
-			if(GUI.changed)
+			if (GUI.changed)
 				SetPreferences();
 		}
 
@@ -105,7 +104,7 @@ namespace ProGrids
 			EditorPrefs.SetFloat(pg_Constant.BracketIncreaseValue, _BracketIncreaseValue);
 			EditorPrefs.SetInt(pg_Constant.GridUnit, (int)_GridUnits);
 
-			if(pg_Editor.instance != null)
+			if (pg_Editor.instance != null)
 			{
 				pg_Editor.instance.LoadPreferences();
 			}

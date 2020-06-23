@@ -201,7 +201,7 @@ namespace CinemaSuite
             EditorGUILayout.BeginHorizontal();
             GUILayout.FlexibleSpace();
             bool tempShowOnStartup = EditorGUILayout.Toggle(new GUIContent("Show on Startup"), showOnStartup);
-            if(tempShowOnStartup != showOnStartup)
+            if (tempShowOnStartup != showOnStartup)
             {
                 showOnStartup = tempShowOnStartup;
                 EditorPrefs.SetBool("CinemaSuite.WelcomeWindow.ShowOnStartup", showOnStartup);
@@ -223,7 +223,7 @@ namespace CinemaSuite
                 {
 #else
             {
-                if(product.ShowProductInfo.target)
+                if (product.ShowProductInfo.target)
                 {
 #endif
             
@@ -285,19 +285,19 @@ namespace CinemaSuite
                     {
                         Application.OpenURL("http://www.cinema-suite.com");
                     }
-                    if(GUILayout.Button(forumIcon, GUILayout.Height(32), GUILayout.Width(32)))
+                    if (GUILayout.Button(forumIcon, GUILayout.Height(32), GUILayout.Width(32)))
                     {
                         Application.OpenURL("http://cinema-suite.com/forum");
                     }
-                    if(GUILayout.Button(facebookIcon, GUILayout.Height(32), GUILayout.Width(32)))
+                    if (GUILayout.Button(facebookIcon, GUILayout.Height(32), GUILayout.Width(32)))
                     {
                         Application.OpenURL("https://www.facebook.com/CinemaSuiteInc/");
                     }
-                    if(GUILayout.Button(twitterIcon, GUILayout.Height(32), GUILayout.Width(32)))
+                    if (GUILayout.Button(twitterIcon, GUILayout.Height(32), GUILayout.Width(32)))
                     {
                         Application.OpenURL("https://twitter.com/CinemaSuiteInc");
                     }
-                    if(GUILayout.Button(youtubeIcon, GUILayout.Height(32), GUILayout.Width(32)))
+                    if (GUILayout.Button(youtubeIcon, GUILayout.Height(32), GUILayout.Width(32)))
                     {
                         Application.OpenURL("https://www.youtube.com/cinemasuiteinc");
                     }

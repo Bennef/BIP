@@ -163,7 +163,7 @@
 			float2 sampleUV = i.uv1.xy + DiscKernel[l].xy * poissonScale.xy;
 			float4 sample0 = tex2D(_MainTex, sampleUV.xy);
 
-			if( sample0.a > 0.0 )  
+			if ( sample0.a > 0.0 )  
 			{
 				weights = BokehWeightDisc(sample0, DiscKernel[l].z, centerTap);
 				sum += sample0 * weights; 
@@ -195,7 +195,7 @@
 			float4 sample0 = tex2D(_MainTex, sampleUV.xy);
 			float4 sample1 = tex2D(_MainTex, sampleUV.zw);	
 
-			if( (sample0.a + sample1.a) > 0.0 )  
+			if ( (sample0.a + sample1.a) > 0.0 )  
 			{
 				weights = BokehWeightDisc2(sample0, sample1, float2(DiscKernel[l].z/1.2, 1.0), centerTap);
 				sum += sample0 * weights.x + sample1 * weights.y; 
@@ -380,7 +380,7 @@
 		sum /= weights + 1e-4f;
 
 		sum.a = sampleA.a;
-		if(sampleA.a<1e-2f) sum.rgb = sampleA.rgb;
+		if (sampleA.a<1e-2f) sum.rgb = sampleA.rgb;
 
 		return sum;
 	}	
@@ -474,7 +474,7 @@
 		float4 color = (tapA*weights.x + tapB*weights.y + tapC*weights.z + tapD*weights.w);
 
 		float4 outColor = tap;
-		if(tap.a * sumWeights * 8.0 > 1e-5f) outColor.rgb = color.rgb/sumWeights;
+		if (tap.a * sumWeights * 8.0 > 1e-5f) outColor.rgb = color.rgb/sumWeights;
 
 		return outColor;
 	}

@@ -48,7 +48,7 @@ namespace DynamicShadowProjector.Editor {
 		}
 		private SerializedObject m_cameraSerializedObject = null;
 		private Camera m_camera;
-		public override void OnInspectorGUI ()
+		public override void OnInspectorGUI()
 		{
 			EditorGUILayout.BeginHorizontal();
 			GUILayout.Label("Online Document");

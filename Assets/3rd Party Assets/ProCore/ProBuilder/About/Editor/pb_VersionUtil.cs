@@ -40,7 +40,7 @@ namespace ProBuilder2.EditorCommon
 
 			string[] matches = Directory.GetFiles("./Assets", "pc_AboutEntry_ProBuilder.txt", SearchOption.AllDirectories);
 
-			if(matches == null || matches.Length < 1)
+			if (matches == null || matches.Length < 1)
 				return false;
 
 			for(int i = 0; i < matches.Length && about == null; i++)
@@ -53,7 +53,7 @@ namespace ProBuilder2.EditorCommon
 		{
 			pb_AboutEntry about;
 
-			if(!GetAboutEntry(out about))
+			if (!GetAboutEntry(out about))
 			{
 				version = new pb_VersionInfo();
 				return false;
@@ -115,15 +115,15 @@ namespace ProBuilder2.EditorCommon
 
 			foreach(string str in File.ReadAllLines(path))
 			{
-				if(str.StartsWith(pb_AboutEntry.KEY_NAME))
+				if (str.StartsWith(pb_AboutEntry.KEY_NAME))
 					about.name = str.Replace(pb_AboutEntry.KEY_NAME, "").Trim();
-				else if(str.StartsWith(pb_AboutEntry.KEY_IDENTIFIER))
+				else if (str.StartsWith(pb_AboutEntry.KEY_IDENTIFIER))
 					about.identifier = str.Replace(pb_AboutEntry.KEY_IDENTIFIER, "").Trim();
-				else if(str.StartsWith(pb_AboutEntry.KEY_VERSION))
+				else if (str.StartsWith(pb_AboutEntry.KEY_VERSION))
 					about.version = str.Replace(pb_AboutEntry.KEY_VERSION, "").Trim();
-				else if(str.StartsWith(pb_AboutEntry.KEY_DATE))
+				else if (str.StartsWith(pb_AboutEntry.KEY_DATE))
 					about.date = str.Replace(pb_AboutEntry.KEY_DATE, "").Trim();
-				else if(str.StartsWith(pb_AboutEntry.KEY_CHANGELOG))
+				else if (str.StartsWith(pb_AboutEntry.KEY_CHANGELOG))
 					about.changelogPath = str.Replace(pb_AboutEntry.KEY_CHANGELOG, "").Trim();
 			}
 

@@ -10,7 +10,7 @@ public class DragPanel : MonoBehaviour, IPointerDownHandler, IDragHandler {
 	private RectTransform panelRectTransform;
 	private RectTransform parentRectTransform;
 	
-	void Awake () {
+	void Awake() {
 		panelRectTransform = transform.parent as RectTransform;
 		parentRectTransform = panelRectTransform.parent as RectTransform;
 	}
@@ -30,11 +30,11 @@ public class DragPanel : MonoBehaviour, IPointerDownHandler, IDragHandler {
 			panelRectTransform.localPosition = originalPanelLocalPosition + offsetToOriginal;
 		}
 		
-		ClampToWindow ();
+		ClampToWindow();
 	}
 	
 	// Clamp panel to area of parent
-	void ClampToWindow () {
+	void ClampToWindow() {
 		Vector3 pos = panelRectTransform.localPosition;
 		
 		Vector3 minPosition = parentRectTransform.rect.min - panelRectTransform.rect.min;

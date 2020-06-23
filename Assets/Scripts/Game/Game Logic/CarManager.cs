@@ -3,13 +3,9 @@ using UnityEngine;
 
 public class CarManager : MonoBehaviour
 {
-    // ----------------------------------------------- Data members ----------------------------------------------
     public Transform blueCar, whiteCar, blueEndPos, whiteEndPos;
     public AudioSource blueSound, whiteSound;
-    // ----------------------------------------------- End Data members ------------------------------------------
-
-    // --------------------------------------------------- Methods -----------------------------------------------
-    // --------------------------------------------------------------------
+    
     public IEnumerator MoveCar(Transform car, Transform endPos, float time)
     {
         float elapsedTime = 0;
@@ -21,7 +17,7 @@ public class CarManager : MonoBehaviour
             yield return null;
         }
     }
-    // --------------------------------------------------------------------
+    
     public IEnumerator MoveCars()
     {
         StartCoroutine(MoveCar(blueCar, blueEndPos, 10f));
@@ -29,11 +25,6 @@ public class CarManager : MonoBehaviour
         StartCoroutine(MoveCar(whiteCar, whiteEndPos, 10f));
         yield return null;
     }
-    // --------------------------------------------------------------------
-    public void MoveTheDamnCars()
-    {
-        StartCoroutine(MoveCars());
-    }
-    // --------------------------------------------------------------------
-    // --------------------------------------------------- End Methods --------------------------------------------
+    
+    public void MoveTheDamnCars() => StartCoroutine(MoveCars());    
 }

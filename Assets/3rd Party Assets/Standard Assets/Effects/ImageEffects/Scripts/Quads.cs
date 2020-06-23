@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -11,7 +10,7 @@ namespace UnityStandardAssets.ImageEffects
         static Mesh[] meshes;
         static int currentQuads = 0;
 
-        static bool HasMeshes ()
+        static bool HasMeshes()
         {
             if (meshes == null)
                 return false;
@@ -21,8 +20,7 @@ namespace UnityStandardAssets.ImageEffects
             return true;
         }
 
-
-        public static void Cleanup ()
+        public static void Cleanup()
         {
             if (meshes == null)
                 return;
@@ -38,12 +36,10 @@ namespace UnityStandardAssets.ImageEffects
             meshes = null;
         }
 
-
         public static Mesh[] GetMeshes ( int totalWidth, int totalHeight)
         {
-            if (HasMeshes () && (currentQuads == (totalWidth * totalHeight))) {
+            if (HasMeshes() && (currentQuads == (totalWidth * totalHeight))) 
                 return meshes;
-            }
 
             int maxQuads = 65000 / 6;
             int totalQuads = totalWidth * totalHeight;
@@ -53,9 +49,8 @@ namespace UnityStandardAssets.ImageEffects
 
             meshes = new Mesh [meshCount];
 
-            int i = 0;
             int index = 0;
-            for (i = 0; i < totalQuads; i += maxQuads)
+            for (int i = 0; i < totalQuads; i += maxQuads)
             {
                 int quads = Mathf.FloorToInt (Mathf.Clamp ((totalQuads-i), 0, maxQuads));
 
@@ -68,7 +63,7 @@ namespace UnityStandardAssets.ImageEffects
 
         static Mesh GetMesh (int triCount, int triOffset, int totalWidth, int totalHeight)
         {
-            var mesh = new Mesh ();
+            var mesh = new Mesh();
             mesh.hideFlags = HideFlags.DontSave;
 
             var verts = new Vector3[triCount * 4];
@@ -120,6 +115,5 @@ namespace UnityStandardAssets.ImageEffects
 
             return mesh;
         }
-
     }
 }

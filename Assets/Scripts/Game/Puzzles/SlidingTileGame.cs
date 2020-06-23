@@ -3,7 +3,6 @@ using System.Collections;
 
 public class SlidingTileGame : MonoBehaviour
 {
-    // ----------------------------------------------- Data members ----------------------------------------------
     public bool isComplete, canSwapTiles;
     public LockableDoors doorToUnlock;
     public SlidingTile[] tileArray;
@@ -11,17 +10,14 @@ public class SlidingTileGame : MonoBehaviour
     public int blankTilePos, correctCount;
     public Transform blankTile;
     public AudioSource aSrc;
-    // ----------------------------------------------- End Data members ------------------------------------------
-
-    // --------------------------------------------------- Methods -----------------------------------------------
-    // --------------------------------------------------------------------
+    
     private void Start()
     {
         aSrc = GetComponent<AudioSource>();
         correctCount = 0;
         canSwapTiles = true;
     }
-    // --------------------------------------------------------------------
+    
     void Update()
     {
         if (!isComplete)
@@ -32,38 +28,30 @@ public class SlidingTileGame : MonoBehaviour
             CheckForTileToMove();
         }
         else if (doorToUnlock.locked)
-        {
             doorToUnlock.UnlockDoor();
-        }
     }
-    // --------------------------------------------------------------------
+    
     public void CheckForComplete()
     {
         correctCount = 0;
         foreach(SlidingTile tile in tileArray)
         {
             if (tile.isPlacedCorrectly)
-            {
                 correctCount++;
-            }
             if (correctCount == 9)
-            {
                 isComplete = false;
-            }
         }
     }
-    // --------------------------------------------------------------------
+    
     public void CheckBlankTilePos()
     {
         foreach (Transform position in posArray)
         {
             if (position.position == tileArray[8].transform.position)
-            {
                 blankTilePos = int.Parse(position.gameObject.name);
-            }
         }
     }
-    // --------------------------------------------------------------------
+    
     public IEnumerator MoveTile(SlidingTile tileToMove, Vector3 positionToMoveTileTo)
     {
         canSwapTiles = false;
@@ -74,7 +62,7 @@ public class SlidingTileGame : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
         canSwapTiles = true;
     }
-    // --------------------------------------------------------------------
+    
     public void AssignMoveableTiles()
     {
         switch (blankTilePos)
@@ -83,13 +71,9 @@ public class SlidingTileGame : MonoBehaviour
                 foreach (SlidingTile tile in tileArray)
                 {
                     if (tile.transform.position == posArray[1].position || tile.transform.position == posArray[3].position)
-                    {
                         tile.canMove = true;
-                    }
                     else
-                    {
                         tile.canMove = false;
-                    }
                 }
                 break;
             case 2:
@@ -97,26 +81,19 @@ public class SlidingTileGame : MonoBehaviour
                 {
                     if (tile.transform.position == posArray[0].position || tile.transform.position == posArray[2].position
                         || tile.transform.position == posArray[4].position)
-                    {
                         tile.canMove = true;
-                    }
                     else
-                    {
                         tile.canMove = false;
-                    }
                 }
                 break;
             case 3:
                 foreach (SlidingTile tile in tileArray)
                 {
                     if (tile.transform.position == posArray[1].position || tile.transform.position == posArray[5].position)
-                    {
                         tile.canMove = true;
-                    }
                     else
-                    {
                         tile.canMove = false;
-                    }
+  
                 }
                 break;
             case 4:
@@ -124,13 +101,9 @@ public class SlidingTileGame : MonoBehaviour
                 {
                     if (tile.transform.position == posArray[0].position || tile.transform.position == posArray[4].position
                         || tile.transform.position == posArray[6].position)
-                    {
                         tile.canMove = true;
-                    }
                     else
-                    {
                         tile.canMove = false;
-                    }
                 }
                 break;
             case 5:
@@ -138,13 +111,9 @@ public class SlidingTileGame : MonoBehaviour
                 {
                     if (tile.transform.position == posArray[1].position || tile.transform.position == posArray[3].position
                         || tile.transform.position == posArray[5].position || tile.transform.position == posArray[7].position)
-                    {
                         tile.canMove = true;
-                    }
                     else
-                    {
                         tile.canMove = false;
-                    }
                 }
                 break;
             case 6:
@@ -152,26 +121,18 @@ public class SlidingTileGame : MonoBehaviour
                 {
                     if (tile.transform.position == posArray[2].position || tile.transform.position == posArray[4].position
                         || tile.transform.position == posArray[8].position)
-                    {
                         tile.canMove = true;
-                    }
                     else
-                    {
                         tile.canMove = false;
-                    }
                 }
                 break;
             case 7:
                 foreach (SlidingTile tile in tileArray)
                 {
                     if (tile.transform.position == posArray[3].position || tile.transform.position == posArray[7].position)
-                    {
                         tile.canMove = true;
-                    }
                     else
-                    {
                         tile.canMove = false;
-                    }
                 }
                 break;
             case 8:
@@ -179,31 +140,23 @@ public class SlidingTileGame : MonoBehaviour
                 {
                     if (tile.transform.position == posArray[4].position || tile.transform.position == posArray[6].position
                         || tile.transform.position == posArray[8].position)
-                    {
                         tile.canMove = true; 
-                    }
                     else
-                    {
                         tile.canMove = false;
-                    }
                 }
                 break;
             case 9:
                 foreach (SlidingTile tile in tileArray)
                 {
                     if (tile.transform.position == posArray[5].position || tile.transform.position == posArray[7].position)
-                    {
                         tile.canMove = true;
-                    }
                     else
-                    {
                         tile.canMove = false;
-                    }
                 }
                 break;
         }
     }
-    // --------------------------------------------------------------------
+    
     void CheckForTileToMove()
     {
         if (canSwapTiles)
@@ -211,12 +164,8 @@ public class SlidingTileGame : MonoBehaviour
             foreach (SlidingTile tile in tileArray)
             {
                 if (tile.canMove && tile.isBeingStoodOn)
-                {
                     StartCoroutine(MoveTile(tile, blankTile.position));
-                }
             }
         }
     }
-    // --------------------------------------------------------------------
-    // --------------------------------------------------- End Methods --------------------------------------------
 }

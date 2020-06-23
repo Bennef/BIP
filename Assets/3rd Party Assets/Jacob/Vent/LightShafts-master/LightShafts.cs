@@ -195,7 +195,7 @@ public partial class LightShafts : MonoBehaviour
 		RenderQuadSections(lightPos);
 	}
 
-	public void OnRenderObject ()
+	public void OnRenderObject()
 	{
 		m_CurrentCamera = Camera.current;
 		if (!m_MinRequirements || !CheckCamera() || !IsVisible())

@@ -66,7 +66,7 @@ public class pb_Preferences
 	static pb_Shortcut[] defaultShortcuts;
 
 	[PreferenceItem (pb_Constant.PRODUCT_NAME)]
-	public static void PreferencesGUI ()
+	public static void PreferencesGUI()
 	{
 		// Load the preferences
 		if (!prefsLoaded) {
@@ -118,7 +118,7 @@ public class pb_Preferences
 			defaultColliderType = ((ColliderType)EditorGUILayout.EnumPopup( (ColliderType)defaultColliderType ));
 		GUILayout.EndHorizontal();
 
-		if((ColliderType)defaultColliderType == ColliderType.MeshCollider)
+		if ((ColliderType)defaultColliderType == ColliderType.MeshCollider)
 			pbForceConvex = EditorGUILayout.Toggle("Force Convex Mesh Collider", pbForceConvex);
 
 		#if !UNITY_4_7
@@ -179,7 +179,7 @@ public class pb_Preferences
 
 		GUILayout.Label("Shortcut Settings", EditorStyles.boldLabel);
 
-		if(GUI.Button(resetRect, "Use defaults"))
+		if (GUI.Button(resetRect, "Use defaults"))
 			ResetToDefaults();
 
 		ShortcutSelectPanel();
@@ -198,7 +198,7 @@ public class pb_Preferences
 
 	public static void ResetToDefaults()
 	{
-		if(EditorUtility.DisplayDialog("Delete ProBuilder editor preferences?", "Are you sure you want to delete these?, this action cannot be undone.", "Yes", "No"))
+		if (EditorUtility.DisplayDialog("Delete ProBuilder editor preferences?", "Are you sure you want to delete these?, this action cannot be undone.", "Yes", "No"))
 		{
 			EditorPrefs.DeleteKey(pb_Constant.pbDefaultFaceColor);
 			EditorPrefs.DeleteKey(pb_Constant.pbDefaultEditLevel);
@@ -299,7 +299,7 @@ public class pb_Preferences
 
 		GUIStyle labelStyle = GUIStyle.none;
 
-		if(EditorGUIUtility.isProSkin)
+		if (EditorGUIUtility.isProSkin)
 			labelStyle.normal.textColor = new Color(1f, 1f, 1f, .8f);
 
 		labelStyle.alignment = TextAnchor.MiddleLeft;
@@ -309,7 +309,7 @@ public class pb_Preferences
 
 		for(int n = 1; n < defaultShortcuts.Length; n++)
 		{
-			if(n == shortcutIndex)
+			if (n == shortcutIndex)
 			{
 				GUI.backgroundColor = new Color(0.23f, .49f, .89f, 1f);
 					labelStyle.normal.background = EditorGUIUtility.whiteTexture;
@@ -323,7 +323,7 @@ public class pb_Preferences
 			else
 			{
 
-				if(GUILayout.Button(defaultShortcuts[n].action, labelStyle, GUILayout.MinHeight(CELL_HEIGHT), GUILayout.MaxHeight(CELL_HEIGHT)))
+				if (GUILayout.Button(defaultShortcuts[n].action, labelStyle, GUILayout.MinHeight(CELL_HEIGHT), GUILayout.MaxHeight(CELL_HEIGHT)))
 				{
 					shortcutIndex = n;
 				}
@@ -462,7 +462,7 @@ public class pb_Preferences
 		EditorPrefs.SetFloat	(pb_Constant.pbVertexHandleSize, pbVertexHandleSize);
 		EditorPrefs.SetFloat 	(pb_Constant.pbUVGridSnapValue, pbUVGridSnapValue);
 
-		if(pb_Editor.instance != null)
+		if (pb_Editor.instance != null)
 			pb_Editor.instance.OnEnable();
 
 		SceneView.RepaintAll();

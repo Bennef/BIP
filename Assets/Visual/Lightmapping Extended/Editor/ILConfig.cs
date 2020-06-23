@@ -41,7 +41,7 @@ public class ILConfig
 		public float x;
 		public float y;
 	
-		public LMVec2 ()
+		public LMVec2()
 		{
 			x = 0;
 			y = 0;
@@ -62,7 +62,7 @@ public class ILConfig
 		public float b;
 		public float a;
 	
-		public LMColor ()
+		public LMColor()
 		{
 			this.r = 1;
 			this.g = 1;
@@ -82,19 +82,19 @@ public class ILConfig
 	#endregion
 	
 	[XmlElement(ElementName = "AASettings")]
-	public AASettings aaSettings = new AASettings ();
+	public AASettings aaSettings = new AASettings();
 	[XmlElement(ElementName = "RenderSettings")]
-	public RenderSettings renderSettings = new RenderSettings ();
+	public RenderSettings renderSettings = new RenderSettings();
 	[XmlElement(ElementName = "EnvironmentSettings")]
-	public EnvironmentSettings environmentSettings = new EnvironmentSettings ();
+	public EnvironmentSettings environmentSettings = new EnvironmentSettings();
 	[XmlElement(ElementName = "FrameSettings")]
-	public FrameSettings frameSettings = new FrameSettings ();
+	public FrameSettings frameSettings = new FrameSettings();
 	[XmlElement(ElementName = "GISettings")]
-	public GISettings giSettings = new GISettings ();
+	public GISettings giSettings = new GISettings();
 	[XmlElement(ElementName = "SurfaceTransferSettings")]
-	public SurfaceTransferSettings surfaceTransferSettings = new SurfaceTransferSettings ();
+	public SurfaceTransferSettings surfaceTransferSettings = new SurfaceTransferSettings();
 	[XmlElement(ElementName = "TextureBakeSettings")]
-	public TextureBakeSettings textureBakeSettings = new TextureBakeSettings ();
+	public TextureBakeSettings textureBakeSettings = new TextureBakeSettings();
 	
 	
 	public static ILConfig DeserializeFromPath (string path)
@@ -108,7 +108,7 @@ public class ILConfig
 		FileStream stream = new FileStream (path, FileMode.Open);
 		
 		ILConfig config = (ILConfig)serializer.Deserialize (stream);
-		stream.Close ();
+		stream.Close();
 	
 		return config;
 	}
@@ -116,7 +116,7 @@ public class ILConfig
 	public void SerializeToPath (string path)
 	{	
 		using (XmlTextWriter writer = new XmlTextWriter (path, System.Text.Encoding.GetEncoding ("ISO-8859-1"))) {
-			XmlSerializerNamespaces ns = new XmlSerializerNamespaces ();
+			XmlSerializerNamespaces ns = new XmlSerializerNamespaces();
 			ns.Add (string.Empty, string.Empty);
 			writer.Formatting = Formatting.Indented;
 			XmlSerializer serializer = new XmlSerializer (typeof(ILConfig));
@@ -124,12 +124,12 @@ public class ILConfig
 		}
 	}
 	
-	public string SerializeToString ()
+	public string SerializeToString()
 	{
-		StringWriter writer = new StringWriter ();
+		StringWriter writer = new StringWriter();
 		XmlSerializer serializer = new XmlSerializer (typeof(ILConfig));
 		serializer.Serialize (writer, this);
-		return writer.ToString ();
+		return writer.ToString();
 	}
 	
 	public static ILConfig DeserializeFromString (string configString)
@@ -229,7 +229,7 @@ public class ILConfig
 		/// which is the gamma the Beast API assumes is used.
 		/// </summary>
 		public float inputGamma = 1.0f;
-		public OutputCorrection outputCorrection = new OutputCorrection ();
+		public OutputCorrection outputCorrection = new OutputCorrection();
 		/// <summary>
 		/// Different ways for Beast to distribute tiles over the image plane.
 		/// </summary>
@@ -254,7 +254,7 @@ public class ILConfig
 		/// <summary>
 		/// Different levels of textual output that Beast can produce.
 		/// </summary>
-		public OutputVerbosity outputVerbosity = new OutputVerbosity ();
+		public OutputVerbosity outputVerbosity = new OutputVerbosity();
 	}
 	
 	

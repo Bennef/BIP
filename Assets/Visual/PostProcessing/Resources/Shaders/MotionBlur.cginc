@@ -71,7 +71,7 @@ VaryingsMultitex VertMultitex(AttributesDefault v)
     return o;
 }
 
-// -----------------------------------------------------------------------------
+
 // Prefilter
 
 // Velocity texture setup
@@ -174,7 +174,7 @@ half4 FragNeighborMax(VaryingsDefault i) : SV_Target
     return half4(MaxV(va, MaxV(vb, vc)) * (1.0 / cw), 0.0, 0.0);
 }
 
-// -----------------------------------------------------------------------------
+
 // Reconstruction
 
 // Returns true or false with a given interval.
@@ -285,7 +285,7 @@ half4 FragReconstruction(VaryingsMultitex i) : SV_Target
     return half4(acc.rgb / acc.a, c_p.a);
 }
 
-// -----------------------------------------------------------------------------
+
 // Frame blending
 
 VaryingsDefault VertFrameCompress(AttributesDefault v)

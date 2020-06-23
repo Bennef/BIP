@@ -2,37 +2,25 @@
 
 public class AvoidCameraClipping : MonoBehaviour
 {
-    // ----------------------------------------------- Data members ----------------------------------------------
     public LayerMask avoidanceLayers;       // Layers to move away from to avoid clipping.
 	public float minDistance = 0.7f;        // The minimum distance from the player.
 	public float smoothTime = 0.25f;        // The smoothing applied to camera movement.
 
-	private Transform m_Transform;          // Reference to the transform component.
 	private float m_YOffsetRaycastPos;      // Offset in Y from the camera's position to the edge of the near clip plane.
 	private float m_XOffsetRaycastPos;      // Offset in X from the camera's position to the edge of the near clip plane.
 	private Vector3 m_OriginalPosition;     // The local position the camera should try to return to.
 	private Vector3 m_Velocity;             // Reference velocity for smoothing.
-    // ----------------------------------------------- End Data members ------------------------------------------
-
-    // --------------------------------------------------- Methods -----------------------------------------------
-    // --------------------------------------------------------------------
-
-    private void Awake ()
-	{
-		// Store the transform component.
-		m_Transform = transform;
-	}
-    // --------------------------------------------------------------------
-    void Start ()
+    
+    void Start()
 	{
 		// Calculate the offsets from the camera's position to the near clip plane.
-		CalculateOffsets ();
+		CalculateOffsets();
 
 		// Store the original local position.
-		m_OriginalPosition = m_Transform.localPosition;
+		m_OriginalPosition = transform.localPosition;
 	}
-    // --------------------------------------------------------------------
-    void CalculateOffsets ()
+    
+    void CalculateOffsets()
 	{
 		// The Y offset is the opposite side of a right angled triangle with the near clip plane.
 		m_YOffsetRaycastPos = Camera.main.nearClipPlane * Mathf.Tan (0.5f * Mathf.Deg2Rad * Camera.main.fieldOfView);
@@ -40,23 +28,23 @@ public class AvoidCameraClipping : MonoBehaviour
 		// The X offset is relative to the Y offset.
 		m_XOffsetRaycastPos = m_YOffsetRaycastPos * Camera.main.aspect;
 	}
-    // --------------------------------------------------------------------
+    
     Ray GetRay (bool top, bool right)
 	{
 		// Start the origin in the middle of the near clip plane.
-		Vector3 origin = m_Transform.position + Camera.main.nearClipPlane * m_Transform.forward;
+		Vector3 origin = transform.position + Camera.main.nearClipPlane * transform.forward;
 
 		// Move the origin either left or right by the X offset.
-		origin += right ? m_Transform.right * m_XOffsetRaycastPos : -m_Transform.right * m_XOffsetRaycastPos;
+		origin += right ? transform.right * m_XOffsetRaycastPos : -transform.right * m_XOffsetRaycastPos;
 
 		// Move the origin either up or down by the Y offset.
-		origin += top ? m_Transform.up * m_YOffsetRaycastPos : -m_Transform.up * m_YOffsetRaycastPos;
+		origin += top ? transform.up * m_YOffsetRaycastPos : -transform.up * m_YOffsetRaycastPos;
 
 		// Create and return the ray based on the origin and forward vector.
-		Ray ray = new Ray(origin, m_Transform.forward);
+		Ray ray = new Ray(origin, transform.forward);
 		return ray;
 	}
-    // --------------------------------------------------------------------
+    
     float DoubleRaycast (Ray ray, float rayLength)
 	{
 		// The new distance from the player is by default it's original position.
@@ -79,7 +67,7 @@ public class AvoidCameraClipping : MonoBehaviour
 		// Return the new distance for the camera.
 		return newDistance;
 	}
-    // --------------------------------------------------------------------
+    
     float FindNewDistance (float rayLength)
 	{
 		// Make sure that the default camera position is definitely the original distance.
@@ -108,11 +96,11 @@ public class AvoidCameraClipping : MonoBehaviour
 		// Return the adjusted new distance.
 		return newDistance;
 	}
-    // --------------------------------------------------------------------
-    void LateUpdate ()
+    
+    void LateUpdate()
 	{
 		// Find the new distance for the camera.
-		float newDistance = FindNewDistance (Mathf.Abs(m_Transform.localPosition.z));
+		float newDistance = FindNewDistance (Mathf.Abs(transform.localPosition.z));
 
 		// Make sure the distance is between the minimum distance and the original.
 		newDistance = Mathf.Clamp (newDistance, minDistance, -m_OriginalPosition.z);
@@ -122,9 +110,7 @@ public class AvoidCameraClipping : MonoBehaviour
 		newLocalPos.z = -newDistance;
 
 		// Smoothly adjust the camera's position based on this new position.
-		m_Transform.localPosition = Vector3.SmoothDamp (m_Transform.localPosition, newLocalPos, ref m_Velocity,
+		transform.localPosition = Vector3.SmoothDamp (transform.localPosition, newLocalPos, ref m_Velocity,
 			smoothTime);
 	}
-    // --------------------------------------------------------------------
-    // --------------------------------------------------- End Methods --------------------------------------------
 }

@@ -55,8 +55,8 @@ Shader "Hidden/Dof/DX11Dof"
 	inline float4 clampBorderColor(float2 uv)
 	{
 #if 1
-		if(uv.x<=0) return BOKEH_ZERO_VEC; if(uv.x>=1) return BOKEH_ZERO_VEC;
-		if(uv.y<=0) return BOKEH_ZERO_VEC; if(uv.y>=1) return BOKEH_ZERO_VEC;
+		if (uv.x<=0) return BOKEH_ZERO_VEC; if (uv.x>=1) return BOKEH_ZERO_VEC;
+		if (uv.y<=0) return BOKEH_ZERO_VEC; if (uv.y>=1) return BOKEH_ZERO_VEC;
 #endif	
 		return BOKEH_ONE_VEC;
 	}
@@ -165,9 +165,9 @@ Pass
 		o.uv = v.texcoord;
 		o.uv_flip = v.texcoord;
 		#if UNITY_UV_STARTS_AT_TOP
-		if(_MainTex_TexelSize.y<0)		
+		if (_MainTex_TexelSize.y<0)		
 			o.uv_flip.y = 1.0-o.uv_flip.y;
-		if(_MainTex_TexelSize.y<0)		
+		if (_MainTex_TexelSize.y<0)		
 			o.pos.y *= -1.0;			
 		#endif
 		return o;

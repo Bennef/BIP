@@ -78,7 +78,7 @@ public class GenericTrackGroupControl : TrackGroupControl
     protected override void addTrackContext()
     {
         TrackGroup trackGroup = TrackGroup.Behaviour as TrackGroup;
-        if(trackGroup != null)
+        if (trackGroup != null)
         {
             // Get the possible tracks that this group can contain.
             List<Type> trackTypes = trackGroup.GetAllowedTrackTypes();

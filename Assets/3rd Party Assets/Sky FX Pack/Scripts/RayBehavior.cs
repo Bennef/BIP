@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 
 public class RayBehavior : MonoBehaviour 
 {
@@ -10,7 +9,6 @@ public class RayBehavior : MonoBehaviour
     public Color EndColor = Color.white;
 
     public Vector3 PositionRange;
-
 
     public float WidthA = 1.0f;
     public float WidthB = 1.0f;
@@ -26,11 +24,9 @@ public class RayBehavior : MonoBehaviour
     private bool changed = true;
     private Vector3 Offset;
 
-
     public float AlphaCurve;
 
     public float FadeSpeed = 1.0f;
-
 
 	// Use this for initialization
     public void ResetRay()
@@ -39,10 +35,6 @@ public class RayBehavior : MonoBehaviour
             Random.Range(-PositionRange.y, PositionRange.y),
             Random.Range(-PositionRange.z, PositionRange.z)
             );
-
-        
-
-
         changed = true;
     }
 
@@ -55,31 +47,25 @@ public class RayBehavior : MonoBehaviour
     }
 
 
-	void Start () 
+	void Start() 
     {
         Line = GetComponent<LineRenderer>();
         Anim = GetComponent<Animation>();
-
 
         Anim["RayAlphaCurve"].speed = FadeSpeed;        
 	}
 	
 	// Update is called once per frame
-	void Update () 
+	void Update() 
     {
         if (changed)
         {
             changed = false;
             UpdateLineData();
         }
-
-        
         Line.SetColors(new Color(BeginColor.r, BeginColor.g, BeginColor.b, AlphaCurve),
             new Color(EndColor.r, EndColor.g, EndColor.b, AlphaCurve));
         
-
-        
         //Line.renderer.material.color = new Color(1, 1, 1, AlphaCurve);
-	
 	}
 }

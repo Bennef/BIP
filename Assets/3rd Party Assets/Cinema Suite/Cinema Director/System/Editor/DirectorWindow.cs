@@ -201,12 +201,12 @@ public class DirectorWindow : EditorWindow
         Cutscene c = e.cutscene as Cutscene;
         if (c != null)
         {
-            if(e.references != null)
+            if (e.references != null)
             {
-                if(e.references.Length == 1)
+                if (e.references.Length == 1)
                 {
                     GameObject gameObject = e.references[0] as GameObject;
-                    if(gameObject != null)
+                    if (gameObject != null)
                     {
                         ActorTrackGroup atg = CutsceneItemFactory.CreateTrackGroup(c, typeof(ActorTrackGroup), string.Format("{0} Track Group", gameObject.name)) as ActorTrackGroup;
                         atg.Actor = gameObject.GetComponent<Transform>();

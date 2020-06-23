@@ -32,7 +32,7 @@ namespace ProBuilder2.Actions
 		{
 			for(int i = 0; i < targets.Length; i++)
 			{
-				if(interactive)
+				if (interactive)
 				{
 					EditorUtility.DisplayProgressBar(
 						"Refreshing ProBuilder Objects",
@@ -56,7 +56,7 @@ namespace ProBuilder2.Actions
 			 	}
 			}
 
-			if(interactive)
+			if (interactive)
 			{
 				EditorUtility.ClearProgressBar();
 				EditorUtility.DisplayDialog("Rebuild Shared Index Cache", "Successfully rebuilt " + targets.Length + " shared index caches", "Okay");

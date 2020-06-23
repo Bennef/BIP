@@ -95,7 +95,7 @@ public class VolumetricLight : MonoBehaviour
 
         _light = GetComponent<Light>();
         //_light.RemoveAllCommandBuffers();
-        if(_light.type == LightType.Directional)
+        if (_light.type == LightType.Directional)
         {
             _light.AddCommandBuffer(LightEvent.BeforeScreenspaceMask, _commandBuffer);
             _light.AddCommandBuffer(LightEvent.AfterShadowMap, _cascadeShadowCommandBuffer);
@@ -183,11 +183,11 @@ public class VolumetricLight : MonoBehaviour
             _material.DisableKeyword("HEIGHT_FOG");
         }
 
-        if(_light.type == LightType.Point)
+        if (_light.type == LightType.Point)
         {
             SetupPointLight(renderer, viewProj);
         }
-        else if(_light.type == LightType.Spot)
+        else if (_light.type == LightType.Spot)
         {
             SetupSpotLight(renderer, viewProj);
         }
@@ -341,7 +341,7 @@ public class VolumetricLight : MonoBehaviour
         {
             clip = Matrix4x4.TRS(new Vector3(0.5f, 0.5f, 0.5f), Quaternion.identity, new Vector3(0.5f, 0.5f, 0.5f));
 
-            if(_reversedZ)
+            if (_reversedZ)
                 proj = Matrix4x4.Perspective(_light.spotAngle, 1, _light.range, _light.shadowNearPlane);
             else
                 proj = Matrix4x4.Perspective(_light.spotAngle, 1, _light.shadowNearPlane, _light.range);
@@ -475,7 +475,7 @@ public class VolumetricLight : MonoBehaviour
 
         // check angle
         float cosAngle = Vector3.Dot(transform.forward, (Camera.current.transform.position - _light.transform.position).normalized);
-        if((Mathf.Acos(cosAngle) * Mathf.Rad2Deg) > (_light.spotAngle + 3) * 0.5f)
+        if ((Mathf.Acos(cosAngle) * Mathf.Rad2Deg) > (_light.spotAngle + 3) * 0.5f)
             return false;
 
         return true;

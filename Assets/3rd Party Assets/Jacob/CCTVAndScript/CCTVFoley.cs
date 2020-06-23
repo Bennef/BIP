@@ -2,25 +2,18 @@
 
 public class CCTVFoley : MonoBehaviour
 {
-    // ----------------------------------------------- Data members ----------------------------------------------
     public Ray sight;
 	public GameObject Target;
 	public bool RayBool;
 	public bool ToggleBool;
 	public bool AudioToggle;
-    // ----------------------------------------------- End Data members ------------------------------------------
-
-    // --------------------------------------------------- Methods -----------------------------------------------
-    // --------------------------------------------------------------------
+    
     void Update()
 	{
 		sight.origin = new Vector3 (transform.position.x,transform.position.y,transform.position.z);
-		RaycastHit rayHit;
 
 		Vector3 playerheight = new Vector3 (Target.transform.position.x, Target.transform.position.y, Target.transform.position.z);
 		sight.direction = transform.forward;
-
-		RaycastHit rayhit;
 
 		Vector3 rayDirection = playerheight - sight.origin;
 
@@ -60,15 +53,9 @@ public class CCTVFoley : MonoBehaviour
 		}
 
 		if (angle < 10 * 0.5f)
-        {
 			ToggleBool = true;
-		}
         
 		if (angle > 30 * 0.5f)
-        {
 			ToggleBool = false;
-		}
 	}
-    // --------------------------------------------------------------------
-    // --------------------------------------------------- End Methods --------------------------------------------
 }

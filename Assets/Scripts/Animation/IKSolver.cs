@@ -1,9 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class IKSolver : MonoBehaviour
 {
-    // ----------------------------------------------- Data members ----------------------------------------------
     // IK will stop if the end effector gets within this distance of the target
     private const float IK_POS_THRESH = 0.25f;
     // IK will only run this amount of times, maximum, per frame.
@@ -41,10 +39,7 @@ public class IKSolver : MonoBehaviour
 
     public bool IsDamping = false;
     public float DampingMax = 0.5f;
-    // ----------------------------------------------- End Data members ------------------------------------------
-
-    // --------------------------------------------------- Methods -----------------------------------------------
-    // --------------------------------------------------------------------
+    
     void Start()
     {
         // Set up the initial rotation for every joint in the bone chain
@@ -53,7 +48,7 @@ public class IKSolver : MonoBehaviour
             JointEntities[i]._initialRotation = JointEntities[i].Joint.localRotation;
         }
     }
-    // --------------------------------------------------------------------
+    
     void LateUpdate()
     {
         // We run IK in LateUpdate, so it runs after the animation every frame.
@@ -63,7 +58,7 @@ public class IKSolver : MonoBehaviour
             Solve();
         }
     }
-    // --------------------------------------------------------------------
+    
     void Solve()
     {
         // The meat and potatoes of the IK solver.
@@ -140,7 +135,7 @@ public class IKSolver : MonoBehaviour
             link--;
         }
     }
-    // --------------------------------------------------------------------
+    
     /// <summary>
     /// Checks the angle restrictions.
     /// </summary>
@@ -172,7 +167,7 @@ public class IKSolver : MonoBehaviour
 
         jointEntity.Joint.localEulerAngles = euler;
     }
-    // --------------------------------------------------------------------
+    
     /// <summary>
     /// Reset joints position
     /// </summary>
@@ -183,11 +178,9 @@ public class IKSolver : MonoBehaviour
             jointEntity.Joint.localRotation = jointEntity._initialRotation;
         }
     }
-    // --------------------------------------------------------------------
+    
     public void SetTarget(Vector3 value)
     {
         Target = value;
     }
-    // --------------------------------------------------------------------
-    // --------------------------------------------------- End Methods --------------------------------------------
 }

@@ -15,7 +15,7 @@ namespace UnityStandardAssets.ImageEffects
 		{
             if (!s)
 			{
-                Debug.Log("Missing shader in " + ToString ());
+                Debug.Log("Missing shader in " + ToString());
                 enabled = false;
                 return null;
             }
@@ -25,7 +25,7 @@ namespace UnityStandardAssets.ImageEffects
 
             if (!s.isSupported)
 			{
-                NotSupported ();
+                NotSupported();
                 Debug.Log("The shader " + s.ToString() + " on effect "+ToString()+" is not supported on this platform!");
                 return null;
             }
@@ -44,7 +44,7 @@ namespace UnityStandardAssets.ImageEffects
 		{
             if (!s)
 			{
-                Debug.Log ("Missing shader in " + ToString ());
+                Debug.Log ("Missing shader in " + ToString());
                 return null;
             }
 
@@ -65,27 +65,27 @@ namespace UnityStandardAssets.ImageEffects
             }
         }
 
-        void OnEnable ()
+        void OnEnable()
 		{
             isSupported = true;
         }
 
-        protected bool CheckSupport ()
+        protected bool CheckSupport()
 		{
             return CheckSupport (false);
         }
 
 
-        public virtual bool CheckResources ()
+        public virtual bool CheckResources()
 		{
-            Debug.LogWarning ("CheckResources () for " + ToString() + " should be overwritten.");
+            Debug.LogWarning ("CheckResources() for " + ToString() + " should be overwritten.");
             return isSupported;
         }
 
 
-        protected void Start ()
+        protected void Start()
 		{
-            CheckResources ();
+            CheckResources();
         }
 
         protected bool CheckSupport (bool needDepth)
@@ -96,13 +96,13 @@ namespace UnityStandardAssets.ImageEffects
 
             if (!SystemInfo.supportsImageEffects || !SystemInfo.supportsRenderTextures)
 			{
-                NotSupported ();
+                NotSupported();
                 return false;
             }
 
             if (needDepth && !SystemInfo.SupportsRenderTextureFormat (RenderTextureFormat.Depth))
 			{
-                NotSupported ();
+                NotSupported();
                 return false;
             }
 
@@ -119,7 +119,7 @@ namespace UnityStandardAssets.ImageEffects
 
             if (needHdr && !supportHDRTextures)
 			{
-                NotSupported ();
+                NotSupported();
                 return false;
             }
 
@@ -127,13 +127,13 @@ namespace UnityStandardAssets.ImageEffects
         }
 
 
-        public bool Dx11Support ()
+        public bool Dx11Support()
 		{
             return supportDX11;
         }
 
 
-        protected void ReportAutoDisable ()
+        protected void ReportAutoDisable()
 		{
             Debug.LogWarning ("The image effect " + ToString() + " has been disabled as it's not supported on the current platform.");
         }
@@ -141,10 +141,10 @@ namespace UnityStandardAssets.ImageEffects
         // deprecated but needed for old effects to survive upgrading
         bool CheckShader (Shader s)
 		{
-            Debug.Log("The shader " + s.ToString () + " on effect "+ ToString () + " is not part of the Unity 3.2+ effects suite anymore. For best performance and quality, please ensure you are using the latest Standard Assets Image Effects (Pro only) package.");
+            Debug.Log("The shader " + s.ToString() + " on effect "+ ToString() + " is not part of the Unity 3.2+ effects suite anymore. For best performance and quality, please ensure you are using the latest Standard Assets Image Effects (Pro only) package.");
             if (!s.isSupported)
 			{
-                NotSupported ();
+                NotSupported();
                 return false;
             }
             else
@@ -154,7 +154,7 @@ namespace UnityStandardAssets.ImageEffects
         }
 
 
-        protected void NotSupported ()
+        protected void NotSupported()
 		{
             enabled = false;
             isSupported = false;

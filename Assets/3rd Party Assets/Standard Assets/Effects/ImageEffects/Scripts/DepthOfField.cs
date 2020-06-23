@@ -51,27 +51,27 @@ namespace UnityStandardAssets.ImageEffects
         private float internalBlurWidth = 1.0f;
 
 
-        public override bool CheckResources () {
+        public override bool CheckResources() {
             CheckSupport (true); // only requires depth, not HDR
 
             dofHdrMaterial = CheckShaderAndCreateMaterial (dofHdrShader, dofHdrMaterial);
             if (supportDX11 && blurType == BlurType.DX11) {
                 dx11bokehMaterial = CheckShaderAndCreateMaterial(dx11BokehShader, dx11bokehMaterial);
-                CreateComputeResources ();
+                CreateComputeResources();
             }
 
             if (!isSupported)
-                ReportAutoDisable ();
+                ReportAutoDisable();
 
             return isSupported;
         }
 
-        void OnEnable () {
+        void OnEnable() {
             GetComponent<Camera>().depthTextureMode |= DepthTextureMode.Depth;
         }
 
-        void OnDisable () {
-            ReleaseComputeResources ();
+        void OnDisable() {
+            ReleaseComputeResources();
 
             if (dofHdrMaterial) DestroyImmediate(dofHdrMaterial);
             dofHdrMaterial = null;
@@ -79,14 +79,14 @@ namespace UnityStandardAssets.ImageEffects
             dx11bokehMaterial = null;
         }
 
-        void ReleaseComputeResources () {
+        void ReleaseComputeResources() {
             if (cbDrawArgs != null) cbDrawArgs.Release();
             cbDrawArgs = null;
             if (cbPoints != null) cbPoints.Release();
             cbPoints = null;
         }
 
-        void CreateComputeResources () {
+        void CreateComputeResources() {
             if (cbDrawArgs == null)
             {
                 cbDrawArgs = new ComputeBuffer (1, 16, ComputeBufferType.IndirectArguments);
@@ -143,7 +143,7 @@ namespace UnityStandardAssets.ImageEffects
         }
 
         void OnRenderImage (RenderTexture source, RenderTexture destination) {
-            if (!CheckResources ()) {
+            if (!CheckResources()) {
                 Graphics.Blit (source, destination);
                 return;
             }
@@ -224,7 +224,7 @@ namespace UnityStandardAssets.ImageEffects
                     // collect bokeh candidates and replace with a darker pixel
                     Graphics.SetRandomWriteTarget (1, cbPoints);
                     Graphics.Blit (source, rtLow, dx11bokehMaterial, 0);
-                    Graphics.ClearRandomWriteTargets ();
+                    Graphics.ClearRandomWriteTargets();
 
                     // fg coc blur happens here (after collect!)
                     if (nearBlur) {
@@ -299,7 +299,7 @@ namespace UnityStandardAssets.ImageEffects
                     // collect bokeh candidates and replace with a darker pixel
                     Graphics.SetRandomWriteTarget (1, cbPoints);
                     Graphics.Blit (rtLow, rtLow2, dx11bokehMaterial, 0);
-                    Graphics.ClearRandomWriteTargets ();
+                    Graphics.ClearRandomWriteTargets();
 
                     RenderTexture.ReleaseTemporary(rtSuperLow1);
                     RenderTexture.ReleaseTemporary(rtSuperLow2);

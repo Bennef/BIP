@@ -4,40 +4,31 @@ using System.Collections;
 // Handles NanoDrone behaviour. 
 public class NanoDroneMind : FriendlyMind
 {
-    // ----------------------------------------------- Data members ----------------------------------------------  
     public bool active, pausing;
     public float brakingSpeed;          // Speed that NanoDrone brakes.
     public float hoverHeight;
     public Vector3 MaxVelocity;         // So NanoDrone does not fly too fast.
-    private Vector3 targetPosition;     // World osition of the target.
     public GameObject startingPosition;
     public Transform bipTarget, icoTarget;
     private TripLaserPuzzle tripLaserPuzzle;
     public GameObject deathRay;
-    private AudioSource aSrc;
-    // ----------------------------------------------- End Data members ------------------------------------------
-
-    // --------------------------------------------------- Methods -----------------------------------------------
-    // --------------------------------------------------------------------
+    
     void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
         bipTarget = GameObject.Find("CTRL_Head").transform;
         icoTarget = GameObject.Find("Homing Ico 3").transform;
         tripLaserPuzzle = GameObject.Find("Trip Laser Puzzle").GetComponent<TripLaserPuzzle>();
-        aSrc = GetComponent<AudioSource>();
         target = bipTarget; // So they watch him if he messes with them.
     }
-    // --------------------------------------------------------------------
+    
     void FixedUpdate()
     {
         Quaternion rotation = CalculateRotation();  // Find rotation to look at.
         rigidbody.MoveRotation(Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * speed));  // Actually turn in that direction.
         
         if (active)
-        {
             Move();
-        }
         else
         {
             MoveHome();
@@ -45,18 +36,14 @@ public class NanoDroneMind : FriendlyMind
         }
 
         if (shouldFollow)
-        {
             rigidbody.drag = 0.2f;
-        }
         else
-        {
             rigidbody.drag = 1.0f;  // So he doesn't float off into the distance.
-        }
 
         // Cap velocity to prevent super speeds.
         CapVelocity();
     }
-    // --------------------------------------------------------------------
+    
     // Move drone.
     protected override void Move()
     {
@@ -92,13 +79,11 @@ public class NanoDroneMind : FriendlyMind
             rigidbody.AddForce(Vector3.up * (target.position.y - transform.position.y), ForceMode.VelocityChange);
         }
     }
-    // --------------------------------------------------------------------
+    
     public void MoveHome()
     {
         if (!tripLaserPuzzle.alarm)
-        {
             target = startingPosition.transform;  // Go home, stupid drones.
-        }
 
         PreferredDistance = 0.5f;
         MinDistance = 0f;
@@ -123,7 +108,7 @@ public class NanoDroneMind : FriendlyMind
             target = bipTarget;
         }
     }
-    // --------------------------------------------------------------------
+    
     // Make sure NanoDrone does not fly faster than we want.
     void CapVelocity()
     {
@@ -133,18 +118,16 @@ public class NanoDroneMind : FriendlyMind
         _velocity.z = Mathf.Clamp(_velocity.z, -MaxVelocity.z, MaxVelocity.z);
         rigidbody.velocity = _velocity;
     }
-    // --------------------------------------------------------------------
+    
     private void OnTriggerEnter(Collider other)
     {
-        if ((other.tag == "Player" && target == bipTarget && active) || (other.tag == "Moveable" && target == icoTarget && active))
-        {
+        if ((other.CompareTag("Player") && target == bipTarget && active) || (other.CompareTag("Moveable") && target == icoTarget && active))
             deathRay.gameObject.SetActive(true);
-        }
     }
-    // --------------------------------------------------------------------
+    
     private void OnTriggerExit(Collider other)
     {
-        if ((other.tag == "Player" && target == bipTarget) || (other.tag == "Moveable" && target == icoTarget))
+        if ((other.CompareTag("Player") && target == bipTarget) || (other.CompareTag("Moveable") && target == icoTarget))
         {
             if (!pausing)
             {
@@ -154,17 +137,12 @@ public class NanoDroneMind : FriendlyMind
             }
         }
     }
-    // --------------------------------------------------------------------
+    
     public IEnumerator Pause()
     {
         yield return new WaitForSeconds(1.0f);
         pausing = false;
     }
-    // --------------------------------------------------------------------
-    public void ResetPosition()
-    {
-        transform.position = startingPosition.transform.position;
-    }
-    // --------------------------------------------------------------------
-    // --------------------------------------------------- End Methods --------------------------------------------
+    
+    public void ResetPosition() => transform.position = startingPosition.transform.position;
 }

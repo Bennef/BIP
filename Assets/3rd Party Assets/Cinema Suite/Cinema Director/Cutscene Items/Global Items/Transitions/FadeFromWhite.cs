@@ -18,7 +18,7 @@ namespace CinemaDirector
         /// </summary>
         void Awake()
         {
-			Image image = gameObject.GetComponent<Image> ();
+			Image image = gameObject.GetComponent<Image>();
             if (image == null)
             {
                 image = gameObject.AddComponent<Image>();
@@ -36,12 +36,13 @@ namespace CinemaDirector
         /// </summary>
         public override void Trigger()
         {
-			Image image = gameObject.GetComponent<Image> ();
-			if (image != null) {
-								image.enabled = true;
-								//image.pixelInset = new Rect (0f, 0f, Screen.width, Screen.height);
-								image.color = From;
-						}
+			Image image = gameObject.GetComponent<Image>();
+			if (image != null) 
+            {
+				image.enabled = true;
+				//image.pixelInset = new Rect (0f, 0f, Screen.width, Screen.height);
+				image.color = From;
+			}
         }
 
         /// <summary>
@@ -70,15 +71,19 @@ namespace CinemaDirector
         /// <param name="deltaTime">the deltaTime since the last update call.</param>
         public override void SetTime(float time, float deltaTime)
         {
-			Image image = gameObject.GetComponent<Image> ();
-			if (image != null) {
-								if (time >= 0 && time <= Duration) {
-										image.enabled = true;
-										UpdateTime (time, deltaTime);
-								} else if (image.enabled) {
-										image.enabled = false;
-								}
-						}
+			Image image = gameObject.GetComponent<Image>();
+			if (image != null) 
+            {
+			    if (time >= 0 && time <= Duration) 
+                {
+					image.enabled = true;
+					UpdateTime (time, deltaTime);
+			    } 
+                else if (image.enabled) 
+                {
+					image.enabled = false;
+			    }
+			}
         }
 
         /// <summary>
@@ -86,10 +91,11 @@ namespace CinemaDirector
         /// </summary>
         public override void End()
         {
-			Image image = gameObject.GetComponent<Image> ();
-			if (image != null) {
-								image.enabled = false;
-						}
+			Image image = gameObject.GetComponent<Image>();
+			if (image != null) 
+            {
+				image.enabled = false;
+			}
         }
 
         /// <summary>
@@ -97,12 +103,13 @@ namespace CinemaDirector
         /// </summary>
         public override void ReverseEnd()
         {
-			Image image = gameObject.GetComponent<Image> ();
-			if (image != null) {
-						image.enabled = true;
-					//	image.pixelInset = new Rect (0f, 0f, Screen.width, Screen.height);
-						image.color = To;
-				}
+			Image image = gameObject.GetComponent<Image>();
+			if (image != null) 
+            {
+				image.enabled = true;
+				//	image.pixelInset = new Rect (0f, 0f, Screen.width, Screen.height);
+				image.color = To;
+			}
         }
 
         /// <summary>
@@ -110,7 +117,7 @@ namespace CinemaDirector
         /// </summary>
         public override void Stop()
         {
-			Image image = gameObject.GetComponent<Image> ();
+			Image image = gameObject.GetComponent<Image>();
             if (image != null)
             {
                 image.enabled = false;
@@ -125,10 +132,11 @@ namespace CinemaDirector
         /// <param name="transition">the Lerp transition value</param>
         private void FadeToColor(Color from, Color to, float transition)
         {
-			Image image = gameObject.GetComponent<Image> ();
-			if (image != null) {
-								image.color = Color.Lerp (from, to, transition);
-						}
+			Image image = gameObject.GetComponent<Image>();
+			if (image != null) 
+            {
+				image.color = Color.Lerp (from, to, transition);
+			}
         }
     }
 }

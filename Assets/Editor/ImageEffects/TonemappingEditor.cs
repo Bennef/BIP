@@ -1,4 +1,3 @@
-using System;
 using UnityEditor;
 using UnityEngine;
 
@@ -22,7 +21,7 @@ namespace UnityStandardAssets.ImageEffects
         SerializedProperty adaptionSpeed;
         SerializedProperty adaptiveTextureSize;
 
-        void OnEnable () {
+        void OnEnable() {
             serObj = new SerializedObject (target);
 
             type = serObj.FindProperty ("type");
@@ -35,8 +34,8 @@ namespace UnityStandardAssets.ImageEffects
         }
 
 
-        public override void OnInspectorGUI () {
-            serObj.Update ();
+        public override void OnInspectorGUI() {
+            serObj.Update();
 
             GUILayout.Label("Mapping HDR to LDR ranges since 1982", EditorStyles.miniLabel);
 

@@ -15,11 +15,11 @@ namespace ProGrids
 
 		static pg_IconUtility()
 		{
-			if(!Directory.Exists(iconFolderPath))
+			if (!Directory.Exists(iconFolderPath))
 			{
 				string folder = FindFolder(ICON_FOLDER_PATH);
 
-				if(Directory.Exists(folder))
+				if (Directory.Exists(folder))
 					iconFolderPath = folder;
 			}
 		}
@@ -35,9 +35,9 @@ namespace ProGrids
 			{
 				string path = str.Replace("\\", "/");
 
-				if(path.Contains(folder))
+				if (path.Contains(folder))
 				{
-					if(!path.EndsWith("/"))
+					if (!path.EndsWith("/"))
 						path += "/";
 
 					return path;
@@ -53,7 +53,7 @@ namespace ProGrids
 		{
 			string iconPath = string.Format("{0}{1}", iconFolderPath, iconName);
 
-			if(!File.Exists(iconPath))
+			if (!File.Exists(iconPath))
 			{
 				Debug.LogError("ProGrids failed to locate menu image: " + iconName + ".\nThis can happen if the GUI folder is moved or deleted.  Deleting and re-importing ProGrids will fix this error.");
 				return (Texture2D) null;

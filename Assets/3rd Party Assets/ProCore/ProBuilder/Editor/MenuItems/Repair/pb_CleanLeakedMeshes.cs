@@ -9,7 +9,7 @@ namespace ProBuilder2.Actions
 		[MenuItem("Tools/" + pb_Constant.PRODUCT_NAME + "/Repair/Clean Leaked Meshes", false, pb_Constant.MENU_REPAIR)]
 		public static void CleanUp()
 		{
-			// if(EditorUtility.DisplayDialog("Clean Leaked Meshes?",
+			// if (EditorUtility.DisplayDialog("Clean Leaked Meshes?",
 			// 	"Cleaning leaked meshes will permenantly delete any deleted pb_Objects, are you sure you don't want to undo?", "Clean Up", "Stay Dirty"))
 			// {
 				#if !UNITY_5

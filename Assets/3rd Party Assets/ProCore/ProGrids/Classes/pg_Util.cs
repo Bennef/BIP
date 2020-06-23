@@ -16,7 +16,7 @@ namespace ProGrids
 	        string[] rgba = value.Split(',');
 
 	        // BRIGHT pink
-	        if(rgba.Length < 4)
+	        if (rgba.Length < 4)
 	        	return new Color(1f, 0f, 1f, 1f);
 
 			return new Color(
@@ -36,9 +36,9 @@ namespace ProGrids
 		private static Axis MaskToAxis(Vector3 vec)
 		{
 			Axis axis = Axis.None;
-			if( Mathf.Abs(vec.x) > 0 ) axis |= Axis.X;
-			if( Mathf.Abs(vec.y) > 0 ) axis |= Axis.Y;
-			if( Mathf.Abs(vec.z) > 0 ) axis |= Axis.Z;
+			if ( Mathf.Abs(vec.x) > 0 ) axis |= Axis.X;
+			if ( Mathf.Abs(vec.y) > 0 ) axis |= Axis.Y;
+			if ( Mathf.Abs(vec.z) > 0 ) axis |= Axis.Z;
 			return axis;
 		}
 
@@ -55,7 +55,7 @@ namespace ProGrids
 		{
 			Vector3 mask = VectorToMask(movement);
 
-			if(mask.x + mask.y + mask.z == 2)
+			if (mask.x + mask.y + mask.z == 2)
 			{
 				return MaskToAxis(Vector3.one - mask);
 			}
@@ -64,19 +64,19 @@ namespace ProGrids
 				switch( MaskToAxis(mask) )
 				{
 					case Axis.X:
-						if( Mathf.Abs(Vector3.Dot(cam.transform.forward, Vector3.up)) < Mathf.Abs(Vector3.Dot(cam.transform.forward, Vector3.forward)))
+						if ( Mathf.Abs(Vector3.Dot(cam.transform.forward, Vector3.up)) < Mathf.Abs(Vector3.Dot(cam.transform.forward, Vector3.forward)))
 							return Axis.Z;
 						else
 							return Axis.Y;
 
 					case Axis.Y:
-						if( Mathf.Abs(Vector3.Dot(cam.transform.forward, Vector3.right)) < Mathf.Abs(Vector3.Dot(cam.transform.forward, Vector3.forward)))
+						if ( Mathf.Abs(Vector3.Dot(cam.transform.forward, Vector3.right)) < Mathf.Abs(Vector3.Dot(cam.transform.forward, Vector3.forward)))
 							return Axis.Z;
 						else
 							return Axis.X;
 
 					case Axis.Z:
-						if( Mathf.Abs(Vector3.Dot(cam.transform.forward, Vector3.right)) < Mathf.Abs(Vector3.Dot(cam.transform.forward, Vector3.up)))
+						if ( Mathf.Abs(Vector3.Dot(cam.transform.forward, Vector3.right)) < Mathf.Abs(Vector3.Dot(cam.transform.forward, Vector3.up)))
 							return Axis.Y;
 						else
 							return Axis.X;
@@ -89,9 +89,9 @@ namespace ProGrids
 
 		public static float ValueFromMask(Vector3 val, Vector3 mask)
 		{
-			if(Mathf.Abs(mask.x) > .0001f)
+			if (Mathf.Abs(mask.x) > .0001f)
 				return val.x;
-			else if(Mathf.Abs(mask.y) > .0001f)
+			else if (Mathf.Abs(mask.y) > .0001f)
 				return val.y;
 			else
 				return val.z;
@@ -114,18 +114,18 @@ namespace ProGrids
 		{
 			Type t = Type.GetType(type);
 
-			if(t == null)
+			if (t == null)
 			{
 				IEnumerable<Assembly> assemblies = AppDomain.CurrentDomain.GetAssemblies();
 
-				if(assembly != null)
+				if (assembly != null)
 					assemblies = assemblies.Where(x => x.FullName.Contains(assembly));
 
 				foreach(Assembly ass in assemblies)
 				{
 					t = ass.GetType(type);
 
-					if(t != null)
+					if (t != null)
 						return t;
 				}
 			}
@@ -267,7 +267,7 @@ namespace ProGrids
 		{
 			SnapEnabledOverride so;
 
-			if(m_SnapOverrideCache.TryGetValue(t, out so))
+			if (m_SnapOverrideCache.TryGetValue(t, out so))
 				return so.IsEnabled();
 
 			object[] attribs = null;
@@ -278,9 +278,9 @@ namespace ProGrids
 
 				bool hasNoSnapAttrib;
 
-				if(m_NoSnapAttributeTypeCache.TryGetValue(type, out hasNoSnapAttrib))
+				if (m_NoSnapAttributeTypeCache.TryGetValue(type, out hasNoSnapAttrib))
 				{
-					if(hasNoSnapAttrib)
+					if (hasNoSnapAttrib)
 					{
 						m_SnapOverrideCache.Add(t, new SnapIsEnabledOverride(!hasNoSnapAttrib));
 						return true;
@@ -292,7 +292,7 @@ namespace ProGrids
 					hasNoSnapAttrib = attribs.Any(x => x != null && x.ToString().Contains("ProGridsNoSnap"));
 					m_NoSnapAttributeTypeCache.Add(type, hasNoSnapAttrib);
 
-					if(hasNoSnapAttrib)
+					if (hasNoSnapAttrib)
 					{
 						m_SnapOverrideCache.Add(t, new SnapIsEnabledOverride(!hasNoSnapAttrib));
 						return true;
@@ -301,9 +301,9 @@ namespace ProGrids
 
 				MethodInfo mi;
 
-				if(m_ConditionalSnapAttributeCache.TryGetValue(type, out mi))
+				if (m_ConditionalSnapAttributeCache.TryGetValue(type, out mi))
 				{
-					if(mi != null)
+					if (mi != null)
 					{
 						m_SnapOverrideCache.Add(t, new ConditionalSnapOverride(() => { return (bool) mi.Invoke(c, null); }));
 						return (bool) mi.Invoke(c, null);
@@ -311,13 +311,13 @@ namespace ProGrids
 				}
 				else
 				{
-					if( attribs.Any(x => x != null && x.ToString().Contains("ProGridsConditionalSnap")) )
+					if ( attribs.Any(x => x != null && x.ToString().Contains("ProGridsConditionalSnap")) )
 					{
 						mi = type.GetMethod("IsSnapEnabled", BindingFlags.Instance | BindingFlags.FlattenHierarchy | BindingFlags.NonPublic | BindingFlags.Public);
 
 						m_ConditionalSnapAttributeCache.Add(type, mi);
 
-						if(mi != null)
+						if (mi != null)
 						{
 							m_SnapOverrideCache.Add(t, new ConditionalSnapOverride(() => { return (bool) mi.Invoke(c, null); }));
 							return (bool) mi.Invoke(c, null);
@@ -341,7 +341,7 @@ namespace ProGrids
 		public static bool Contains(this Transform[] t_arr, Transform t)
 		{
 			for(int i = 0; i < t_arr.Length; i++)
-				if(t_arr[i] == t)
+				if (t_arr[i] == t)
 					return true;
 			return false;
 		}

@@ -29,13 +29,13 @@ namespace ProBuilder2.Actions
 			Material ColliderMat = pb_Constant.ColliderMaterial;
 			Material TriggerMat = pb_Constant.TriggerMaterial;
 
-			if( ColliderMat == null )
+			if ( ColliderMat == null )
 			{
 				Debug.LogError("ProBuilder cannot find Collider material!  Make sure the Collider material asset is in \"Assets/ProCore/ProBuilder/Resources/Material\" folder.");
 				return;
 			}
 
-			if( TriggerMat == null )
+			if ( TriggerMat == null )
 			{
 				Debug.LogError("ProBuilder cannot find Trigger material!  Make sure the Trigger material asset is in \"Assets/ProCore/ProBuilder/Resources/Material\" folder.");
 				return;

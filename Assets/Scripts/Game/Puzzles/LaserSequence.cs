@@ -3,24 +3,14 @@ using UnityEngine;
 
 public class LaserSequence : MonoBehaviour
 {
-    // ----------------------------------------------- Data members ----------------------------------------------
     public Transform beam;
     public float delay, offTime, onTime;
     public Coroutine coroutine;
-    // ----------------------------------------------- End Data members ------------------------------------------
+    
+    void Start() => beam = transform.Find("plasma_beam_red");
+    
+    public void StartTheSequence() => coroutine = StartCoroutine(Sequence());
 
-    // --------------------------------------------------- Methods -----------------------------------------------
-    // --------------------------------------------------------------------
-    void Start()
-    {
-        beam = transform.Find("plasma_beam_red");
-    }
-    // --------------------------------------------------------------------
-    public void StartTheSequence()
-    {
-        coroutine = StartCoroutine(Sequence());
-    }
-    // --------------------------------------------------------------------
     public IEnumerator Sequence()
     {
         yield return new WaitForSeconds(delay);
@@ -28,7 +18,5 @@ public class LaserSequence : MonoBehaviour
         yield return new WaitForSeconds(offTime);
         beam.gameObject.SetActive(true);
         yield return new WaitForSeconds(onTime);
-    }
-    // --------------------------------------------------------------------
-    // --------------------------------------------------- End Methods --------------------------------------------
+    }   
 }

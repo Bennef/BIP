@@ -28,7 +28,7 @@ public class ExtrudeRandomEdges : MonoBehaviour
 
 	void OnGUI()
 	{
-		if(GUILayout.Button("Extrude Random Edge"))
+		if (GUILayout.Button("Extrude Random Edge"))
 		{
 			ExtrudeEdge();
 		}

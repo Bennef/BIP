@@ -31,7 +31,7 @@ Shader "Hidden/ConvertDepth" {
 		float d = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, i.uv.xy);
 		d = Linear01Depth(d);
 			 
-		if(d>0.99999)
+		if (d>0.99999)
 			return half4(1,1,1,1);
 		else
 			return EncodeFloatRGBA(d); 

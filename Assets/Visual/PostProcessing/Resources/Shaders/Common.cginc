@@ -13,14 +13,14 @@
 #define sampler2D_half sampler2D_float
 #endif
 
-// -----------------------------------------------------------------------------
+
 // Uniforms
 
 sampler2D _MainTex;
 float4 _MainTex_TexelSize;
 float4 _MainTex_ST;
 
-// -----------------------------------------------------------------------------
+
 // Vertex shaders
 
 struct AttributesDefault
@@ -45,7 +45,7 @@ VaryingsDefault VertDefault(AttributesDefault v)
     return o;
 }
 
-// -----------------------------------------------------------------------------
+
 // Maths stuff
 
 #define HALF_MAX        65504.0
@@ -134,7 +134,7 @@ float LinearizeDepth(float z)
     return (1.0 - isOrtho * z) / (isPers * z + _ZBufferParams.y);
 }
 
-// -----------------------------------------------------------------------------
+
 // RGBM encoding/decoding
 
 half4 EncodeHDR(float3 rgb)

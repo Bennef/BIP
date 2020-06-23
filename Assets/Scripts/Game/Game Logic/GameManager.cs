@@ -4,9 +4,8 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Collections;
 
-public class GameManager : MonoBehaviour 
-{
-	// ----------------------------------------------- Data members ----------------------------------------------
+public class GameManager : MonoBehaviour
+{ 
 	// Will manage spawning of Bip in the Level.
 	public static GameManager Instance;
     public Transform Player;
@@ -29,21 +28,14 @@ public class GameManager : MonoBehaviour
     
     AudioSource[] audios;
     AudioSource pauseMenu;
-    // ----------------------------------------------- End Data members ------------------------------------------
-
-    // --------------------------------------------------- Methods -----------------------------------------------
-    // --------------------------------------------------------------------
+    
     void Awake()
 	{
 		DontDestroyOnLoad(transform.gameObject); 
         if (Instance == null)
-        {
             Instance = this;
-        }
         else
-        {
             Destroy(this.gameObject);
-        }
 
         Player = GameObject.Find("Bip").GetComponent<Transform>();
 
@@ -71,15 +63,13 @@ public class GameManager : MonoBehaviour
         }
         //audios = FindObjectsOfType(typeof(AudioSource)) as AudioSource[];
     }
-    // --------------------------------------------------------------------
+    
     void OnLevelWasLoaded()
     {
         if (scene.name == "Main Menu Portfolio" || scene.name == "Main Menu Web")
-        {
             GameManager.Instance.isPaused = false;
-        }
     }
-	// --------------------------------------------------------------------
+	
     void Update()
     {
         audios = FindObjectsOfType(typeof(AudioSource)) as AudioSource[];
@@ -89,36 +79,23 @@ public class GameManager : MonoBehaviour
             foreach (AudioSource aud in audios)
             {
                 if (aud != pauseMenu)
-                {
                     aud.Pause();
-                }
             }
         }
         else
         {
             Time.timeScale = 1f;
             foreach (AudioSource aud in audios)
-            {
                 aud.UnPause();
-            }
         }
     }
-    // --------------------------------------------------------------------
-    public void SetSaveFile(string saveName)
-	{
-		save.Name = saveName;
-	}
-    // --------------------------------------------------------------------
-    public void SetSceneName(string sceneName)
-    {
-        save.SceneName = sceneName;
-    }
-    // --------------------------------------------------------------------
-    public void CreateNewGame()
-    {
-        StartCoroutine(CreateNewGameCo());
-    }
-    // --------------------------------------------------------------------
+
+    public void SetSaveFile(string saveName) => save.Name = saveName;
+    
+    public void SetSceneName(string sceneName) => save.SceneName = sceneName;
+    
+    public void CreateNewGame() => StartCoroutine(CreateNewGameCo());
+    
     public IEnumerator CreateNewGameCo()
     {
         //save.SceneName = "1 Dumpster";
@@ -126,9 +103,7 @@ public class GameManager : MonoBehaviour
         //save.currentCheckpointPos = new SerializedVector3(20.93f, -0.28f, 6.89f); // Bip starting pos in Dumpster.
         save.currentCheckpointPos = new SerializedVector3(0.0f, -0.2f, 0.0f); // Bip starting pos in Portfolio.
         if (!Directory.Exists(string.Format(@"{0}\Saves", Application.dataPath)))
-        {
             Directory.CreateDirectory(string.Format(@"{0}\Saves", Application.dataPath));
-        }
 
         // Open up a stream, that allows us to write data.
         var stream = new FileStream(string.Format(@"{0}\Saves\{1}.bip", Application.dataPath, save.Name), FileMode.Create, FileAccess.Write, FileShare.Write);
@@ -142,7 +117,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(2f);  // For safety in case it takes time to save game.
         Load(save.Name);
     }
-    // --------------------------------------------------------------------
+    
     public void Save()
 	{
 		save.powerUps = this.powerUps;
@@ -151,9 +126,7 @@ public class GameManager : MonoBehaviour
 		save.currentCheckpointPos = new SerializedVector3(currentCheckpointPos.x, currentCheckpointPos.y, currentCheckpointPos.z);
 		// Create a directory to save to if one does not exist.
 		if (!Directory.Exists(string.Format(@"{0}\Saves", Application.dataPath)))
-		{
 			Directory.CreateDirectory(string.Format(@"{0}\Saves", Application.dataPath));
-		}
 		
 		// Open up a stream, that allows us to write data.
 		var stream = new FileStream(string.Format(@"{0}\Saves\{1}.bip", Application.dataPath, save.Name), FileMode.Create, FileAccess.Write, FileShare.Write);
@@ -165,45 +138,37 @@ public class GameManager : MonoBehaviour
         // Then close stream.
         stream.Close();
     }
-	// --------------------------------------------------------------------
-	public void Load(string fileName)
-	{
+
+    public void Load(string fileName)
+    {
         isLoadingSaveGame = true;
-		FilePath = Application.dataPath + "/Saves/" + fileName + ".bip"; 
+        FilePath = Application.dataPath + "/Saves/" + fileName + ".bip";
         using (var stream = new FileStream(FilePath, FileMode.Open, FileAccess.Read, FileShare.Read))
-		{
-			var formatter = new BinaryFormatter();
-			var obj = (Snapshot)formatter.Deserialize(stream);
-			save = obj;
+        {
+            var formatter = new BinaryFormatter();
+            var obj = (Snapshot)formatter.Deserialize(stream);
+            save = obj;
             LocalSceneManager.Instance.LoadScene(save.SceneName);
-			this.powerUps = save.powerUps;
-			this.compChoices = save.compChoices;
+            this.powerUps = save.powerUps;
+            this.compChoices = save.compChoices;
             this.currentCheckpointPos = save.currentCheckpointPos.ToVector3();
-		}
-	}
-    // --------------------------------------------------------------------
+        }
+    }
+
     // Delete a save file to free up a slot.
     public void DeleteSave(string fileName)
     {
         if (File.Exists(Application.dataPath + "/Saves/" + fileName + ".bip"))
-        {
-            File.Delete(Application.dataPath + "/Saves/" + fileName + ".bip");// Delete the save file.
-        }
+            File.Delete(Application.dataPath + "/Saves/" + fileName + ".bip"); // Delete the save file.
     }
-    // --------------------------------------------------------------------
+    
     // Quit the application.
-    public void Quit() 
-	{
-		Application.Quit();
-	}
-	// --------------------------------------------------------------------
-	// Sets the current checkpoint.
-	public void SetCurrentCheckpoint(Vector3 checkpointPos)
-	{
-		currentCheckpointPos = checkpointPos;
-	}
-	// --------------------------------------------------------------------
-	public void ResetPositions()
+    public void Quit() => Application.Quit();
+
+    // Sets the current checkpoint.
+    public void SetCurrentCheckpoint(Vector3 checkpointPos) => currentCheckpointPos = checkpointPos;
+
+    public void ResetPositions()
 	{
 		// Get an Array of GameObjects with the tag Moveable
 		GameObject[] ObjectsToReset;
@@ -213,14 +178,10 @@ public class GameManager : MonoBehaviour
 		foreach (GameObject obj in ObjectsToReset)
 		{
 			if (obj.GetComponent<GrabbableObject>())
-			{
 				obj.GetComponent<GrabbableObject>().ResetPosition();
-			}
             
             if (obj.GetComponent<NanoDroneMind>())
-            {
                 obj.GetComponent<NanoDroneMind>().ResetPosition();
-            }
         }
 
         // Get an Array of GameObjects with the tag Enemy.
@@ -231,32 +192,20 @@ public class GameManager : MonoBehaviour
         foreach (GameObject obj in ObjectsToReset)
         {
             if (obj.GetComponent<HomingIco>())
-            {
                 obj.GetComponent<HomingIco>().ResetPosition();
-            }
         }
     }
-    // --------------------------------------------------------------------
-    public void Pause()
-    {
-        isPaused = true;
-    }
-    // --------------------------------------------------------------------
-    public void Resume()
-    {
-        isPaused = false;
-    }
-    // --------------------------------------------------------------------
+    
+    public void Pause() => isPaused = true;
+
+    public void Resume() => isPaused = false;
+
     public void isKinematic(bool value)
     {
         Rigidbody[] rigidbodies;
         rigidbodies = GameObject.FindObjectsOfType<Rigidbody>();
 
         foreach (Rigidbody rigidbody in rigidbodies)
-        {
             rigidbody.isKinematic = value;
-        }
-    }
-    // --------------------------------------------------------------------
-    // --------------------------------------------------- End Methods --------------------------------------------
+    }   
 }

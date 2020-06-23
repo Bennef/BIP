@@ -68,7 +68,7 @@ public class GenericTrackControl : TimelineTrackControl
             {
                 UnityEngine.Object pickedObject = EditorGUIUtility.GetObjectPickerObject();
 
-                if(pickedObject != null)
+                if (pickedObject != null)
                     addCutsceneItem(savedData, pickedObject);
 
                 Event.current.Use();

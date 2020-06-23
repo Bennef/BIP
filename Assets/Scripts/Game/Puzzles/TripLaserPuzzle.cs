@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class TripLaserPuzzle : MonoBehaviour
 {
-    // ----------------------------------------------- Data members ----------------------------------------------
     public bool alarm, turnedRed, turnedBlue, bipTriggered, hasBeenCompleted;
     public NanoDroneMind[] nanoDrones;
     public AlarmLight alarmLight;
@@ -15,35 +14,28 @@ public class TripLaserPuzzle : MonoBehaviour
     public LockableDoors doorToUnlock;
     public OverheadUI bipUI;
     public Sprite exclamation;
-    // ----------------------------------------------- End Data members ------------------------------------------
-
-    // --------------------------------------------------- Methods -----------------------------------------------
-    // --------------------------------------------------------------------
+        
     private void Start()
     {
         tripLasers = GameObject.FindGameObjectsWithTag("Trip Laser");
         turnedBlue = true;
     }
-    // --------------------------------------------------------------------
+    
     // Update is called once per frame
     void Update()
     {
         if (alarm && !turnedRed)
         {
             // Turn on Alarm Light.
-            alarmLight.alarmOn = true;
+            alarmLight.AlarmOn = true;
 
             // Activate drones!
             foreach (NanoDroneMind drone in nanoDrones)
             {
                 if (bipTriggered)
-                {
                     drone.target = drone.bipTarget;
-                }
                 else
-                {
                     drone.target = drone.icoTarget;
-                }
                 drone.active = true;
             }
 
@@ -67,9 +59,7 @@ public class TripLaserPuzzle : MonoBehaviour
         }
 
         if (bip.isDead)
-        {
             StartCoroutine(ResetEverything());
-        }
 
         if (ico.isDead && !hasBeenCompleted)
         {
@@ -78,12 +68,8 @@ public class TripLaserPuzzle : MonoBehaviour
         }
     }
 
-    // --------------------------------------------------------------------
-    public void ResetCo()
-    {
-        StartCoroutine(ResetEverything());
-    }
-    // --------------------------------------------------------------------
+    public void ResetCo() => StartCoroutine(ResetEverything());
+    
     public IEnumerator ResetEverything()
     {
         // Deactivate drones.
@@ -95,7 +81,7 @@ public class TripLaserPuzzle : MonoBehaviour
 
         yield return new WaitForSeconds(1.0f);
         alarm = false;
-        alarmLight.alarmOn = false;
+        alarmLight.AlarmOn = false;
 
         TurnHoloBlue();
 
@@ -109,7 +95,7 @@ public class TripLaserPuzzle : MonoBehaviour
         turnedRed = false;
         turnedBlue = true;
     }
-    // --------------------------------------------------------------------
+    
     public IEnumerator IcoDestroyed()
     {
         // Deactivate drones.
@@ -120,7 +106,7 @@ public class TripLaserPuzzle : MonoBehaviour
         }
         
         alarm = false;
-        alarmLight.alarmOn = false;
+        alarmLight.AlarmOn = false;
         TurnHoloBlue();
         bipTriggered = false;
         turnedRed = false;
@@ -129,7 +115,7 @@ public class TripLaserPuzzle : MonoBehaviour
         yield return new WaitForSeconds(2.0f);
         doorToUnlock.UnlockDoor();
     }
-    // --------------------------------------------------------------------
+    
     public void TurnHoloBlue()
     {
         foreach (Transform droneHolo in dronePlinths)
@@ -140,6 +126,4 @@ public class TripLaserPuzzle : MonoBehaviour
             droneHolo.GetChild(3).GetComponent<MeshRenderer>().enabled = false;
         }
     }
-    // --------------------------------------------------------------------
-    // --------------------------------------------------- End Methods --------------------------------------------
 }

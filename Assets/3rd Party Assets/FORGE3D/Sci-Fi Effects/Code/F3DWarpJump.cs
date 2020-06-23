@@ -13,7 +13,7 @@ public class F3DWarpJump : MonoBehaviour {
     bool isWarping;
 
 	// Use this for initialization
-	void Start ()
+	void Start()
     {
         if (SendOnSpawned)        
             BroadcastMessage("OnSpawned", SendMessageOptions.DontRequireReceiver);        

@@ -3,16 +3,12 @@ using UnityEngine;
 
 public class GlassPlatform : MonoBehaviour
 {
-    // ----------------------------------------------- Data members ----------------------------------------------
     public bool platformMoving, platformIn, platformOut;
     public PressableSwitch pad;
     public Transform platformToMove, inPos, outPos;
     public AudioSource aSrc;
     public AudioClip moveOutClip, moveInClip;
-    // ----------------------------------------------- End Data members ------------------------------------------
-
-    // --------------------------------------------------- Methods -----------------------------------------------
-    // --------------------------------------------------------------------
+    
     private void Start()
     {
         platformToMove.position = inPos.position;
@@ -20,23 +16,19 @@ public class GlassPlatform : MonoBehaviour
         platformIn = true;
         platformOut = false;
     }
-    // --------------------------------------------------------------------
+    
     // Update is called once per frame
     void Update()
     {
         if (!platformMoving)
         {
             if (pad.switchDown && platformIn)
-            {
                 StartCoroutine(MovePlatformOut());
-            }
             else if (platformOut && !platformIn && !platformMoving && !pad.switchDown)
-            {
                 StartCoroutine(MovePlatformIn());
-            }
         }
 	}
-    // --------------------------------------------------------------------
+    
     IEnumerator MovePlatformOut()
     {
         platformMoving = true;
@@ -48,7 +40,7 @@ public class GlassPlatform : MonoBehaviour
         platformOut = true;
         platformMoving = false;
     }
-    // --------------------------------------------------------------------
+    
     IEnumerator MovePlatformIn()
     {
         platformMoving = true;
@@ -60,7 +52,7 @@ public class GlassPlatform : MonoBehaviour
         platformOut = false;
         platformMoving = false;
     }
-    // --------------------------------------------------------------------
+    
     IEnumerator MovePlatformToPosition(Vector3 newPosition, float moveTime)
     {
         float elapsedTime = 0;
@@ -73,6 +65,4 @@ public class GlassPlatform : MonoBehaviour
             yield return null; 
         }
     }
-    // --------------------------------------------------------------------
-    // --------------------------------------------------- End Methods --------------------------------------------
 }

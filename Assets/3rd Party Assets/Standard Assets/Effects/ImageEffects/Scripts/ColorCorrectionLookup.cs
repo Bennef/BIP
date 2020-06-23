@@ -15,30 +15,30 @@ namespace UnityStandardAssets.ImageEffects
         public string basedOnTempTex = "";
 
 
-        public override bool CheckResources () {
+        public override bool CheckResources() {
             CheckSupport (false);
 
             material = CheckShaderAndCreateMaterial (shader, material);
 
             if (!isSupported || !SystemInfo.supports3DTextures)
-                ReportAutoDisable ();
+                ReportAutoDisable();
             return isSupported;
         }
 
-        void OnDisable () {
+        void OnDisable() {
             if (material) {
                 DestroyImmediate (material);
                 material = null;
             }
         }
 
-        void OnDestroy () {
+        void OnDestroy() {
             if (converted3DLut)
                 DestroyImmediate (converted3DLut);
             converted3DLut = null;
         }
 
-        public void SetIdentityLut () {
+        public void SetIdentityLut() {
             int dim = 16;
             var newC = new Color[dim*dim*dim];
             float oneOverDim = 1.0f / (1.0f * dim - 1.0f);
@@ -55,7 +55,7 @@ namespace UnityStandardAssets.ImageEffects
                 DestroyImmediate (converted3DLut);
             converted3DLut = new Texture3D (dim, dim, dim, TextureFormat.ARGB32, false);
             converted3DLut.SetPixels (newC);
-            converted3DLut.Apply ();
+            converted3DLut.Apply();
             basedOnTempTex = "";
         }
 
@@ -99,7 +99,7 @@ namespace UnityStandardAssets.ImageEffects
                     DestroyImmediate (converted3DLut);
                 converted3DLut = new Texture3D (dim, dim, dim, TextureFormat.ARGB32, false);
                 converted3DLut.SetPixels (newC);
-                converted3DLut.Apply ();
+                converted3DLut.Apply();
                 basedOnTempTex = path;
             }
             else {
@@ -109,13 +109,13 @@ namespace UnityStandardAssets.ImageEffects
         }
 
         void OnRenderImage (RenderTexture source, RenderTexture destination) {
-            if (CheckResources () == false || !SystemInfo.supports3DTextures) {
+            if (CheckResources() == false || !SystemInfo.supports3DTextures) {
                 Graphics.Blit (source, destination);
                 return;
             }
 
             if (converted3DLut == null) {
-                SetIdentityLut ();
+                SetIdentityLut();
             }
 
             int lutSize = converted3DLut.width;

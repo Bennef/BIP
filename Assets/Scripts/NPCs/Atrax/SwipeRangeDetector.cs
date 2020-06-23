@@ -2,27 +2,17 @@
 
 public class SwipeRangeDetector : MonoBehaviour
 {
-    // ----------------------------------------------- Data members ----------------------------------------------
-    public AtraxAnimationController anim;
-    // ----------------------------------------------- End Data members ------------------------------------------
-
-    // --------------------------------------------------- Methods -----------------------------------------------
-    // --------------------------------------------------------------------
+    private AtraxAnimationController _anim;
+    
     private void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.tag == "Player")
-        {
-            anim.StartSwipeState();
-        }
+        if (col.gameObject.CompareTag("Player"))
+            _anim.StartSwipeState();
     }
-    // --------------------------------------------------------------------
+    
     private void OnTriggerExit(Collider col)
     {
-        if (col.gameObject.tag == "Player")
-        {
-            anim.StopSwipeState();
-        }
+        if (col.gameObject.CompareTag("Player"))
+            _anim.StopSwipeState();
     }
-    // --------------------------------------------------------------------
-    // --------------------------------------------------- End Methods --------------------------------------------
 }

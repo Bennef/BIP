@@ -40,7 +40,7 @@ public class ParticleMenu : MonoBehaviour {
 		currentIndex = (particleSystems.Length + currentIndex + i) % particleSystems.Length;
 
 		// check if there is a currentGO, if there is (if its not null), then destroy it to make space for the new one..
-		if(currentGO != null)
+		if (currentGO != null)
 			Destroy (currentGO);
 
 		// ..spawn the relevant game object based on the array of potential game objects, according to the current index (position in the array)

@@ -26,7 +26,7 @@ namespace ProBuilder2.Actions
 			pb_Object[] all = (pb_Object[])GameObject.FindObjectsOfType(typeof(pb_Object));
 			for(int i = 0; i < all.Length; i++)
 			{
-				if(interactive)
+				if (interactive)
 				EditorUtility.DisplayProgressBar(
 					"Refreshing ProBuilder Objects",
 					"Reshaping pb_Object " + all[i].id + ".",
@@ -36,7 +36,7 @@ namespace ProBuilder2.Actions
 
 				pb_EditorUtility.VerifyMesh(pb);
 			}
-			if(interactive)
+			if (interactive)
 			{
 				EditorUtility.ClearProgressBar();
 				EditorUtility.DisplayDialog("Refresh ProBuilder Objects", "Successfully refreshed all ProBuilder objects in scene.", "Okay");

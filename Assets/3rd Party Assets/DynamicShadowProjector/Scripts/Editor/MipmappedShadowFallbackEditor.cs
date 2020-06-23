@@ -80,7 +80,7 @@ namespace DynamicShadowProjector.Editor {
 		{
 			RestoreShadowTextureRenderer();
 		}
-		public override void OnInspectorGUI ()
+		public override void OnInspectorGUI()
 		{
 			EditorGUILayout.BeginHorizontal();
 			GUILayout.Label("Online Document");

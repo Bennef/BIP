@@ -141,12 +141,12 @@ public class F3DBeam : MonoBehaviour
                 
                 case F3DFXType.PlasmaBeam:
                    //We have modified the code to include audio
-                    if (hitPoint.collider.tag == Tags.Player && hitPoint.transform.GetComponent<PlayerHealth>().value > 0 && !hitPoint.transform.GetComponent<CharacterController>().isDead)
+                    if (hitPoint.collider.CompareTag(Tags.Player) && hitPoint.transform.GetComponent<PlayerHealth>().value > 0 && !hitPoint.transform.GetComponent<CharacterController>().isDead)
                     {
                         hitPoint.transform.GetComponent<PlayerHealth>().TakeDamage(damage);
                     }
 
-                    if (hitPoint.collider.tag == Tags.Enemies && hitPoint.transform.GetComponent<Health>().value > 0 && !hitPoint.transform.GetComponent<DroneBotMind>().isDead)
+                    if (hitPoint.collider.CompareTag(Tags.Enemies) && hitPoint.transform.GetComponent<Health>().value > 0 && !hitPoint.transform.GetComponent<DroneBotMind>().isDead)
                     {
                         hitPoint.transform.GetComponent<Health>().TakeDamage(damage);
                     }
@@ -158,7 +158,7 @@ public class F3DBeam : MonoBehaviour
                     break;
                 
                 case F3DFXType.PlasmaBeamHeavy:
-                    if (hitPoint.collider.tag == Tags.Player && hitPoint.transform.GetComponent<PlayerHealth>().value > 0 && !hitPoint.transform.GetComponent<CharacterController>().isDead)
+                    if (hitPoint.collider.CompareTag(Tags.Player) && hitPoint.transform.GetComponent<PlayerHealth>().value > 0 && !hitPoint.transform.GetComponent<CharacterController>().isDead)
                     {
                         hitPoint.transform.GetComponent<PlayerHealth>().TakeDamage(damage);
                     }
@@ -192,7 +192,7 @@ public class F3DBeam : MonoBehaviour
         }
 
         // Adjust muzzle position
-        if(rayMuzzle)
+        if (rayMuzzle)
             rayMuzzle.position = transform.position + transform.forward * 0.1f;
 
         // Set beam scaling according to its length

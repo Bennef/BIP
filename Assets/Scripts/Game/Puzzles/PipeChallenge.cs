@@ -3,7 +3,6 @@ using System.Collections;
 
 public class PipeChallenge : MonoBehaviour
 {
-    // ----------------------------------------------- Data members ----------------------------------------------
     public CharacterController bip;
     public GameObject glassDome, audioManager, thanksText, fader;
     public GameObject lightARed, lightBRed, lightCRed, lightAGreen, lightBGreen, lightCGreen;
@@ -24,17 +23,14 @@ public class PipeChallenge : MonoBehaviour
     public AudioSource aSrc, aSrcSlide;
     public DamageByCollision deathFloor;
     public TeleportSend teleportToTurnOff;
-    // ----------------------------------------------- End Data members ------------------------------------------
-
-    // --------------------------------------------------- Methods -----------------------------------------------
-    // --------------------------------------------------------------------
+    
     void Start()
     {
         aSrcSlide = glassDome.GetComponent<AudioSource>();
         bip = GameObject.Find("Bip").GetComponent<CharacterController>();
         fader = GameObject.Find("Fader");
     }
-    // --------------------------------------------------------------------
+    
     // Update is called once per frame
     void Update()
     {
@@ -51,9 +47,7 @@ public class PipeChallenge : MonoBehaviour
             foreach (PowerTerminal terminal in terminals)
             {
                 if (terminal.isPowered)
-                {
                     poweredTerminals++;
-                }
             }
             // If all terminals are connected, unlock the door.
             if (poweredTerminals >= 3)
@@ -97,14 +91,14 @@ public class PipeChallenge : MonoBehaviour
             ResetPuzzle();
         }
     }
-    // --------------------------------------------------------------------
+    
     public void ResetPuzzle()
     {
         teleportToTurnOff.isOn = true;
         StartCoroutine(ResetCo());
         StopCoroutine(routine);
     }
-    // --------------------------------------------------------------------
+    
     IEnumerator CountDown()
     {
         dischargeSphere.HideElec(); // Stop the discharge.
@@ -122,7 +116,7 @@ public class PipeChallenge : MonoBehaviour
         deathFloor.isOn = true;
         ResetPuzzle();
     }
-    // --------------------------------------------------------------------
+    
     IEnumerator MoveDomeToPosition(Vector3 newPosition, float time)
     {
         aSrcSlide.Play();
@@ -136,7 +130,7 @@ public class PipeChallenge : MonoBehaviour
             yield return null;
         }
     }
-    // --------------------------------------------------------------------
+    
     IEnumerator ResetCo()
     {
         deathBool = true;
@@ -146,9 +140,7 @@ public class PipeChallenge : MonoBehaviour
         dischargeSphere.SpawnElec(); // Start the discharge.
         aSrc.Play();
         if (!doorToIUnlock.locked)
-        {
-            doorToIUnlock.LockDoor(); // Lock door.
-        }
+            doorToIUnlock.LockDoor(); 
         deathBool = false;
         challengeFailed = false;
         hasStarted = false;
@@ -164,14 +156,12 @@ public class PipeChallenge : MonoBehaviour
         lightCGreen.SetActive(false);
         hasBeenCompleted = false;
     }
-    // --------------------------------------------------------------------
+    
     IEnumerator LoadVentScene()
     {
         yield return new WaitForSeconds(1);
-        fader.GetComponent<ScreenFader>().StartCoroutine("FadeToBlack");  // Fade to black.
+        fader.GetComponent<ScreenFader>().StartCoroutine("FadeToBlack");  
         yield return new WaitForSeconds(2);
         LocalSceneManager.Instance.LoadScene("2 Vent Lab");
     }
-    // --------------------------------------------------------------------
-    // --------------------------------------------------- End Methods --------------------------------------------
 }

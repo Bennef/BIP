@@ -37,7 +37,7 @@ namespace ProBuilder2.Examples
 
 			public bool Equals(pb_Selection sel)
 			{
-				if(sel != null && sel.IsValid())
+				if (sel != null && sel.IsValid())
 					return (pb == sel.pb && face == sel.face);
 				else
 					return false;
@@ -45,7 +45,7 @@ namespace ProBuilder2.Examples
 
 			public void Destroy()
 			{
-				if(pb != null)
+				if (pb != null)
 					GameObject.Destroy(pb.gameObject);
 			}
 
@@ -76,7 +76,7 @@ namespace ProBuilder2.Examples
 		void OnGUI()
 		{
 			// To reset, nuke the pb_Object and build a new one.
-			if(GUI.Button(new Rect(5, Screen.height - 25, 80, 20), "Reset"))
+			if (GUI.Button(new Rect(5, Screen.height - 25, 80, 20), "Reset"))
 			{
 				currentSelection.Destroy();
 				Destroy(preview.gameObject);
@@ -110,16 +110,16 @@ namespace ProBuilder2.Examples
 		 */
 		public void LateUpdate()
 		{
-			if(!currentSelection.HasObject())
+			if (!currentSelection.HasObject())
 				return;
 
-			if(Input.GetMouseButtonDown(1) || (Input.GetMouseButtonDown(0) && Input.GetKey(KeyCode.LeftAlt)))
+			if (Input.GetMouseButtonDown(1) || (Input.GetMouseButtonDown(0) && Input.GetKey(KeyCode.LeftAlt)))
 			{
 				mousePosition_initial = Input.mousePosition;
 				dragging = true;
 			}
 
-			if(dragging)
+			if (dragging)
 			{
 				Vector2 delta = (Vector3)mousePosition_initial - (Vector3)Input.mousePosition;
 				Vector3 dir = new Vector3(delta.y, delta.x, 0f);
@@ -127,11 +127,11 @@ namespace ProBuilder2.Examples
 				currentSelection.pb.gameObject.transform.RotateAround(Vector3.zero, dir, rotateSpeed * Time.deltaTime);
 
 				// If there is a currently selected face, update the preview.
-				if(currentSelection.IsValid())
+				if (currentSelection.IsValid())
 					RefreshSelectedFacePreview();
 			}
 
-			if(Input.GetMouseButtonUp(1) || Input.GetMouseButtonUp(0))
+			if (Input.GetMouseButtonUp(1) || Input.GetMouseButtonUp(0))
 			{
 				dragging = false;
 			}
@@ -143,15 +143,15 @@ namespace ProBuilder2.Examples
 		 */
 		public void Update()
 		{
-			if(Input.GetMouseButtonUp(0) && !Input.GetKey(KeyCode.LeftAlt)) {
+			if (Input.GetMouseButtonUp(0) && !Input.GetKey(KeyCode.LeftAlt)) {
 
-				if(FaceCheck(Input.mousePosition))
+				if (FaceCheck(Input.mousePosition))
 				{
-					if(currentSelection.IsValid())
+					if (currentSelection.IsValid())
 					{
 						// Check if this face has been previously selected, and if so, move the face.
 						// Otherwise, just accept this click as a selection.
-						if(!currentSelection.Equals(previousSelection))
+						if (!currentSelection.Equals(previousSelection))
 						{
 							previousSelection = new pb_Selection(currentSelection.pb, currentSelection.face);
 							RefreshSelectedFacePreview();
@@ -160,7 +160,7 @@ namespace ProBuilder2.Examples
 
 						Vector3 localNormal = pb_Math.Normal( pbUtil.ValuesWithIndices(currentSelection.pb.vertices, currentSelection.face.distinctIndices) );
 
-						if(Input.GetKey(KeyCode.LeftShift))
+						if (Input.GetKey(KeyCode.LeftShift))
 							currentSelection.pb.TranslateVertices( currentSelection.face.distinctIndices, localNormal.normalized * -.5f );
 						else
 							currentSelection.pb.TranslateVertices( currentSelection.face.distinctIndices, localNormal.normalized * .5f );
@@ -183,11 +183,11 @@ namespace ProBuilder2.Examples
 			Ray ray = Camera.main.ScreenPointToRay (pos);
 			RaycastHit hit;
 
-			if( Physics.Raycast(ray.origin, ray.direction, out hit))
+			if ( Physics.Raycast(ray.origin, ray.direction, out hit))
 			{
 				pb_Object hitpb = hit.transform.gameObject.GetComponent<pb_Object>();
 
-				if(hitpb == null)
+				if (hitpb == null)
 					return false;
 
 				Mesh m = hitpb.msh;
@@ -223,7 +223,7 @@ namespace ProBuilder2.Examples
 			for(int i = 0; i < verts.Length; i++)
 				verts[i] += normal.normalized * .01f;
 
-			if(preview)
+			if (preview)
 				Destroy(preview.gameObject);
 
 			preview = pb_Object.CreateInstanceWithVerticesFaces(verts, new pb_Face[] { new pb_Face(indices) });

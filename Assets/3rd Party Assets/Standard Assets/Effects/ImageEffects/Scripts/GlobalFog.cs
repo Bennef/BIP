@@ -25,14 +25,14 @@ namespace UnityStandardAssets.ImageEffects
         private Material fogMaterial = null;
 
 
-        public override bool CheckResources ()
+        public override bool CheckResources()
 		{
             CheckSupport (true);
 
             fogMaterial = CheckShaderAndCreateMaterial (fogShader, fogMaterial);
 
             if (!isSupported)
-                ReportAutoDisable ();
+                ReportAutoDisable();
             return isSupported;
         }
 
@@ -121,8 +121,8 @@ namespace UnityStandardAssets.ImageEffects
 
             fxMaterial.SetTexture ("_MainTex", source);
 
-            GL.PushMatrix ();
-            GL.LoadOrtho ();
+            GL.PushMatrix();
+            GL.LoadOrtho();
 
             fxMaterial.SetPass (passNr);
 
@@ -140,8 +140,8 @@ namespace UnityStandardAssets.ImageEffects
             GL.MultiTexCoord2 (0, 0.0f, 1.0f);
             GL.Vertex3 (0.0f, 1.0f, 0.0f); // TL
 
-            GL.End ();
-            GL.PopMatrix ();
+            GL.End();
+            GL.PopMatrix();
         }
     }
 }

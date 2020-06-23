@@ -23,16 +23,16 @@ namespace ProBuilder2.EditorCommon
 			 */
 			foreach(pb_Object pb in GameObject.FindObjectsOfType(typeof(pb_Object)))
 			{
-				if(pb.GetComponent<MeshRenderer>() == null)
+				if (pb.GetComponent<MeshRenderer>() == null)
 					continue;
 
-				if( pb.GetComponent<MeshRenderer>().sharedMaterials.Any(x => x != null && x.name.Contains("NoDraw")) )
+				if ( pb.GetComponent<MeshRenderer>().sharedMaterials.Any(x => x != null && x.name.Contains("NoDraw")) )
 				{
 					Material[] mats = pb.GetComponent<MeshRenderer>().sharedMaterials;
 
 					for(int i = 0; i < mats.Length; i++)
 					{
-						if(mats[i].name.Contains("NoDraw"))	
+						if (mats[i].name.Contains("NoDraw"))	
 							mats[i] = invisibleFaceMaterial;
 					}
 
@@ -40,7 +40,7 @@ namespace ProBuilder2.EditorCommon
 				}
 			}
 
-			if(EditorApplication.isPlayingOrWillChangePlaymode)
+			if (EditorApplication.isPlayingOrWillChangePlaymode)
 				return;
 
 			foreach(pb_Object pb in GameObject.FindObjectsOfType(typeof(pb_Object)))
@@ -49,17 +49,17 @@ namespace ProBuilder2.EditorCommon
 
 				pb_Entity entity = pb.gameObject.GetComponent<pb_Entity>();
 
-				if( entity == null )
+				if ( entity == null )
 					continue;
 
-				if(entity.entityType == EntityType.Collider || entity.entityType == EntityType.Trigger)	
+				if (entity.entityType == EntityType.Collider || entity.entityType == EntityType.Trigger)	
 					go.GetComponent<MeshRenderer>().enabled = false;
 
 				// clear hideflags on prefab meshes
-				if(pb.msh != null)
+				if (pb.msh != null)
 					pb.msh.hideFlags = HideFlags.None;
 
-				if(!pb_Preferences_Internal.GetBool(pb_Constant.pbStripProBuilderOnBuild))
+				if (!pb_Preferences_Internal.GetBool(pb_Constant.pbStripProBuilderOnBuild))
 				   return;
 
 				pb.dontDestroyMeshOnDelete = true;

@@ -1,9 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class PressurePadPuzzle : MonoBehaviour
 {
-    // ----------------------------------------------- Data members ----------------------------------------------
     private float startPos; // The start position of the platform
     private float endPos; // The end position of the platform
     private float pingPongTime; // The speed the platform will move
@@ -13,22 +11,18 @@ public class PressurePadPuzzle : MonoBehaviour
 
     public GameObject movingPlatform; // The platform you want to move
     public GameObject endPositionTransform; // Place a empty gameobject where you want the platform to end up at
-
-    // ----------------------------------------------- End Data members ------------------------------------------
-
-    // --------------------------------------------------- Methods -----------------------------------------------
-    // --------------------------------------------------------------------
+    
     // Use this for initialization
     void Start()
     {
         startPos = movingPlatform.transform.position.y; // Gets the platforms current position
         endPos = endPositionTransform.transform.position.y; //gets the desired end position of the platform
     }
-    // --------------------------------------------------------------------
+    
     // Move Platform
     void OnTriggerStay (Collider col)
     {
-        if(col.transform.tag == "Player")
+        if (col.transform.CompareTag("Player"))
         {
             // Make the button depress.
             this.transform.GetComponentInParent<Transform>().localPosition = buttonPressedPos;
@@ -41,15 +35,13 @@ public class PressurePadPuzzle : MonoBehaviour
             //movingPlatform.transform.position = new Vector3(movingPlatform.transform.position.x, Mathf.Lerp(startPos, endPos, Time.time / 4), movingPlatform.transform.position.z);
         }
     }
-    // --------------------------------------------------------------------
+    
     void OnTriggerExit(Collider col)
     {
-        if (col.gameObject.tag == ("Player"))
+        if (col.gameObject.CompareTag(("Player")))
         {
             // Make the button un-depress.
             this.transform.GetComponentInParent<Transform>().localPosition = buttonRaisedPos;
         }
     }
-    // --------------------------------------------------------------------
-    // --------------------------------------------------- End Methods --------------------------------------------
 }

@@ -5,7 +5,6 @@ using System.Collections;
 
 public class RaycastReflection : MonoBehaviour 
 {
-    // ----------------------------------------------- Data members ----------------------------------------------
     public bool isOn, prismHit, receiverAHit, receiverBHit;
     public float updateFrequency = 3f;
     public int laserDistance;
@@ -16,17 +15,14 @@ public class RaycastReflection : MonoBehaviour
     public bool hasHit;
     public RaycastReflection violet, indigo, blue, green, yellow, orange, red;
     public Light prismLight;
-    // ----------------------------------------------- End Data members ------------------------------------------
-
-    // --------------------------------------------------- Methods -----------------------------------------------
-    // --------------------------------------------------------------------
+    
     // Use this for initialization
     void Start()
     {
         timer = 0;
         mLineRenderer = gameObject.GetComponent<LineRenderer>();
     }
-    // --------------------------------------------------------------------
+    
     // Update is called once per frame
     void Update()
     {
@@ -38,9 +34,7 @@ public class RaycastReflection : MonoBehaviour
                 timer = 0;
                 StartCoroutine(RedrawLaser());
                 if (transform.name == "Light Beam")
-                {
                     CheckPrismHit();
-                }
             }
             timer += Time.deltaTime;
         }
@@ -50,7 +44,7 @@ public class RaycastReflection : MonoBehaviour
             prismHit = false;
         }
     }
-    // --------------------------------------------------------------------
+    
     IEnumerator RedrawLaser()
     {
         int laserReflected = 1; //How many times it got reflected
@@ -62,7 +56,6 @@ public class RaycastReflection : MonoBehaviour
 
         mLineRenderer.positionCount = 1;
         mLineRenderer.SetPosition(0, transform.position);
-        RaycastHit hit;
 
         while (loopActive)
         {
@@ -71,9 +64,9 @@ public class RaycastReflection : MonoBehaviour
             receiverBHit = false;
 
             // If beam hits anything...
-            if (Physics.Raycast(lastLaserPosition, laserDirection, out hit, laserDistance, layerMask))
+            if (Physics.Raycast(lastLaserPosition, laserDirection, out RaycastHit hit, laserDistance, layerMask))
             {
-                if (hit.collider.transform.tag == "Mirror")  // Reflect the beam off mirror.
+                if (hit.collider.transform.CompareTag("Mirror"))  // Reflect the beam off mirror.
                 {
                     laserReflected++;
                     vertexCounter += 3;
@@ -85,7 +78,7 @@ public class RaycastReflection : MonoBehaviour
                     Vector3 prevDirection = laserDirection;
                     laserDirection = Vector3.Reflect(laserDirection, hit.normal);
                 }
-                else if (hit.transform.tag == "Prism" && transform.name == "Light Beam")  // If original white beam hits prism.
+                else if (hit.transform.CompareTag("Prism") && transform.name == "Light Beam")  // If original white beam hits prism.
                 {
                     laserReflected++;
                     vertexCounter += 3;
@@ -105,7 +98,7 @@ public class RaycastReflection : MonoBehaviour
                     mLineRenderer.SetPosition(vertexCounter - 2, Vector3.MoveTowards(hit.point, lastLaserPosition, 0.01f));
                     mLineRenderer.SetPosition(vertexCounter - 1, hit.point);
                     lastLaserPosition = hit.point;
-                    Vector3 prevDirection = laserDirection; 
+                    Vector3 prevDirection = laserDirection;
                     receiverAHit = true;
                     loopActive = false;
                 }
@@ -132,13 +125,11 @@ public class RaycastReflection : MonoBehaviour
                 }
             }
             if (laserReflected > maxBounce)
-            {
                 loopActive = false;
-            }
         }
         yield return new WaitForEndOfFrame();
     }
-    // --------------------------------------------------------------------
+    
     public void ActivatePrism()
     {
         if (red.isOn == false)
@@ -153,7 +144,7 @@ public class RaycastReflection : MonoBehaviour
             prismLight.enabled = true;
         }
     }
-    // --------------------------------------------------------------------
+    
     public void DeActivatePrism()
     {
         if (red.isOn == true)
@@ -168,18 +159,12 @@ public class RaycastReflection : MonoBehaviour
             prismLight.enabled = false;
         }
     }
-    // --------------------------------------------------------------------
+    
     public void CheckPrismHit()
     {
         if (prismHit == true)
-        {
             ActivatePrism();
-        }
         else
-        {
             DeActivatePrism();
-        }
-    }
-    // --------------------------------------------------------------------
-    // --------------------------------------------------- End Methods --------------------------------------------
+    }   
 }

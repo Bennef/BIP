@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class TeleportSend : MonoBehaviour
 {
-    // ----------------------------------------------- Data members ----------------------------------------------
     public TeleportReceive teleportToGoTo;
     public bool hasBeenEntered, changeScene, demo, isOn, activateRoom, fadeOutMusic;
     public PlayerMovement playerMovement;
@@ -17,10 +16,7 @@ public class TeleportSend : MonoBehaviour
     int BurnoutID;
     public GameObject fader, roomToActivate, roomToDeactivate, roomToActivate2, roomToActivate3, roomToDeActivate2, roomToDeActivate3;
     public CameraMovement mainCam;
-    // ----------------------------------------------- End Data members ------------------------------------------
-
-    // --------------------------------------------------- Methods -----------------------------------------------
-    // --------------------------------------------------------------------
+    
     private void Start()
     {
         aSrc1 = GetComponent<AudioSource>();
@@ -30,22 +26,20 @@ public class TeleportSend : MonoBehaviour
         fader = GameObject.Find("Fader");
         playerMovement = bip.GetComponent<PlayerMovement>();
     }
-    // --------------------------------------------------------------------
+    
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player" && !hasBeenEntered && isOn)
+        if (other.CompareTag("Player") && !hasBeenEntered && isOn)
         {
             hasBeenEntered = true;
             StartCoroutine(Teleport());
         }
     }
-    // --------------------------------------------------------------------
+    
     public IEnumerator Teleport()
     {
         if (fadeOutMusic)
-        {
             StartCoroutine(AudioFadeOut.FadeOut(audioToFadeOut, 4.0f));
-        }
         playerMovement.isHandlingInput = false;
         mainCam.isFixed = true;
         bipRigidbody.velocity = new Vector3(0, 0, 0);
@@ -59,9 +53,7 @@ public class TeleportSend : MonoBehaviour
         PlayParticlesB();
         SwapMats();
         foreach (Material mat in bipMesh.materials)
-        {
             StartCoroutine(BurnOut(mat));
-        }
         yield return new WaitForSeconds(2.5f);
         bipMesh.enabled = false;
         fader.GetComponent<ScreenFader>().StartCoroutine("FadeToBlack");  // Fade to black.
@@ -69,13 +61,9 @@ public class TeleportSend : MonoBehaviour
         if (changeScene)
         {
             if (demo)
-            {
                 LocalSceneManager.Instance.LoadScene("Main Menu Web");  //Load DEMO END
-            }
             else
-            {
                 LocalSceneManager.Instance.LoadScene("2 Vent Lab");  //Load Pop cutscene in Act 2 - Room 13.
-            }
         }
         else
         {
@@ -84,29 +72,19 @@ public class TeleportSend : MonoBehaviour
             {
                 roomToActivate.SetActive(true);
                 if (roomToActivate2 != null)
-                {
                     roomToActivate2.SetActive(true);
-                }
                 if (roomToActivate3 != null)
-                {
                     roomToActivate3.SetActive(true);
-                }
                 if (roomToDeactivate != null)
-                {
                     roomToDeactivate.SetActive(false);
-                }
                 if (roomToDeactivate != null)
-                {
                     roomToDeActivate2.SetActive(false);
-                }
                 if (roomToDeActivate3 != null)
-                {
                     roomToDeActivate3.SetActive(false);
-                }
             }
         }
     }
-    // --------------------------------------------------------------------
+    
     public void PlayParticlesA()
     {
         GameObject spark = (GameObject)Instantiate(Resources.Load("solo_gun_flames"));
@@ -114,7 +92,7 @@ public class TeleportSend : MonoBehaviour
         GameObject spark2 = (GameObject)Instantiate(Resources.Load("plasma_gun_flare"));
         spark2.transform.position = sparkPos.position;
     }
-    // --------------------------------------------------------------------
+    
     public void PlayParticlesB()
     {
         GameObject plasma = (GameObject)Instantiate(Resources.Load("PlasmaExplosionEffect"));
@@ -122,17 +100,15 @@ public class TeleportSend : MonoBehaviour
         GameObject spark3 = (GameObject)Instantiate(Resources.Load("Lightning Spark"));
         spark3.transform.position = sparkPos.position;
     }
-    // --------------------------------------------------------------------
+    
     public void SwapMats()
     {
         Material[] intMaterials = new Material[bipMesh.materials.Length];
         for (int i = 0; i < intMaterials.Length; i++)
-        {
             intMaterials[i] = burnoutMat;
-        }
         bipMesh.materials = intMaterials;
     }
-    // --------------------------------------------------------------------
+    
     public IEnumerator MoveBip()
     {
         float elapsedTime = 0;
@@ -145,7 +121,7 @@ public class TeleportSend : MonoBehaviour
             yield return null;
         }
     }
-    // --------------------------------------------------------------------
+    
     public IEnumerator BurnOut(Material mat)
     {
         float elapsedTime = 0;
@@ -157,7 +133,7 @@ public class TeleportSend : MonoBehaviour
             yield return null;
         }
     }
-    // --------------------------------------------------------------------
+    
     public void TransportBip()
     {
         bip.transform.position = destinationPos.position;
@@ -166,6 +142,4 @@ public class TeleportSend : MonoBehaviour
         teleportToGoTo.TeleportInCall();
         hasBeenEntered = false;
     }
-    // --------------------------------------------------------------------
-    // --------------------------------------------------- End Methods --------------------------------------------
 }

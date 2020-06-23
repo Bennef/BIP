@@ -62,7 +62,7 @@ namespace UnityStandardAssets.ImageEffects
                 return;
             }
 
-            CreateMaterials ();
+            CreateMaterials();
             if (!m_SSAOMaterial || m_SSAOMaterial.passCount != 5)
             {
                 m_Supported = false;
@@ -75,11 +75,11 @@ namespace UnityStandardAssets.ImageEffects
             m_Supported = true;
         }
 
-        void OnEnable () {
+        void OnEnable() {
             GetComponent<Camera>().depthTextureMode |= DepthTextureMode.DepthNormals;
         }
 
-        private void CreateMaterials ()
+        private void CreateMaterials()
         {
             if (!m_SSAOMaterial && m_SSAOShader.isSupported)
             {
@@ -95,7 +95,7 @@ namespace UnityStandardAssets.ImageEffects
                 enabled = false;
                 return;
             }
-            CreateMaterials ();
+            CreateMaterials();
 
             m_Downsampling = Mathf.Clamp (m_Downsampling, 1, 6);
             m_Radius = Mathf.Clamp (m_Radius, 0.05f, 1.0f);

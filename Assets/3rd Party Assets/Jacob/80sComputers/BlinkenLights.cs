@@ -1,26 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BlinkenLights : MonoBehaviour {
-	void Start()
-	{
-		StartCoroutine (Counter ());
-	}
+public class BlinkenLights : MonoBehaviour 
+{
+	void Start() => StartCoroutine(Counter());
 
 	public float Rand;
 	public float LightOn;
 	public bool bool1;
-	void Update () {
-
-
-		if (Rand <= 60) {
+	void Update() 
+	{
+		if (Rand <= 60) 
 			LightOn = 0;
-		}
-		if (Rand > 60) {
+		if (Rand > 60) 
 			LightOn = 1;
-		}
 
-		Renderer renderer = GetComponent<Renderer> ();
+		Renderer renderer = GetComponent<Renderer>();
 		Material mat = renderer.material;
 		float emission = LightOn;
 		//float emission = Mathf.PingPong (Time.time, 1.0f);
@@ -33,10 +28,10 @@ public class BlinkenLights : MonoBehaviour {
 
 	IEnumerator Counter()
 	{
-		while (bool1 == false) {
+		while (bool1 == false) 
+		{
 			yield return new WaitForSeconds (Random.Range (0.01f, 0.3f));
 			Rand = Mathf.RoundToInt (Random.Range (0, 100));
 		}
 	}
-
 }

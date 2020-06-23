@@ -13,7 +13,7 @@ namespace ProBuilder2.Actions
 		public static void StripAllScenes()
 		{
 
-			if(!EditorUtility.DisplayDialog("Strip ProBuilder Scripts", "This will remove all ProBuilder scripts in the scene.  You will no longer be able to edit these objects.  There is no undo, please exercise caution!\n\nAre you sure you want to do this?", "Okay", "Cancel"))
+			if (!EditorUtility.DisplayDialog("Strip ProBuilder Scripts", "This will remove all ProBuilder scripts in the scene.  You will no longer be able to edit these objects.  There is no undo, please exercise caution!\n\nAre you sure you want to do this?", "Okay", "Cancel"))
 				return;
 
 			pb_Object[] all = (pb_Object[]) Resources.FindObjectsOfTypeAll(typeof(pb_Object) );
@@ -30,7 +30,7 @@ namespace ProBuilder2.Actions
 		[MenuItem("Tools/" + pb_Constant.PRODUCT_NAME + "/Actions/Strip ProBuilder Scripts in Selection")]
 		public static void StripAllSelected()
 		{
-			if(!EditorUtility.DisplayDialog("Strip ProBuilder Scripts", "This will remove all ProBuilder scripts on the selected objects.  You will no longer be able to edit these objects.  There is no undo, please exercise caution!\n\nAre you sure you want to do this?", "Okay", "Cancel"))
+			if (!EditorUtility.DisplayDialog("Strip ProBuilder Scripts", "This will remove all ProBuilder scripts on the selected objects.  You will no longer be able to edit these objects.  There is no undo, please exercise caution!\n\nAre you sure you want to do this?", "Okay", "Cancel"))
 				return;
 
 			foreach(Transform t in Selection.transforms)
@@ -44,7 +44,7 @@ namespace ProBuilder2.Actions
 		{
 				for(int i = 0; i < all.Length; i++)
 				{
-					if( EditorUtility.DisplayCancelableProgressBar(
+					if ( EditorUtility.DisplayCancelableProgressBar(
 						"Stripping ProBuilder Scripts",
 						"Working over " + all[i].id + ".",
 						((float)i / all.Length)) )
@@ -56,7 +56,7 @@ namespace ProBuilder2.Actions
 			EditorUtility.ClearProgressBar();
 			EditorUtility.DisplayDialog("Strip ProBuilder Scripts", "Successfully stripped out all ProBuilder components.", "Okay");
 
-			if(pb_Editor.instance)
+			if (pb_Editor.instance)
 				pb_Editor.instance.UpdateSelection();
 		}
 
@@ -69,19 +69,19 @@ namespace ProBuilder2.Actions
 
 				Renderer ren = go.GetComponent<Renderer>();
 
-				if(ren != null)
+				if (ren != null)
 					pb_EditorUtility.SetSelectionRenderState(ren, pb_EditorUtility.GetSelectionRenderState());
 
-				if( PrefabUtility.GetPrefabType(go) == PrefabType.Prefab )
+				if ( PrefabUtility.GetPrefabType(go) == PrefabType.Prefab )
 					return;
 
 				pb_EditorUtility.VerifyMesh(pb);
 
-				if(pb.msh == null)
+				if (pb.msh == null)
 				{
 					DestroyImmediate(pb);
 
-					if(go.GetComponent<pb_Entity>())
+					if (go.GetComponent<pb_Entity>())
 						DestroyImmediate(go.GetComponent<pb_Entity>());
 
 					return;
@@ -92,11 +92,11 @@ namespace ProBuilder2.Actions
 				Mesh cachedMesh;
 
 				// if meshes are assets and the mesh cache is valid don't duplicate the mesh to an instance.
-				if( pb_Preferences_Internal.GetBool(pb_Constant.pbMeshesAreAssets) && pb_EditorMeshUtility.GetCachedMesh(pb, out cachedMeshPath, out cachedMesh) )
+				if ( pb_Preferences_Internal.GetBool(pb_Constant.pbMeshesAreAssets) && pb_EditorMeshUtility.GetCachedMesh(pb, out cachedMeshPath, out cachedMesh) )
 				{
 					pb.dontDestroyMeshOnDelete = true;
 					DestroyImmediate(pb);
-					if(go.GetComponent<pb_Entity>())
+					if (go.GetComponent<pb_Entity>())
 						DestroyImmediate(go.GetComponent<pb_Entity>());
 				}
 				else
@@ -105,11 +105,11 @@ namespace ProBuilder2.Actions
 
 					DestroyImmediate(pb);
 
-					if(go.GetComponent<pb_Entity>())
+					if (go.GetComponent<pb_Entity>())
 						DestroyImmediate(go.GetComponent<pb_Entity>());
 
 					go.GetComponent<MeshFilter>().sharedMesh = m;
-					if(go.GetComponent<MeshCollider>())
+					if (go.GetComponent<MeshCollider>())
 						go.GetComponent<MeshCollider>().sharedMesh = m;
 				}
 			}

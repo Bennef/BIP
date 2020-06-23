@@ -3,18 +3,14 @@ using UnityEngine;
 
 public class DoTweenTest : MonoBehaviour
 {
-    // ----------------------------------------------- Data members ----------------------------------------------
     public bool isOn, isMoving;
     public Rigidbody cubeB;
     public Transform endPos;
     public float moveTime;
     public Light platformLight;
-    // ----------------------------------------------- End Data members ------------------------------------------
-
-    // --------------------------------------------------- Methods -----------------------------------------------
-    // --------------------------------------------------------------------
+        
     // Use this for initialization
-    void Start ()
+    void Start()
     {
         platformLight = GetComponentInChildren<Light>();
         DOTween.Init(false, true, LogBehaviour.ErrorsOnly);
@@ -24,11 +20,9 @@ public class DoTweenTest : MonoBehaviour
             platformLight.range = 20;
         }
         else
-        {
             platformLight.range = 8;
-        }
     }
-    // --------------------------------------------------------------------
+    
     private void FixedUpdate()
     {
         if (isOn && !isMoving)
@@ -38,6 +32,4 @@ public class DoTweenTest : MonoBehaviour
             platformLight.range = 20;
         }
     }
-    // --------------------------------------------------------------------
-    // --------------------------------------------------- End Methods --------------------------------------------
 }

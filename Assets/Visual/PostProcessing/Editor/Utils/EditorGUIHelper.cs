@@ -62,12 +62,12 @@ namespace UnityEditor.PostProcessing
                 if (popupRect.Contains(e.mousePosition))
                 {
                     var popup = new GenericMenu();
-                    popup.AddItem(GetContent("Reset"), false, () => resetAction());
+                    popup.AddItem(GetContent("Reset"), false,() => resetAction());
                     popup.AddSeparator(string.Empty);
-                    popup.AddItem(GetContent("Copy Settings"), false, () => CopySettings(group));
+                    popup.AddItem(GetContent("Copy Settings"), false,() => CopySettings(group));
 
                     if (CanPaste(group))
-                        popup.AddItem(GetContent("Paste Settings"), false, () => PasteSettings(group));
+                        popup.AddItem(GetContent("Paste Settings"), false,() => PasteSettings(group));
                     else
                         popup.AddDisabledItem(GetContent("Paste Settings"));
 
@@ -135,12 +135,12 @@ namespace UnityEditor.PostProcessing
                 else if (popupRect.Contains(e.mousePosition))
                 {
                     var popup = new GenericMenu();
-                    popup.AddItem(GetContent("Reset"), false, () => resetAction());
+                    popup.AddItem(GetContent("Reset"), false,() => resetAction());
                     popup.AddSeparator(string.Empty);
-                    popup.AddItem(GetContent("Copy Settings"), false, () => CopySettings(group));
+                    popup.AddItem(GetContent("Copy Settings"), false,() => CopySettings(group));
 
                     if (CanPaste(group))
-                        popup.AddItem(GetContent("Paste Settings"), false, () => PasteSettings(group));
+                        popup.AddItem(GetContent("Paste Settings"), false,() => PasteSettings(group));
                     else
                         popup.AddDisabledItem(GetContent("Paste Settings"));
 

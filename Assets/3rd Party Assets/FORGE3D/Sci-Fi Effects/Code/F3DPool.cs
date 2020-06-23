@@ -21,7 +21,7 @@ public class F3DPool : MonoBehaviour {
     private Dictionary<AudioClip, AudioSource[]> audioPool;
 
     // Use this for initialization
-    void Start ()
+    void Start()
     {
         // Singleton instance
         instance = this;
@@ -78,7 +78,7 @@ public class F3DPool : MonoBehaviour {
     {
         for (int i = 0; i < pool[obj].Length; i++)
         {
-            if(!pool[obj][i].gameObject.activeSelf)
+            if (!pool[obj][i].gameObject.activeSelf)
             {
                 Transform spawnItem = pool[obj][i];
 

@@ -67,7 +67,7 @@ namespace ProBuilder2.Actions
 		{
 			CreateShadowObject instance = pb_EditorToolbarLoader.GetInstance<CreateShadowObject>();
 
-			if(instance != null)
+			if (instance != null)
 				pb_EditorUtility.ShowNotification(instance.DoAction().notification);
 		}
 	}
@@ -126,7 +126,7 @@ namespace ProBuilder2.Actions
 
 		public override void OnSettingsEnable()
 		{
-			if( showPreview )
+			if ( showPreview )
 				DoAction();
 		}
 
@@ -139,29 +139,29 @@ namespace ProBuilder2.Actions
 			EditorGUI.BeginChangeCheck();
 			float volumeSize = EditorPrefs.GetFloat("pb_CreateShadowObject_volumeSize", .07f);
 			volumeSize = EditorGUILayout.Slider(gc_volumeSize, volumeSize, 0.001f, 1f);
-			if( EditorGUI.EndChangeCheck() )
+			if ( EditorGUI.EndChangeCheck() )
 				EditorPrefs.SetFloat("pb_CreateShadowObject_volumeSize", volumeSize);
 
 			#if !UNITY_4_6 && !UNITY_4_7
 			EditorGUI.BeginChangeCheck();
 			ShadowCastingMode shadowMode = (ShadowCastingMode) EditorPrefs.GetInt("pb_CreateShadowObject_shadowMode", (int) ShadowCastingMode.ShadowsOnly);
 			shadowMode = (ShadowCastingMode) EditorGUILayout.EnumPopup("Shadow Casting Mode", shadowMode);
-			if(EditorGUI.EndChangeCheck())
+			if (EditorGUI.EndChangeCheck())
 				EditorPrefs.SetInt("pb_CreateShadowObject_shadowMode", (int) shadowMode);
 			#endif
 
 			EditorGUI.BeginChangeCheck();
 			ExtrudeMethod extrudeMethod = (ExtrudeMethod) EditorPrefs.GetInt("pb_CreateShadowObject_extrudeMethod", (int) ExtrudeMethod.FaceNormal);
 			extrudeMethod = (ExtrudeMethod) EditorGUILayout.EnumPopup("Extrude Method", extrudeMethod);
-			if(EditorGUI.EndChangeCheck())
+			if (EditorGUI.EndChangeCheck())
 				EditorPrefs.SetInt("pb_CreateShadowObject_extrudeMethod", (int) extrudeMethod);
 
-			if(EditorGUI.EndChangeCheck())
+			if (EditorGUI.EndChangeCheck())
 				DoAction();
 
 			GUILayout.FlexibleSpace();
 
-			if(GUILayout.Button("Create Shadow Volume"))
+			if (GUILayout.Button("Create Shadow Volume"))
 			{
 				DoAction();
 				SceneView.RepaintAll();
@@ -184,7 +184,7 @@ namespace ProBuilder2.Actions
 			{
 				pb_Object shadow = GetShadowObject(pb);
 
-				if(shadow == null)
+				if (shadow == null)
 					continue;
 
 				foreach(pb_Face f in shadow.faces) { f.ReverseIndices(); f.manualUV = true; }
@@ -196,7 +196,7 @@ namespace ProBuilder2.Actions
 				#if !UNITY_4_6 && !UNITY_4_7
 				MeshRenderer mr = shadow.gameObject.GetComponent<MeshRenderer>();
 				mr.shadowCastingMode = shadowMode;
-				if(shadowMode == ShadowCastingMode.ShadowsOnly)
+				if (shadowMode == ShadowCastingMode.ShadowsOnly)
 					mr.receiveShadows = false;
 				#endif
 
@@ -218,18 +218,18 @@ namespace ProBuilder2.Actions
 
 		private pb_Object GetShadowObject(pb_Object pb)
 		{
-			if(pb == null || pb.name.Contains("-ShadowVolume"))
+			if (pb == null || pb.name.Contains("-ShadowVolume"))
 				return null;
 
 			for(int i = 0; i < pb.transform.childCount; i++)
 			{
 				Transform t = pb.transform.GetChild(i);
 
-				if(t.name.Equals(string.Format("{0}-ShadowVolume", pb.name)))
+				if (t.name.Equals(string.Format("{0}-ShadowVolume", pb.name)))
 				{
 					pb_Object shadow = t.GetComponent<pb_Object>();
 
-					if(shadow != null)
+					if (shadow != null)
 					{
 						pbUndo.RecordObject(shadow, "Update Shadow Object");
 

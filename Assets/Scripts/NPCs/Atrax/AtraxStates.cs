@@ -2,7 +2,6 @@
 
 public class AtraxStates : MonoBehaviour
 {
-    // ----------------------------------------------- Data members ----------------------------------------------
     public int idleState;
     public int walkingState;
     public int swipingState;
@@ -15,10 +14,7 @@ public class AtraxStates : MonoBehaviour
     public int isJumpingBool;
     public int isTurningLeftBool;
     public int isTurningRightBool;
-    // ----------------------------------------------- End Data members ------------------------------------------
-
-    // --------------------------------------------------- Methods -----------------------------------------------
-    // --------------------------------------------------------------------
+    
     // Use this for initialization
     void Awake()
     {
@@ -35,6 +31,4 @@ public class AtraxStates : MonoBehaviour
         isTurningLeftBool = Animator.StringToHash("isTurningLeft");
         isTurningRightBool = Animator.StringToHash("isTurningRight");
     }
-    // --------------------------------------------------------------------
-    // --------------------------------------------------- End Methods --------------------------------------------
 }

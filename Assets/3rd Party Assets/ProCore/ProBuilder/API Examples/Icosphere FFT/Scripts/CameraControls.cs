@@ -3,7 +3,6 @@
  */
 
 using UnityEngine;
-using System.Collections;
 
 namespace ProBuilder2.Examples
 {
@@ -42,7 +41,7 @@ namespace ProBuilder2.Examples
 			eulerRotation.z = 0f;
 
 			// orbits
-			if( Input.GetMouseButton(0) )
+			if ( Input.GetMouseButton(0) )
 			{
 				float rot_x = Input.GetAxis(INPUT_MOUSE_X);
 				float rot_y = -Input.GetAxis(INPUT_MOUSE_Y);
@@ -64,7 +63,7 @@ namespace ProBuilder2.Examples
 			transform.localRotation = Quaternion.Euler( eulerRotation );
 			transform.position = transform.localRotation * (Vector3.forward * -distance);
 
-			if( Input.GetAxis(INPUT_MOUSE_SCROLLWHEEL) != 0f )
+			if ( Input.GetAxis(INPUT_MOUSE_SCROLLWHEEL) != 0f )
 			{
 				float delta = Input.GetAxis(INPUT_MOUSE_SCROLLWHEEL);
 

@@ -2,7 +2,6 @@
 
 public class LockableDoors : MonoBehaviour 
 {
-    // ----------------------------------------------- Data members ----------------------------------------------
     public float doorSpeed;                 // How quickly the inner doors will track the outer doors.
 
 	public Transform leftDoor;              // Reference to the transform of the left door.
@@ -23,10 +22,7 @@ public class LockableDoors : MonoBehaviour
 
     private AudioSource aSrc;
     public AudioClip openSound, closeSound, lockedSound, unlockedSound;
-    // ----------------------------------------------- End Data members ------------------------------------------
-
-    // --------------------------------------------------- Methods -----------------------------------------------
-    // --------------------------------------------------------------------
+    
     void Awake()
 	{
 		// Setting the closed x position of the doors.
@@ -38,33 +34,25 @@ public class LockableDoors : MonoBehaviour
         foreach (Light doorLight in doorLights)
         {
             if (locked)
-            {
                 doorLight.color = Color.red;
-            }
             else
-            {
                 doorLight.color = Color.green;
-            }
         }
     }
-    // --------------------------------------------------------------------
+    
     void Update()
 	{
         // If the door is unlocked...
         if (!locked)
         {
             if (opening)
-            {
                 OpenDoors();
-            }
             else if (closing)
-            {
                 CloseDoors();
-            }
         }
 	}
-    // --------------------------------------------------------------------
-    void MoveDoors(Vector3 newLeftTarget, Vector3 newRightTarget)
+
+    private void MoveDoors(Vector3 newLeftTarget, Vector3 newRightTarget)
 	{
 		// Create a float that is a proportion of the distance from the left inner door's x position to it's target x position.
 		Vector3 newPos = Vector3.Lerp(leftDoor.position, newLeftTarget, doorSpeed * Time.deltaTime);
@@ -78,7 +66,7 @@ public class LockableDoors : MonoBehaviour
 		// Move the right inner door similarly.
 		rightDoor.position = newPos;
 	}
-    // --------------------------------------------------------------------
+    
     public void OpenDoors()
 	{
 		// Move the inner doors towards the outer doors.
@@ -87,7 +75,7 @@ public class LockableDoors : MonoBehaviour
         // Disable the box collider.
         doorCollider.enabled = false;
     }
-    // --------------------------------------------------------------------
+    
     public void CloseDoors()
 	{
 		// Move the inner doors towards their closed position.
@@ -96,67 +84,50 @@ public class LockableDoors : MonoBehaviour
         // Enable the box collider.
         doorCollider.enabled = true;
     }
-    // --------------------------------------------------------------------
+    
     public void UnlockDoor()
     {
         locked = false;
         
         // Lights are green.
         foreach (Light doorLight in doorLights)
-        {
             doorLight.color = Color.green;
-        }
-
-        // Play unlocked sound.    
-        if (!aSrc.isPlaying)
-        {
-            aSrc.PlayOneShot(unlockedSound);
-        }
+        PlaySound(unlockedSound);
     }
-    // --------------------------------------------------------------------
+    
     public void LockDoor()
     {
         locked = true;
 
         // Lights are red.
         foreach (Light doorLight in doorLights)
-        {
             doorLight.color = Color.red;
-        }
-
-        // Play locked sound.
-        aSrc.PlayOneShot(lockedSound);
+        PlaySound(lockedSound);
     }
-    // --------------------------------------------------------------------
-    void OnTriggerEnter(Collider other)
+
+    private void OnTriggerEnter(Collider other)
 	{
         if (other.name == "Collider front" && !locked)
         {
             closing = false;
 			opening = true;
-
-            // Play opening sound.       
-            if (!aSrc.isPlaying) 
-            {
-                aSrc.PlayOneShot(openSound);
-            }
+            PlaySound(openSound);
         }
 	}
-    // --------------------------------------------------------------------
-    void OnTriggerExit(Collider other)
+
+    private void OnTriggerExit(Collider other)
 	{
 		if (other.name == "Collider front" && !locked)
 		{
 			opening = false;
 			closing = true;
-
-            // Play closing sound.
-            if (!aSrc.isPlaying)
-            {
-                aSrc.PlayOneShot(closeSound); 
-            }
+            PlaySound(closeSound);
         }
 	}
-    // --------------------------------------------------------------------
-    // --------------------------------------------------- End Methods --------------------------------------------
+
+    private void PlaySound(AudioClip clipToPlay)
+    {
+        if (!aSrc.isPlaying)
+            aSrc.PlayOneShot(clipToPlay);
+    }
 }

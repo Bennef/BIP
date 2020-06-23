@@ -14,7 +14,7 @@ namespace ProBuilder2.Actions
 		[MenuItem("Tools/" + pb_Constant.PRODUCT_NAME + "/Repair/Upgrade Scene to Advanced", false, pb_Constant.MENU_REPAIR + 10)]
 		public static void MenuUpgradeSceneAdvanced()
 		{	
-			if( !EditorUtility.DisplayDialog("Upgrade Scene to Advanced", "This utility sets the materials on every ProBuilder object in the scene.  Continue?", "Okay", "Cancel") )
+			if ( !EditorUtility.DisplayDialog("Upgrade Scene to Advanced", "This utility sets the materials on every ProBuilder object in the scene.  Continue?", "Okay", "Cancel") )
 				return;
 
 			DoUpgrade((pb_Object[]) Resources.FindObjectsOfTypeAll(typeof(pb_Object)));
@@ -25,7 +25,7 @@ namespace ProBuilder2.Actions
 		[MenuItem("Tools/" + pb_Constant.PRODUCT_NAME + "/Repair/Upgrade Selection to Advanced", false, pb_Constant.MENU_REPAIR + 10)]
 		public static void MenuUpgradeSelectionAdvanced()
 		{	
-			if( !EditorUtility.DisplayDialog("Upgrade Selection to Advanced", "This utility sets the materials on every selected ProBuilder object.  Continue?", "Okay", "Cancel") )
+			if ( !EditorUtility.DisplayDialog("Upgrade Selection to Advanced", "This utility sets the materials on every selected ProBuilder object.  Continue?", "Okay", "Cancel") )
 				return;
 
 			DoUpgrade( Selection.gameObjects.SelectMany(x => x.GetComponentsInChildren<pb_Object>()).ToArray() );
@@ -41,7 +41,7 @@ namespace ProBuilder2.Actions
 			{
 				pb_Object pb = all[i];
 
-				if(interactive)
+				if (interactive)
 				{
 					EditorUtility.DisplayProgressBar(
 						"Applying Materials",
@@ -56,7 +56,7 @@ namespace ProBuilder2.Actions
 				pb.Optimize();
 			}
 				
-			if(interactive)
+			if (interactive)
 			{
 				EditorUtility.ClearProgressBar();
 			}

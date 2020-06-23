@@ -1,9 +1,7 @@
 ﻿using UnityEngine; 
-using System.Collections;
 
 public class SetFootIKTarget : MonoBehaviour
 {
-    // ----------------------------------------------- Data members ----------------------------------------------
     public bool Debugging;
     [Tooltip("The IK Solver for this limb.")]
     public IKSolver ikSolver;
@@ -15,21 +13,16 @@ public class SetFootIKTarget : MonoBehaviour
     public float castLength;
     [Tooltip("The Radius of the SphereCast")]
     public float castRadius;
-    // ----------------------------------------------- End Data members ------------------------------------------
-
-    // --------------------------------------------------- Methods -----------------------------------------------
-    // --------------------------------------------------------------------
-    // --------------------------------------------------------------------
+    
     void Update()
     {
-        RaycastHit hit;
         if (Debugging)
         {
             // If debugging is true, draw the rays
             Debug.DrawRay(transform.position + (-transform.up * castOffset), transform.up * castLength, Color.red);
         }
 
-        if (Physics.SphereCast(transform.position + (-transform.up * castOffset), castRadius, transform.up, out hit, castLength, layerMask, QueryTriggerInteraction.Ignore))
+        if (Physics.SphereCast(transform.position + (-transform.up * castOffset), castRadius, transform.up, out RaycastHit hit, castLength, layerMask, QueryTriggerInteraction.Ignore))
         {
             // Spherecast from just above the foot, to just below the foot.
             // If it hits anything, the point that was hit is our foot IK target
@@ -44,6 +37,4 @@ public class SetFootIKTarget : MonoBehaviour
             ikSolver.SetTarget(Vector3.zero);
         }
     }
-    // --------------------------------------------------------------------
-    // --------------------------------------------------- End Methods --------------------------------------------
 }

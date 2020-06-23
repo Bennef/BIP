@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class BlankMind : Mind
 {
-    // ----------------------------------------------- Data members ----------------------------------------------
+    
     public enum State
     {
         Idle,
@@ -12,6 +12,7 @@ public class BlankMind : Mind
         Chasing,
         Stunned
     }
+
     private Animator anim;                                      // Animator component.
     private new Rigidbody rigidbody;                            // The rigidbody of Blank.  
     public List<Transform> Waypoints = new List<Transform>();   // A list of the waypoints on patrol path.
@@ -35,10 +36,7 @@ public class BlankMind : Mind
     public GameObject EMPObject;			                    // A reference to the EMP Game Object.
     public AudioSource aSrc;                                    // To play sounds.
     public AudioClip attack, alert;
-    // ----------------------------------------------- End Data members ------------------------------------------
-
-    // --------------------------------------------------- Methods -----------------------------------------------
-    // --------------------------------------------------------------------
+   
     void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
@@ -57,30 +55,22 @@ public class BlankMind : Mind
         redLight.enabled = false;
         EMPObject.SetActive(false);	// Set EMP object to non-active until we perform an EMP Blast.
     }
-    // --------------------------------------------------------------------
+    
     void Update()
     {
         // If the player is in view...
         if (canSeeYou)
-        {
             SetState(State.Chasing);
-        }
     }
-    // --------------------------------------------------------------------
+    
     void FixedUpdate()
     {
         if (state == State.Chasing)
-        {
             Chase();
-        }
         else if (state == State.Idle || state == State.Stunned)
-        {
             return;
-        }
         else
-        {
             Patrol();
-        }
 
         // If the player is in view...
         Quaternion rotation = CalculateRotationOnlyY();
@@ -88,7 +78,7 @@ public class BlankMind : Mind
         // Actually turn in that direction.
         rigidbody.MoveRotation(Quaternion.Slerp(transform.rotation, rotation, Time.fixedDeltaTime * speed));
     }
-    // --------------------------------------------------------------------
+    
     protected override void Move()
     {
         // Handle locomotion in this method.
@@ -114,40 +104,29 @@ public class BlankMind : Mind
         }
         else
         {
-            if (target.tag == Tags.Player && target.transform.position.y < maxAttackHeight)
-            {
+            if (target.CompareTag(Tags.Player) && target.transform.position.y < maxAttackHeight)
                 Attack();
-            }
             else
             {
                 if (RandomBool())
-                {
                     StartCoroutine(IdleWait());
-                }
             }
         }
-
         rigidbody.velocity = newVelocity;
     }
-    // --------------------------------------------------------------------
+    
     // Patrol in a set pattern.
     public void Patrol()
     {
         if (!Waypoints.Contains(target))
-        {
             FindNearestWaypoint();
-        }
 
         if (currentDistance <= PreferredDistance)
         {
             if (targetIndex < Waypoints.Count - 1)
-            {
                 targetIndex++;
-            }
             else
-            {
                 targetIndex = 0;
-            }
 
             target = Waypoints[targetIndex];
         }
@@ -156,7 +135,7 @@ public class BlankMind : Mind
         blueLight.enabled = true;
         Move();
     }
-    // --------------------------------------------------------------------
+    
     // Chase the player.
     public void Chase()
     {
@@ -166,7 +145,7 @@ public class BlankMind : Mind
         blueLight.enabled = false;
         Move();
     }
-    // --------------------------------------------------------------------
+    
     // Attack the player.
     public void Attack()
     {
@@ -182,12 +161,10 @@ public class BlankMind : Mind
 
         Health targetHealth = target.GetComponent<Health>();
         if (targetHealth != null)
-        {
             targetHealth.TakeDamage(damage);
-        }
         Reset();
     }
-    // --------------------------------------------------------------------
+    
     // Return to patrolling our path by heading towards the nearest waypoint.
     public void FindNearestWaypoint()
     {
@@ -199,45 +176,39 @@ public class BlankMind : Mind
             // if the distance between the Blank and current iteration index is less than the distance between Blank and nearestWaypointIndex
             // Update the nearestWaypointIndex to the current iteration index.
             if (Vector3.Distance(transform.position, Waypoints[i].position) < Vector3.Distance(transform.position, Waypoints[nearestWaypointIndex].position))
-            {
                 nearestWaypointIndex = i;
-            }
         }
         // Set the new target.
         target = Waypoints[nearestWaypointIndex];
     }
-    // --------------------------------------------------------------------
+    
     public IEnumerator IdleWait()
     {
         SetState(State.Idle);
         yield return new WaitForSeconds(2.0f);
         if (canSeeYou == false && state == State.Idle)
-        {
             Reset();
-        }
     }
-    // --------------------------------------------------------------------
+    
     public IEnumerator Stun()
     {
         SetState(State.Stunned);
         yield return new WaitForSeconds(2.0f);
         SetState(State.Idle);
     }
-    // --------------------------------------------------------------------
+    
     private void Reset()
     {
         canSeeYou = false;
         SetState(State.Patrolling);
     }
-    // --------------------------------------------------------------------
+    
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == Tags.EMP)
-        {
+        if (other.CompareTag(Tags.EMP))
             StartCoroutine(Stun());
-        }
     }
-    // --------------------------------------------------------------------
+    
     public void SetState(State value)
     {
         if (state == State.Stunned)
@@ -248,22 +219,16 @@ public class BlankMind : Mind
                 StartCoroutine(IdleWait());
             }
             else
-            {
                 return;
-            }
         }
         state = value;
     }
-    // --------------------------------------------------------------------
+    
     private bool RandomBool()
     {
         float num = Random.Range(0f, 1f);
         if (num >= 0.5)
-        {
             return true;
-        }
         return false;
     }
-    // --------------------------------------------------------------------
-    // --------------------------------------------------- End Methods --------------------------------------------
 }

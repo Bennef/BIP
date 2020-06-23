@@ -39,18 +39,18 @@ namespace UnityStandardAssets.ImageEffects
         private Material fastBloomMaterial = null;
 
 
-        public override bool CheckResources ()
+        public override bool CheckResources()
 		{
             CheckSupport (false);
 
             fastBloomMaterial = CheckShaderAndCreateMaterial (fastBloomShader, fastBloomMaterial);
 
             if (!isSupported)
-                ReportAutoDisable ();
+                ReportAutoDisable();
             return isSupported;
         }
 
-        void OnDisable ()
+        void OnDisable()
 		{
             if (fastBloomMaterial)
                 DestroyImmediate (fastBloomMaterial);

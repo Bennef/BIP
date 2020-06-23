@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace UnityStandardAssets.Effects
@@ -14,12 +13,7 @@ namespace UnityStandardAssets.Effects
         private Collider[] m_Cols;
         private SphereCollider m_Sphere;
 
-
-        private void OnEnable()
-        {
-            m_Sphere = (GetComponent<Collider>() as SphereCollider);
-        }
-
+        private void OnEnable() => m_Sphere = (GetComponent<Collider>() as SphereCollider);
 
         private void FixedUpdate()
         {
@@ -42,11 +36,10 @@ namespace UnityStandardAssets.Effects
             }
         }
 
-
         private void OnDrawGizmosSelected()
         {
             //check for editor time simulation to avoid null ref
-            if(m_Sphere == null)
+            if (m_Sphere == null)
                 m_Sphere = (GetComponent<Collider>() as SphereCollider);
 
             m_Sphere.radius = effectDistance*.5f;

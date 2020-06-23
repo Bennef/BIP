@@ -18,7 +18,7 @@ namespace ProBuilder2.Actions
 			int count = 0;
 			foreach(pb_Object pb in pbUtil.GetComponents<pb_Object>(Selection.transforms))
 			{
-				if( pb.colors == null || pb.colors.Length != pb.vertexCount )
+				if ( pb.colors == null || pb.colors.Length != pb.vertexCount )
 				{
 					pb.ToMesh();
 					pb.SetColors(pbUtil.FilledArray<Color>(Color.white, pb.vertexCount));

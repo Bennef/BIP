@@ -137,7 +137,7 @@
 		float4 poissonScale = _MainTex_TexelSize.xyxy * w;
 		
 		#ifndef SHADER_API_D3D9
-		if(w<1e-2f)
+		if (w<1e-2f)
 			return sum;
 		#endif
 
@@ -160,7 +160,7 @@
 		float4 poissonScale = _MainTex_TexelSize.xyxy * w;
 		
 		#ifndef SHADER_API_D3D9
-		if(w<1e-2f)
+		if (w<1e-2f)
 			return sum;
 		#endif
 
@@ -183,7 +183,7 @@
 		float4 poissonScale = _MainTex_TexelSize.xyxy * float4(1,1,-1,-1) * 2;
 		
 		#ifndef SHADER_API_D3D9
-		if(w<1e-2f)
+		if (w<1e-2f)
 			return sum;
 		#endif
 
@@ -208,7 +208,7 @@
 		float4 poissonScale = _MainTex_TexelSize.xyxy * float4(1,1,-1,-1) * w;
 				
 		#ifndef SHADER_API_D3D9
-		if(w<1e-2f)
+		if (w<1e-2f)
 			return sum;
 		#endif
 

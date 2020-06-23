@@ -7,9 +7,9 @@
 #include "UnityCG.cginc"
 #include "Common.cginc"
 
-// --------
+// 
 // Options for further customization
-// --------
+// 
 
 // By default, a 5-tap Gaussian with the linear sampling technique is used
 // in the bilateral noise filter. It can be replaced with a 7-tap Gaussian
@@ -44,7 +44,7 @@ static const float kGeometryCoeff = 0.8;
 // for further details of these constants.
 static const float kBeta = 0.002;
 
-// --------
+// 
 
 // System built-in variables
 sampler2D _CameraGBufferTexture2;

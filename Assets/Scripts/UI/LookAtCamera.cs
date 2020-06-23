@@ -2,25 +2,14 @@
 
 public class LookAtCamera : MonoBehaviour 
 {
-    // ----------------------------------------------- Data members ----------------------------------------------
-    public Camera mainCam;
-    // ----------------------------------------------- End Data members ------------------------------------------
-
-    // --------------------------------------------------- Methods -----------------------------------------------
-    // --------------------------------------------------------------------
-    void Start()
-    {
-        mainCam = Camera.main;
-    }
-    // --------------------------------------------------------------------
+    private Camera _mainCam;
+     
+    void Start() => _mainCam = Camera.main;
+    
     void Update()
     {
-        if (mainCam == null)
-        {
-            mainCam = GameObject.Find("Main Camera").GetComponent<Camera>();
-        }
-        transform.LookAt(mainCam.transform);
+        if (_mainCam == null)
+            _mainCam = GameObject.Find("Main Camera").GetComponent<Camera>();
+        transform.LookAt(_mainCam.transform);
     }
-    // --------------------------------------------------------------------
-    // --------------------------------------------------- End Methods --------------------------------------------
 }

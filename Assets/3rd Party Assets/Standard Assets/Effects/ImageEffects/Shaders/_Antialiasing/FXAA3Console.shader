@@ -13,9 +13,9 @@ source taken from
 and adapted and ported to Unity by Unity Technologies
 
                     
-------------------------------------------------------------------------------                       
+------                       
 COPYRIGHT (C) 2010, 2011 NVIDIA CORPORATION. ALL RIGHTS RESERVED.
-------------------------------------------------------------------------------                       
+------                       
 TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, THIS SOFTWARE IS PROVIDED 
 *AS IS* AND NVIDIA AND ITS SUPPLIERS DISCLAIM ALL WARRANTIES, EITHER EXPRESS 
 OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, IMPLIED WARRANTIES OF 
@@ -134,7 +134,7 @@ Shader "Hidden/FXAA III (Console)" {
 			half lumaMaxCMinusMinC = lumaMaxCentre - lumaMinCentre;
 			half dirSEMinusNW = lumaSe - lumaNw;
 			
-			if(lumaMaxCMinusMinC < lumaMaxScaledClamped)
+			if (lumaMaxCMinusMinC < lumaMaxScaledClamped)
 				return centre;
 			
 			half2 dir;
@@ -154,7 +154,7 @@ Shader "Hidden/FXAA III (Console)" {
 			half3 rgbyA = col1 + col2;
 			half3 rgbyB = ((col3 + col4) * 0.25) + (rgbyA * 0.25);
 			
-			if((Luminance(rgbyA) < lumaMin) || (Luminance(rgbyB) > lumaMax))
+			if ((Luminance(rgbyA) < lumaMin) || (Luminance(rgbyB) > lumaMax))
 				return rgbyA * 0.5;
 			else
 				return rgbyB;

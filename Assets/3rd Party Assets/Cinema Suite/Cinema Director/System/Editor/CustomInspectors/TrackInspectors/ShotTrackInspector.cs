@@ -55,7 +55,7 @@ public class ShotTrackInspector : Editor
 
         }
 
-        if(GUILayout.Button("Add New Shot"))
+        if (GUILayout.Button("Add New Shot"))
         {
             CutsceneItemFactory.CreateNewShot(track);
         }

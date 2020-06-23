@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class TeleportReceive : MonoBehaviour
 {
-    // ----------------------------------------------- Data members ----------------------------------------------
     public bool shouldFade, startPad;
     public PlayerMovement playerMovement;
     public Animator anim;
@@ -16,10 +15,7 @@ public class TeleportReceive : MonoBehaviour
     int BurnoutID;
     private GameObject fader;
     public CameraMovement mainCam;
-    // ----------------------------------------------- End Data members ------------------------------------------
-
-    // --------------------------------------------------- Methods -----------------------------------------------
-    // --------------------------------------------------------------------
+    
     private void Start()
     {
         aSrc1 = GetComponent<AudioSource>();
@@ -28,11 +24,9 @@ public class TeleportReceive : MonoBehaviour
         bipMesh = GameObject.Find("Bip Mesh").GetComponent<SkinnedMeshRenderer>();
         fader = GameObject.Find("Fader");
         if (startPad)
-        {
             StartCoroutine(TeleportIn());
-        }
     }
-    // --------------------------------------------------------------------
+    
     public IEnumerator MoveBip()
     {
         float elapsedTime = 0;
@@ -45,21 +39,16 @@ public class TeleportReceive : MonoBehaviour
             yield return null;
         }
     }
-    // --------------------------------------------------------------------
-    public void TeleportInCall()
-    {
-        StartCoroutine(TeleportIn());
-    }
-    // --------------------------------------------------------------------
+    
+    public void TeleportInCall() => StartCoroutine(TeleportIn());
+    
     public IEnumerator TeleportIn()
     {
         mainCam.transform.position = camPos.position;
         mainCam.transform.LookAt(mainCam.target.transform.position);
         mainCam.isFixed = true;
         if (shouldFade)
-        {
-            fader.GetComponent<ScreenFader>().StartCoroutine("FadeToClear");  // Fade to clear.
-        }
+            fader.GetComponent<ScreenFader>().StartCoroutine("FadeToClear");  
         bipMesh.enabled = false; 
         StartCoroutine(MoveBip()); 
         yield return new WaitForSeconds(1f);
@@ -72,9 +61,7 @@ public class TeleportReceive : MonoBehaviour
         bip.transform.position = telePos.position;
         SwapMats();
         foreach (Material mat in bipMesh.materials)
-        {
             StartCoroutine(BurnIn(mat));
-        }
         GameObject spark = (GameObject)Instantiate(Resources.Load("solo_gun_flames"));
         spark.transform.position = sparkPos.position;
         yield return new WaitForSeconds(1.6f);
@@ -105,34 +92,28 @@ public class TeleportReceive : MonoBehaviour
         bipRigidbody.isKinematic = false;
         mainCam.isFixed = false;
     }
-    // --------------------------------------------------------------------
+    
     public void SwapMats()
     {
         Material[] intMaterials = new Material[bipMesh.materials.Length];
         for (int i = 0; i < intMaterials.Length; i++)
-        {
             intMaterials[i] = burnoutMat;
-        }
         bipMesh.materials = intMaterials;
     }
-    // --------------------------------------------------------------------
+    
     public void SwapMatsBack()
     {
         Material[] intMaterials = new Material[bipMesh.materials.Length];
         for (int i = 0; i < intMaterials.Length; i++)
         {
             if (i == 0)
-            {
                 intMaterials[i] = bodyMat;
-            }
             else
-            {
                 intMaterials[i] = faceMat;
-            }
         }
         bipMesh.materials = intMaterials;
     }
-    // --------------------------------------------------------------------
+    
     public IEnumerator BurnIn(Material mat)
     {
         float elapsedTime = 0;
@@ -144,6 +125,4 @@ public class TeleportReceive : MonoBehaviour
             yield return null;
         }
     }
-    // --------------------------------------------------------------------
-    // --------------------------------------------------- End Methods --------------------------------------------
 }

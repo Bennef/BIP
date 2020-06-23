@@ -1,19 +1,8 @@
 using UnityEngine;
-using System.Collections;
 
-public class RotateBehaviour : MonoBehaviour {
-
-    public Vector3 RotationAmount;
-
-	// Use this for initialization
-	void Start () 
-    {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () 
-    {
-        transform.Rotate(RotationAmount * Time.deltaTime);
-	}
+public class RotateBehaviour : MonoBehaviour 
+{
+    [SerializeField] private Vector3 RotationAmount;
+		
+	void Update() => transform.Rotate(RotationAmount * Time.deltaTime);
 }

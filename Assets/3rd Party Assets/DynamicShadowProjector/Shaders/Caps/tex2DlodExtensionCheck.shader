@@ -3,7 +3,7 @@
 		Pass {
 			GLSLPROGRAM
 #ifdef VERTEX
-			void main ()
+			void main()
 			{
 				gl_Position = gl_Vertex;
 			}
@@ -30,7 +30,7 @@ out vec4 SV_Target0;
 			uniform sampler2D _ShadowTex;
 			uniform vec2 _coord;
 			uniform float _lod;
-			void main ()
+			void main()
 			{
 					gl_FragColor = texture2DLod(_ShadowTex, _coord, _lod);
 			}

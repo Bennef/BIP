@@ -4,13 +4,9 @@ using System.Collections;
 
 public class DeadDrone : MonoBehaviour
 {
-    // ----------------------------------------------- Data members ----------------------------------------------
     public List<GameObject> parts = new List<GameObject>();
     public SwitchOffGravity switchOffGravity;
-    // ----------------------------------------------- End Data members ------------------------------------------
-
-    // --------------------------------------------------- Methods -----------------------------------------------
-    // --------------------------------------------------------------------
+    
     // Use this for initialization
     void OnEnable()
     {
@@ -25,7 +21,7 @@ public class DeadDrone : MonoBehaviour
         switchOffGravity = GameObject.Find("Gravity Switch").GetComponent<SwitchOffGravity>();
         StartCoroutine(SeparatePartsAndDisableGravity());
     }
-    // --------------------------------------------------------------------
+    
     void Update()
     {
         if (switchOffGravity.hasBeenCompleted)
@@ -37,7 +33,7 @@ public class DeadDrone : MonoBehaviour
             }
         }
     }
-    // --------------------------------------------------------------------
+    
     public IEnumerator SeparatePartsAndDisableGravity()
     {
         yield return new WaitForSeconds(0.1f);
@@ -49,6 +45,4 @@ public class DeadDrone : MonoBehaviour
             part.GetComponent<Rigidbody>().useGravity = false;
         }
     }
-    // --------------------------------------------------------------------
-    // --------------------------------------------------- End Methods --------------------------------------------
 }

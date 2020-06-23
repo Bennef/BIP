@@ -2,17 +2,12 @@
 
 public class AtraxMind : Mind
 {
-    // ----------------------------------------------- Data members ----------------------------------------------
     [Tooltip("Turning Speed")]
-    public float turningSpeed;				    // Turning speed.
+    public float turningSpeed;		
     AtraxStates state;
-    //new Rigidbody rigidbody;
     Animator anim;
     public BoxCollider swipeCollider;
-    // ----------------------------------------------- End Data members ------------------------------------------
-
-    // --------------------------------------------------- Methods -----------------------------------------------
-    // --------------------------------------------------------------------
+    
     // Use this for initialization
     void Awake()
     {
@@ -20,14 +15,14 @@ public class AtraxMind : Mind
         state = GetComponent<AtraxStates>();
         anim = GetComponent<Animator>();
     }
-    // --------------------------------------------------------------------
+    
     void FixedUpdate()
     {
         Quaternion rotation = CalculateRotationOnlyY();
         Move();
         //GetComponent<NavMeshAgent>().SetDestination(target.position);
     }
-    // --------------------------------------------------------------------
+    
     protected override void Move()
     {
         if (anim.GetBool("isWalking") == true)
@@ -35,6 +30,4 @@ public class AtraxMind : Mind
             Debug.Log("s");
         }
     }
-    // --------------------------------------------------------------------
-    // --------------------------------------------------- End Methods --------------------------------------------
 }

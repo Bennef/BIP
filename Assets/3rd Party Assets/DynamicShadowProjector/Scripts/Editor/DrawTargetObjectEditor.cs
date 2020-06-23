@@ -27,7 +27,7 @@ namespace DynamicShadowProjector.Editor {
 			}
 		}
 		static bool s_showAdvancedOptions = false;
-		public override void OnInspectorGUI ()
+		public override void OnInspectorGUI()
 		{
 			EditorGUILayout.BeginHorizontal();
 			GUILayout.Label("Online Document");

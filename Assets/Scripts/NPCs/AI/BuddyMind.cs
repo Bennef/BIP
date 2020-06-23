@@ -3,7 +3,6 @@ using System.Collections;
 
 public class BuddyMind : FriendlyMind
 {
-    // ----------------------------------------------- Data members ----------------------------------------------
     public float brakingSpeed;
     public float jumpingDistance;
     private PlayerStates state;										// Stores the state of the player. Model.
@@ -14,36 +13,28 @@ public class BuddyMind : FriendlyMind
     [SerializeField]
     private bool isWaiting;
     
-    // ----------------------------------------------- End Data members ------------------------------------------
-
-    // --------------------------------------------------- Methods -----------------------------------------------
-    // --------------------------------------------------------------------
     void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
         state = GetComponent<PlayerStates>();
         playerMovement = GetComponent<PlayerMovement>();
         anim = GetComponent<Animator>();
-
-        hasJumped = false;
     }
-    // --------------------------------------------------------------------
+    
     void Update()
     {
-        if(Input.GetButtonUp("Wait"))
-        {
+        if (Input.GetButtonUp("Wait"))
             isWaiting = !isWaiting;
-        }
 
         // If the angle between the camera's forward direction and the Buddy is greater than the camera field of view...
         // this buddy is not on screen.
-        if(Camera.main)
+        if (Camera.main)
         {
             float angle = Mathf.Abs(Vector3.Angle(Camera.main.transform.forward, transform.position - Camera.main.transform.position));
             onScreen = angle < Camera.main.fieldOfView;
         }
     }
-    // --------------------------------------------------------------------
+    
     void FixedUpdate()
     {
         Quaternion rotation = CalculateRotationOnlyY();
@@ -58,16 +49,11 @@ public class BuddyMind : FriendlyMind
             ApplyJumpPhysics();
         }
         else
-        {
-            state.SetVelocity(rigidbody.velocity);
-        }
+            state.Velocity = rigidbody.velocity;
     }
-    // --------------------------------------------------------------------
-    public void Wait()
-    {
-        isWaiting = true;
-    }
-    // --------------------------------------------------------------------
+    
+    public void Wait() => isWaiting = true;
+    
     protected override void Move()
     {
         // Handle locomotion in this method.
@@ -85,20 +71,16 @@ public class BuddyMind : FriendlyMind
             shouldFollow = true;
             // If you are higher than buddy for more than one second,
             // buddy also gets high.
-            if(target.position.y > transform.position.y + 1 && currentDistance <= jumpingDistance)
-            {
+            if (target.position.y > transform.position.y + 1 && currentDistance <= jumpingDistance)
                 StartCoroutine(JumpCo());
-            }
 
-            if(anim.GetBool(state.isGroundedBool) && target.position.y >= transform.position.y - 1)
+            if (anim.GetBool(state.isGroundedBool) && target.position.y >= transform.position.y - 1)
             {
                 if (!Physics.Raycast(transform.position + raycastOffset, transform.forward - raycastOffset, 2f, GameManager.Instance.ObstacleAvoidanceLayerMask, QueryTriggerInteraction.Ignore))
-                {
                     Jump();
-                }
             }
 
-            if(!Physics.Raycast(transform.position + raycastOffset, transform.forward, ObstacleDistance, GameManager.Instance.ObstacleAvoidanceLayerMask, QueryTriggerInteraction.Ignore))
+            if (!Physics.Raycast(transform.position + raycastOffset, transform.forward, ObstacleDistance, GameManager.Instance.ObstacleAvoidanceLayerMask, QueryTriggerInteraction.Ignore))
             {
                 // Raycast directly in front of buddy
                 // If raycast hits, buddy does not move for they would be running into a wall.
@@ -131,32 +113,23 @@ public class BuddyMind : FriendlyMind
         }
 
         rigidbody.velocity = newVelocity;
-        // AddForce with a cap instead of setting velocity directly /////////////////////////////////////////////////////////////////////////////////
-        state.SetVelocity(rigidbody.velocity);
+        // AddForce with a cap instead of setting velocity directly 
+        state.Velocity = rigidbody.velocity;
     }
-    // --------------------------------------------------------------------
-    void Jump()
-    {
-        hasJumped = true;
-    }
-    // --------------------------------------------------------------------
+    
+    void Jump() => hasJumped = true;
+    
     void ApplyJumpPhysics()
     {
-        if(hasJumped)
-        {
+        if (hasJumped)
             rigidbody.velocity = new Vector3(rigidbody.velocity.x, playerMovement.jumpVelocity, rigidbody.velocity.z);
-        }
         hasJumped = false;
     }
-    // --------------------------------------------------------------------
+    
     IEnumerator JumpCo()
     {
         yield return new WaitForSeconds(1f);
         if (target.position.y > transform.position.y + 1)
-        {
             Jump();
-        }
     }
-    // --------------------------------------------------------------------
-    // --------------------------------------------------- End Methods --------------------------------------------
 }

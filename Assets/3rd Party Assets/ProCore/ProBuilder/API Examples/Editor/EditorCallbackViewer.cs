@@ -112,11 +112,11 @@ class EditorCallbackViewer : EditorWindow
 			GUILayout.FlexibleSpace();
 
 			GUI.backgroundColor = collapse ? disabledColor : Color.white;
-			if(GUILayout.Button("Collapse", EditorStyles.toolbarButton))
+			if (GUILayout.Button("Collapse", EditorStyles.toolbarButton))
 				collapse = !collapse;
 			GUI.backgroundColor = Color.white;
 
-			if(GUILayout.Button("Clear", EditorStyles.toolbarButton))
+			if (GUILayout.Button("Clear", EditorStyles.toolbarButton))
 				logs.Clear();
 
 		GUILayout.EndHorizontal();
@@ -142,7 +142,7 @@ class EditorCallbackViewer : EditorWindow
 
 		for(int i = len - 1; i >= min; i--)
 		{
-			if(	collapse &&
+			if (	collapse &&
 				i > 0 &&
 				i < len - 1 &&
 				logs[i].Equals(logs[i-1]) &&

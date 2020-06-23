@@ -2,23 +2,17 @@
 
 public class BlankLaser : MonoBehaviour
 {
-    // ----------------------------------------------- Data members ----------------------------------------------
     public bool activated = true;
     public Transform target;
     public float speed;
-    // ----------------------------------------------- End Data members ------------------------------------------
-
-    // --------------------------------------------------- Methods -----------------------------------------------
-    // --------------------------------------------------------------------
+    
     // Update is called once per frame
     void FixedUpdate()
     {
         if (activated)
-        {
             AimAtTarget2();
-        }
     }
-    // --------------------------------------------------------------------
+    
     public void AimAtTarget()
     {
         Vector3 direction = target.position - transform.position;
@@ -27,11 +21,6 @@ public class BlankLaser : MonoBehaviour
         Vector3 fwd = this.transform.TransformDirection(Vector3.forward);
         Debug.DrawRay(this.transform.position, fwd * 50, Color.green);
     }
-    // --------------------------------------------------------------------
-    public void AimAtTarget2()
-    {
-        transform.LookAt(target);
-    }
-    // --------------------------------------------------------------------
-    // --------------------------------------------------- End Methods --------------------------------------------
+    
+    public void AimAtTarget2() => transform.LookAt(target);
 }

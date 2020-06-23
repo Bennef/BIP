@@ -32,7 +32,7 @@ namespace ProBuilder2.Actions
 		{
 			for(int i = 0; i < targets.Length; i++)
 			{
-				if(interactive)
+				if (interactive)
 				{
 					EditorUtility.DisplayProgressBar(
 						"Refreshing ProBuilder Objects",
@@ -50,12 +50,12 @@ namespace ProBuilder2.Actions
 			 	}
 			 	catch
 			 	{
-			 		if(pb.msh != null)
+			 		if (pb.msh != null)
 			 			RebuildProBuilderMesh(pb);
 			 	}
 			}
 
-			if(interactive)
+			if (interactive)
 			{
 				EditorUtility.ClearProgressBar();
 				EditorUtility.DisplayDialog("Rebuild ProBuilder Objects", "Successfully rebuilt " + targets.Length + " ProBuilder Objects", "Okay");

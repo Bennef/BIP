@@ -77,7 +77,7 @@ public class F3DAudioController : MonoBehaviour
     public float laserImpulseDelay;
     public float laserImpulseHitDelay;
 
-    void Awake ()
+    void Awake()
     {
         // Initialize singleton
         instance = this;

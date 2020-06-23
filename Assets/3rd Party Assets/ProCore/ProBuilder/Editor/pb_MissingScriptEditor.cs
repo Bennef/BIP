@@ -39,7 +39,7 @@ namespace ProBuilder2.EditorCommon
 
 			pb_Object pb = go.AddComponent<pb_Object>();
 			pb_Entity pe = go.GetComponent<pb_Entity>();
-			if(pe == null)
+			if (pe == null)
 				pe = go.AddComponent<pb_Entity>();
 			pb_DummyScript du = go.AddComponent<pb_DummyScript>();
 
@@ -54,7 +54,7 @@ namespace ProBuilder2.EditorCommon
 		{
 			get
 			{
-				if(_mono_pb == null) LoadMonoScript();
+				if (_mono_pb == null) LoadMonoScript();
 				return _mono_pb;
 			}
 		}
@@ -63,7 +63,7 @@ namespace ProBuilder2.EditorCommon
 		{
 			get
 			{
-				if(_mono_pe == null) LoadMonoScript();
+				if (_mono_pe == null) LoadMonoScript();
 				return _mono_pe;
 			}
 		}
@@ -72,7 +72,7 @@ namespace ProBuilder2.EditorCommon
 		{
 			get
 			{
-				if(_mono_dummy == null) LoadMonoScript();
+				if (_mono_dummy == null) LoadMonoScript();
 				return _mono_dummy;
 			}
 		}
@@ -93,7 +93,7 @@ namespace ProBuilder2.EditorCommon
 
 			unfixable.Clear();
 
-			if(total > 1)
+			if (total > 1)
 			{
 				Undo.RecordObjects(all, "Fix missing script references");
 
@@ -104,7 +104,7 @@ namespace ProBuilder2.EditorCommon
 			}
 			else
 			{
-				if( applyDummyScript )
+				if ( applyDummyScript )
 					DeleteDummyScripts();
 
 				EditorUtility.DisplayDialog("Success", "No missing ProBuilder script references found.", "Okay");
@@ -118,32 +118,32 @@ namespace ProBuilder2.EditorCommon
 		{
 			bool earlyExit = false;
 
-			if( EditorUtility.DisplayCancelableProgressBar("Repair ProBuilder Script References", "Fixing " + (int)Mathf.Floor(index+1) + " out of " + total + " objects in scene.", ((float)index/total) ) )
+			if ( EditorUtility.DisplayCancelableProgressBar("Repair ProBuilder Script References", "Fixing " + (int)Mathf.Floor(index+1) + " out of " + total + " objects in scene.", ((float)index/total) ) )
 			{
 				earlyExit = true;
 				doFix = false;
 			}
 
-			if(!earlyExit)
+			if (!earlyExit)
 			{
 				// Cycle through FindObjectsOfType on every Next() because using a static list didn't work for some reason.
 				foreach(GameObject go in Resources.FindObjectsOfTypeAll(typeof(GameObject)))
 				{
-					if(go.GetComponents<Component>().Any(x => x == null) && !unfixable.Contains(go))
+					if (go.GetComponents<Component>().Any(x => x == null) && !unfixable.Contains(go))
 					{
-						if(	(PrefabUtility.GetPrefabType(go) == PrefabType.PrefabInstance ||
+						if (	(PrefabUtility.GetPrefabType(go) == PrefabType.PrefabInstance ||
 							 PrefabUtility.GetPrefabType(go) == PrefabType.Prefab ) )
 						{
 							GameObject pref = (GameObject)PrefabUtility.GetPrefabParent(go);
 
-							if(pref && (pref.GetComponent<pb_Object>() || pref.GetComponent<pb_Entity>()))
+							if (pref && (pref.GetComponent<pb_Object>() || pref.GetComponent<pb_Entity>()))
 							{
 								unfixable.Add(go);
 								continue;
 							}
 						}
 
-						if(go.hideFlags != HideFlags.None)
+						if (go.hideFlags != HideFlags.None)
 						{
 							unfixable.Add(go);
 							continue;
@@ -175,12 +175,12 @@ namespace ProBuilder2.EditorCommon
 
 			EditorUtility.ClearProgressBar();
 
-			if( applyDummyScript )
+			if ( applyDummyScript )
 				DeleteDummyScripts();
 
 			EditorUtility.DisplayDialog("Success", "Successfully repaired " + total + " ProBuilder objects.", "Okay");
 
-			if(!pb_EditorSceneUtility.SaveCurrentSceneIfUserWantsTo())
+			if (!pb_EditorSceneUtility.SaveCurrentSceneIfUserWantsTo())
 				Debug.LogWarning("Repaired script references will be lost on exit if this scene is not saved!");
 
 			doFix = false;
@@ -215,7 +215,7 @@ namespace ProBuilder2.EditorCommon
 
 		public override void OnInspectorGUI()
 		{
-			if(skipEvent && Event.current.type == EventType.Repaint)
+			if (skipEvent && Event.current.type == EventType.Repaint)
 			{
 				skipEvent = false;
 				return;
@@ -223,11 +223,11 @@ namespace ProBuilder2.EditorCommon
 
 			SerializedProperty scriptProperty = this.serializedObject.FindProperty("m_Script");
 
-			if(scriptProperty == null || scriptProperty.objectReferenceValue != null)
+			if (scriptProperty == null || scriptProperty.objectReferenceValue != null)
 			{
-				if(doFix)
+				if (doFix)
 				{
-					if(Event.current.type == EventType.Repaint)
+					if (Event.current.type == EventType.Repaint)
 					{
 						Next();
 					}
@@ -251,23 +251,23 @@ namespace ProBuilder2.EditorCommon
 
 			while( iterator.Next(true) )
 			{
-				if( PB_OBJECT_SCRIPT_PROPERTIES.Contains(iterator.name) )
+				if ( PB_OBJECT_SCRIPT_PROPERTIES.Contains(iterator.name) )
 					pbObjectMatches++;
 
-				if( PB_ENTITY_SCRIPT_PROPERTIES.Contains(iterator.name) )
+				if ( PB_ENTITY_SCRIPT_PROPERTIES.Contains(iterator.name) )
 					pbEntityMatches++;
 			}
 
 			// If we can fix it, show the help box, otherwise just default inspector it up.
-			if(pbObjectMatches >= 3 || pbEntityMatches >= 3)
+			if (pbObjectMatches >= 3 || pbEntityMatches >= 3)
 			{
 				EditorGUILayout.HelpBox("Missing Script Reference\n\nProBuilder can automatically fix this missing reference.  To fix all references in the scene, click \"Fix All in Scene\".  To fix just this one, click \"Reconnect\".", MessageType.Warning);
 			}
 			else
 			{
-				if(doFix)
+				if (doFix)
 				{
-					if( applyDummyScript )
+					if ( applyDummyScript )
 					{
 						index += .5f;
 						scriptProperty.objectReferenceValue = dummy_monoscript;
@@ -294,9 +294,9 @@ namespace ProBuilder2.EditorCommon
 
 			GUI.backgroundColor = Color.green;
 
-			if(!doFix)
+			if (!doFix)
 			{
-				if(GUILayout.Button("Fix All in Scene"))
+				if (GUILayout.Button("Fix All in Scene"))
 				{
 					FixAllScriptReferencesInScene();
 					return;
@@ -305,20 +305,20 @@ namespace ProBuilder2.EditorCommon
 
 			GUI.backgroundColor = Color.cyan;
 
-			if((doFix && Event.current.type == EventType.Repaint) || GUILayout.Button("Reconnect"))
+			if ((doFix && Event.current.type == EventType.Repaint) || GUILayout.Button("Reconnect"))
 			{
-				if(pbObjectMatches >= 3)	// only increment for pb_Object otherwise the progress bar will fill 2x faster than it should
+				if (pbObjectMatches >= 3)	// only increment for pb_Object otherwise the progress bar will fill 2x faster than it should
 				{
 					index++;
 				}
 				else
 				{
 					// Make sure that pb_Object is fixed first if we're automatically cycling objects.
-					if(doFix && ((Component)target).gameObject.GetComponent<pb_Object>() == null)
+					if (doFix && ((Component)target).gameObject.GetComponent<pb_Object>() == null)
 						return;
 				}
 
-				if(!doFix)
+				if (!doFix)
 				{
 					Undo.RegisterCompleteObjectUndo(target, "Fix missing reference.");
 				}
@@ -330,7 +330,7 @@ namespace ProBuilder2.EditorCommon
 				scriptProperty = this.serializedObject.FindProperty("m_Script");
 				scriptProperty.serializedObject.Update();
 
-				if(doFix)
+				if (doFix)
 					Next();
 
 				GUIUtility.ExitGUI();
@@ -347,7 +347,7 @@ namespace ProBuilder2.EditorCommon
 			pb_DummyScript[] dummies = (pb_DummyScript[])Resources.FindObjectsOfTypeAll(typeof(pb_DummyScript));
 			dummies = dummies.Where(x => x.hideFlags == HideFlags.None).ToArray();
 
-			if(dummies.Length > 0)
+			if (dummies.Length > 0)
 			{
 				int ret = EditorUtility.DisplayDialogComplex("Found Unrepairable Objects", "Repair script found " + dummies.Length + " missing components that could not be repaired.  Would you like to delete those components now, or attempt to rebuild (ProBuilderize) them?", "Delete", "Cancel", "ProBuilderize");
 
@@ -360,7 +360,7 @@ namespace ProBuilder2.EditorCommon
 					default:
 					{
 						// Delete and ProBuilderize
-						if(ret == 2)
+						if (ret == 2)
 						{
 							// Only interested in objects that have 2 null components (pb_Object and pb_Entity)
 							Object[] broken = (Object[])Resources.FindObjectsOfTypeAll(typeof(GameObject))
@@ -395,7 +395,7 @@ namespace ProBuilder2.EditorCommon
 		{
 			System.Text.StringBuilder sb = new System.Text.StringBuilder();
 
-			if(serializedObject == null)
+			if (serializedObject == null)
 			{
 				sb.Append("NULL");
 				return sb.ToString();

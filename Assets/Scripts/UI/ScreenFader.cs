@@ -1,19 +1,14 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-
 using System.Collections;
 
 // Will fade the screen to black. Or to clear.
 public class ScreenFader : MonoBehaviour
 {	
-	// ----------------------------------------------- Data members ----------------------------------------------
 	// This class handles the screen fading in or out.
 	public CanvasGroup canvasGroup;
     public CanvasRenderer blackPanel, whitePanel;
-	// ----------------------------------------------- End Data members ------------------------------------------
-
-	// --------------------------------------------------- Methods -----------------------------------------------
-	// --------------------------------------------------------------------
+	
 	// Use this for initialization
 	void Awake() 
 	{	
@@ -21,11 +16,9 @@ public class ScreenFader : MonoBehaviour
         whitePanel.gameObject.SetActive(false);
         Scene scene = SceneManager.GetActiveScene();
         if (scene.name == "0 Main Menu" || scene.name == "Main Menu Portfolio" || scene.name == "Main Menu Web")
-        {
             StartCoroutine(FadeToClear());
-        }
     }
-    // --------------------------------------------------------------------
+    
     public IEnumerator FadeToClear()
 	{
 		// if not fading already
@@ -37,7 +30,7 @@ public class ScreenFader : MonoBehaviour
 		canvasGroup.alpha = 0f;
 		yield return null;
 	}
-	// --------------------------------------------------------------------
+	
 	public IEnumerator FadeToBlack()
 	{
         blackPanel.gameObject.SetActive(true);
@@ -50,12 +43,9 @@ public class ScreenFader : MonoBehaviour
 		canvasGroup.alpha = 1f;
 		yield return null;
 	}
-    // --------------------------------------------------------------------
-    public void ToClear()
-    {
-        canvasGroup.alpha = 0f;
-    }
-    // --------------------------------------------------------------------
+    
+    public void ToClear() => canvasGroup.alpha = 0f;
+
     public IEnumerator FadeToWhite()
     {
         blackPanel.gameObject.SetActive(false);
@@ -67,7 +57,5 @@ public class ScreenFader : MonoBehaviour
         }
         canvasGroup.alpha = 1f;
         yield return null;
-    }
-    // --------------------------------------------------------------------
-    // --------------------------------------------------- End Methods --------------------------------------------
+    }   
 }

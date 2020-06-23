@@ -2,17 +2,13 @@
 
 public class ShockFloor : MonoBehaviour
 {
-    // ----------------------------------------------- Data members ----------------------------------------------
     public GameObject[] shockCubeArray;    // The array of all the Shock Cubes in the grid.
     public bool[] shockCubeBool;           // The array of bools to use to select the shockfloor pattern
 
     public int onTime;                      // The delay for the shockfloor switching on/off
     private float timer;                   // Timer for shockfloor pattern
     public float delay;                     // Time to turn off before turning on again.
-    // ----------------------------------------------- End Data members ------------------------------------------
-
-    // --------------------------------------------------- Methods -----------------------------------------------
-    // --------------------------------------------------------------------
+    
     // Use this for initialization
     void Start()
     {
@@ -25,7 +21,7 @@ public class ShockFloor : MonoBehaviour
             i++;
         }
     }
-    // --------------------------------------------------------------------
+    
     // Update is called once per frame
     void Update()
     {
@@ -38,27 +34,15 @@ public class ShockFloor : MonoBehaviour
                 shockCubeArray[i].transform.GetChild(1).GetComponent<Transform>().gameObject.SetActive(shockCubeBool[i] ? false : true); // Checks current shockCubeBool state and switches the cubes to the opposite state.
                 shockCubeBool[i] = !shockCubeBool[i];    // Swaps bools current states to the oppisite state.
                 if (shockCubeBool[i] == true)
-                {
                     ShockOn(shockCubeArray[i]);
-                }
                 else
-                {
                     ShockOff(shockCubeArray[i]);
-                }
                 timer = 0;    // Resets the timer.
             }
         }
     }
-    // --------------------------------------------------------------------
-    public void ShockOn(GameObject shockCube)
-    {
-        shockCube.GetComponent<DamageByCollision>().isOn = true;
-    }
-    // --------------------------------------------------------------------
-    public void ShockOff(GameObject shockCube)
-    {
-        shockCube.GetComponent<DamageByCollision>().isOn = false;
-    }
-    // --------------------------------------------------------------------
-    // --------------------------------------------------- End Methods --------------------------------------------
+    
+    public void ShockOn(GameObject shockCube) => shockCube.GetComponent<DamageByCollision>().isOn = true;
+    
+    public void ShockOff(GameObject shockCube) => shockCube.GetComponent<DamageByCollision>().isOn = false;
 }

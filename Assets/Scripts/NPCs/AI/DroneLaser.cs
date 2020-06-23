@@ -3,7 +3,6 @@ using System.Collections;
 
 public class DroneLaser : MonoBehaviour 
 {
-	// ----------------------------------------------- Data members ----------------------------------------------
 	// Handles drone lasers.
 	public Transform target;			// Bip will be the target.
 
@@ -15,38 +14,29 @@ public class DroneLaser : MonoBehaviour
 	public bool isFiring = false;		// True if currently firing.
 
 	GameObject prefab;					// The laser pulse.
-	private float angle;				// For checking if drone is looking at bip.
-	private float lastShotTime = float.MinValue;
 
 	private AudioSource audioSource;
-	// ----------------------------------------------- End Data members ------------------------------------------
-
-	// --------------------------------------------------- Methods -----------------------------------------------
-	// --------------------------------------------------------------------
+	
 	// Use this for initialization.
 	void Start() 
 	{
 		prefab = Resources.Load("laser_impulse_projectile_001") as GameObject;
 		audioSource = GetComponent<AudioSource>();
 	}
-	// --------------------------------------------------------------------
+	
 	void FixedUpdate()
 	{
         if (GameManager.Instance.isPaused)
-        {
             return;
-        }
 		// If Bip is not in range.
         if (!droneJammed && inChaseRange)
 		{
 			transform.rotation = Quaternion.LookRotation (target.position - transform.position);
 			if (isFiring == false)
-			{
 				StartCoroutine ("FireLaserCo");
-			}
 		}
 	}
-	// --------------------------------------------------------------------
+	
 	public IEnumerator FireLaserCo()
 	{
 		isFiring = true;
@@ -55,7 +45,7 @@ public class DroneLaser : MonoBehaviour
 		FireLaser();
 		isFiring = false;
 	}
-	// --------------------------------------------------------------------
+	
 	// Fire the laser at poor Bip.
 	public void FireLaser()
 	{
@@ -77,6 +67,4 @@ public class DroneLaser : MonoBehaviour
 		// Play the sound. 
 		audioSource.Play();
 	}
-	// --------------------------------------------------------------------
-	// --------------------------------------------------- End Methods --------------------------------------------
 }

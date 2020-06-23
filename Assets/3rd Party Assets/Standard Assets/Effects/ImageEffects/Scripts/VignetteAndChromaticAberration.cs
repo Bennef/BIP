@@ -1,4 +1,4 @@
-using System;
+
 using UnityEngine;
 
 namespace UnityStandardAssets.ImageEffects
@@ -14,7 +14,6 @@ namespace UnityStandardAssets.ImageEffects
             Advanced = 1,
         }
 
-
         public AberrationMode mode = AberrationMode.Simple;
         public float intensity = 0.375f;                    // intensity == 0 disables pre pass (optimization)
         public float chromaticAberration = 0.2f;
@@ -27,13 +26,11 @@ namespace UnityStandardAssets.ImageEffects
         public Shader separableBlurShader;
         public Shader chromAberrationShader;
         
-        
         private Material m_VignetteMaterial;
         private Material m_SeparableBlurMaterial;
         private Material m_ChromAberrationMaterial;
 
-
-        public override bool CheckResources ()
+        public override bool CheckResources()
         {
             CheckSupport (false);
 
@@ -42,14 +39,13 @@ namespace UnityStandardAssets.ImageEffects
             m_ChromAberrationMaterial = CheckShaderAndCreateMaterial (chromAberrationShader, m_ChromAberrationMaterial);
 
             if (!isSupported)
-                ReportAutoDisable ();
+                ReportAutoDisable();
             return isSupported;
         }
 
-
         void OnRenderImage (RenderTexture source, RenderTexture destination)
         {
-            if ( CheckResources () == false)
+            if ( CheckResources() == false)
             {
                 Graphics.Blit (source, destination);
                 return;

@@ -71,7 +71,7 @@ public partial class LightShafts : MonoBehaviour
 	bool m_DX11Support = false;
 	bool m_MinRequirements = false;
 
-	void InitLUTs ()
+	void InitLUTs()
 	{
 		if (m_AttenuationCurveTex)
 			return;
@@ -84,12 +84,12 @@ public partial class LightShafts : MonoBehaviour
 			m_AttenuationCurve = new AnimationCurve(new Keyframe(0, 1), new Keyframe(1, 1));
 
 		if (m_AttenuationCurveTex)
-			UpdateLUTs ();
+			UpdateLUTs();
 	}
 	
-	public void UpdateLUTs ()
+	public void UpdateLUTs()
 	{
-		InitLUTs ();
+		InitLUTs();
 
 		if (m_AttenuationCurve == null)
 			return;
@@ -99,7 +99,7 @@ public partial class LightShafts : MonoBehaviour
 			float v = Mathf.Clamp (m_AttenuationCurve.Evaluate(i/255.0f), 0.0f, 1.0f);
 			m_AttenuationCurveTex.SetPixel (i, 0, new Color(v,v,v,v));
 		}
-		m_AttenuationCurveTex.Apply ();
+		m_AttenuationCurveTex.Apply();
 	}
 	
 	void InitRenderTexture(ref RenderTexture rt, int width, int height, int depth, RenderTextureFormat format, bool temp = true)

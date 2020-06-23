@@ -29,17 +29,17 @@ namespace UnityStandardAssets.ImageEffects
         private Material blurMaterial = null;
 
 
-        public override bool CheckResources () {
+        public override bool CheckResources() {
             CheckSupport (false);
 
             blurMaterial = CheckShaderAndCreateMaterial (blurShader, blurMaterial);
 
             if (!isSupported)
-                ReportAutoDisable ();
+                ReportAutoDisable();
             return isSupported;
         }
 
-        public void OnDisable () {
+        public void OnDisable() {
             if (blurMaterial)
                 DestroyImmediate (blurMaterial);
         }

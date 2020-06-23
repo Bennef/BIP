@@ -1,9 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public abstract class Mind : MonoBehaviour
 {
-    // ----------------------------------------------- Data members ----------------------------------------------
     [Tooltip("Movement Speed")]
     public float speed;				    // Movement speed.
     [Tooltip("The location this Actor will move towards")]
@@ -19,19 +17,14 @@ public abstract class Mind : MonoBehaviour
     public float MinDistance;           // Min Distance from Target.
     [Tooltip("Offset for Raycast origin. Rays will be cast from transform.position + raycastOffset")]
     public Vector3 raycastOffset;
-    // ----------------------------------------------- End Data members ------------------------------------------
-
-    // --------------------------------------------------- Methods -----------------------------------------------
-    // --------------------------------------------------------------------
-
-    // --------------------------------------------------------------------
+    
     // Calculate the rotation that Actor should turn.
     protected virtual Quaternion CalculateRotation()
     {
         // Return the new rotation for the actor.
         return Quaternion.LookRotation(CalculateLookAtDirection((target.position - transform.position).normalized));
     }
-    // --------------------------------------------------------------------
+    
     protected virtual Quaternion CalculateRotationOnlyY()
     {
         // Store a temp position so that the actor will only take into account horizontal distance between itself and Bip.
@@ -42,23 +35,20 @@ public abstract class Mind : MonoBehaviour
         // Return the new rotation for the actor.
         return Quaternion.LookRotation(direction);
     }
-    // --------------------------------------------------------------------
+    
     protected virtual Vector3 CalculateLookAtDirection(Vector3 direction)
     {
         if (shouldFollow)
         {
-            RaycastHit hit;
             // Build the positions for left/right ray origin point.
             Vector3 leftR = transform.forward - (transform.right);
             Vector3 rightR = transform.forward + (transform.right);
 
-            if (Physics.Raycast(transform.position + raycastOffset, leftR, out hit, ObstacleDistance, GameManager.Instance.ObstacleAvoidanceLayerMask, QueryTriggerInteraction.Ignore)
+            if (Physics.Raycast(transform.position + raycastOffset, leftR, out RaycastHit hit, ObstacleDistance, GameManager.Instance.ObstacleAvoidanceLayerMask, QueryTriggerInteraction.Ignore)
                 && Physics.Raycast(transform.position + raycastOffset, rightR, out hit, ObstacleDistance, GameManager.Instance.ObstacleAvoidanceLayerMask, QueryTriggerInteraction.Ignore))
             {
                 if (hit.transform != transform)
-                {
                     return direction;
-                }
             }
 
             // Check for forward raycast.
@@ -66,9 +56,7 @@ public abstract class Mind : MonoBehaviour
             if (Physics.Raycast(transform.position + raycastOffset, transform.forward, out hit, ObstacleDistance, GameManager.Instance.ObstacleAvoidanceLayerMask, QueryTriggerInteraction.Ignore))
             {
                 if (hit.transform != transform)
-                {
                     direction += hit.normal * 50;
-                }
             }
             // Check for left and right raycast.
             Debug.DrawRay(transform.position + raycastOffset, leftR * ObstacleDistance, Color.red);
@@ -85,10 +73,9 @@ public abstract class Mind : MonoBehaviour
         }
         return direction;
     }
-    // --------------------------------------------------------------------
+    
     protected virtual void Move()
     {
         // Handle locomotion in this method. Needs overriding.
-    }
-    // --------------------------------------------------- End Methods --------------------------------------------
+    }   
 }

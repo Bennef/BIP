@@ -50,16 +50,16 @@ namespace UnityStandardAssets.ImageEffects
         private bool  updateTexturesOnStartup = true;
 
 
-        new void Start ()
+        new void Start()
 		{
-            base.Start ();
+            base.Start();
             updateTexturesOnStartup = true;
         }
 
-        void Awake () {	}
+        void Awake() {	}
 
 
-        public override bool CheckResources ()
+        public override bool CheckResources()
 		{
             CheckSupport (mode == ColorCorrectionMode.Advanced);
 
@@ -83,11 +83,11 @@ namespace UnityStandardAssets.ImageEffects
             zCurveTex.wrapMode = TextureWrapMode.Clamp;
 
             if (!isSupported)
-                ReportAutoDisable ();
+                ReportAutoDisable();
             return isSupported;
         }
 
-        public void UpdateParameters ()
+        public void UpdateParameters()
 		{
             CheckResources(); // textures might not be created if we're tweaking UI while disabled
 
@@ -116,15 +116,15 @@ namespace UnityStandardAssets.ImageEffects
                     rgbDepthChannelTex.SetPixel ((int) Mathf.Floor(i*255.0f), 2, new Color(bCh,bCh,bCh) );
                 }
 
-                rgbChannelTex.Apply ();
-                rgbDepthChannelTex.Apply ();
-                zCurveTex.Apply ();
+                rgbChannelTex.Apply();
+                rgbDepthChannelTex.Apply();
+                zCurveTex.Apply();
             }
         }
 
-        void UpdateTextures ()
+        void UpdateTextures()
 		{
-            UpdateParameters ();
+            UpdateParameters();
         }
 
         void OnRenderImage (RenderTexture source, RenderTexture destination)
@@ -137,7 +137,7 @@ namespace UnityStandardAssets.ImageEffects
 
             if (updateTexturesOnStartup)
 			{
-                UpdateParameters ();
+                UpdateParameters();
                 updateTexturesOnStartup = false;
             }
 

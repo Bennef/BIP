@@ -7,14 +7,14 @@ public class Test : MonoBehaviour
 	int BurnoutID;
 
 	// Use this for initialization
-	void Start () 
+	void Start() 
 	{
 		BurnoutID = Shader.PropertyToID("_BurnOut");
 		children = GetComponentsInChildren<MeshRenderer>();
 	}
 	 
 	// Update is called once per frame
-	void Update () 
+	void Update() 
 	{
 		if (Input.GetKeyDown(KeyCode.A))
 		{

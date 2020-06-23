@@ -4,29 +4,15 @@ using UnityEngine;
 [AddComponentMenu("Image Effects/PixelBoy")]
 public class PixelBoy : MonoBehaviour
 {
-    // ----------------------------------------------- Data members ----------------------------------------------
     public int w = 720;
     int h;
-    // ----------------------------------------------- End Data members ------------------------------------------
-
-    // --------------------------------------------------- Methods -----------------------------------------------
-    // --------------------------------------------------------------------
-    protected void Start()
-    {
-        if (!SystemInfo.supportsImageEffects)
-        {
-            enabled = false;
-            return;
-        }
-    }
-    // --------------------------------------------------------------------
-    void Update() {
-
-        float ratio = ((float)Camera.main.pixelHeight / (float)Camera.main.pixelWidth);
-        h = Mathf.RoundToInt(w * ratio);
         
+    void Update()
+    { 
+        float ratio = ((float)Camera.main.pixelHeight / (float)Camera.main.pixelWidth);
+        h = Mathf.RoundToInt(w * ratio);  
     }
-    // --------------------------------------------------------------------
+    
     void OnRenderImage(RenderTexture source, RenderTexture destination)
     {
         source.filterMode = FilterMode.Point;
@@ -36,6 +22,4 @@ public class PixelBoy : MonoBehaviour
         Graphics.Blit(buffer, destination);
         RenderTexture.ReleaseTemporary(buffer);
     }
-    // --------------------------------------------------------------------
-    // --------------------------------------------------- End Methods --------------------------------------------
 }

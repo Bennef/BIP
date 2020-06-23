@@ -573,8 +573,8 @@ namespace UnityEditor.PostProcessing
                 {
                     // Global context menu
                     var menu = new GenericMenu();
-                    menu.AddItem(new GUIContent("Add Key At Position"), false, () => ContextMenuAddKey(hit, false));
-                    menu.AddItem(new GUIContent("Add Key On Curves"), false, () => ContextMenuAddKey(hit, true));
+                    menu.AddItem(new GUIContent("Add Key At Position"), false,() => ContextMenuAddKey(hit, false));
+                    menu.AddItem(new GUIContent("Add Key On Curves"), false,() => ContextMenuAddKey(hit, true));
                     menu.ShowAsContext();
                 }
 

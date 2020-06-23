@@ -7,7 +7,7 @@
 #include "UnityCG.cginc"
 #include "Common.cginc"
 
-// -----------------------------------------------------------------------------
+
 // Solver
 
 #define TAA_USE_STABLE_BUT_GHOSTY_VARIANT 0
@@ -195,7 +195,7 @@ OutputSolver FragSolver(VaryingsSolver input)
     return output;
 }
 
-// -----------------------------------------------------------------------------
+
 // Alpha clearance
 
 float4 FragAlphaClear(VaryingsDefault input) : SV_Target

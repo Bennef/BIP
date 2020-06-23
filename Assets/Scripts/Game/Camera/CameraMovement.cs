@@ -2,7 +2,6 @@
 
 public class CameraMovement : MonoBehaviour 
 {
-    // ----------------------------------------------- Data members ----------------------------------------------
     public bool isFixed;                // True if player can move camera.
     public Transform target;			// What the camera will be looking at
     public Vector3 startingPosition;    // The position of the camera when Bip starts a level.
@@ -33,10 +32,7 @@ public class CameraMovement : MonoBehaviour
     //public Material bipSkin;            // The value of the mesh renderer for Bip.
     public CharacterController charController;
     public bool shouldReset = true;            // True if the camera should reset it's position.
-    // ----------------------------------------------- End Data members -------------------------------------------
-
-    // --------------------------------------------------- Methods ------------------------------------------------
-    // --------------------------------------------------------------------
+    
     // Use this for initialization
     void Start() 
 	{
@@ -52,7 +48,7 @@ public class CameraMovement : MonoBehaviour
 		x = angles.y;
 		y = angles.x;
 	}
-	// --------------------------------------------------------------------
+	
 	void LateUpdate() 
 	{
 		if (target && !GameManager.Instance.isPaused && !charController.isDead && !isFixed)		// Does target exist? (Not Null)
@@ -89,7 +85,7 @@ public class CameraMovement : MonoBehaviour
             shouldReset = false;
         }
 	}
-    // --------------------------------------------------------------------
+    
     public void CameraMove()
     {
         // Offset the angles by the mouse, when the mouse is moved.
@@ -101,23 +97,19 @@ public class CameraMovement : MonoBehaviour
         x = ClampAngle(x, xMinLimit, xMaxLimit);
         y = ClampAngle(y, yMinLimit, yMaxLimit);
     }
-	// --------------------------------------------------------------------
+	
 	public float ClampAngle(float angle, float min, float max)
 	{
 		// Ensure that angle is between -360 and 360, because it is a float
 		if (angle < -360F)
-		{
 			angle += 360F;
-		}
 
 		if (angle > 360F)
-		{
 			angle -= 360F;
-		}
 		// Then call Mathf.Clamp to actually clamp the angle.
 		return Mathf.Clamp(angle, min, max);
 	}
-	// -------------------------------------------------------------------
+
 	void CameraCollision()
 	{
 		Vector3 normal, thickNormal;							// Normal of the cast collisions.
@@ -152,31 +144,22 @@ public class CameraMovement : MonoBehaviour
 		bool isThickPointIncorrect = transform.InverseTransformDirection(colPointThick - target.position).z > 0;
 		isThickPointIncorrect = isThickPointIncorrect || (currentColDistThin < currentColDistThick);
 		if (isThickPointIncorrect) 
-		{
 			currentColDist = currentColDistThin;
-		}
 
-		// if currentColDist is smaller than distance, zoom in
-		if (currentColDist < distance) 
-		{
+        // if currentColDist is smaller than distance, zoom in, otherwise, zoom out.
+        if (currentColDist < distance) 
 			distance = currentColDist;
-		}
 		else
-		{
-			// Otherwise, zoom out.
 			distance = Mathf.SmoothStep (distance, currentColDist, Time.deltaTime * 100 * Mathf.Max (distance * 0.1f, 0.1f));
-		}
 		// Clamp distance to our min and max values.
         distance = Mathf.Clamp(distance, distanceMin, distanceMax);
         // Move the camera to avoid going through objects!!!!
         transform.position = target.position + occRay.normalized * distance;
        	
         if (Vector3.Distance(target.position, colPoint) > Vector3.Distance(target.position, colPointRay))
-        {
 			transform.position = colPointRay;
-        } 
     }
-	// -------------------------------------------------------------------
+
     Vector3 GetCollisionSimple(Vector3 cameraOptPos, float radius, out Vector3 normal, bool pushByNormal)
     {
 		// Double Sphere Casting.
@@ -191,19 +174,13 @@ public class CameraMovement : MonoBehaviour
         // Dot product of transform.forward, and the ray.
         float dt = Vector3.Dot(transform.forward, occRay);
         if (dt < 0)
-        {
 			occRay *= -1;
-        }
        
         // Project the sphere in an opposite direction of the desired character->camera vector to get some space for the real spherecast
         if (Physics.SphereCast(origin, radius, occRay.normalized, out occHit, farEnough, layerMask))
-        {
-            origin = origin + occRay.normalized * occHit.distance;
-        }
+            origin += occRay.normalized * occHit.distance;
         else
-        {
             origin += occRay.normalized * farEnough;
-        }
        
         // Do final spherecast with offset origin
         occRay = origin - cameraOptPos;
@@ -212,13 +189,9 @@ public class CameraMovement : MonoBehaviour
             normal = occHit.normal;
 
             if (pushByNormal)
-            {
 				return occHit.point + occHit.normal*radius;
-            }
             else
-            {
 				return occHit.point;
-            }
         }
         else
         {
@@ -226,7 +199,7 @@ public class CameraMovement : MonoBehaviour
             return cameraOptPos;
         }
     }
-	// -------------------------------------------------------------------
+
     Vector3 GetCollision(Vector3 cameraOptPos)
     {
 		// Local reference to target.position
@@ -243,14 +216,12 @@ public class CameraMovement : MonoBehaviour
        	// or we just return the camera position we passed in.
         return cameraOptPos;
     }
-    // -------------------------------------------------------------------
+
     void ApplyTransparencyToBip()
     {
         if (distance < 7)
         {
-            
+            // TO DO
         }
     }
-    // -------------------------------------------------------------------
-    // --------------------------------------------------- End Methods ---------------------------------------------
 }

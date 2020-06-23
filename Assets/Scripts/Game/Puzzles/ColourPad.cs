@@ -3,7 +3,6 @@ using System.Collections;
 
 public class ColourPad : MonoBehaviour
 {
-    // ----------------------------------------------- Data members ----------------------------------------------
     public bool isActive, isCorrect, switchDown;               
     private Transform switchPad;           // The switch that corresponds with this trigger.
     public MeshRenderer whitePattern, greenPattern, redPattern;
@@ -14,15 +13,9 @@ public class ColourPad : MonoBehaviour
     public PlayerHealth bipHealth;
     public ColourPadPuzzle colourPadPuzzle;
     public AlarmLight alarmLight;
-    // ----------------------------------------------- End Data members ------------------------------------------
+    
+    void Awake() => aSource = GetComponent<AudioSource>();
 
-    // --------------------------------------------------- Methods -----------------------------------------------
-    // --------------------------------------------------------------------
-    void Awake()
-    {
-        aSource = GetComponent<AudioSource>();
-    }
-    // --------------------------------------------------------------------
     // Use this for initialisation.
     void Start()
     {
@@ -31,11 +24,11 @@ public class ColourPad : MonoBehaviour
         pattern.transform.localPosition = patternRaisedPosition;
         whitePattern.enabled = true;
     }
-    // --------------------------------------------------------------------
+    
     void OnTriggerEnter(Collider col)
     {
         // If the player is stepping on this switch or a moveable object is put on it.
-        if ((col.transform.tag == "Player" || col.transform.tag == "Moveable"))
+        if ((col.transform.CompareTag("Player") || col.transform.CompareTag("Moveable")))
         {
             if (!switchDown)
             {
@@ -50,7 +43,7 @@ public class ColourPad : MonoBehaviour
                 colourPadPuzzle.correctCount++;
             }
             // Incorrect cube placed.
-            if (col.transform.tag == "Moveable" && col.transform.name != partnerCube.name)
+            if (col.transform.CompareTag("Moveable") && col.transform.name != partnerCube.name)
             {
                 SetPatternColour(whitePattern, redPattern);
                 otherCube = col.gameObject;
@@ -59,11 +52,11 @@ public class ColourPad : MonoBehaviour
             LowerButtonAndPattern();
         }
     }
-    // --------------------------------------------------------------------
+    
     void OnTriggerExit(Collider col)
     {
         // If the player or object leaves this switch.
-        if ((col.transform.tag == "Player" || col.transform.tag == "Moveable") && switchDown)
+        if ((col.transform.CompareTag("Player") || col.transform.CompareTag("Moveable")) && switchDown)
         {
             switchDown = false;
             switchPad.transform.localPosition = raisedPosition;   // Set switch to raised position.
@@ -80,23 +73,23 @@ public class ColourPad : MonoBehaviour
             }
         }
     }
-    // --------------------------------------------------------------------
+    
     void OnTriggerStay(Collider col)
     {
         // If the player is stepping on this switch or a moveable object is put on it.
-        if (col.transform.tag == "Player" || col.transform.tag == "Moveable")
+        if (col.transform.CompareTag("Player") || col.transform.CompareTag("Moveable"))
         {
             switchDown = true;
             LowerButtonAndPattern();
         }
     }
-    // --------------------------------------------------------------------
+    
     public IEnumerator Explode()
     {
         aSource.clip = buzzer;
         aSource.volume = 0.2f;
         aSource.Play();
-        alarmLight.alarmOn = true;
+        alarmLight.AlarmOn = true;
         yield return new WaitForSeconds(0.7f);
         // Replace cube with explody cube.
         GameObject splody = (GameObject)Instantiate(Resources.Load("Cube Clear Fragmented"));
@@ -109,30 +102,28 @@ public class ColourPad : MonoBehaviour
         yield return new WaitForSeconds(1f);
         SetPatternColour(redPattern, whitePattern);
         RaiseButtonAndPattern();
-        alarmLight.alarmOn = false;
+        alarmLight.AlarmOn = false;
         GameManager.Instance.ResetPositions();
         Destroy(splody);
         colourPadPuzzle.correctCount = 0;
     }
-    // --------------------------------------------------------------------
+    
     void SetPatternColour(MeshRenderer oldColour, MeshRenderer newColour)
     {
         newColour.enabled = true;
         oldColour.enabled = false;
         pattern = newColour.gameObject;
     }
-    // --------------------------------------------------------------------
+    
     void RaiseButtonAndPattern()
     {
         switchPad.transform.localPosition = raisedPosition;   // Set switch to raised position.
         pattern.transform.localPosition = patternRaisedPosition;
     }
-    // --------------------------------------------------------------------
+
     void LowerButtonAndPattern()
     {
         switchPad.transform.localPosition = pressedPosition;   // Set switch to lower position.
         pattern.transform.localPosition = patternPressedPosition;
-    }
-    // --------------------------------------------------------------------
-    // --------------------------------------------------- End Methods --------------------------------------------
+    }   
 }

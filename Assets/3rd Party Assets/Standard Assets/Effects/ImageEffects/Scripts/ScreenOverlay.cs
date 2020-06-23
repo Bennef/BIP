@@ -25,14 +25,14 @@ namespace UnityStandardAssets.ImageEffects
         private Material overlayMaterial = null;
 
 
-        public override bool CheckResources ()
+        public override bool CheckResources()
 		{
             CheckSupport (false);
 
             overlayMaterial = CheckShaderAndCreateMaterial (overlayShader, overlayMaterial);
 
             if	(!isSupported)
-                ReportAutoDisable ();
+                ReportAutoDisable();
             return isSupported;
         }
 

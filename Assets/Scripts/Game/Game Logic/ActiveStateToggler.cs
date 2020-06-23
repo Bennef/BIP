@@ -1,16 +1,6 @@
 ﻿using UnityEngine;
 
-public class ActiveStateToggler : MonoBehaviour {
-    // ----------------------------------------------- Data members ----------------------------------------------
-
-
-    // ----------------------------------------------- End Data members ------------------------------------------
-
-    // --------------------------------------------------- Methods -----------------------------------------------
-    // --------------------------------------------------------------------
-    public void ToggleActive () {
-		gameObject.SetActive (!gameObject.activeSelf);
-	}
+public class ActiveStateToggler : MonoBehaviour 
+{
+    public void ToggleActive() => gameObject.SetActive(!gameObject.activeSelf);
 }
-// --------------------------------------------------------------------
-// --------------------------------------------------- End Methods --------------------------------------------

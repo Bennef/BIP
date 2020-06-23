@@ -195,7 +195,7 @@ float4 frag(v2f i) : COLOR
 
 	#ifdef SHADER_API_D3D11
 		float4 c = 0;
-		if(depth > near/rayLength)
+		if (depth > near/rayLength)
 			c = SampleLighting(unwrapped, depth).xyzz;
 	#else
 		float4 c = step(near/rayLength, depth);

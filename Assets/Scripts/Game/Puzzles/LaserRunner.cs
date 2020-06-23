@@ -1,21 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System;
+﻿using UnityEngine;
 
 public class LaserRunner : MonoBehaviour
 {
-    // ----------------------------------------------- Data members ----------------------------------------------
     public bool running;
     public float timer = 0f;
     public LaserSequence[] lasers;
     public PressableSwitch pad;
     public AudioSource tickTock, music;
     public CharacterController bip;
-    // ----------------------------------------------- End Data members ------------------------------------------
-
-    // --------------------------------------------------- Methods -----------------------------------------------
-    // --------------------------------------------------------------------
+    
     // Update is called once per frame
     void Update()
     {
@@ -24,21 +17,17 @@ public class LaserRunner : MonoBehaviour
             timer += Time.deltaTime;
             
             if (timer >= 15f || bip.isDead)
-            {
                 EndSequence();
-            }
         }
 
         if (pad.hasBeenPressed && !running)
         {
             running = true;
             if (running)
-            {
                 RunSequence(); 
-            }
         }
     }
-    // --------------------------------------------------------------------
+    
     public void EndSequence()
     {
         timer = 0f;
@@ -58,7 +47,7 @@ public class LaserRunner : MonoBehaviour
             laser.beam.gameObject.SetActive(true);
         }
     }
-    // --------------------------------------------------------------------
+    
     public void RunSequence()
     {
         if (tickTock != null)
@@ -68,10 +57,6 @@ public class LaserRunner : MonoBehaviour
         }
 
         foreach (LaserSequence laser in lasers)
-        {
             laser.StartTheSequence();
-        }
     }
-    // --------------------------------------------------------------------
-    // --------------------------------------------------- End Methods --------------------------------------------
 }

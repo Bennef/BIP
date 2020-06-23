@@ -2,11 +2,9 @@
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections;
-using System.Collections.Generic;
 
 public class PanelManager : MonoBehaviour
 {
-    // ----------------------------------------------- Data members ----------------------------------------------
     public Animator initiallyOpen;
 
 	private int m_OpenParameterId;
@@ -15,10 +13,7 @@ public class PanelManager : MonoBehaviour
 
 	const string k_OpenTransitionName = "Open";
 	const string k_ClosedStateName = "Closed";
-    // ----------------------------------------------- End Data members ------------------------------------------
-
-    // --------------------------------------------------- Methods -----------------------------------------------
-    // --------------------------------------------------------------------
+    
     public void OnEnable()
 	{
 		m_OpenParameterId = Animator.StringToHash (k_OpenTransitionName);
@@ -28,7 +23,7 @@ public class PanelManager : MonoBehaviour
 
 		OpenPanel(initiallyOpen);
 	}
-    // --------------------------------------------------------------------
+    
     public void OpenPanel (Animator anim)
 	{
 		if (m_Open == anim)
@@ -50,20 +45,20 @@ public class PanelManager : MonoBehaviour
 
 		SetSelected(go);
 	}
-    // --------------------------------------------------------------------
+    
     static GameObject FindFirstEnabledSelectable (GameObject gameObject)
 	{
 		GameObject go = null;
 		var selectables = gameObject.GetComponentsInChildren<Selectable> (true);
 		foreach (var selectable in selectables) {
-			if (selectable.IsActive () && selectable.IsInteractable ()) {
+			if (selectable.IsActive() && selectable.IsInteractable()) {
 				go = selectable.gameObject;
 				break;
 			}
 		}
 		return go;
 	}
-    // --------------------------------------------------------------------
+    
     public void CloseCurrent()
 	{
 		if (m_Open == null)
@@ -74,7 +69,7 @@ public class PanelManager : MonoBehaviour
 		StartCoroutine(DisablePanelDeleyed(m_Open));
 		m_Open = null;
 	}
-    // --------------------------------------------------------------------
+    
     IEnumerator DisablePanelDeleyed(Animator anim)
 	{
 		bool closedStateReached = false;
@@ -92,11 +87,6 @@ public class PanelManager : MonoBehaviour
 		if (wantToClose)
 			anim.gameObject.SetActive(false);
 	}
-    // --------------------------------------------------------------------
-    private void SetSelected(GameObject go)
-	{
-		EventSystem.current.SetSelectedGameObject(go);
-	}
-    // --------------------------------------------------------------------
-    // --------------------------------------------------- End Methods --------------------------------------------
+    
+    private void SetSelected(GameObject go) => EventSystem.current.SetSelectedGameObject(go);
 }

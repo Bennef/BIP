@@ -3,8 +3,7 @@ using System.Collections;
 
 public class Drone : MonoBehaviour 
 {
-	// ----------------------------------------------- Data members ----------------------------------------------
-	// Handles drone behaviour. - needs work - BF	
+	// Handles drone behaviour. 
 	public Transform target;			// Bip will be the target.
 	public float hSpeed;				// Speed when chasing.
 	public float vSpeed;				// Speed of hovering.
@@ -21,19 +20,16 @@ public class Drone : MonoBehaviour
 	GameObject prefab;					// The laser pulse.
 	private float angle;				// For checking if drone is looking at bip.
 	private float lastShotTime = float.MinValue;
-	// ----------------------------------------------- End Data members ------------------------------------------
-
-	// --------------------------------------------------- Methods -----------------------------------------------
-	// --------------------------------------------------------------------
+	
 	// Use this for initialization.
 	void Start() 
 	{
 		tempPosition = transform.position;
 		prefab = Resources.Load("laser_impulse_projectile_001") as GameObject;
 	}
-	// --------------------------------------------------------------------
+	
 	// Update is called once per frame
-	void Update () 
+	void Update() 
 	{
 		//CheckIfJammed();
 		//Work out the direction you need to be facing to be moving towards the target
@@ -51,7 +47,7 @@ public class Drone : MonoBehaviour
 			//transform.Translate (Vector3.forward * Time.deltaTime * hSpeed);
 		}
 	}
-	// --------------------------------------------------------------------
+	
 	void FixedUpdate()
 	{
 		// If Bip is not in range.
@@ -69,12 +65,10 @@ public class Drone : MonoBehaviour
 		{
 			//if (dot > 0.7f && Time.time > lastShotTime * (3.0f / fireRate)) 
 			if (isFiring == false)
-			{
 				StartCoroutine("FireLaserCo");
-			}
 		}
 	}
-	// --------------------------------------------------------------------
+	
 	public IEnumerator FireLaserCo()
 	{
 		isFiring = true;
@@ -83,34 +77,30 @@ public class Drone : MonoBehaviour
 		FireLaser();
 		isFiring = false;
 	}
-	// --------------------------------------------------------------------
+	
 	// If Bip is close enough, he is in range.
 	void OnTriggerEnter(Collider c)
 	{
-		if(c.tag == "Player")
+		if (c.CompareTag("Player"))
 		{
 
 			// Start chasing bip.
-			if(c.gameObject != null)
-			{
+			if (c.gameObject != null)
 				inChaseRange = true;
-			}
 		}
 	}
-	// --------------------------------------------------------------------
+	
 	// If Bip is out of range.
 	void OnTriggerExit(Collider c)
 	{
-		if(c.tag == "Player")
+		if (c.CompareTag("Player"))
 		{
 			// Stop chasing bip.
-			if(c.gameObject != null)
-			{
+			if (c.gameObject != null)
 				inChaseRange = false;
-			}
 		}
 	}
-	// --------------------------------------------------------------------
+	
 	// Jam drone if laser is jammed.
 	//void CheckIfJammed()
 	//{
@@ -123,7 +113,7 @@ public class Drone : MonoBehaviour
 		//	droneJammed = false;
 		//}
 	//}
-	// --------------------------------------------------------------------
+	
 	// Fire the laser at poor Bip.
 	public void FireLaser()
 	{
@@ -142,6 +132,4 @@ public class Drone : MonoBehaviour
 		// Make the damn thing fly towards target.
 		rb.velocity = transform.forward * 40;
 	}
-	// --------------------------------------------------------------------
-	// --------------------------------------------------- End Methods --------------------------------------------
 }

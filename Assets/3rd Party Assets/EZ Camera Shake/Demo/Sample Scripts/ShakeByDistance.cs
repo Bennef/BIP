@@ -21,7 +21,7 @@ public class ShakeByDistance : MonoBehaviour
         _shakeInstance = CameraShaker.Instance.StartShake(2, 14, 0);
     }
 
-	void Update ()
+	void Update()
     {
         //Get the distance from the player to this object.
         float currentDistance = Vector3.Distance(Player.transform.position, this.transform.position);

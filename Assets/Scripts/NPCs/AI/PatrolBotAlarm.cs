@@ -1,34 +1,23 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class PatrolBotAlarm : MonoBehaviour 
 {
-    // ----------------------------------------------- Data members ----------------------------------------------
     public PatrolBotMind mind;
-    // ----------------------------------------------- End Data members ------------------------------------------
+    
+    void Awake() => mind = transform.GetComponentInParent<PatrolBotMind>();
 
-    // --------------------------------------------------- Methods -----------------------------------------------
-    // --------------------------------------------------------------------
-    void Awake()
-    {
-        mind = transform.GetComponentInParent<PatrolBotMind>();
-    }
-    // --------------------------------------------------------------------
     void OnTriggerEnter(Collider other)
     {
-        if(other.tag == Tags.Player)
+        if (other.CompareTag(Tags.Player))
         {
             mind.inLineOfSight = true;
 			mind.aSrc.PlayOneShot(mind.alarm);
         }
     }
-    // --------------------------------------------------------------------
+    
     void OnTriggerExit(Collider other)
     {
-        if(other.tag == Tags.Player)
-        {
+        if (other.CompareTag(Tags.Player))
             mind.inLineOfSight = false;
-        }
-    }
-    // --------------------------------------------------------------------
+    }   
 }

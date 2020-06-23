@@ -3,7 +3,6 @@ using System.Collections;
 
 public class Fade : MonoBehaviour
 {
-    // ----------------------------------------------- Data members ----------------------------------------------
     public float changeTimeSeconds = 5;
     public float startAlpha = 0;
     public float endAlpha = 1;
@@ -12,10 +11,7 @@ public class Fade : MonoBehaviour
     float timeSoFar = 0;
     bool fading = false;
     CanvasGroup canvasGroup;
-    // ----------------------------------------------- End Data members ------------------------------------------
-
-    // --------------------------------------------------- Methods -----------------------------------------------
-    // --------------------------------------------------------------------
+    
     void Start()
     {
         canvasGroup = this.GetComponent<CanvasGroup>();
@@ -25,7 +21,7 @@ public class Fade : MonoBehaviour
             this.enabled = false;
         }
     }
-    // --------------------------------------------------------------------
+    
     public void FadeIn()
     {
         startAlpha = 0;
@@ -34,7 +30,7 @@ public class Fade : MonoBehaviour
         fading = true;
         StartCoroutine(FadeCoroutine());
     }
-    // --------------------------------------------------------------------
+    
     public void FadeOut()
     {
         startAlpha = 1;
@@ -43,7 +39,7 @@ public class Fade : MonoBehaviour
         fading = true;
         StartCoroutine(FadeCoroutine());
     }
-    // --------------------------------------------------------------------
+    
     IEnumerator FadeCoroutine()
     {
         changeRate = (endAlpha - startAlpha) / changeTimeSeconds;
@@ -59,18 +55,10 @@ public class Fade : MonoBehaviour
                 yield break;
             }
             else
-            {
                 SetAlpha(canvasGroup.alpha + (changeRate * Time.deltaTime));
-            }
-
             yield return null;
         }
     }
-    // --------------------------------------------------------------------
-    public void SetAlpha(float alpha)
-    {
-        canvasGroup.alpha = Mathf.Clamp(alpha, 0, 1);
-    }
-    // --------------------------------------------------------------------
-    // --------------------------------------------------- End Methods --------------------------------------------
+    
+    public void SetAlpha(float alpha) => canvasGroup.alpha = Mathf.Clamp(alpha, 0, 1);
 }

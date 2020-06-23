@@ -116,7 +116,7 @@ namespace ProBuilder2.Examples
 		{
 			audioSource = GetComponent<AudioSource>();
 
-			if( audioSource.clip == null )
+			if ( audioSource.clip == null )
 				missingClipWarning.SetActive(true);
 
 			// Create a new icosphere.
@@ -180,7 +180,7 @@ namespace ProBuilder2.Examples
 #endif
 
 
-			if( bounceWaveform )
+			if ( bounceWaveform )
 				waveform.transform.parent = icoTransform;
 
 			audioSource.Play();
@@ -233,7 +233,7 @@ namespace ProBuilder2.Examples
 			}
 
 			// Ring rotation
-			if( rotateWaveformRing )
+			if ( rotateWaveformRing )
 			{
 				Vector3 rot = waveform.transform.localRotation.eulerAngles;
 

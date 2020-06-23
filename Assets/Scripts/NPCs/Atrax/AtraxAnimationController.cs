@@ -2,14 +2,10 @@
 
 public class AtraxAnimationController : MonoBehaviour
 {
-    // ----------------------------------------------- Data members ----------------------------------------------
     private new Rigidbody rigidbody;
     private Animator anim;
     private AtraxStates state;
-    // ----------------------------------------------- End Data members ------------------------------------------
-
-    // --------------------------------------------------- Methods -----------------------------------------------
-    // --------------------------------------------------------------------
+    
     // Use this for initialization
     void Awake()
     {
@@ -17,7 +13,7 @@ public class AtraxAnimationController : MonoBehaviour
         anim = GetComponent<Animator>();
         state = GetComponent<AtraxStates>();
     }
-    // --------------------------------------------------------------------
+    
     // Update is called once per frame
     void Update()
     {
@@ -31,56 +27,24 @@ public class AtraxAnimationController : MonoBehaviour
         //    StopMovingState();
         //}
     }
-    // --------------------------------------------------------------------
-    public void StartMovingState()
-    {
-        anim.SetBool(state.isWalkingBool, true);
-    }
-    // --------------------------------------------------------------------
-    public void StopMovingState()
-    {
-        anim.SetBool(state.isWalkingBool, false);
-    }
-    // --------------------------------------------------------------------
-    public void StartSwipeState()
-    {
-        anim.SetBool(state.isSwipingBool, true);
-    }
-    // --------------------------------------------------------------------
-    public void StopSwipeState()
-    {
-        anim.SetBool(state.isSwipingBool, false);
-    }
-    // --------------------------------------------------------------------
-    public void StartJumpState()
-    {
-        anim.SetBool(state.isJumpingBool, true);
-    }
-    // --------------------------------------------------------------------
-    public void StopJumpState()
-    {
-        anim.SetBool(state.isJumpingBool, false);
-    }
-    // --------------------------------------------------------------------
-    public void StartTurningLeftState()
-    {
-        anim.SetBool(state.isJumpingBool, true);
-    }
-    // --------------------------------------------------------------------
-    public void StopTurningLeftState()
-    {
-        anim.SetBool(state.isJumpingBool, false);
-    }
-    // --------------------------------------------------------------------
-    public void StartTurningRightState()
-    {
-        anim.SetBool(state.isJumpingBool, true);
-    }
-    // --------------------------------------------------------------------
-    public void StopTurningRightState()
-    {
-        anim.SetBool(state.isJumpingBool, false);
-    }
-    // --------------------------------------------------------------------
-    // --------------------------------------------------- End Methods --------------------------------------------
+    
+    public void StartMovingState() => anim.SetBool(state.isWalkingBool, true);
+    
+    public void StopMovingState() => anim.SetBool(state.isWalkingBool, false);
+    
+    public void StartSwipeState() => anim.SetBool(state.isSwipingBool, true);
+
+    public void StopSwipeState() => anim.SetBool(state.isSwipingBool, false);
+    
+    public void StartJumpState() => anim.SetBool(state.isJumpingBool, true);
+    
+    public void StopJumpState() => anim.SetBool(state.isJumpingBool, false);
+    
+    public void StartTurningLeftState() => anim.SetBool(state.isJumpingBool, true);
+    
+    public void StopTurningLeftState() => anim.SetBool(state.isJumpingBool, false);
+    
+    public void StartTurningRightState() => anim.SetBool(state.isJumpingBool, true);
+    
+    public void StopTurningRightState() => anim.SetBool(state.isJumpingBool, false);
 }

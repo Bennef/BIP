@@ -636,7 +636,7 @@ Shader "Hidden/Post FX/Screen Space Reflection"
 
         // Empirically based on our filter:
         //   Mip   | Pixels
-        //  --------------
+        //  -----
         //    0    |   1          no filter, so single pixel
         //    1    |   17         2r + 1 filter applied once, grabbing from pixels r away in either direction (r=8, four samples times stride of 2)
         //    2    |   50         2r + 1 filter applied on double size pixels, and each of those pixels had reached another r out to the side 2(2r + 1) + m_1

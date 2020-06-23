@@ -10,7 +10,7 @@ public class DropMe : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointe
 	private Color normalColor;
 	public Color highlightColor = Color.yellow;
 	
-	public void OnEnable ()
+	public void OnEnable()
 	{
 		if (containerImage != null)
 			normalColor = containerImage.color;

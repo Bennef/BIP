@@ -39,7 +39,7 @@ CGPROGRAM
 #ifndef     FXAA_HLSL_4
     #define FXAA_HLSL_4 0
 #endif    
-/*--------------------------------------------------------------------------*/
+/*--*/
 #if FXAA_GLSL_120
     // Requires,
     //  #version 120
@@ -55,7 +55,7 @@ CGPROGRAM
     #define FxaaTexLod0(t, p) texture2DLod(t, p, 0.0)
     #define FxaaTexOff(t, p, o, r) texture2DLodOffset(t, p, 0.0, o)
 #endif
-/*--------------------------------------------------------------------------*/
+/*--*/
 #if FXAA_GLSL_130
     // Requires "#version 130" or better
     #define int2 ivec2
@@ -69,7 +69,7 @@ CGPROGRAM
     #define FxaaTexLod0(t, p) textureLod(t, p, 0.0)
     #define FxaaTexOff(t, p, o, r) textureLodOffset(t, p, 0.0, o)
 #endif
-/*--------------------------------------------------------------------------*/
+/*--*/
 #if FXAA_HLSL_3
     #define int2 float2
     #define FxaaInt2 float2
@@ -79,7 +79,7 @@ CGPROGRAM
     #define FxaaTexLod0(t, p) tex2Dlod(t, float4(p, 0.0, 0.0))
     #define FxaaTexOff(t, p, o, r) tex2Dlod(t, float4(p + (o * r), 0, 0))
 #endif
-/*--------------------------------------------------------------------------*/
+/*--*/
 #if FXAA_HLSL_4
     #define FxaaInt2 int2
     #define FxaaFloat2 float2
@@ -98,9 +98,9 @@ CGPROGRAM
 float4 FxaaVertexShader(
 float2 pos,                 // Both x and y range {-1.0 to 1.0 across screen}.
 float2 rcpFrame) {          // {1.0/frameWidth, 1.0/frameHeight}
-/*--------------------------------------------------------------------------*/
+/*--*/
     #define FXAA_SUBPIX_SHIFT (1.0/4.0)
-/*--------------------------------------------------------------------------*/
+/*--*/
     float4 posPos;
     posPos.xy = (pos.xy * 0.5) + 0.5;
     posPos.zw = posPos.xy - (rcpFrame * (0.5 + FXAA_SUBPIX_SHIFT));
@@ -115,31 +115,31 @@ float3 FxaaPixelShader(
 float4 posPos,       // Output of FxaaVertexShader interpolated across screen.
 FxaaTex tex,         // Input texture.
 float2 rcpFrame) {   // Constant {1.0/frameWidth, 1.0/frameHeight}.
-/*--------------------------------------------------------------------------*/
+/*--*/
     #define FXAA_REDUCE_MIN   (1.0/128.0)
     #define FXAA_REDUCE_MUL   (1.0/8.0)
     #define FXAA_SPAN_MAX     8.0
-/*--------------------------------------------------------------------------*/
+/*--*/
     float3 rgbNW = FxaaTexLod0(tex, posPos.zw).xyz;
     float3 rgbNE = FxaaTexOff(tex, posPos.zw, FxaaInt2(1,0), rcpFrame.xy).xyz;
     float3 rgbSW = FxaaTexOff(tex, posPos.zw, FxaaInt2(0,1), rcpFrame.xy).xyz;
     float3 rgbSE = FxaaTexOff(tex, posPos.zw, FxaaInt2(1,1), rcpFrame.xy).xyz;
     float3 rgbM  = FxaaTexLod0(tex, posPos.xy).xyz;
-/*--------------------------------------------------------------------------*/
+/*--*/
     float3 luma = float3(0.299, 0.587, 0.114);
     float lumaNW = dot(rgbNW, luma);
     float lumaNE = dot(rgbNE, luma);
     float lumaSW = dot(rgbSW, luma);
     float lumaSE = dot(rgbSE, luma);
     float lumaM  = dot(rgbM,  luma);
-/*--------------------------------------------------------------------------*/
+/*--*/
     float lumaMin = min(lumaM, min(min(lumaNW, lumaNE), min(lumaSW, lumaSE)));
     float lumaMax = max(lumaM, max(max(lumaNW, lumaNE), max(lumaSW, lumaSE)));
-/*--------------------------------------------------------------------------*/
+/*--*/
     float2 dir; 
     dir.x = -((lumaNW + lumaNE) - (lumaSW + lumaSE));
     dir.y =  ((lumaNW + lumaSW) - (lumaNE + lumaSE));
-/*--------------------------------------------------------------------------*/
+/*--*/
     float dirReduce = max(
         (lumaNW + lumaNE + lumaSW + lumaSE) * (0.25 * FXAA_REDUCE_MUL),
         FXAA_REDUCE_MIN);
@@ -147,7 +147,7 @@ float2 rcpFrame) {   // Constant {1.0/frameWidth, 1.0/frameHeight}.
     dir = min(FxaaFloat2( FXAA_SPAN_MAX,  FXAA_SPAN_MAX), 
           max(FxaaFloat2(-FXAA_SPAN_MAX, -FXAA_SPAN_MAX), 
           dir * rcpDirMin)) * rcpFrame.xy;
-/*--------------------------------------------------------------------------*/
+/*--*/
     float3 rgbA = (1.0/2.0) * (
         FxaaTexLod0(tex, posPos.xy + dir * (1.0/3.0 - 0.5)).xyz +
         FxaaTexLod0(tex, posPos.xy + dir * (2.0/3.0 - 0.5)).xyz);
@@ -155,7 +155,7 @@ float2 rcpFrame) {   // Constant {1.0/frameWidth, 1.0/frameHeight}.
         FxaaTexLod0(tex, posPos.xy + dir * (0.0/3.0 - 0.5)).xyz +
         FxaaTexLod0(tex, posPos.xy + dir * (3.0/3.0 - 0.5)).xyz);
     float lumaB = dot(rgbB, luma);
-    if((lumaB < lumaMin) || (lumaB > lumaMax)) return rgbA;
+    if ((lumaB < lumaMin) || (lumaB > lumaMax)) return rgbA;
     return rgbB; }
 
 

@@ -440,7 +440,7 @@ public class DirectorHelper
         FieldInfo[] fields = getValidFields(component);
 
         List<MemberInfo> members = new List<MemberInfo>();
-        if(component.GetType() == typeof(Transform))
+        if (component.GetType() == typeof(Transform))
         {
             foreach (PropertyInfo propertyInfo in properties)
             {

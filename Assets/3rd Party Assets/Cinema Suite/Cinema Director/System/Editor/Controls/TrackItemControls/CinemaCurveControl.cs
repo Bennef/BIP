@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using CinemaDirector;
@@ -21,7 +20,7 @@ public class CinemaCurveControl : CinemaCurveClipItemControl
 
     protected virtual void CinemaCurveControl_CurvesChanged(object sender, CurveClipWrapperEventArgs e)
     {
-        if(e.wrapper == null) return;
+        if (e.wrapper == null) return;
         CinemaClipCurveWrapper wrapper = e.wrapper;
         CinemaClipCurve clipCurve = wrapper.Behaviour as CinemaClipCurve;
         if (clipCurve == null) return;

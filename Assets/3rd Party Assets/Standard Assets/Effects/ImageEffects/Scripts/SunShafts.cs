@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace UnityStandardAssets.ImageEffects
@@ -21,7 +20,6 @@ namespace UnityStandardAssets.ImageEffects
             Add = 1,
         }
 
-
         public SunShaftsResolution resolution = SunShaftsResolution.Normal;
         public ShaftsScreenBlendMode screenBlendMode = ShaftsScreenBlendMode.Screen;
 
@@ -43,14 +41,14 @@ namespace UnityStandardAssets.ImageEffects
         private Material simpleClearMaterial;
 
 
-        public override bool CheckResources () {
+        public override bool CheckResources() {
             CheckSupport (useDepthTexture);
 
             sunShaftsMaterial = CheckShaderAndCreateMaterial (sunShaftsShader, sunShaftsMaterial);
             simpleClearMaterial = CheckShaderAndCreateMaterial (simpleClearShader, simpleClearMaterial);
 
             if (!isSupported)
-                ReportAutoDisable ();
+                ReportAutoDisable();
             return isSupported;
         }
 

@@ -4,7 +4,7 @@ http://www.digitalruby.com
 Version: 1.1
 
 Change Log
-----------
+-
 1.1: Bug fixes
 
 Magic Mirror is a very realistic mirror effect for Unity.

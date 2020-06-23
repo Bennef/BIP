@@ -75,7 +75,7 @@ public class F3DPulsewave : MonoBehaviour
         isFadeOut = true;
     }
 
-    void Update ()
+    void Update()
     {
         // Enabled state
         if (isEnabled)
@@ -97,7 +97,7 @@ public class F3DPulsewave : MonoBehaviour
                     isEnabled = false;
 
                     // Reset the sequence in case of the debug loop flag
-                    if(DebugLoop)
+                    if (DebugLoop)
                     {
                         OnDespawned();
                         OnSpawned();

@@ -63,7 +63,7 @@ namespace MySpecialNamespace.Actions
 		{
 			MakeFacesDoubleSided instance = pb_EditorToolbarLoader.GetInstance<MakeFacesDoubleSided>();
 
-			if(instance != null)
+			if (instance != null)
 				pb_EditorUtility.ShowNotification(instance.DoAction().notification);
 		}
 	}

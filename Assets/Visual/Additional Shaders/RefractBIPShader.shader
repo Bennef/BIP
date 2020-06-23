@@ -21,7 +21,7 @@ Category {
     // We must be transparent, so other objects are drawn before this one.
     Tags { "Queue" = "Transparent"}
     
-    // ------------------------------------------------------------------
+    // ---
     //  ARB fragment program
     
     SubShader {
@@ -98,7 +98,7 @@ ENDCG
         }
     }    
     
-    // ------------------------------------------------------------------
+    // ---
     // Fallback for older cards and Unity non-Pro
     
     SubShader {

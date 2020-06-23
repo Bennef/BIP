@@ -6,15 +6,11 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Image))]
 public class DragMe : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    // ----------------------------------------------- Data members ----------------------------------------------
     public bool dragOnSurfaces = true;
 	
 	private Dictionary<int,GameObject> m_DraggingIcons = new Dictionary<int, GameObject>();
 	private Dictionary<int, RectTransform> m_DraggingPlanes = new Dictionary<int, RectTransform>();
-    // ----------------------------------------------- End Data members ------------------------------------------
-
-    // --------------------------------------------------- Methods -----------------------------------------------
-    // --------------------------------------------------------------------
+    
     public void OnBeginDrag(PointerEventData eventData)
 	{
 		var canvas = FindInParents<Canvas>(gameObject);
@@ -44,13 +40,13 @@ public class DragMe : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
 		
 		SetDraggedPosition(eventData);
 	}
-    // --------------------------------------------------------------------
+    
     public void OnDrag(PointerEventData eventData)
 	{
 		if (m_DraggingIcons[eventData.pointerId] != null)
 			SetDraggedPosition(eventData);
 	}
-    // --------------------------------------------------------------------
+    
     private void SetDraggedPosition(PointerEventData eventData)
 	{
 		if (dragOnSurfaces && eventData.pointerEnter != null && eventData.pointerEnter.transform as RectTransform != null)
@@ -64,7 +60,7 @@ public class DragMe : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
 			rt.rotation = m_DraggingPlanes[eventData.pointerId].rotation;
 		}
 	}
-    // --------------------------------------------------------------------
+    
     public void OnEndDrag(PointerEventData eventData)
 	{
 		if (m_DraggingIcons[eventData.pointerId] != null)
@@ -72,15 +68,15 @@ public class DragMe : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
 
 		m_DraggingIcons[eventData.pointerId] = null;
 	}
-    // --------------------------------------------------------------------
-    static public T FindInParents<T>(GameObject go) where T : Component
+
+	static public T FindInParents<T>(GameObject go) where T : Component
 	{
 		if (go == null) return null;
 		var comp = go.GetComponent<T>();
 
 		if (comp != null)
 			return comp;
-		
+
 		var t = go.transform.parent;
 		while (t != null && comp == null)
 		{
@@ -89,6 +85,4 @@ public class DragMe : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
 		}
 		return comp;
 	}
-    // --------------------------------------------------------------------
-    // --------------------------------------------------- End Methods --------------------------------------------
 }

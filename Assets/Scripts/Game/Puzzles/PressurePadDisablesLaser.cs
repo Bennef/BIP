@@ -2,7 +2,6 @@
 
 public class PressurePadDisablesLaser : MonoBehaviour
 {
-    // ----------------------------------------------- Data members ----------------------------------------------
     public bool hasBeensolved;
     public PressableSwitch pad;
     public GameObject laser, laserBody;
@@ -10,12 +9,9 @@ public class PressurePadDisablesLaser : MonoBehaviour
     public BlankLaser blankLaserScript;
     public AudioSource aSrc;
     public Transform explPos;
-    // ----------------------------------------------- End Data members ------------------------------------------
-
-    // --------------------------------------------------- Methods -----------------------------------------------
-    // --------------------------------------------------------------------
+        
     // Update is called once per frame
-    void Update ()
+    void Update()
     {
 		if (pad.hasBeenPressed && !hasBeensolved)
         {
@@ -32,6 +28,4 @@ public class PressurePadDisablesLaser : MonoBehaviour
             hasBeensolved = true;
         }
 	}
-    // --------------------------------------------------------------------
-    // --------------------------------------------------- End Methods --------------------------------------------
 }

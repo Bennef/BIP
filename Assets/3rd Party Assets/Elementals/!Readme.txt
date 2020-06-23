@@ -1,6 +1,6 @@
-------------------------------------------------------------------
+---
 Elementals version: 1.1.1
-------------------------------------------------------------------
+---
 
 	Elementals is a package of particle effects for Unity.
 	There are 53 fantastic Shuriken particles separated by 8 kinds of elements.
@@ -31,9 +31,9 @@ Elementals version: 1.1.1
 	E-mail: geteamdev@gmail.com
 	Products: http://ge-team.com/pages/unity-3d/	
 
-------------------------------------------------------------------
+---
 Change logs
-------------------------------------------------------------------
+---
 
 	version 1.1.1
 

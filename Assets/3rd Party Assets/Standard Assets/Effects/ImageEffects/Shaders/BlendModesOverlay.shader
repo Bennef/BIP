@@ -32,7 +32,7 @@ Shader "Hidden/BlendModesOverlay" {
 		);
 		
 		#if UNITY_UV_STARTS_AT_TOP
-		if(_MainTex_TexelSize.y<0.0)
+		if (_MainTex_TexelSize.y<0.0)
 			o.uv[0].y = 1.0-o.uv[0].y;
 		#endif
 		

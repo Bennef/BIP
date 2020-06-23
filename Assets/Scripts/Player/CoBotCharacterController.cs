@@ -2,34 +2,25 @@
 
 public class CoBotCharacterController : CharacterController
 {
-    // ----------------------------------------------- Data members ----------------------------------------------
     public Camera CoBotCam;             // A reference to CoBot's camera.
     public Camera MainCam;              // A reference to the main camera for Bip.
     public Transform aListener;         // A reference to the AudioListener.
-    // ----------------------------------------------- End Data members ------------------------------------------
-
-    // --------------------------------------------------- Methods -----------------------------------------------
-    // --------------------------------------------------------------------
+    
     void OnEnable()
     {
         GetComponent<CoBotMind>().enabled = false;
         rigidbody = GetComponent<Rigidbody>();
     }
-    // --------------------------------------------------------------------
+    
     // If player is CoBot, be able to look around.
-    void MouseLook(bool canLook)
-    {
-        GetComponent<SimpleSmoothMouseLook>().enabled = canLook;
-    }
-    // --------------------------------------------------------------------
+    private void MouseLook(bool canLook) => GetComponent<SimpleSmoothMouseLook>().enabled = canLook;
+    
     public override void HandleInput()
     {
-        if(Input.GetButtonUp("Switch"))
-        {
+        if (Input.GetButtonUp("Switch"))
             SwitchCharacter();
-        }
     }
-    // --------------------------------------------------------------------
+    
     // Switch cameras.
     void SetCamera(Camera cam)
     {
@@ -40,26 +31,20 @@ public class CoBotCharacterController : CharacterController
         aListener.localPosition = Vector3.zero;
         aListener.localRotation = Quaternion.identity;
     }
-    // --------------------------------------------------------------------
+    
     void FixedUpdate()
     {
         rigidbody.velocity = new Vector3(0.0f, rigidbody.velocity.y, 0.0f);  // So he doesn't keep heading towards Bip.
                                                                              // Set Bips animation state to idle.
         if (!CoBotCam.enabled)
-        {
             SetCamera(CoBotCam);
-        }
 
         if (!GameManager.Instance.isPaused)
-        {
             MouseLook(true);    // Enable looking around.
-        }
         else
-        {
             MouseLook(false);    // Disable looking around.
-        }
     }
-    // --------------------------------------------------------------------
+    
     public override void OnCharacterSwitch()
     {
         this.tag = Tags.Buddy; // Switch tag to "Buddy".
@@ -72,6 +57,4 @@ public class CoBotCharacterController : CharacterController
         //Camera.main.GetComponent<CameraMovement>().target = nextPlayer.FindChild("Head");
         this.enabled = false;
     }
-    // --------------------------------------------------------------------
-    // --------------------------------------------------- End Methods --------------------------------------------
 }

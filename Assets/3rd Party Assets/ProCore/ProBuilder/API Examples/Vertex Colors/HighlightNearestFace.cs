@@ -53,7 +53,7 @@ public class HighlightNearestFace : MonoBehaviour
 
 		transform.position = position;
 
-		if(target == null)
+		if (target == null)
 		{
 			Debug.LogWarning("Missing the ProBuilder Mesh target!");
 			return;
@@ -64,7 +64,7 @@ public class HighlightNearestFace : MonoBehaviour
 		Vector3 pbRelativePosition = target.transform.InverseTransformPoint(transform.position);
 
 		// reset the last colored face to white
-		if(nearest != null)
+		if (nearest != null)
 			target.SetFaceColor(nearest, Color.white);
 
 		// iterate each face in the pb_Object looking for the one nearest
@@ -77,7 +77,7 @@ public class HighlightNearestFace : MonoBehaviour
 		{
 			float distance = Vector3.Distance(pbRelativePosition, FaceCenter(target, target.faces[i]));
 
-			if(distance < smallestDistance)
+			if (distance < smallestDistance)
 			{
 				smallestDistance = distance;
 				nearest = target.faces[i];

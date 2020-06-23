@@ -56,7 +56,7 @@ CGPROGRAM
 #ifndef     FXAA_HLSL_4
     #define FXAA_HLSL_4 0
 #endif    
-/*--------------------------------------------------------------------------*/
+/*--*/
 #if FXAA_GLSL_120
     // Requires,
     //  #version 120
@@ -75,7 +75,7 @@ CGPROGRAM
     #define FxaaSel3(f, t, b) mix((f), (t), (b))
     #define FxaaTex sampler2D
 #endif
-/*--------------------------------------------------------------------------*/
+/*--*/
 #if FXAA_GLSL_130
     // Requires "#version 130" or better
     #define int2 ivec2
@@ -92,7 +92,7 @@ CGPROGRAM
     #define FxaaSel3(f, t, b) mix((f), (t), (b))
     #define FxaaTex sampler2D
 #endif
-/*--------------------------------------------------------------------------*/
+/*--*/
 #if FXAA_HLSL_3
     #define int2 float2
     #define FxaaInt2 float2
@@ -104,7 +104,7 @@ CGPROGRAM
     #define FxaaSel3(f, t, b) ((f)*(!b) + (t)*(b))
     #define FxaaTex sampler2D
 #endif
-/*--------------------------------------------------------------------------*/
+/*--*/
 #if FXAA_HLSL_4
     #define FxaaInt2 int2
     #define FxaaFloat2 float2
@@ -115,9 +115,9 @@ CGPROGRAM
     #define FxaaSel3(f, t, b) ((f)*(!b) + (t)*(b))
     struct FxaaTex { SamplerState smpl; Texture2D tex; };
 #endif
-/*--------------------------------------------------------------------------*/
+/*--*/
 #define FxaaToFloat3(a) FxaaFloat3((a), (a), (a))
-/*--------------------------------------------------------------------------*/
+/*--*/
 float4 FxaaTexLod0(FxaaTex tex, float2 pos) {
     #if FXAA_GLSL_120
         return texture2DLod(tex, pos.xy, 0.0);
@@ -132,7 +132,7 @@ float4 FxaaTexLod0(FxaaTex tex, float2 pos) {
         return tex.tex.SampleLevel(tex.smpl, pos.xy, 0.0);
     #endif
 }
-/*--------------------------------------------------------------------------*/
+/*--*/
 float4 FxaaTexGrad(FxaaTex tex, float2 pos, float2 grad) {
     #if FXAA_GLSL_120
         return texture2DGrad(tex, pos.xy, grad, grad);
@@ -147,7 +147,7 @@ float4 FxaaTexGrad(FxaaTex tex, float2 pos, float2 grad) {
         return tex.tex.SampleGrad(tex.smpl, pos.xy, grad, grad);
     #endif
 }
-/*--------------------------------------------------------------------------*/
+/*--*/
 float4 FxaaTexOff(FxaaTex tex, float2 pos, int2 off, float2 rcpFrame) {
     #if FXAA_GLSL_120
         return texture2DLodOffset(tex, pos.xy, 0.0, off.xy);
@@ -165,7 +165,7 @@ float4 FxaaTexOff(FxaaTex tex, float2 pos, int2 off, float2 rcpFrame) {
 
 /*============================================================================
                                  SRGB KNOBS
-------------------------------------------------------------------------------
+------
 FXAA_SRGB_ROP - Set to 1 when applying FXAA to an sRGB back buffer (DX10/11).
                 This will do the sRGB to linear transform, 
                 as ROP will expect linear color from this shader,
@@ -175,7 +175,7 @@ FXAA_SRGB_ROP - Set to 1 when applying FXAA to an sRGB back buffer (DX10/11).
 
 /*============================================================================
                                 DEBUG KNOBS
-------------------------------------------------------------------------------
+------
 All debug knobs draw FXAA-untouched pixels in FXAA computed luma (monochrome).
  
 FXAA_DEBUG_PASSTHROUGH - Red for pixels which are filtered by FXAA with a
@@ -200,7 +200,7 @@ FXAA_DEBUG_OFFSET      - Red/blue for -/+ x, gold/skyblue for -/+ y.
 #ifndef     FXAA_DEBUG_OFFSET
     #define FXAA_DEBUG_OFFSET      0
 #endif    
-/*--------------------------------------------------------------------------*/
+/*--*/
 #if FXAA_DEBUG_PASSTHROUGH || FXAA_DEBUG_HORZVERT || FXAA_DEBUG_PAIR
     #define FXAA_DEBUG 1
 #endif    
@@ -213,48 +213,48 @@ FXAA_DEBUG_OFFSET      - Red/blue for -/+ x, gold/skyblue for -/+ y.
   
 /*============================================================================
                               COMPILE-IN KNOBS
-------------------------------------------------------------------------------
+------
 FXAA_PRESET - Choose compile-in knob preset 0-5.
-------------------------------------------------------------------------------
+------
 FXAA_EDGE_THRESHOLD - The minimum amount of local contrast required 
                       to apply algorithm.
                       1.0/3.0  - too little
                       1.0/4.0  - good start
                       1.0/8.0  - applies to more edges
                       1.0/16.0 - overkill
-------------------------------------------------------------------------------
+------
 FXAA_EDGE_THRESHOLD_MIN - Trims the algorithm from processing darks.
                           Perf optimization.
                           1.0/32.0 - visible limit (smaller isn't visible)
                           1.0/16.0 - good compromise
                           1.0/12.0 - upper limit (seeing artifacts)
-------------------------------------------------------------------------------
+------
 FXAA_SEARCH_STEPS - Maximum number of search steps for end of span.
-------------------------------------------------------------------------------
+------
 FXAA_SEARCH_ACCELERATION - How much to accelerate search,
                            1 - no acceleration
                            2 - skip by 2 pixels
                            3 - skip by 3 pixels
                            4 - skip by 4 pixels
-------------------------------------------------------------------------------
+------
 FXAA_SEARCH_THRESHOLD - Controls when to stop searching.
                         1.0/4.0 - seems to be the best quality wise
-------------------------------------------------------------------------------
+------
 FXAA_SUBPIX_FASTER - Turn on lower quality but faster subpix path.
                      Not recomended, but used in preset 0.
-------------------------------------------------------------------------------
+------
 FXAA_SUBPIX - Toggle subpix filtering.
               0 - turn off
               1 - turn on
               2 - turn on full (ignores FXAA_SUBPIX_TRIM and CAP)
-------------------------------------------------------------------------------
+------
 FXAA_SUBPIX_TRIM - Controls sub-pixel aliasing removal.
                    1.0/2.0 - low removal
                    1.0/3.0 - medium removal
                    1.0/4.0 - default removal
                    1.0/8.0 - high removal
                    0.0 - complete removal
-------------------------------------------------------------------------------
+------
 FXAA_SUBPIX_CAP - Insures fine detail is not completely removed.
                   This is important for the transition of sub-pixel detail,
                   like fences and wires.
@@ -265,7 +265,7 @@ FXAA_SUBPIX_CAP - Insures fine detail is not completely removed.
 #ifndef FXAA_PRESET
     #define FXAA_PRESET 3
 #endif
-/*--------------------------------------------------------------------------*/
+/*--*/
 #if (FXAA_PRESET == 0)
     #define FXAA_EDGE_THRESHOLD      (1.0/4.0)
     #define FXAA_EDGE_THRESHOLD_MIN  (1.0/12.0)
@@ -277,7 +277,7 @@ FXAA_SUBPIX_CAP - Insures fine detail is not completely removed.
     #define FXAA_SUBPIX_CAP          (2.0/3.0)
     #define FXAA_SUBPIX_TRIM         (1.0/4.0)
 #endif
-/*--------------------------------------------------------------------------*/
+/*--*/
 #if (FXAA_PRESET == 1)
     #define FXAA_EDGE_THRESHOLD      (1.0/8.0)
     #define FXAA_EDGE_THRESHOLD_MIN  (1.0/16.0)
@@ -289,7 +289,7 @@ FXAA_SUBPIX_CAP - Insures fine detail is not completely removed.
     #define FXAA_SUBPIX_CAP          (3.0/4.0)
     #define FXAA_SUBPIX_TRIM         (1.0/4.0)
 #endif
-/*--------------------------------------------------------------------------*/
+/*--*/
 #if (FXAA_PRESET == 2)
     #define FXAA_EDGE_THRESHOLD      (1.0/8.0)
     #define FXAA_EDGE_THRESHOLD_MIN  (1.0/24.0)
@@ -301,7 +301,7 @@ FXAA_SUBPIX_CAP - Insures fine detail is not completely removed.
     #define FXAA_SUBPIX_CAP          (3.0/4.0)
     #define FXAA_SUBPIX_TRIM         (1.0/4.0)
 #endif
-/*--------------------------------------------------------------------------*/
+/*--*/
 #if (FXAA_PRESET == 3)
     #define FXAA_EDGE_THRESHOLD      (1.0/8.0)
     #define FXAA_EDGE_THRESHOLD_MIN  (1.0/24.0)
@@ -313,7 +313,7 @@ FXAA_SUBPIX_CAP - Insures fine detail is not completely removed.
     #define FXAA_SUBPIX_CAP          (3.0/4.0)
     #define FXAA_SUBPIX_TRIM         (1.0/4.0)
 #endif
-/*--------------------------------------------------------------------------*/
+/*--*/
 #if (FXAA_PRESET == 4)
     #define FXAA_EDGE_THRESHOLD      (1.0/8.0)
     #define FXAA_EDGE_THRESHOLD_MIN  (1.0/24.0)
@@ -325,7 +325,7 @@ FXAA_SUBPIX_CAP - Insures fine detail is not completely removed.
     #define FXAA_SUBPIX_CAP          (3.0/4.0)
     #define FXAA_SUBPIX_TRIM         (1.0/4.0)
 #endif
-/*--------------------------------------------------------------------------*/
+/*--*/
 #if (FXAA_PRESET == 5)
     #define FXAA_EDGE_THRESHOLD      (1.0/8.0)
     #define FXAA_EDGE_THRESHOLD_MIN  (1.0/24.0)
@@ -337,7 +337,7 @@ FXAA_SUBPIX_CAP - Insures fine detail is not completely removed.
     #define FXAA_SUBPIX_CAP          (3.0/4.0)
     #define FXAA_SUBPIX_TRIM         (1.0/4.0)
 #endif
-/*--------------------------------------------------------------------------*/
+/*--*/
 #define FXAA_SUBPIX_TRIM_SCALE (1.0/(1.0 - FXAA_SUBPIX_TRIM))
 
 /*============================================================================
@@ -349,11 +349,11 @@ FXAA_SUBPIX_CAP - Insures fine detail is not completely removed.
 // FxaaLuma() will range 0.0 to 2.963210702.
 float FxaaLuma(float3 rgb) {
     return rgb.y * (0.587/0.299) + rgb.x; } 
-/*--------------------------------------------------------------------------*/
+/*--*/
 float3 FxaaLerp3(float3 a, float3 b, float amountOfA) {
     return (FxaaToFloat3(-amountOfA) * b) + 
         ((a * FxaaToFloat3(amountOfA)) + b); } 
-/*--------------------------------------------------------------------------*/
+/*--*/
 // Support any extra filtering before returning color.
 float3 FxaaFilterReturn(float3 rgb) {
     #if FXAA_SRGB_ROP
@@ -394,9 +394,9 @@ FxaaTex tex,
 // {1.0/frameWidth, 1.0/frameHeight}
 float2 rcpFrame) {
     
-/*----------------------------------------------------------------------------
+/*----
             EARLY EXIT IF LOCAL CONTRAST BELOW EDGE DETECT LIMIT
-------------------------------------------------------------------------------
+------
 Majority of pixels of a typical image do not require filtering, 
 often pixels are grouped into blocks which could benefit from early exit 
 right at the beginning of the algorithm. 
@@ -411,7 +411,7 @@ is lower than a threshold proportional to the maximum local luma ("rangeMax"),
 then the shader early exits (no visible aliasing). 
 This threshold is clamped at a minimum value ("FXAA_EDGE_THRESHOLD_MIN")
 to avoid processing in really dark areas.    
-----------------------------------------------------------------------------*/
+----*/
     float3 rgbN = FxaaTexOff(tex, pos.xy, FxaaInt2( 0,-1), rcpFrame).xyz;
     float3 rgbW = FxaaTexOff(tex, pos.xy, FxaaInt2(-1, 0), rcpFrame).xyz;
     float3 rgbM = FxaaTexOff(tex, pos.xy, FxaaInt2( 0, 0), rcpFrame).xyz;
@@ -428,7 +428,7 @@ to avoid processing in really dark areas.
     #if FXAA_DEBUG
         float lumaO = lumaM / (1.0 + (0.587/0.299));
     #endif        
-    if(range < max(FXAA_EDGE_THRESHOLD_MIN, rangeMax * FXAA_EDGE_THRESHOLD)) {
+    if (range < max(FXAA_EDGE_THRESHOLD_MIN, rangeMax * FXAA_EDGE_THRESHOLD)) {
         #if FXAA_DEBUG
             return FxaaFilterReturn(FxaaToFloat3(lumaO));
         #endif
@@ -442,9 +442,9 @@ to avoid processing in really dark areas.
         #endif
     #endif        
     
-/*----------------------------------------------------------------------------
+/*----
                                COMPUTE LOWPASS
-------------------------------------------------------------------------------
+------
 FXAA computes a local neighborhood lowpass value as follows,
  
   (N + W + E + S)/4
@@ -455,7 +455,7 @@ as a sub-pixel aliasing detection filter.
 When FXAA detects sub-pixel aliasing (such as single pixel dots), 
 it later blends in "blendL" amount 
 of a lowpass value (computed in the next section) to the final result.
-----------------------------------------------------------------------------*/
+----*/
     #if FXAA_SUBPIX != 0
         float lumaL = (lumaN + lumaW + lumaE + lumaS) * 0.25;
         float rangeL = abs(lumaL - lumaM);
@@ -476,9 +476,9 @@ of a lowpass value (computed in the next section) to the final result.
             FxaaFloat3(1.0, blendL/FXAA_SUBPIX_CAP, 0.0));
     #endif    
     
-/*----------------------------------------------------------------------------
+/*----
                     CHOOSE VERTICAL OR HORIZONTAL SEARCH
-------------------------------------------------------------------------------
+------
 FXAA uses the following local neighborhood,
  
     NW N NE
@@ -496,7 +496,7 @@ This full box pattern has higher quality than other options.
  
 Note following this block, both vertical and horizontal cases
 flow in parallel (reusing the horizontal variables).
-----------------------------------------------------------------------------*/
+----*/
     float3 rgbNW = FxaaTexOff(tex, pos.xy, FxaaInt2(-1,-1), rcpFrame).xyz;
     float3 rgbNE = FxaaTexOff(tex, pos.xy, FxaaInt2( 1,-1), rcpFrame).xyz;
     float3 rgbSW = FxaaTexOff(tex, pos.xy, FxaaInt2(-1, 1), rcpFrame).xyz;
@@ -519,20 +519,20 @@ flow in parallel (reusing the horizontal variables).
         abs((0.25 * lumaNE) + (-0.5 * lumaE) + (0.25 * lumaSE));
     bool horzSpan = edgeHorz >= edgeVert;
     #if FXAA_DEBUG_HORZVERT
-        if(horzSpan) return FxaaFilterReturn(FxaaFloat3(1.0, 0.75, 0.0));
+        if (horzSpan) return FxaaFilterReturn(FxaaFloat3(1.0, 0.75, 0.0));
         else         return FxaaFilterReturn(FxaaFloat3(0.0, 0.50, 1.0));
     #endif
     float lengthSign = horzSpan ? -rcpFrame.y : -rcpFrame.x;
-    if(!horzSpan) lumaN = lumaW;
-    if(!horzSpan) lumaS = lumaE;
+    if (!horzSpan) lumaN = lumaW;
+    if (!horzSpan) lumaS = lumaE;
     float gradientN = abs(lumaN - lumaM);
     float gradientS = abs(lumaS - lumaM);
     lumaN = (lumaN + lumaM) * 0.5;
     lumaS = (lumaS + lumaM) * 0.5;
     
-/*----------------------------------------------------------------------------
+/*----
                 CHOOSE SIDE OF PIXEL WHERE GRADIENT IS HIGHEST
-------------------------------------------------------------------------------
+------
 This chooses a pixel pair. 
 For "horzSpan == true" this will be a vertical pair,
  
@@ -547,36 +547,36 @@ This pair of image rows or columns is searched below
 in the positive and negative direction 
 until edge status changes 
 (or the maximum number of search steps is reached).
-----------------------------------------------------------------------------*/    
+----*/    
     bool pairN = gradientN >= gradientS;
     #if FXAA_DEBUG_PAIR
-        if(pairN) return FxaaFilterReturn(FxaaFloat3(0.0, 0.0, 1.0));
+        if (pairN) return FxaaFilterReturn(FxaaFloat3(0.0, 0.0, 1.0));
         else      return FxaaFilterReturn(FxaaFloat3(0.0, 1.0, 0.0));
     #endif
-    if(!pairN) lumaN = lumaS;
-    if(!pairN) gradientN = gradientS;
-    if(!pairN) lengthSign *= -1.0;
+    if (!pairN) lumaN = lumaS;
+    if (!pairN) gradientN = gradientS;
+    if (!pairN) lengthSign *= -1.0;
     float2 posN;
     posN.x = pos.x + (horzSpan ? 0.0 : lengthSign * 0.5);
     posN.y = pos.y + (horzSpan ? lengthSign * 0.5 : 0.0);
     
-/*----------------------------------------------------------------------------
+/*----
                          CHOOSE SEARCH LIMITING VALUES
-------------------------------------------------------------------------------
+------
 Search limit (+/- gradientN) is a function of local gradient.
-----------------------------------------------------------------------------*/
+----*/
     gradientN *= FXAA_SEARCH_THRESHOLD;
     
-/*----------------------------------------------------------------------------
+/*----
     SEARCH IN BOTH DIRECTIONS UNTIL FIND LUMA PAIR AVERAGE IS OUT OF RANGE
-------------------------------------------------------------------------------
+------
 This loop searches either in vertical or horizontal directions,
 and in both the negative and positive direction in parallel.
 This loop fusion is faster than searching separately.
  
 The search is accelerated using FXAA_SEARCH_ACCELERATION length box filter
 via anisotropic filtering with specified texture gradients.
-----------------------------------------------------------------------------*/
+----*/
     float2 posP = posN;
     float2 offNP = horzSpan ? 
         FxaaFloat2(rcpFrame.x, 0.0) :
@@ -606,25 +606,25 @@ via anisotropic filtering with specified texture gradients.
     #endif
     for(int i = 0; i < FXAA_SEARCH_STEPS; i++) {
         #if FXAA_SEARCH_ACCELERATION == 1
-            if(!doneN) lumaEndN = 
+            if (!doneN) lumaEndN = 
                 FxaaLuma(FxaaTexLod0(tex, posN.xy).xyz);
-            if(!doneP) lumaEndP = 
+            if (!doneP) lumaEndP = 
                 FxaaLuma(FxaaTexLod0(tex, posP.xy).xyz);
         #else
-            if(!doneN) lumaEndN = 
+            if (!doneN) lumaEndN = 
                 FxaaLuma(FxaaTexGrad(tex, posN.xy, offNP).xyz);
-            if(!doneP) lumaEndP = 
+            if (!doneP) lumaEndP = 
                 FxaaLuma(FxaaTexGrad(tex, posP.xy, offNP).xyz);
         #endif
         doneN = doneN || (abs(lumaEndN - lumaN) >= gradientN);
         doneP = doneP || (abs(lumaEndP - lumaN) >= gradientN);
-        if(doneN && doneP) break;
-        if(!doneN) posN -= offNP;
-        if(!doneP) posP += offNP; }
+        if (doneN && doneP) break;
+        if (!doneN) posN -= offNP;
+        if (!doneP) posP += offNP; }
     
-/*----------------------------------------------------------------------------
+/*----
                HANDLE IF CENTER IS ON POSITIVE OR NEGATIVE SIDE 
-------------------------------------------------------------------------------
+------
 FXAA uses the pixel's position in the span 
 in combination with the values (lumaEnd*) at the ends of the span,
 to determine filtering.
@@ -633,25 +633,25 @@ This step computes which side of the span the pixel is on.
 On negative side if dstN < dstP,
  
      posN        pos                      posP
-      |-----------|------|------------------|
+      |--|------||
       |           |      |                  | 
-      |<--dstN--->|<---------dstP---------->|
+      |<--dstN--->|<dstP->|
                          |
                     span center
                     
-----------------------------------------------------------------------------*/
+----*/
     float dstN = horzSpan ? pos.x - posN.x : pos.y - posN.y;
     float dstP = horzSpan ? posP.x - pos.x : posP.y - pos.y;
     bool directionN = dstN < dstP;
     #if FXAA_DEBUG_NEGPOS
-        if(directionN) return FxaaFilterReturn(FxaaFloat3(1.0, 0.0, 0.0));
+        if (directionN) return FxaaFilterReturn(FxaaFloat3(1.0, 0.0, 0.0));
         else           return FxaaFilterReturn(FxaaFloat3(0.0, 0.0, 1.0));
     #endif
     lumaEndN = directionN ? lumaEndN : lumaEndP;
     
-/*----------------------------------------------------------------------------
+/*----
          CHECK IF PIXEL IS IN SECTION OF SPAN WHICH GETS NO FILTERING
-------------------------------------------------------------------------------
+------
 If both the pair luma at the end of the span (lumaEndN) 
 and middle pixel luma (lumaM)
 are on the same side of the middle pair average luma (lumaN),
@@ -666,12 +666,12 @@ Cases,
                  V    XXXXXXXX <- other line averaged
          XXXXXXX[X]XXXXXXXXXXX <- source pixel line
         |      .      | 
-    --------------------------                    
+                        
        [ ]xxxxxx[x]xx[X]XXXXXX <- pair average
-    --------------------------           
+               
         ^      ^ ^    ^
         |      | |    |
-        .      |<---->|<---------- no filter region
+        .      |<---->|<- no filter region
         .      | |    |
         . center |    |
         .        |  lumaEndN 
@@ -686,11 +686,11 @@ Cases,
                                <- other line averaged
           XXXXX[X]XXX          <- source pixel line
          |     |     | 
-    --------------------------                    
+                        
         [ ]xxxx[x]xx[ ]        <- pair average
-    --------------------------           
+               
          |     |     |
-         |<--->|<--->|<---------- filter both sides
+         |<--->|<--->|<- filter both sides
  
  
 (3.) "v" and inverse of "-",
@@ -698,11 +698,11 @@ Cases,
     XXXXXX           XXXXXXXXX <- other line averaged
     XXXXXXXXXXX[X]XXXXXXXXXXXX <- source pixel line
          |     |     |
-    --------------------------                    
+                        
     XXXX[X]xxxx[x]xx[X]XXXXXXX <- pair average
-    --------------------------           
+               
          |     |     |
-         |<--->|<--->|<---------- don't filter both!
+         |<--->|<--->|<- don't filter both!
  
          
 Note the "v" case for FXAA requires no filtering.
@@ -716,13 +716,13 @@ Into this (which is not desired),
     x+.   .+x
     XXXXXXXXX
  
-----------------------------------------------------------------------------*/
-    if(((lumaM - lumaN) < 0.0) == ((lumaEndN - lumaN) < 0.0)) 
+----*/
+    if (((lumaM - lumaN) < 0.0) == ((lumaEndN - lumaN) < 0.0)) 
         lengthSign = 0.0;
  
-/*----------------------------------------------------------------------------
+/*----
                 COMPUTE SUB-PIXEL OFFSET AND FILTER SPAN
-------------------------------------------------------------------------------
+------
 FXAA filters using a bilinear texture fetch offset 
 from the middle pixel M towards the center of the pair (NM below).
 Maximum filtering will be half way between pair.
@@ -759,31 +759,31 @@ Position on span is used to compute sub-pixel filter offset using simple ramp,
      |        .   .   |      .
      |        .   . center   .
      |        .   .          .
-     |        |<->|<---------.-------- dstN
+     |        |<->|<. dstN
      |        .   .          .    
-     |        .   |<-------->|<------- dstP    
+     |        .   |<>|<------- dstP    
      |        .             .
-     |        |<------------>|<------- spanLength    
+     |        |<--->|<------- spanLength    
      |
     subPixelOffset
     
-----------------------------------------------------------------------------*/
+----*/
     float spanLength = (dstP + dstN);
     dstN = directionN ? dstN : dstP;
     float subPixelOffset = (0.5 + (dstN * (-1.0/spanLength))) * lengthSign;
     #if FXAA_DEBUG_OFFSET
         float ox = horzSpan ? 0.0 : subPixelOffset*2.0/rcpFrame.x;
         float oy = horzSpan ? subPixelOffset*2.0/rcpFrame.y : 0.0;
-        if(ox < 0.0) return FxaaFilterReturn(
+        if (ox < 0.0) return FxaaFilterReturn(
             FxaaLerp3(FxaaToFloat3(lumaO), 
                       FxaaFloat3(1.0, 0.0, 0.0), -ox));
-        if(ox > 0.0) return FxaaFilterReturn(
+        if (ox > 0.0) return FxaaFilterReturn(
             FxaaLerp3(FxaaToFloat3(lumaO), 
                       FxaaFloat3(0.0, 0.0, 1.0),  ox));
-        if(oy < 0.0) return FxaaFilterReturn(
+        if (oy < 0.0) return FxaaFilterReturn(
             FxaaLerp3(FxaaToFloat3(lumaO), 
                       FxaaFloat3(1.0, 0.6, 0.2), -oy));
-        if(oy > 0.0) return FxaaFilterReturn(
+        if (oy > 0.0) return FxaaFilterReturn(
             FxaaLerp3(FxaaToFloat3(lumaO), 
                       FxaaFloat3(0.2, 0.6, 1.0),  oy));
         return FxaaFilterReturn(FxaaFloat3(lumaO, lumaO, lumaO));

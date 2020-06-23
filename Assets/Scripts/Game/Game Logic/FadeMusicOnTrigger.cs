@@ -2,14 +2,10 @@
 
 public class FadeMusicOnTrigger : MonoBehaviour
 {
-    // ----------------------------------------------- Data members ----------------------------------------------
     public AudioSource fadeFrom, fadeTo;
     private bool hasBeenEntered;
     public float fadeTime;
-    // ----------------------------------------------- End Data members ------------------------------------------
-
-    // --------------------------------------------------- Methods -----------------------------------------------
-    // --------------------------------------------------------------------
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.name == "Bip" && !hasBeenEntered)
@@ -19,7 +15,4 @@ public class FadeMusicOnTrigger : MonoBehaviour
             hasBeenEntered = true;
         }
     }
-    // --------------------------------------------------------------------
-    // --------------------------------------------------- End Methods --------------------------------------------
 }
-

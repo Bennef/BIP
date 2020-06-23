@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -38,7 +37,7 @@ namespace UnityStandardAssets.ImageEffects
         private static float TILE_AMOUNT = 64.0f;
 
 
-        public override bool CheckResources ()
+        public override bool CheckResources()
 		{
             CheckSupport (false);
 
@@ -53,7 +52,7 @@ namespace UnityStandardAssets.ImageEffects
             }
 
             if (!isSupported)
-                ReportAutoDisable ();
+                ReportAutoDisable();
             return isSupported;
         }
 
@@ -128,8 +127,8 @@ namespace UnityStandardAssets.ImageEffects
 
             fxMaterial.SetTexture ("_MainTex", source);
 
-            GL.PushMatrix ();
-            GL.LoadOrtho ();
+            GL.PushMatrix();
+            GL.LoadOrtho();
 
             float aspectCorrection = (1.0f * source.width) / (1.0f * source.height);
             float stepSizeX = 1.0f / subDs;
@@ -174,8 +173,8 @@ namespace UnityStandardAssets.ImageEffects
                 }
             }
 
-            GL.End ();
-            GL.PopMatrix ();
+            GL.End();
+            GL.PopMatrix();
         }
     }
 }

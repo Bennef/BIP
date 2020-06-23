@@ -3,7 +3,6 @@ using UnityEngine.UI;
 
 public class FourPressurePads : MonoBehaviour
 {
-    // ----------------------------------------------- Data members ----------------------------------------------
     public bool hasBeenCompleted;
     public int counter, startNum;
     public Text text;
@@ -13,10 +12,7 @@ public class FourPressurePads : MonoBehaviour
     public Light teleLight;
     public GameObject particleWaves;
     public LockableDoors doorToUnlock;
-    // ----------------------------------------------- End Data members ------------------------------------------
-
-    // --------------------------------------------------- Methods -----------------------------------------------
-    // --------------------------------------------------------------------
+    
     private void Start()
     {
         if (particleWaves != null)
@@ -25,14 +21,12 @@ public class FourPressurePads : MonoBehaviour
             teleLight.enabled = false;
         }
     }
-    // --------------------------------------------------------------------
+    
     // Update is called once per frame
-    void Update ()
+    void Update()
     {
         if (bip.isDead)
-        {
             ResetPuzzle();
-        }
 
         if (!hasBeenCompleted)
         {
@@ -41,9 +35,7 @@ public class FourPressurePads : MonoBehaviour
             foreach (PressableSwitch pad in pads)
             {
                 if (pad.hasBeenPressed)
-                {
                     counter--;
-                }
             }
 
             switch (counter)
@@ -87,7 +79,7 @@ public class FourPressurePads : MonoBehaviour
             }
         }
 	}
-    // --------------------------------------------------------------------
+   
     public void ResetPuzzle()
     {
         counter = 6;
@@ -98,7 +90,7 @@ public class FourPressurePads : MonoBehaviour
             pad.SetPadColour(pad.whitePattern, ary);
         }
     }
-    // --------------------------------------------------------------------
+    
     public void FinishPuzzle()
     {
         if (teleporter != null)
@@ -108,11 +100,7 @@ public class FourPressurePads : MonoBehaviour
             particleWaves.SetActive(true);
         }
         else
-        {
             doorToUnlock.UnlockDoor();
-        }
         hasBeenCompleted = true;
     }
-    // --------------------------------------------------------------------
-    // --------------------------------------------------- End Methods --------------------------------------------
 }

@@ -20,7 +20,7 @@ namespace UnityStandardAssets.ImageEffects
         public Shader contrastCompositeShader = null;
 
 
-        public override bool CheckResources ()
+        public override bool CheckResources()
 		{
             CheckSupport (false);
 
@@ -28,7 +28,7 @@ namespace UnityStandardAssets.ImageEffects
             separableBlurMaterial = CheckShaderAndCreateMaterial (separableBlurShader, separableBlurMaterial);
 
             if (!isSupported)
-                ReportAutoDisable ();
+                ReportAutoDisable();
             return isSupported;
         }
 

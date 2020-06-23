@@ -2,14 +2,10 @@
 
 public class PadActivatesIco : MonoBehaviour
 {
-    // ----------------------------------------------- Data members ----------------------------------------------
-    public HomingIco[] homingIcos;
-    public PressableSwitch pad;
-    public CharacterController bip;
-    // ----------------------------------------------- End Data members ------------------------------------------
-
-    // --------------------------------------------------- Methods -----------------------------------------------
-    // --------------------------------------------------------------------
+    [SerializeField] private HomingIco[] homingIcos;
+    [SerializeField] private PressableSwitch pad;
+    [SerializeField] private CharacterController bip;
+    
     // Update is called once per frame
     void Update()
     {
@@ -17,9 +13,7 @@ public class PadActivatesIco : MonoBehaviour
         {
             pad.hasBeenPressed = false;
             foreach (HomingIco ico in homingIcos)
-            {
                 ico.GetComponent<SphereCollider>().enabled = false;
-            }
         }
 
         foreach (HomingIco ico in homingIcos)
@@ -32,12 +26,8 @@ public class PadActivatesIco : MonoBehaviour
                     ico.isInRange = false;
                 }
                 else if (pad.secondPattern.enabled)
-                {
                     ico.GetComponent<SphereCollider>().enabled = true;
-                }
             }
         }
 	}
-    // --------------------------------------------------------------------
-    // --------------------------------------------------- End Methods --------------------------------------------
 }

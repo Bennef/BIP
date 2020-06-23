@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class TimedPadAndDoor : MonoBehaviour
 {
-    // ----------------------------------------------- Data members ----------------------------------------------
     public PressableSwitch pad;
     public LockableDoors doorToUnlock;
     public AudioSource aSrc, mainMusic;
@@ -11,14 +10,9 @@ public class TimedPadAndDoor : MonoBehaviour
     public IEnumerator routine;
     public bool deathBool = false;
     public bool hasBeenCompleted = false;
-    // ----------------------------------------------- End Data members ------------------------------------------
+    
+    private void Start() => bip = GameObject.Find("Bip").GetComponent<CharacterController>();
 
-    // --------------------------------------------------- Methods -----------------------------------------------
-    private void Start()
-    {
-        bip = GameObject.Find("Bip").GetComponent<CharacterController>();
-    }
-    // --------------------------------------------------------------------
     // Update is called once per frame
     void Update()
     {
@@ -47,14 +41,14 @@ public class TimedPadAndDoor : MonoBehaviour
             pad.isActive = false;
         }
     }
-    // --------------------------------------------------------------------
+    
     IEnumerator Wait()
     {
         deathBool = true;
         yield return new WaitForSeconds(3);
         deathBool = false;
     }
-    // --------------------------------------------------------------------
+    
     IEnumerator CountDown()
     {
         if (doorToUnlock.locked)
@@ -67,7 +61,7 @@ public class TimedPadAndDoor : MonoBehaviour
             ResetCountDown();
         }
     }
-    // --------------------------------------------------------------------
+   
     void ResetCountDown()
     {
         aSrc.Stop();
@@ -76,6 +70,4 @@ public class TimedPadAndDoor : MonoBehaviour
         MeshRenderer[] ary = { pad.greenPattern, pad.greyPattern };
         pad.SetPadColour(pad.whitePattern, ary);
     }
-    // --------------------------------------------------------------------
-    // --------------------------------------------------- End Methods --------------------------------------------
 }

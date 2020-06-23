@@ -3,16 +3,12 @@ using UnityEngine;
 
 public class MexicanWaveGlass : MonoBehaviour
 {
-    // ----------------------------------------------- Data members ----------------------------------------------
     public bool sequenceRunning;
     public PressableSwitch pad;
     public Transform glass1, glass2, glass3, glass4, glass5, inPos1, inPos2, inPos3, inPos4, inPos5, outPos1, outPos2, outPos3, outPos4, outPos5;
     public AudioSource aSrc1, aSrc2, aSrc3, aSrc4, aSrc5;
     public AudioClip moveInClip, moveOutClip;
-    // ----------------------------------------------- End Data members ------------------------------------------
-
-    // --------------------------------------------------- Methods -----------------------------------------------
-    // --------------------------------------------------------------------
+    
     private void Start()
     {
         glass1.position = inPos1.position;
@@ -26,16 +22,14 @@ public class MexicanWaveGlass : MonoBehaviour
         aSrc4 = glass1.gameObject.GetComponent<AudioSource>();
         aSrc5 = glass1.gameObject.GetComponent<AudioSource>();
     }
-    // --------------------------------------------------------------------
+    
     // Update is called once per frame
     void Update()
     {
         if (pad.hasBeenPressed && !sequenceRunning)
-        {
             StartCoroutine(MexicanWave());
-        }
 	}
-    // --------------------------------------------------------------------
+    
     IEnumerator MexicanWave()
     {
         sequenceRunning = true;
@@ -78,19 +72,19 @@ public class MexicanWaveGlass : MonoBehaviour
         yield return new WaitForSeconds(1f);
         sequenceRunning = false;
     }
-    // --------------------------------------------------------------------
+    
     IEnumerator MovePlatformOut(Transform glass, Transform outPos)
     {
         StartCoroutine(MovePlatformToPosition(glass, outPos.position, 1f));
         yield return new WaitForSeconds(1.5f);
     }
-    // --------------------------------------------------------------------
+    
     IEnumerator MovePlatformIn(Transform glass, Transform inPos)
     {
         StartCoroutine(MovePlatformToPosition(glass, inPos.position, 1f));
         yield return new WaitForSeconds(1f);
     }
-    // --------------------------------------------------------------------
+    
     IEnumerator MovePlatformToPosition(Transform glass, Vector3 newPosition, float moveTime)
     {
         float elapsedTime = 0;
@@ -103,6 +97,4 @@ public class MexicanWaveGlass : MonoBehaviour
             yield return null; 
         }
     }
-    // --------------------------------------------------------------------
-    // --------------------------------------------------- End Methods --------------------------------------------
 }

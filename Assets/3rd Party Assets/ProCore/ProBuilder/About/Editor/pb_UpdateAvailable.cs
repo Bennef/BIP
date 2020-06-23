@@ -62,10 +62,10 @@ namespace ProBuilder2.EditorCommon
 		{
 			GUILayout.BeginHorizontal();
 
-				if( GUILayout.Button(gc_DownloadUpdate, downloadImageStyle) )
+				if ( GUILayout.Button(gc_DownloadUpdate, downloadImageStyle) )
 					Application.OpenURL("http://u3d.as/30b");
 
-				if(GUILayoutUtility.GetLastRect().Contains(Event.current.mousePosition))
+				if (GUILayoutUtility.GetLastRect().Contains(Event.current.mousePosition))
 					Repaint();
 
 				GUILayout.BeginVertical(pb_AboutWindow.changelogStyle);

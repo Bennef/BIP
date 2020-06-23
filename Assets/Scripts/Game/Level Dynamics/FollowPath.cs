@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 public class FollowPath : MonoBehaviour 
 {
-    // ----------------------------------------------- Data members ----------------------------------------------
     public enum FollowType
 	{
 		MoveTowards,
@@ -21,10 +20,7 @@ public class FollowPath : MonoBehaviour
 	private IEnumerator<Transform> _currentPoint;
 
     protected new Rigidbody rigidbody;
-    // ----------------------------------------------- End Data members ------------------------------------------
 
-    // --------------------------------------------------- Methods -----------------------------------------------
-    // --------------------------------------------------------------------
     public void Start()
 	{
         rigidbody = GetComponent<Rigidbody>();
@@ -39,22 +35,17 @@ public class FollowPath : MonoBehaviour
 		_currentPoint.MoveNext();
 
 		if (_currentPoint.Current == null)
-		{
-			// return, there is no point
 			return;
-		}
 		// Platform starts on first point in the path
 		transform.position = _currentPoint.Current.position;
 	}
-    // --------------------------------------------------------------------
+    
     public void FixedUpdate()
 	{
         if (isActive)
         {
             if (_currentPoint == null || _currentPoint.Current == null)
-            {
                 return;
-            }
 
             if (type == FollowType.MoveTowards)
             {
@@ -67,9 +58,7 @@ public class FollowPath : MonoBehaviour
                 rigidbody.MovePosition(Vector3.Lerp(transform.position, _currentPoint.Current.position, Time.deltaTime * speed));
             }
             else if (type == FollowType.Slerp)
-            {
                 rigidbody.MovePosition(Vector3.Slerp(transform.position, _currentPoint.Current.position, Time.deltaTime * speed));
-            }
 
             float distanceSquared = (transform.position - _currentPoint.Current.position).sqrMagnitude;
             if (distanceSquared < MaxDistanceToGoal * MaxDistanceToGoal)
@@ -78,6 +67,4 @@ public class FollowPath : MonoBehaviour
             }
         }
 	}
-    // --------------------------------------------------------------------
-    // --------------------------------------------------- End Methods --------------------------------------------
 }

@@ -59,7 +59,7 @@ namespace ProBuilder2.EditorCommon
 		{
 			pb_Object[] pbs = (pb_Object[])Selection.transforms.GetComponents<pb_Object>();
 
-			if(pbs.Length == 2)
+			if (pbs.Length == 2)
 			{
 				lhs = pbs[0].gameObject;
 				rhs = pbs[1].gameObject;
@@ -87,7 +87,7 @@ namespace ProBuilder2.EditorCommon
 
 		void OnDisable()
 		{
-			if(backgroundTexture != null)
+			if (backgroundTexture != null)
 			{
 				DestroyImmediate(backgroundTexture);
 			}
@@ -101,7 +101,7 @@ namespace ProBuilder2.EditorCommon
 			switch(e.type)
 			{
 				case EventType.MouseDown:
-						if(swapOrderRect.Contains(e.mousePosition))
+						if (swapOrderRect.Contains(e.mousePosition))
 						{
 							mouseClickedSwapRect = true;
 							e.Use();
@@ -109,7 +109,7 @@ namespace ProBuilder2.EditorCommon
 					break;
 
 				case EventType.MouseUp:
-					if(mouseClickedSwapRect && swapOrderRect.Contains(Event.current.mousePosition))
+					if (mouseClickedSwapRect && swapOrderRect.Contains(Event.current.mousePosition))
 					{
 						ReverseOperationOrder();
 						e.Use();
@@ -124,7 +124,7 @@ namespace ProBuilder2.EditorCommon
 
 			DrawPreviewWells();
 
-			if(ListenForDragAndDrop())
+			if (ListenForDragAndDrop())
 			{
 				return;
 			}
@@ -133,7 +133,7 @@ namespace ProBuilder2.EditorCommon
 			swapOrderRect.y = PAD + previewHeight/2f - (swapOrderRect.width/2f);
 
 			// http://xahlee.info/comp/unicode_arrows.html
-			if(GUI.Button( swapOrderRect, ((char)8644).ToString(), unicodeIconStyle))
+			if (GUI.Button( swapOrderRect, ((char)8644).ToString(), unicodeIconStyle))
 			{
 				ReverseOperationOrder();
 			}
@@ -160,7 +160,7 @@ namespace ProBuilder2.EditorCommon
 
 			operation = (BooleanOp) EditorGUILayout.EnumPopup("Operation", operation);
 
-			if(GUILayout.Button("Apply", GUILayout.MinHeight(32)))
+			if (GUILayout.Button("Apply", GUILayout.MinHeight(32)))
 			{
 				switch(operation)
 				{
@@ -221,7 +221,7 @@ namespace ProBuilder2.EditorCommon
 
 			if (lhs != null)
 			{
-				if(lhsEditor == null)
+				if (lhsEditor == null)
 					lhsEditor = Editor.CreateEditor(lhs);
 				lhsEditor.OnPreviewGUI(lhsPreviewRect, previewBackground);
 			}
@@ -234,7 +234,7 @@ namespace ProBuilder2.EditorCommon
 
 			if (rhs != null)
 			{
-				if(rhsEditor == null)
+				if (rhsEditor == null)
 					rhsEditor = Editor.CreateEditor(rhs);
 
 				rhsEditor.OnPreviewGUI(rhsPreviewRect, previewBackground);
@@ -247,7 +247,7 @@ namespace ProBuilder2.EditorCommon
 			}
 
 			// Show text summary
-			if(lhs && rhs)
+			if (lhs && rhs)
 			{
 				switch(operation)
 				{
@@ -277,24 +277,24 @@ namespace ProBuilder2.EditorCommon
 
 			bool inLeft = lhsPreviewRect.Contains(mPos);
 
-			if(!inLeft && !rhsPreviewRect.Contains(mPos))
+			if (!inLeft && !rhsPreviewRect.Contains(mPos))
 			   return false;
 
-			if( (Event.current.type == EventType.DragUpdated || Event.current.type == EventType.DragPerform) && DragAndDrop.objectReferences.Length > 0)
+			if ( (Event.current.type == EventType.DragUpdated || Event.current.type == EventType.DragPerform) && DragAndDrop.objectReferences.Length > 0)
 			{
 				DragAndDrop.visualMode = DragAndDropVisualMode.Copy;
 				
-				if(Event.current.type == EventType.DragPerform)
+				if (Event.current.type == EventType.DragPerform)
 				{
 					DragAndDrop.AcceptDrag();
 				
 					foreach(Object pb in DragAndDrop.objectReferences)
 					{
-						if( (pb is GameObject && ((GameObject)pb).GetComponent<pb_Object>()) || pb is pb_Object)
+						if ( (pb is GameObject && ((GameObject)pb).GetComponent<pb_Object>()) || pb is pb_Object)
 						{
-							if(pb == lhs || pb == rhs) continue;
+							if (pb == lhs || pb == rhs) continue;
 
-							if(inLeft)
+							if (inLeft)
 								lhs = (GameObject) pb;
 							else
 								rhs = (GameObject) pb;

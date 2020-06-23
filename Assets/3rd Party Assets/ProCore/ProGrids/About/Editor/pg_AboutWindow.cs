@@ -28,7 +28,7 @@ public class pg_AboutWindowSetup : AssetPostprocessor
 		string[] entries = System.Array.FindAll(importedAssets, name => name.Contains("pc_AboutEntry") && !name.EndsWith(".meta"));
 		
 		foreach(string str in entries)
-			if( pg_AboutWindow.Init(str, false) )
+			if ( pg_AboutWindow.Init(str, false) )
 				break;
 	}
 
@@ -144,7 +144,7 @@ public class pg_AboutWindow : EditorWindow
 	// 	string[] allFiles = System.IO.Directory.GetFiles("Assets/", "*.*", System.IO.SearchOption.AllDirectories);
 	// 	string[] entries = System.Array.FindAll(allFiles, name => name.Contains("pc_AboutEntry"));
 		
-	// 	if(entries.Length > 0)
+	// 	if (entries.Length > 0)
 	// 		AboutWindow.Init(entries[0], true);
 	// }
 
@@ -155,16 +155,16 @@ public class pg_AboutWindow : EditorWindow
 	{
 		string identifier, version;
 
-		if( !GetField(aboutEntryPath, "version: ", out version) || !GetField(aboutEntryPath, "identifier: ", out identifier))
+		if ( !GetField(aboutEntryPath, "version: ", out version) || !GetField(aboutEntryPath, "identifier: ", out identifier))
 			return false;
 
-		if(fromMenu || EditorPrefs.GetString(identifier) != version)
+		if (fromMenu || EditorPrefs.GetString(identifier) != version)
 		{
 			string tname;
 
 			pg_AboutWindow win;
 
-			if(!GetField(aboutEntryPath, "name: ", out tname) || !tname.Contains("ProGrids"))
+			if (!GetField(aboutEntryPath, "name: ", out tname) || !tname.Contains("ProGrids"))
 				return false;
 
 			win = (pg_AboutWindow)EditorWindow.GetWindow(typeof(pg_AboutWindow), true, tname, true);
@@ -229,7 +229,7 @@ public class pg_AboutWindow : EditorWindow
 		advertisementStyle = advertisementStyle ?? new GUIStyle(GUI.skin.button);
 		advertisementStyle.normal.background = null;
 		
-		if(banner != null)
+		if (banner != null)
 			GUILayout.Label(banner);
 
 		// mm = EditorGUI.IntField(new Rect(Screen.width - 200, 100, 200, 18), "W: ", mm);
@@ -243,7 +243,7 @@ public class pg_AboutWindow : EditorWindow
 				GUILayout.Label("1) ", GUILayout.MinWidth(16), GUILayout.MaxWidth(16));	
 				GUILayout.Label("Register", boldTextStyle, GUILayout.MinWidth(58), GUILayout.MaxWidth(58));	
 				GUILayout.Label("for instant email updates, send your invoice # to", GUILayout.MinWidth(284), GUILayout.MaxWidth(284));	
-				if( GUILayout.Button("contact@procore3d.com", linkTextStyle, GUILayout.MinWidth(142), GUILayout.MaxWidth(142)) )
+				if ( GUILayout.Button("contact@procore3d.com", linkTextStyle, GUILayout.MinWidth(142), GUILayout.MaxWidth(142)) )
 					Application.OpenURL("mailto:contact@procore3d.com?subject=Sign me up for the Beta!");
 			GUILayout.EndHorizontal();
 
@@ -251,7 +251,7 @@ public class pg_AboutWindow : EditorWindow
 				GUILayout.Label("2) ", GUILayout.MinWidth(16), GUILayout.MaxWidth(16));	
 				GUILayout.Label("Report bugs", boldTextStyle, GUILayout.MinWidth(82), GUILayout.MaxWidth(82));	
 				GUILayout.Label("to the ProCore Forum at", GUILayout.MinWidth(144), GUILayout.MaxWidth(144));	
-				if( GUILayout.Button("www.procore3d.com/forum", linkTextStyle, GUILayout.MinWidth(162), GUILayout.MaxWidth(162)) )
+				if ( GUILayout.Button("www.procore3d.com/forum", linkTextStyle, GUILayout.MinWidth(162), GUILayout.MaxWidth(162)) )
 					Application.OpenURL("http://www.procore3d.com/forum");
 			GUILayout.EndHorizontal();
 
@@ -265,7 +265,7 @@ public class pg_AboutWindow : EditorWindow
 				GUILayout.Label("4) ", GUILayout.MinWidth(16), GUILayout.MaxWidth(16));	
 				GUILayout.Label("Documentation", boldTextStyle, GUILayout.MinWidth(102), GUILayout.MaxWidth(102));	
 				GUILayout.Label("Tutorials, & more info:", GUILayout.MinWidth(132), GUILayout.MaxWidth(132));	
-				if( GUILayout.Button("www.procore3d.com/" + ProductName.ToLower(), linkTextStyle, GUILayout.MinWidth(190), GUILayout.MaxWidth(190)) )
+				if ( GUILayout.Button("www.procore3d.com/" + ProductName.ToLower(), linkTextStyle, GUILayout.MinWidth(190), GUILayout.MaxWidth(190)) )
 					Application.OpenURL("http://www.procore3d.com/" + ProductName.ToLower());
 			GUILayout.EndHorizontal();
 
@@ -278,13 +278,13 @@ public class pg_AboutWindow : EditorWindow
 				linkTextStyle.fontStyle = FontStyle.Italic;
 				linkTextStyle.alignment = TextAnchor.MiddleCenter;
 
-				if( GUILayout.Button("procore3d.com", linkTextStyle))
+				if ( GUILayout.Button("procore3d.com", linkTextStyle))
 					Application.OpenURL("http://www.procore3d.com");
 
-				if( GUILayout.Button("facebook", linkTextStyle))
+				if ( GUILayout.Button("facebook", linkTextStyle))
 					Application.OpenURL("http://www.facebook.com/probuilder3d");
 
-				if( GUILayout.Button("twitter", linkTextStyle))
+				if ( GUILayout.Button("twitter", linkTextStyle))
 					Application.OpenURL("http://www.twitter.com/probuilder3d");
 
 				linkTextStyle.fontStyle = FontStyle.Normal;
@@ -311,10 +311,10 @@ public class pg_AboutWindow : EditorWindow
 
 		foreach(AdvertisementThumb ad in advertisements)
 		{
-			if(ad.url.ToLower().Contains(ProductName.ToLower()))
+			if (ad.url.ToLower().Contains(ProductName.ToLower()))
 				continue;
 				
-			if(GUILayout.Button(ad.guiContent, advertisementStyle,
+			if (GUILayout.Button(ad.guiContent, advertisementStyle,
 				GUILayout.MinWidth(AD_HEIGHT), GUILayout.MaxWidth(AD_HEIGHT),
 				GUILayout.MinHeight(AD_HEIGHT), GUILayout.MaxHeight(AD_HEIGHT)))
 			{
@@ -359,18 +359,18 @@ public class pg_AboutWindow : EditorWindow
 		ProductVersion = "";
 		ChangelogPath = "";
 
-		if(versionInfo != null)
+		if (versionInfo != null)
 		{
 			string[] txt = versionInfo.text.Split('\n');
 			foreach(string cheese in txt)
 			{
-				if(cheese.StartsWith("name:")) 
+				if (cheese.StartsWith("name:")) 
 					ProductName = cheese.Replace("name: ", "").Trim();
 				else 
-				if(cheese.StartsWith("version:"))
+				if (cheese.StartsWith("version:"))
 					ProductVersion = cheese.Replace("version: ", "").Trim();
 				else 
-				if(cheese.StartsWith("changelog:"))
+				if (cheese.StartsWith("changelog:"))
 					ChangelogPath = cheese.Replace("changelog: ", "").Trim();
 			}
 		}
@@ -380,7 +380,7 @@ public class pg_AboutWindow : EditorWindow
 		/* Get first entry in changelog.txt */
 		TextAsset changelogText = (TextAsset)AssetDatabase.LoadAssetAtPath( ChangelogPath, typeof(TextAsset));
 
-		if(changelogText)
+		if (changelogText)
 		{
 			string[] split = changelogText.text.Split( new string[] {"--"}, System.StringSplitOptions.RemoveEmptyEntries );
 			StringBuilder sb = new StringBuilder();
@@ -397,11 +397,11 @@ public class pg_AboutWindow : EditorWindow
 		TextAsset entry = (TextAsset)AssetDatabase.LoadAssetAtPath(path, typeof(TextAsset));
 		value = "";
 
-		if(!entry) return false;
+		if (!entry) return false;
 
 		foreach(string str in entry.text.Split('\n'))
 		{
-			if(str.Contains(field))
+			if (str.Contains(field))
 			{
 				value = str.Replace(field, "").Trim();
 				return true;

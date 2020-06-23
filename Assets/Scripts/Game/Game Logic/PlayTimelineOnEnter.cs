@@ -3,20 +3,11 @@ using UnityEngine.Timeline;
 
 public class PlayTimelineOnEnter : MonoBehaviour
 {
-    // ----------------------------------------------- Data members ----------------------------------------------
-    public DirectorControlPlayable timelinePop;
-    // ----------------------------------------------- End Data members ------------------------------------------
-
-    // --------------------------------------------------- Methods -----------------------------------------------
-    // --------------------------------------------------------------------
+    private DirectorControlPlayable _timelinePop;
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.name == "Bip")
-        {
-            // Play the timeline.
-            timelinePop.director.Play();
-        }
+            _timelinePop.director.Play(); // Play the timeline.
     }
-    // --------------------------------------------------------------------
-    // --------------------------------------------------- End Methods --------------------------------------------
 }

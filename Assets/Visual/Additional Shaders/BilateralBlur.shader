@@ -42,9 +42,9 @@ Shader "Hidden/BilateralBlur"
 
 		CGINCLUDE
 
-        //--------------------------------------------------------------------------------------------
+        //--
         // Downsample, bilateral blur and upsample config
-        //--------------------------------------------------------------------------------------------        
+        //--        
         // method used to downsample depth buffer: 0 = min; 1 = max; 2 = min/max in chessboard pattern
         #define DOWNSAMPLE_DEPTH_MODE 2
         #define UPSAMPLE_DEPTH_THRESHOLD 1.5f
@@ -53,7 +53,7 @@ Shader "Hidden/BilateralBlur"
         #define FULL_RES_BLUR_KERNEL_SIZE 7
         #define HALF_RES_BLUR_KERNEL_SIZE 5
         #define QUARTER_RES_BLUR_KERNEL_SIZE 6
-        //--------------------------------------------------------------------------------------------
+        //--
 
 		#define PI 3.1415927f
 
@@ -113,9 +113,9 @@ Shader "Hidden/BilateralBlur"
 			return o;
 		}
 
-		//-----------------------------------------------------------------------------------------
+		//
 		// vertDownsampleDepth
-		//-----------------------------------------------------------------------------------------
+		//
 		v2fDownsample vertDownsampleDepth(appdata v, float2 texelSize)
 		{
 			v2fDownsample o;
@@ -131,9 +131,9 @@ Shader "Hidden/BilateralBlur"
 			return o;
 		}
 
-		//-----------------------------------------------------------------------------------------
+		//
 		// vertUpsample
-		//-----------------------------------------------------------------------------------------
+		//
         v2fUpsample vertUpsample(appdata v, float2 texelSize)
         {
             v2fUpsample o;
@@ -147,9 +147,9 @@ Shader "Hidden/BilateralBlur"
             return o;
         }
 
-		//-----------------------------------------------------------------------------------------
+		//
 		// BilateralUpsample
-		//-----------------------------------------------------------------------------------------
+		//
 		float4 BilateralUpsample(v2fUpsample input, Texture2D hiDepth, Texture2D loDepth, Texture2D loColor, SamplerState linearSampler, SamplerState pointSampler)
 		{
             const float threshold = UPSAMPLE_DEPTH_THRESHOLD;
@@ -196,9 +196,9 @@ Shader "Hidden/BilateralBlur"
             return loColor.Sample(pointSampler, nearestUv);
 		}
 
-		//-----------------------------------------------------------------------------------------
+		//
 		// DownsampleDepth
-		//-----------------------------------------------------------------------------------------
+		//
 		float DownsampleDepth(v2fDownsample input, Texture2D depthTexture, SamplerState depthSampler)
 		{
 #if SHADER_TARGET > 40
@@ -228,9 +228,9 @@ Shader "Hidden/BilateralBlur"
 #endif
 		}
 		
-		//-----------------------------------------------------------------------------------------
+		//
 		// GaussianWeight
-		//-----------------------------------------------------------------------------------------
+		//
 		float GaussianWeight(float offset, float deviation)
 		{
 			float weight = 1.0f / sqrt(2.0f * PI * deviation * deviation);
@@ -238,9 +238,9 @@ Shader "Hidden/BilateralBlur"
 			return weight;
 		}
 
-		//-----------------------------------------------------------------------------------------
+		//
 		// BilateralBlur
-		//-----------------------------------------------------------------------------------------
+		//
 		float4 BilateralBlur(v2f input, int2 direction, Texture2D depth, SamplerState depthSampler, const int kernelRadius, float2 pixelSize)
 		{
 			//const float deviation = kernelRadius / 2.5;

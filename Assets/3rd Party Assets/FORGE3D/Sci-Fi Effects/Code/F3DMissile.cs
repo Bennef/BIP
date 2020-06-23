@@ -68,7 +68,7 @@ public class F3DMissile : MonoBehaviour
     // Stop attached particle systems emission and allow them to fade out before despawning
     void Delay()
     {       
-        if(particles.Length > 0 && delayedParticles.Length > 0)
+        if (particles.Length > 0 && delayedParticles.Length > 0)
         {
             bool delayed;
 
@@ -94,7 +94,7 @@ public class F3DMissile : MonoBehaviour
     // Despaw routine
     void OnMissileDestroy()
     {   
-        if(F3DPool.instance != null)
+        if (F3DPool.instance != null)
             F3DPool.instance.Despawn(transform);
     }
     
@@ -129,7 +129,7 @@ public class F3DMissile : MonoBehaviour
             }
 
             // Despawn current missile 
-            if(!DelayDespawn || (DelayDespawn && (timer >= despawnDelay)))
+            if (!DelayDespawn || (DelayDespawn && (timer >= despawnDelay)))
                 OnMissileDestroy();
         }
         // No collision occurred yet

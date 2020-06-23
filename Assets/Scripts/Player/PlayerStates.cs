@@ -1,9 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class PlayerStates : MonoBehaviour
 {
-	// ----------------------------------------------- Data members ----------------------------------------------
 	public int idleState;
 	public int runningState;
 	public int riseState;
@@ -17,12 +15,11 @@ public class PlayerStates : MonoBehaviour
 	public int isClimbingBool;
 	public int speedFloat;
 
-	public Vector3 velocity;
-	// ----------------------------------------------- End Data members ------------------------------------------
+	private Vector3 _velocity;
 
-	// --------------------------------------------------- Methods -----------------------------------------------
-	// --------------------------------------------------------------------
-	void Awake()
+    public Vector3 Velocity { get => _velocity; set => _velocity = value.normalized; }
+
+    void Awake()
 	{
 		// Assigning HashIDs
 		idleState = Animator.StringToHash("Base Layer.Idle");
@@ -40,11 +37,4 @@ public class PlayerStates : MonoBehaviour
 
         speedFloat = Animator.StringToHash("Speed");
 	}
-	// --------------------------------------------------------------------
-	public void SetVelocity(Vector3 value)
-	{
-		velocity = value.normalized;
-	}
-	// --------------------------------------------------------------------
-	// --------------------------------------------------- End Methods --------------------------------------------
 }

@@ -58,7 +58,7 @@ namespace ProBuilder2.Examples
 			float r, g, b;
 			int i;
 			float f, p, q, t;
-			if( s == 0 ) {
+			if ( s == 0 ) {
 				// achromatic (grey)
 				return new Color(v, v, v, 1f);
 			}

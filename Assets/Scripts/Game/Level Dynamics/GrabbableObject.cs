@@ -2,7 +2,6 @@
 
 public class GrabbableObject : MonoBehaviour
 {
-	// ----------------------------------------------- Data members ----------------------------------------------
 	public bool isGrabbable;			// True if Bip is able to grab this object.
 	public bool isGrabbing = false;		// True if Bip is already grabbing the object.
     private Rigidbody grabbableRigidbody;
@@ -19,10 +18,7 @@ public class GrabbableObject : MonoBehaviour
     public GrabbableObject[] otherCubes;
     public CapsuleCollider headCollider;  // Disable this when we grab.
     public Animator bipAnim;
-    // ----------------------------------------------- End Data members ------------------------------------------
-
-    // --------------------------------------------------- Methods -----------------------------------------------
-    // --------------------------------------------------------------------
+    
     void Awake()
 	{
 		grabbableRigidbody = GetComponent<Rigidbody>();
@@ -32,7 +28,7 @@ public class GrabbableObject : MonoBehaviour
         bipAnim = GameObject.Find("Bip").GetComponent<Animator>();
         player = GameObject.Find("Bip").GetComponent<Rigidbody>();
     }
-	// --------------------------------------------------------------------
+	
 	void Update()
     { 
 		if (Input.GetButtonDown("Grab"))
@@ -43,9 +39,7 @@ public class GrabbableObject : MonoBehaviour
                 
                 // For each other cube...
                 foreach (GrabbableObject cube in otherCubes)
-                {
                     cube.isGrabbable = false;  // ... make sure Bip cannot grab it.
-                }
                 Grab(player);
 			}
 		}
@@ -59,12 +53,10 @@ public class GrabbableObject : MonoBehaviour
 		if (player)
 		{
 			if (!player.GetComponent<Animator>().GetBool(player.GetComponent<PlayerStates>().isGroundedBool) && isGrabbing)
-			{
 				LetGo(); 
-            }
 		}
   	}
-	// --------------------------------------------------------------------
+	
 	public void Grab(Rigidbody player)
 	{
         if (!isGrabbing) 
@@ -91,7 +83,7 @@ public class GrabbableObject : MonoBehaviour
 			player.gameObject.GetComponent<Animator>().SetBool(player.gameObject.GetComponent<PlayerStates>().isPushingBool, true);
 		}
 	}
-    // --------------------------------------------------------------------
+    
     public Vector3 GetClosestGrabPoint()
     {
         float smallestdistance = 1000;  // The smallest distance between Bip and Grabbable points around the object. Initialise to a high number.
@@ -112,7 +104,7 @@ public class GrabbableObject : MonoBehaviour
         }
         return closestGrabPoint;
     }
-    // --------------------------------------------------------------------
+    
     public void LetGo()
 	{
 		isGrabbing = false;
@@ -120,59 +112,30 @@ public class GrabbableObject : MonoBehaviour
 
         // When this object isn't being grabbed, we destroy the joint.
         if (this.gameObject.GetComponent<FixedJoint>())
-		{
 			Destroy(this.gameObject.GetComponent<FixedJoint>());
-		}
 
 		// Player control shit.
 		if (player)
-		{
 			player.gameObject.GetComponent<Animator>().SetBool(player.gameObject.GetComponent<PlayerStates>().isPushingBool, false);
-		}
         //isGrabbable = true; // not sure if we need this
     }
-	// --------------------------------------------------------------------
+	
 	void OnTriggerStay(Collider other)
 	{
 		// If we collide with the player.
-		if (other.gameObject.tag == "Player" && otherCubes.Length > 0)
+		if (other.gameObject.CompareTag("Player") && otherCubes.Length > 0)
 		{
             foreach (GrabbableObject cube in otherCubes)
             {
                 if (cube.isGrabbable)
-                {
                     cube.isGrabbable = false;
-                }
-            }
-            if (other.gameObject.tag == "Player")
-            {
-                isGrabbable = true;
+                if (other.gameObject.CompareTag("Player"))
+                    isGrabbable = true;
             }
         }
 	}
-    // --------------------------------------------------------------------
-    /*public void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            //Debug.Log(other.name);
-            isGrabbable = true;
-        }
-    }*/
-    // --------------------------------------------------------------------
-    public void OnTriggerExit(Collider other)
-	{
-        // If we collide with the player.
-        //if (other.gameObject.name == "CTRL_Head")
-        //{
-			isGrabbable = false;
-		//}
-	}
-	// --------------------------------------------------------------------
-    public void ResetPosition()
-    {
-        transform.position = startingPosition;
+    
+    public void OnTriggerExit(Collider other) => isGrabbable = false;
+
+    public void ResetPosition() => transform.position = startingPosition;
     }
-    // --------------------------------------------------------------------
-    // --------------------------------------------------- End Methods --------------------------------------------
-}

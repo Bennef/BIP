@@ -23,17 +23,17 @@ namespace UnityStandardAssets.ImageEffects
 
         private Material aoMaterial = null;
 
-        public override bool CheckResources () {
+        public override bool CheckResources() {
             CheckSupport (true);
 
             aoMaterial = CheckShaderAndCreateMaterial (aoShader, aoMaterial);
 
             if (!isSupported)
-                ReportAutoDisable ();
+                ReportAutoDisable();
             return isSupported;
         }
 
-        void OnDisable () {
+        void OnDisable() {
             if (aoMaterial)
                 DestroyImmediate (aoMaterial);
             aoMaterial = null;
@@ -41,7 +41,7 @@ namespace UnityStandardAssets.ImageEffects
 
         [ImageEffectOpaque]
         void OnRenderImage (RenderTexture source, RenderTexture destination) {
-            if (CheckResources () == false) {
+            if (CheckResources() == false) {
                 Graphics.Blit (source, destination);
                 return;
             }

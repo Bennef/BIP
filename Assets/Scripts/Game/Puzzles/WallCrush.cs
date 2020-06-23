@@ -1,30 +1,24 @@
 ﻿using System.Collections;
 using UnityEngine;
+
 public class WallCrush : MonoBehaviour
 {
-    // ----------------------------------------------- Data members ----------------------------------------------
     public GameObject otherWall;    // A reference to the other wall.
     public GameObject endPosObj;    // The GameObject containing the end position of the wall.
-
     private Vector3 startPos;       // The initial position of the wall.
     private Vector3 endPos;         // The end position of the wall.
-
     public float inTime, outTime; // The speed at which the wall will move.
-    private Rigidbody rb;
     private AudioSource aSrc;
     public AudioClip slideIn, slideOut, crush;
-    // ----------------------------------------------- End Data members ------------------------------------------
-    // --------------------------------------------------- Methods -----------------------------------------------
-    // --------------------------------------------------------------------
+  
     // Use this for initialization
     void Start()
     {
         startPos = this.transform.position;
         endPos = endPosObj.transform.position;
-        rb = GetComponent<Rigidbody>();
         aSrc = GetComponentInParent<AudioSource>();
     }
-    // --------------------------------------------------------------------
+    
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -41,16 +35,13 @@ public class WallCrush : MonoBehaviour
             StartCoroutine(MoveIn());
         }
     }
-    // --------------------------------------------------------------------
+    
     void OnCollisionEnter(Collision col)
     {
-        if (col.collider.tag == Tags.Player && Vector3.Distance(otherWall.transform.position, this.transform.position) < 1f)
-        {
-           // fix sound!!
+        if (col.collider.CompareTag(Tags.Player) && Vector3.Distance(otherWall.transform.position, this.transform.position) < 1f)
             GameManager.Instance.Player.GetComponent<PlayerHealth>().TakeDamage(1000);
-        }
     }
-    // --------------------------------------------------------------------
+    
     public IEnumerator MoveIn()
     {
         float t = 0.0f;
@@ -61,7 +52,7 @@ public class WallCrush : MonoBehaviour
             yield return null;
         }
     }
-    // --------------------------------------------------------------------
+    
     public IEnumerator MoveOut()
     {
         float t = 0.0f;
@@ -72,7 +63,7 @@ public class WallCrush : MonoBehaviour
             yield return null;
         }
     }
-    // --------------------------------------------------------------------
+    
     public IEnumerator PlayCrushClip()
     {
         aSrc.clip = crush;
@@ -81,5 +72,4 @@ public class WallCrush : MonoBehaviour
         aSrc.clip = slideOut;
         aSrc.Play();
     }
-    // --------------------------------------------------- End Methods --------------------------------------------
 }

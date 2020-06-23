@@ -62,26 +62,26 @@ namespace UnityStandardAssets.ImageEffects
         private Camera _camera;
 
 
-        private void CalculateViewProjection () {
+        private void CalculateViewProjection() {
             Matrix4x4 viewMat = _camera.worldToCameraMatrix;
             Matrix4x4 projMat = GL.GetGPUProjectionMatrix (_camera.projectionMatrix, true);
             currentViewProjMat = projMat * viewMat;
         }
 
 
-        new void Start () {
-            CheckResources ();
+        new void Start() {
+            CheckResources();
 
             if (_camera == null)
                 _camera = GetComponent<Camera>();
 
             wasActive = gameObject.activeInHierarchy;
-            CalculateViewProjection ();
-            Remember ();
+            CalculateViewProjection();
+            Remember();
             wasActive = false; // hack to fake position/rotation update and prevent bad blurs
         }
 
-        void OnEnable () {
+        void OnEnable() {
 
             if (_camera == null)
                 _camera = GetComponent<Camera>();
@@ -89,7 +89,7 @@ namespace UnityStandardAssets.ImageEffects
             _camera.depthTextureMode |= DepthTextureMode.Depth;
         }
 
-        void OnDisable () {
+        void OnDisable() {
             if (null != motionBlurMaterial) {
                 DestroyImmediate (motionBlurMaterial);
                 motionBlurMaterial = null;
@@ -105,7 +105,7 @@ namespace UnityStandardAssets.ImageEffects
         }
 
 
-        public override bool CheckResources () {
+        public override bool CheckResources() {
             CheckSupport (true, true); // depth & hdr needed
             motionBlurMaterial = CheckShaderAndCreateMaterial (shader, motionBlurMaterial);
 
@@ -114,19 +114,19 @@ namespace UnityStandardAssets.ImageEffects
             }
 
             if (!isSupported)
-                ReportAutoDisable ();
+                ReportAutoDisable();
 
             return isSupported;
         }
 
         void OnRenderImage (RenderTexture source, RenderTexture destination) {
-            if (false == CheckResources ()) {
+            if (false == CheckResources()) {
                 Graphics.Blit (source, destination);
                 return;
             }
 
             if (filterType == MotionBlurFilter.CameraMotion)
-                StartFrame ();
+                StartFrame();
 
             // use if possible new RG format ... fallback to half otherwise
             var rtFormat= SystemInfo.SupportsRenderTextureFormat (RenderTextureFormat.RGHalf) ? RenderTextureFormat.RGHalf : RenderTextureFormat.ARGBHalf;
@@ -167,11 +167,11 @@ namespace UnityStandardAssets.ImageEffects
             tileMax.wrapMode = TextureWrapMode.Clamp;
 
             // calc correct viewprj matrix
-            CalculateViewProjection ();
+            CalculateViewProjection();
 
             // just started up?
             if (gameObject.activeInHierarchy && !wasActive) {
-                Remember ();
+                Remember();
             }
             wasActive = gameObject.activeInHierarchy;
 
@@ -252,7 +252,7 @@ namespace UnityStandardAssets.ImageEffects
 
                 Camera cam = null;
                 if (excludeLayers.value != 0)// || dynamicLayers.value)
-                    cam = GetTmpCam ();
+                    cam = GetTmpCam();
 
                 if (cam && excludeLayers.value != 0 && replacementClear && replacementClear.isSupported) {
                     cam.targetTexture = velBuffer;
@@ -264,7 +264,7 @@ namespace UnityStandardAssets.ImageEffects
             if (!preview && Time.frameCount != prevFrameCount) {
                 // remember current transformation data for next frame
                 prevFrameCount = Time.frameCount;
-                Remember ();
+                Remember();
             }
 
             source.filterMode = FilterMode.Bilinear;
@@ -337,14 +337,14 @@ namespace UnityStandardAssets.ImageEffects
             RenderTexture.ReleaseTemporary (neighbourMax);
         }
 
-        void Remember () {
+        void Remember() {
             prevViewProjMat = currentViewProjMat;
             prevFrameForward = transform.forward;
             prevFrameUp = transform.up;
             prevFramePos = transform.position;
         }
 
-        Camera GetTmpCam () {
+        Camera GetTmpCam() {
             if (tmpCam == null) {
                 string name = "_" + _camera.name + "_MotionBlurTmpCam";
                 GameObject go = GameObject.Find (name);
@@ -367,7 +367,7 @@ namespace UnityStandardAssets.ImageEffects
             return tmpCam.GetComponent<Camera>();
         }
 
-        void StartFrame () {
+        void StartFrame() {
             // take only x% of positional changes into account (camera motion)
             // TODO: possibly do the same for rotational part
             prevFramePos = Vector3.Slerp(prevFramePos, transform.position, 0.75f);

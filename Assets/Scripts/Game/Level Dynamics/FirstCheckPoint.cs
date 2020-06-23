@@ -2,12 +2,6 @@
 
 public class FirstCheckPoint : MonoBehaviour
 {
-    // ----------------------------------------------- Data members ----------------------------------------------
-
-    // ----------------------------------------------- End Data members ------------------------------------------
-
-    // --------------------------------------------------- Methods -----------------------------------------------
-    // --------------------------------------------------------------------
     // Use this for initialization
     void Start()    // Changed this from Awake to Start - may go badly...
     {
@@ -20,8 +14,5 @@ public class FirstCheckPoint : MonoBehaviour
             // Inform the Game Manager that they need not fear our power.
            // GameManager.Instance.isLoadingSaveGame = false;
         }
-    }
-    // --------------------------------------------------------------------
-    // --------------------------------------------------- End Methods --------------------------------------------
+    }   
 }
-

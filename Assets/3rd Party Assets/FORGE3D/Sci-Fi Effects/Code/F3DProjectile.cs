@@ -51,7 +51,7 @@ public class F3DProjectile : MonoBehaviour
     // Stop attached particle systems emission and allow them to fade out before despawning
     void Delay()
     {       
-        if(particles.Length > 0 && delayedParticles.Length > 0)
+        if (particles.Length > 0 && delayedParticles.Length > 0)
         {
             bool delayed;
 
@@ -131,7 +131,7 @@ public class F3DProjectile : MonoBehaviour
             }
 
             // Despawn current projectile 
-            if(!DelayDespawn || (DelayDespawn && (timer >= despawnDelay)))
+            if (!DelayDespawn || (DelayDespawn && (timer >= despawnDelay)))
                 OnProjectileDestroy();
         }
 

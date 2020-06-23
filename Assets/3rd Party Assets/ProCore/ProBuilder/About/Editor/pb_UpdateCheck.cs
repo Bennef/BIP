@@ -17,7 +17,7 @@ namespace ProBuilder2.EditorCommon
 
 		static pb_UpdateCheck()
 		{
-			if(pb_Preferences_Internal.GetBool(pb_Constant.pbCheckForProBuilderUpdates))
+			if (pb_Preferences_Internal.GetBool(pb_Constant.pbCheckForProBuilderUpdates))
 			{
 				calledFromMenu = false;
 				CheckForUpdate();
@@ -33,7 +33,7 @@ namespace ProBuilder2.EditorCommon
 
 		public static void CheckForUpdate()
 		{
-			if(updateQuery == null)
+			if (updateQuery == null)
 			{
 				updateQuery = new WWW(PROBUILDER_VERSION_URL);
 				EditorApplication.update += Update;
@@ -54,7 +54,7 @@ namespace ProBuilder2.EditorCommon
 						pb_VersionInfo webVersion;
 						string webChangelog;
 
-						if(!pb_VersionUtil.FormatChangelog(updateQuery.text, out webVersion, out webChangelog))
+						if (!pb_VersionUtil.FormatChangelog(updateQuery.text, out webVersion, out webChangelog))
 						{
 							FailedConnection();
 						}
@@ -63,12 +63,12 @@ namespace ProBuilder2.EditorCommon
 							pb_VersionInfo current;
 
 							// first test if the installed version is already up to date
-							if( !pb_VersionUtil.GetCurrent(out current) || webVersion.CompareTo(current) > 0 )
+							if ( !pb_VersionUtil.GetCurrent(out current) || webVersion.CompareTo(current) > 0 )
 							{
 								// next, test if a notification for this version has already been shown
 								string lastNotification = EditorPrefs.GetString(pbLastWebVersionChecked, "");
 
-								if(calledFromMenu || !lastNotification.Equals(webVersion.text))
+								if (calledFromMenu || !lastNotification.Equals(webVersion.text))
 								{
 									pb_UpdateAvailable.Init(webVersion, webChangelog);
 									EditorPrefs.SetString(pbLastWebVersionChecked, webVersion.text);
@@ -99,13 +99,13 @@ namespace ProBuilder2.EditorCommon
 
 		static void UpToDate(string version)
 		{
-			if(calledFromMenu)
+			if (calledFromMenu)
 				EditorUtility.DisplayDialog("ProBuilder Update Check", string.Format("You're up to date!\n\nInstalled Version: {0}\nLatest Version: {0}", version), "Okay");
 		}
 
 		static void FailedConnection(string error = null)
 		{
-			if(calledFromMenu)
+			if (calledFromMenu)
 				EditorUtility.DisplayDialog(
 					"ProBuilder Update Check", 
 					error == null ? "Failed to connect to server!" : string.Format("Failed to connect to server!\n\n{0}", error.ToString()), 

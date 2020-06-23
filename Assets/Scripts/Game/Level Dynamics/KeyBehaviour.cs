@@ -2,8 +2,6 @@
 
 public class KeyBehaviour : MonoBehaviour 
 {
-	// ----------------------------------------------- Data members ----------------------------------------------
-	//public bool hasKey;
 	public int randomInt;
 	public KeyHandler keyHandler;
 	private HUDBehaviour HUDBehaviourObject;
@@ -15,25 +13,20 @@ public class KeyBehaviour : MonoBehaviour
 		BLUE,
 		YELLOW
 	};
-	// ----------------------------------------------- End Data members ------------------------------------------
-
-	// --------------------------------------------------- Methods -----------------------------------------------
-	// --------------------------------------------------------------------
+	
 	public eKeyType keyType;
-	// --------------------------------------------------------------------
+	
 	// Use this for initialization
-	void Start () 
+	void Start() 
 	{
-		//hasKey = false;
-
 		// Random number for assigning key colour.
 		randomInt = Random.Range (1, 4);
 		AssignColour();
 	}
-	// --------------------------------------------------------------------
+	
 	void OnTriggerEnter(Collider other)
 	{
-		if (other.tag == Tags.Player)
+		if (other.CompareTag(Tags.Player))
 		{
 			if (keyType == eKeyType.RED)
 			{
@@ -59,7 +52,7 @@ public class KeyBehaviour : MonoBehaviour
 			}
 		}
 	}
-	// --------------------------------------------------------------------
+	
 	// Method to assign the colour of the key by a random value so is different every time.
 	public void AssignColour()
 	{
@@ -85,7 +78,5 @@ public class KeyBehaviour : MonoBehaviour
 			keyType = eKeyType.RED;
 			break;
 		}
-	}
-	// --------------------------------------------------------------------
-	// --------------------------------------------------- End Methods --------------------------------------------
+	}	
 }

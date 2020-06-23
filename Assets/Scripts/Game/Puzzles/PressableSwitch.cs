@@ -2,7 +2,6 @@
 
 public class PressableSwitch : MonoBehaviour
 {
-    // ----------------------------------------------- Data members ----------------------------------------------
     public bool isActive, switchDown, hasBeenPressed;               
     private Transform switchPad;           // The switch that corresponds with this trigger.
     public GameObject pattern;             // The coloured pattern on the switch - this will change colour when pressed.
@@ -18,15 +17,9 @@ public class PressableSwitch : MonoBehaviour
         HoldToActivate
     }
     public PadType type = PadType.OnOff;    // Set as default.
-    // ----------------------------------------------- End Data members ------------------------------------------
-
-    // --------------------------------------------------- Methods -----------------------------------------------
-    // --------------------------------------------------------------------
-    void Awake()
-    {
-        aSource = GetComponent<AudioSource>();
-    }
-    // --------------------------------------------------------------------
+    
+    void Awake() => aSource = GetComponent<AudioSource>();
+    
     // Use this for initialisation.
     void Start()
     {
@@ -49,11 +42,11 @@ public class PressableSwitch : MonoBehaviour
         switchPad.transform.localPosition = raisedPosition;   // Set switch to raised position.
         pattern.transform.localPosition = raisedPosition;
     }
-    // --------------------------------------------------------------------
+    
     void OnTriggerEnter(Collider col)
     {
         // If the player is stepping on this switch or a moveable object is put on it.
-        if ((col.transform.tag == "Player" || col.transform.tag == "Moveable" || col.transform.tag == "Gravity") && !switchDown)
+        if ((col.transform.CompareTag("Player") || col.transform.CompareTag("Moveable") || col.transform.CompareTag("Gravity")) && !switchDown)
         {
             switchDown = true;
             aSource.clip = clickDown;
@@ -88,11 +81,11 @@ public class PressableSwitch : MonoBehaviour
             pattern.transform.localPosition = pressedPosition;
         }
     }
-    // --------------------------------------------------------------------
+    
     void OnTriggerExit(Collider col)
     {
         // If the player or object leaves this switch.
-        if (col.transform.tag == "Player" || col.transform.tag == "Moveable" || col.transform.tag == "Gravity")
+        if (col.transform.CompareTag("Player") || col.transform.CompareTag("Moveable") || col.transform.CompareTag("Gravity"))
         {
             switchPad.transform.localPosition = raisedPosition;   // Set switch to raised position.
             pattern.transform.localPosition = raisedPosition;
@@ -110,11 +103,11 @@ public class PressableSwitch : MonoBehaviour
             }
         }
     }
-    // --------------------------------------------------------------------
+    
     void OnTriggerStay(Collider col)
     {
         // If the player is stepping on this switch or a moveable object is put on it.
-        if (col.transform.tag == "Player" || col.transform.tag == "Moveable" || col.transform.tag == "Gravity")
+        if (col.transform.CompareTag("Player") || col.transform.CompareTag("Moveable") || col.transform.CompareTag("Gravity"))
         {
             switchDown = true; 
             if (type == PadType.HoldToActivate)
@@ -124,15 +117,11 @@ public class PressableSwitch : MonoBehaviour
             }
         }
     }
-    // --------------------------------------------------------------------
+    
     public void SetPadColour(MeshRenderer colourToSet, MeshRenderer[] coloursToUnset)
     {
         foreach (MeshRenderer colourToUnset in coloursToUnset)
-        {
             colourToUnset.enabled = false;
-        }
         colourToSet.enabled = true;
     }
-    // --------------------------------------------------------------------
-    // --------------------------------------------------- End Methods --------------------------------------------
 }

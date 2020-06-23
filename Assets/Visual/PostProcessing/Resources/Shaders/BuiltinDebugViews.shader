@@ -20,7 +20,7 @@ Shader "Hidden/Post FX/Builtin Debug Views"
         float4 _CameraGBufferTexture2_ST;
     #endif
 
-        // -----------------------------------------------------------------------------
+        
         // Depth
 
         float _DepthScale;
@@ -38,7 +38,7 @@ Shader "Hidden/Post FX/Builtin Debug Views"
             return float4(d, 1.0);
         }
 
-        // -----------------------------------------------------------------------------
+        
         // Normals
 
         float3 SampleNormal(float2 uv)
@@ -63,7 +63,7 @@ Shader "Hidden/Post FX/Builtin Debug Views"
             return float4(n, 1.0);
         }
 
-        // -----------------------------------------------------------------------------
+        
         // Motion vectors
 
         float _Opacity;

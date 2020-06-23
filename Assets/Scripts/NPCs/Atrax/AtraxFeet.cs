@@ -2,19 +2,12 @@
 
 public class AtraxFeet : MonoBehaviour
 {
-    // ----------------------------------------------- Data members ----------------------------------------------
     AudioSource aSrc;
     public Transform sparkPrefab;
-    // ----------------------------------------------- End Data members ------------------------------------------
-
-    // --------------------------------------------------- Methods -----------------------------------------------
-    // --------------------------------------------------------------------
+    
     // Use this for initialization
-    void Start()
-    {
-        aSrc = GetComponent<AudioSource>();	
-	}
-    // --------------------------------------------------------------------
+    void Start() => aSrc = GetComponent<AudioSource>();
+
     private void OnCollisionEnter(Collision collision)
     {
         // This is for making sparks appear when Atrax hits the floor.
@@ -28,6 +21,4 @@ public class AtraxFeet : MonoBehaviour
         Vector3 pos = contact.point;
         Instantiate(sparkPrefab, pos, rot);
     }
-    // --------------------------------------------------------------------
-    // --------------------------------------------------- End Methods --------------------------------------------
 }

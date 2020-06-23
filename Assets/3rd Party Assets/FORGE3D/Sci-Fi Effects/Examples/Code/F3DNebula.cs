@@ -3,7 +3,7 @@
 public class F3DNebula : MonoBehaviour {
 
 	// Update is called once per frame
-	void Update () {
+	void Update() {
 
         transform.position -= Vector3.forward * Time.deltaTime * 100;
 

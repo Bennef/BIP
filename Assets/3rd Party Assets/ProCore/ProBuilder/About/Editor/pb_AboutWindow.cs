@@ -22,7 +22,7 @@ namespace ProBuilder2.EditorCommon
 	{
 		static pb_AboutWindowSetup()
 		{
-			EditorApplication.delayCall += () => { pb_AboutWindow.Init(false); };
+			EditorApplication.delayCall +=() => { pb_AboutWindow.Init(false); };
 		}
 	}
 
@@ -64,14 +64,14 @@ namespace ProBuilder2.EditorCommon
 		{
 			get
 			{
-				if( Directory.Exists(aboutRoot) )
+				if ( Directory.Exists(aboutRoot) )
 				{
 					return aboutRoot;
 				}
 				else
 				{
 					aboutRoot = pb_FileUtil.FindFolder("ProBuilder/About");
-					if(aboutRoot.EndsWith("/"))
+					if (aboutRoot.EndsWith("/"))
 						aboutRoot = aboutRoot.Remove(aboutRoot.LastIndexOf("/"), 1);
 					return aboutRoot;
 				}
@@ -121,13 +121,13 @@ namespace ProBuilder2.EditorCommon
 		{
 			pb_AboutEntry about;
 
-			if(!pb_VersionUtil.GetAboutEntry(out about))
+			if (!pb_VersionUtil.GetAboutEntry(out about))
 			{
 				Debug.LogWarning("Couldn't find pb_AboutEntry_ProBuilder.txt");
 				return false;
 			}
 
-			if(fromMenu || EditorPrefs.GetString(about.identifier) != about.version)
+			if (fromMenu || EditorPrefs.GetString(about.identifier) != about.version)
 			{
 				pb_AboutWindow win;
 				win = (pb_AboutWindow)EditorWindow.GetWindow(typeof(pb_AboutWindow), true, about.name, true);
@@ -242,7 +242,7 @@ namespace ProBuilder2.EditorCommon
 
 			Texture2D banner = bannerStyle.normal.background;
 
-			if(banner == null)
+			if (banner == null)
 			{
 				Debug.LogWarning("Could not load About window resources");
 				this.Close();
@@ -257,7 +257,7 @@ namespace ProBuilder2.EditorCommon
 				this.minSize = new Vector2(BANNER_WIDTH + 24, BANNER_HEIGHT * 2.5f);
 				this.maxSize = new Vector2(BANNER_WIDTH + 24, BANNER_HEIGHT * 2.5f);
 
-				if(!productName.Contains("Basic"))
+				if (!productName.Contains("Basic"))
 					productName = "ProBuilder Advanced";
 			}
 		}
@@ -266,14 +266,14 @@ namespace ProBuilder2.EditorCommon
 		{
 			this.about = about;
 
-			if(!File.Exists(about.changelogPath))
+			if (!File.Exists(about.changelogPath))
 				about.changelogPath = pb_FileUtil.FindFile("ProBuilder/About/changelog.txt");
 
-			if(File.Exists(about.changelogPath))
+			if (File.Exists(about.changelogPath))
 			{
 				string raw = File.ReadAllText(about.changelogPath);
 
-				if(!string.IsNullOrEmpty(raw))
+				if (!string.IsNullOrEmpty(raw))
 				{
 					pb_VersionInfo vi;
 					pb_VersionUtil.FormatChangelog(raw, out vi, out changelogRichText);
@@ -290,10 +290,10 @@ namespace ProBuilder2.EditorCommon
 		{
 			Vector2 mousePosition = Event.current.mousePosition;
 
-			if( GUILayout.Button(gc_Banner, bannerStyle) )
+			if ( GUILayout.Button(gc_Banner, bannerStyle) )
 				Application.OpenURL(VIDEO_URL);
 
-			if(GUILayoutUtility.GetLastRect().Contains(mousePosition))
+			if (GUILayoutUtility.GetLastRect().Contains(mousePosition))
 				Repaint();
 
 			GUILayout.BeginVertical(changelogStyle);
@@ -303,23 +303,23 @@ namespace ProBuilder2.EditorCommon
 			GUILayout.BeginHorizontal();
 			GUILayout.FlexibleSpace();
 
-				if(GUILayout.Button(gc_Learn, linkStyle))
+				if (GUILayout.Button(gc_Learn, linkStyle))
 					Application.OpenURL(LEARN_URL);
 
 				GUILayout.Label("|", separatorStyle);
 
-				if(GUILayout.Button(gc_Forum, linkStyle))
+				if (GUILayout.Button(gc_Forum, linkStyle))
 					Application.OpenURL(SUPPORT_URL);
 
 				GUILayout.Label("|", separatorStyle);
 
-				if(GUILayout.Button(gc_Contact, linkStyle))
+				if (GUILayout.Button(gc_Contact, linkStyle))
 					Application.OpenURL(CONTACT_EMAIL);
 
 			GUILayout.FlexibleSpace();
 			GUILayout.EndHorizontal();
 
-			if(GUILayoutUtility.GetLastRect().Contains(mousePosition))
+			if (GUILayoutUtility.GetLastRect().Contains(mousePosition))
 				Repaint();
 
 			GUILayout.EndVertical();

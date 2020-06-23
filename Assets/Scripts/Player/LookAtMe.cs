@@ -1,15 +1,12 @@
 ﻿using UnityEngine;
 
-public class LookAtMe : MonoBehaviour {
-    // ----------------------------------------------- Data members ----------------------------------------------
+public class LookAtMe : MonoBehaviour 
+{    
     public Transform head;
     public Transform labHead;
     public bool shouldLook;
     public float speed;
-    // ----------------------------------------------- End Data members ------------------------------------------
 
-    // --------------------------------------------------- Methods -----------------------------------------------
-    // --------------------------------------------------------------------
 	// LateUpdate is called once per frame after Update.
 	void LateUpdate()
     {
@@ -24,22 +21,16 @@ public class LookAtMe : MonoBehaviour {
             //head.rotation = Quaternion.LookRotation(transform.position - head.position);
         }
     }
-    // --------------------------------------------------------------------
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.name == "Vision Cone")
-        {
             shouldLook = true;
-        }
     }
-    // --------------------------------------------------------------------
+    
     private void OnTriggerExit(Collider other)
     {
         if (other.name == "Vision Cone")
-        {
             shouldLook = false;
-        }
     }
-    // --------------------------------------------------------------------
-    // --------------------------------------------------- End Methods --------------------------------------------
 }

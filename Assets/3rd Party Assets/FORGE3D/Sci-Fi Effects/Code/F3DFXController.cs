@@ -166,7 +166,7 @@ public class F3DFXController : MonoBehaviour
         // Switch weapon types using keyboard keys
         if (Input.GetKeyDown(KeyCode.RightArrow))        
             NextWeapon();        
-        else if(Input.GetKeyDown(KeyCode.LeftArrow))
+        else if (Input.GetKeyDown(KeyCode.LeftArrow))
             PrevWeapon();
     }
 

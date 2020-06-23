@@ -91,10 +91,10 @@ public class TestParticles : MonoBehaviour {
 	#region Component Segments
 		
 		// Use this for initialization
-		void Start () {
+		void Start() {
 	
 			// Check if there is any particle in prefab list
-			if(m_PrefabListFire.Length>0 ||
+			if (m_PrefabListFire.Length>0 ||
 				m_PrefabListWind.Length>0 ||
 				m_PrefabListWater.Length>0 ||
 				m_PrefabListEarth.Length>0 ||
@@ -113,33 +113,33 @@ public class TestParticles : MonoBehaviour {
 		}
 		
 		// Update is called once per frame
-		void Update () {
+		void Update() {
 			
 			// Check if there is any particle in prefab list
-			if(m_CurrentElementIndex!=-1 && m_CurrentParticleIndex!=-1)
+			if (m_CurrentElementIndex!=-1 && m_CurrentParticleIndex!=-1)
 			{
 				// User released Up arrow key
-				if(Input.GetKeyUp(KeyCode.UpArrow))
+				if (Input.GetKeyUp(KeyCode.UpArrow))
 				{
 					m_CurrentElementIndex++;
 					m_CurrentParticleIndex = 0;
 					ShowParticle();
 				}
 				// User released Down arrow key
-				else if(Input.GetKeyUp(KeyCode.DownArrow))
+				else if (Input.GetKeyUp(KeyCode.DownArrow))
 				{
 					m_CurrentElementIndex--;
 					m_CurrentParticleIndex = 0;
 					ShowParticle();
 				}
 				// User released Left arrow key
-				else if(Input.GetKeyUp(KeyCode.LeftArrow))
+				else if (Input.GetKeyUp(KeyCode.LeftArrow))
 				{
 					m_CurrentParticleIndex--;
 					ShowParticle();
 				}
 				// User released Right arrow key
-				else if(Input.GetKeyUp(KeyCode.RightArrow))
+				else if (Input.GetKeyUp(KeyCode.RightArrow))
 				{
 					m_CurrentParticleIndex++;
 					ShowParticle();
@@ -148,7 +148,7 @@ public class TestParticles : MonoBehaviour {
 		}
 	
 		// OnGUI is called for rendering and handling GUI events.
-		void OnGUI () {
+		void OnGUI() {
 		
 			// Show version number
 			GUI.Window(1, new Rect((Screen.width-260), 5, 250, 80), InfoWindow, "Info");
@@ -169,63 +169,63 @@ public class TestParticles : MonoBehaviour {
 		void ShowParticle()
 		{
 			// Make m_CurrentElementIndex be rounded
-			if(m_CurrentElementIndex>7)
+			if (m_CurrentElementIndex>7)
 			{
 				m_CurrentElementIndex = 0;
 			}
-			else if(m_CurrentElementIndex<0)
+			else if (m_CurrentElementIndex<0)
 			{
 				m_CurrentElementIndex = 7;
 			}
 			
 			// Update current m_CurrentElementList and m_ElementName
-			if(m_CurrentElementIndex==0)
+			if (m_CurrentElementIndex==0)
 			{
 				m_CurrentElementList = m_PrefabListFire;
 				m_ElementName = "FIRE";
 			}
-			else if(m_CurrentElementIndex==1)
+			else if (m_CurrentElementIndex==1)
 			{
 				m_CurrentElementList = m_PrefabListWater;
 				m_ElementName = "WATER";
 			}
-			else if(m_CurrentElementIndex==2)
+			else if (m_CurrentElementIndex==2)
 			{
 				m_CurrentElementList = m_PrefabListWind;
 				m_ElementName = "WIND";
 			}
-			else if(m_CurrentElementIndex==3)
+			else if (m_CurrentElementIndex==3)
 			{
 				m_CurrentElementList = m_PrefabListEarth;
 				m_ElementName = "EARTH";
 			}
-			else if(m_CurrentElementIndex==4)
+			else if (m_CurrentElementIndex==4)
 			{
 				m_CurrentElementList = m_PrefabListThunder;
 				m_ElementName = "THUNDER";
 			}
-			else if(m_CurrentElementIndex==5)
+			else if (m_CurrentElementIndex==5)
 			{
 				m_CurrentElementList = m_PrefabListIce;
 				m_ElementName = "ICE";
 			}
-			else if(m_CurrentElementIndex==6)
+			else if (m_CurrentElementIndex==6)
 			{
 				m_CurrentElementList = m_PrefabListLight;
 				m_ElementName = "LIGHT";
 			}
-			else if(m_CurrentElementIndex==7)
+			else if (m_CurrentElementIndex==7)
 			{
 				m_CurrentElementList = m_PrefabListDarkness;
 				m_ElementName = "DARKNESS";
 			}
 	
 			// Make m_CurrentParticleIndex be rounded
-			if(m_CurrentParticleIndex>=m_CurrentElementList.Length)
+			if (m_CurrentParticleIndex>=m_CurrentElementList.Length)
 			{
 				m_CurrentParticleIndex = 0;
 			}
-			else if(m_CurrentParticleIndex<0)
+			else if (m_CurrentParticleIndex<0)
 			{
 				m_CurrentParticleIndex = m_CurrentElementList.Length-1;
 			}
@@ -234,7 +234,7 @@ public class TestParticles : MonoBehaviour {
 			m_ParticleName = m_CurrentElementList[m_CurrentParticleIndex].name;
 	
 			// Remove Old particle
-			if(m_CurrentParticle!=null)
+			if (m_CurrentParticle!=null)
 			{
 				DestroyObject(m_CurrentParticle);
 			}

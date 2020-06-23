@@ -23,13 +23,13 @@ public class GunShoot : MonoBehaviour {
 	private Animator anim;
 	private GunAim gunAim;
 
-	void Start () 
+	void Start() 
 	{
-		anim = GetComponent<Animator> ();
+		anim = GetComponent<Animator>();
 		gunAim = GetComponentInParent<GunAim>();
 	}
 
-	void Update () 
+	void Update() 
 	{
 		if (Input.GetButtonDown("Fire1") && Time.time > nextFire && !gunAim.GetIsOutOfBounds()) 
 		{
@@ -49,7 +49,7 @@ public class GunShoot : MonoBehaviour {
 
 	void HandleHit(RaycastHit hit)
 	{
-		if(hit.collider.sharedMaterial != null)
+		if (hit.collider.sharedMaterial != null)
 		{
 			string materialName = hit.collider.sharedMaterial.name;
 

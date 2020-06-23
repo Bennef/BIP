@@ -102,9 +102,9 @@ Shader "Sandbox/VolumetricLight"
 			return o;
 		}
 
-		//-----------------------------------------------------------------------------------------
+		//
 		// GetCascadeWeights_SplitSpheres
-		//-----------------------------------------------------------------------------------------
+		//
 		inline fixed4 GetCascadeWeights_SplitSpheres(float3 wpos)
 		{
 			float3 fromCenter0 = wpos.xyz - unity_ShadowSplitSpheres[0].xyz;
@@ -118,9 +118,9 @@ Shader "Sandbox/VolumetricLight"
 			return weights;
 		}
 
-		//-----------------------------------------------------------------------------------------
+		//
 		// GetCascadeShadowCoord
-		//-----------------------------------------------------------------------------------------
+		//
 		inline float4 GetCascadeShadowCoord(float4 wpos, fixed4 cascadeWeights)
 		{
 			float3 sc0 = mul(unity_WorldToShadow[0], wpos).xyz;
@@ -138,9 +138,9 @@ Shader "Sandbox/VolumetricLight"
 		
 		UNITY_DECLARE_SHADOWMAP(_CascadeShadowMapTexture);
 		
-		//-----------------------------------------------------------------------------------------
+		//
 		// GetLightAttenuation
-		//-----------------------------------------------------------------------------------------
+		//
 		float GetLightAttenuation(float3 wpos)
 		{
 			float atten = 0;
@@ -190,9 +190,9 @@ Shader "Sandbox/VolumetricLight"
 			return atten;
 		}
 
-        //-----------------------------------------------------------------------------------------
+        //
         // ApplyHeightFog
-        //-----------------------------------------------------------------------------------------
+        //
         void ApplyHeightFog(float3 wpos, inout float density)
         {
 #ifdef HEIGHT_FOG
@@ -200,9 +200,9 @@ Shader "Sandbox/VolumetricLight"
 #endif
         }
 
-        //-----------------------------------------------------------------------------------------
+        //
         // GetDensity
-        //-----------------------------------------------------------------------------------------
+        //
 		float GetDensity(float3 wpos)
 		{
             float density = 1;
@@ -216,17 +216,17 @@ Shader "Sandbox/VolumetricLight"
             return density;
 		}        
 
-		//-----------------------------------------------------------------------------------------
+		//
 		// MieScattering
-		//-----------------------------------------------------------------------------------------
+		//
 		float MieScattering(float cosAngle, float4 g)
 		{
             return g.w * (g.x / (pow(g.y - g.z * cosAngle, 1.5)));			
 		}
 
-		//-----------------------------------------------------------------------------------------
+		//
 		// RayMarch
-		//-----------------------------------------------------------------------------------------
+		//
 		float4 RayMarch(float2 screenPos, float3 rayStart, float3 rayDir, float rayLength)
 		{
 #ifdef DITHER_4_4
@@ -295,9 +295,9 @@ Shader "Sandbox/VolumetricLight"
 			return vlight;
 		}
 
-		//-----------------------------------------------------------------------------------------
+		//
 		// RayConeIntersect
-		//-----------------------------------------------------------------------------------------
+		//
 		float2 RayConeIntersect(in float3 f3ConeApex, in float3 f3ConeAxis, in float fCosAngle, in float3 f3RayStart, in float3 f3RayDir)
 		{
 			float inf = 10000;
@@ -325,9 +325,9 @@ Shader "Sandbox/VolumetricLight"
 				return inf;
 		}
 
-		//-----------------------------------------------------------------------------------------
+		//
 		// RayPlaneIntersect
-		//-----------------------------------------------------------------------------------------
+		//
 		float RayPlaneIntersect(in float3 planeNormal, in float planeD, in float3 rayOrigin, in float3 rayDir)
 		{
 			float NdotD = dot(planeNormal, rayDir);

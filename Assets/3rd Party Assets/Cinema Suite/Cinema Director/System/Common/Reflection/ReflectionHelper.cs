@@ -17,7 +17,7 @@ namespace CinemaSuite.Common
         public static Assembly[] GetAssemblies()
         {
 #if NETFX_CORE
-            if(assemblies == null || assemblies.Count == 0)
+            if (assemblies == null || assemblies.Count == 0)
             {
                 var folder = Windows.ApplicationModel.Package.Current.InstalledLocation;
 			    var files = folder.GetFilesAsync();

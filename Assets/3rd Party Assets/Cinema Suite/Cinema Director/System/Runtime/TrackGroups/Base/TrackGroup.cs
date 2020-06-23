@@ -16,11 +16,6 @@ namespace CinemaDirector
         [SerializeField]
         private bool canOptimize = true; // If true, this Track Group will load all tracks into cache on Optimize().
 
-
-
-
-
-
         // A cache of the tracks for optimization purposes.
         protected TimelineTrack[] trackCache;
 
@@ -136,7 +131,7 @@ namespace CinemaDirector
                 List<float> trackTimes = tracks[i].GetMilestones(from, to);
                 for (int j = 0; j < trackTimes.Count; j++)
                 {
-                    if(!times.Contains(trackTimes[j]))
+                    if (!times.Contains(trackTimes[j]))
                     {
                         times.Add(trackTimes[j]);
                     }

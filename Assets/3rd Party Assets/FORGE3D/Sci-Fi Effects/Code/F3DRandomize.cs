@@ -23,7 +23,7 @@ public class F3DRandomize : MonoBehaviour {
         if (RandomScale)
             transform.localScale = defaultScale * Random.Range(MinScale, MaxScale);
 
-        if(RandomRotation)
+        if (RandomRotation)
             transform.rotation *= Quaternion.Euler(0, 0, Random.Range(MinRotation, MaxRotaion));
     }
 }

@@ -23,7 +23,7 @@ public class MemberClipCurveDrawer : PropertyDrawer
         int count = UnityPropertyTypeInfo.GetCurveCount(propertyTypeInfo);
 
         EditorGUI.indentLevel++;
-            if(count > 0)
+            if (count > 0)
             EditorGUILayout.PropertyField(curve1Property);
             if (count > 1)
             EditorGUILayout.PropertyField(curve2Property);

@@ -3,17 +3,14 @@ using UnityEngine;
 
 public class HomingIco : MonoBehaviour
 {
-    // ----------------------------------------------- Data members ----------------------------------------------
     public Transform target;                // Target of cube.
-    private Vector3 targetPos;
     private SphereCollider rangeCollider;    // To detect if target is in range.
     public bool isInRange;          // True when target in range.
     private Rigidbody cubeRB;
     public float speed;
-    PlayerStates state;
     public Material[] mats;
     public Material red, blue, dead, green;
-    Light light;
+    Light theLight;
     public Vector3 startingPosition;
     AudioSource aSrc;
     public AudioClip death;
@@ -22,19 +19,15 @@ public class HomingIco : MonoBehaviour
     private Health icoHealth;
     public CharacterController bip;
     private DamageByCollision damageByCollision;
-    // ----------------------------------------------- End Data members ------------------------------------------
-
-    // --------------------------------------------------- Methods -----------------------------------------------
-    // --------------------------------------------------------------------
+    
     private void Awake()
     {
         cubeRB = GetComponent<Rigidbody>();
         rangeCollider = GetComponent<SphereCollider>();
-        light = GetComponent<Light>();
+        theLight = GetComponent<Light>();
         aSrc = GetComponent<AudioSource>();
         overheadTrigger = GetComponent<OverheadUITrigger>();
         damageByCollision = GetComponent<DamageByCollision>();
-        state = GameObject.Find("Bip").GetComponent<PlayerStates>();
         mats[0] = red;
         mats[1] = blue;
         mats[2] = dead;
@@ -42,24 +35,20 @@ public class HomingIco : MonoBehaviour
         icoHealth = GetComponent<Health>();
         target = GameObject.Find("Bip").transform;
     }
-    // --------------------------------------------------------------------
+    
     // Update is called once per frame
     void FixedUpdate()
     {
         if (icoHealth.value <= 0)
-        {
             isDead = true;
-        }
 
         if (bip.isDead)
-        {
             isInRange = false;
-        }
 
         if (!rangeCollider.enabled)
         {
             GetComponent<Renderer>().material = mats[3];
-            light.color = Color.green;
+            theLight.color = Color.green;
         }
 
         if (!isDead)
@@ -69,19 +58,17 @@ public class HomingIco : MonoBehaviour
             {
                 // Material goes red;
                 GetComponent<Renderer>().material = mats[0];
-                light.color = Color.red;
+                theLight.color = Color.red;
 
                 // Chase Bip.
                 if (cubeRB.velocity.magnitude < 10)
-                {
                     cubeRB.velocity += (target.position - transform.position).normalized * speed;
-                }
             }
             else if (rangeCollider.enabled)
             {
                 // Material goes blue;
                 GetComponent<Renderer>().material = mats[1];
-                light.color = Color.blue;
+                theLight.color = Color.blue;
             }
         }
         else
@@ -93,7 +80,7 @@ public class HomingIco : MonoBehaviour
             }
         }
     }
-    // --------------------------------------------------------------------
+    
     void OnTriggerEnter(Collider other)
     {
         if (other.name == "Bip" && !isDead)
@@ -108,15 +95,13 @@ public class HomingIco : MonoBehaviour
         }
         
     }
-    // --------------------------------------------------------------------
+    
     void OnTriggerExit(Collider other)
     {
         if (other.name == "Bip")
-        {
             isInRange = false;
-        }
     }
-    // --------------------------------------------------------------------
+    
     public void ResetPosition()
     {
         overheadTrigger.hasHappened = false;
@@ -128,10 +113,10 @@ public class HomingIco : MonoBehaviour
         transform.position = startingPosition;
         isDead = false;
     }
-    // --------------------------------------------------------------------
+    
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.tag == "Enemy")
+        if (collision.collider.CompareTag("Enemy"))
         {
             ContactPoint contact = collision.contacts[0];
             GameObject spark = (GameObject)Instantiate(Resources.Load("vulcan_spark"));
@@ -139,24 +124,22 @@ public class HomingIco : MonoBehaviour
             aSrc.Play();
         }
     }
-    // --------------------------------------------------------------------
+    
     public IEnumerator Pause()
     {
         yield return new WaitForSeconds(2.0f);
         pausing = false;
     }
-    // --------------------------------------------------------------------
+    
     IEnumerator KillIco()
     {
         killCoStarted = true;
         aSrc.clip = death;
         aSrc.Play();
         GameObject explosion = (GameObject)Instantiate(Resources.Load("Explosion_002"));
-        light.intensity = 0;
+        theLight.intensity = 0;
         explosion.transform.position = transform.position;
         damageByCollision.isOn = false;
         yield return null;
-    }
-    // --------------------------------------------------------------------
-    // --------------------------------------------------- End Methods --------------------------------------------
+    }   
 }

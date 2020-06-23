@@ -31,7 +31,7 @@ namespace ProBuilder2.EditorCommon
 
 			unchecked
 			{
-				if(valid)
+				if (valid)
 				{
 					hash = (hash * 7) + major.GetHashCode();
 					hash = (hash * 7) + minor.GetHashCode();
@@ -50,10 +50,10 @@ namespace ProBuilder2.EditorCommon
 
 		public bool Equals(pb_VersionInfo version)
 		{
-			if(valid != version.valid)
+			if (valid != version.valid)
 				return false;
 
-			if(valid)
+			if (valid)
 			{
 				return 	major == version.major &&
 						minor == version.minor &&
@@ -63,7 +63,7 @@ namespace ProBuilder2.EditorCommon
 			}
 			else
 			{
-				if( string.IsNullOrEmpty(text) || string.IsNullOrEmpty(version.text) )
+				if ( string.IsNullOrEmpty(text) || string.IsNullOrEmpty(version.text) )
 					return false;
 
 				return text.Equals(version.text);
@@ -75,25 +75,25 @@ namespace ProBuilder2.EditorCommon
 			const int GREATER = 1;
 			const int LESS = -1;
 
-			if(this.Equals(version))
+			if (this.Equals(version))
 				return 0;
-			else if(major > version.major)
+			else if (major > version.major)
 				return GREATER;
-			else if(major < version.major)
+			else if (major < version.major)
 				return LESS;
-			else if(minor > version.minor)
+			else if (minor > version.minor)
 				return GREATER;
-			else if(minor < version.minor)
+			else if (minor < version.minor)
 				return LESS;
-			else if(patch > version.patch)
+			else if (patch > version.patch)
 				return GREATER;
-			else if(patch < version.patch)
+			else if (patch < version.patch)
 				return LESS;
-			else if((int)type > (int)version.type)
+			else if ((int)type > (int)version.type)
 				return GREATER;
-			else if((int)type < (int)version.type)
+			else if ((int)type < (int)version.type)
 				return LESS;
-			else if(build > version.build)
+			else if (build > version.build)
 				return GREATER;
 			else
 				return LESS;
@@ -134,9 +134,9 @@ namespace ProBuilder2.EditorCommon
 
 		static VersionType GetVersionType(string type)
 		{
-			if( type.Equals("b") || type.Equals("B") )
+			if ( type.Equals("b") || type.Equals("B") )
 				return VersionType.Beta;
-			else if( type.Equals("p") || type.Equals("P") )
+			else if ( type.Equals("p") || type.Equals("P") )
 				return VersionType.Patch;
 
 			return VersionType.Final;
