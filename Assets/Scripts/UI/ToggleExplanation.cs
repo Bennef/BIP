@@ -29,7 +29,7 @@ public class ToggleExplanation : MonoBehaviour
         }
 	}
     
-    void OnLevelWasLoaded()
+    void OnEnable()
     {
         scene = SceneManager.GetActiveScene();
         if (scene.name == "Portfolio")

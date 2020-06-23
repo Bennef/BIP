@@ -42,7 +42,7 @@ public class HomingIco : MonoBehaviour
         if (icoHealth.value <= 0)
             isDead = true;
 
-        if (bip.isDead)
+        if (bip.IsDead)
             isInRange = false;
 
         if (!rangeCollider.enabled)

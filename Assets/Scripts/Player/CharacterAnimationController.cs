@@ -20,25 +20,25 @@ public abstract class CharacterAnimationController : MonoBehaviour
 	// Update is called once per frame
 	void Update() 
 	{
-		if (GameManager.Instance.isPaused)
+		if (GameManager.Instance.IsPaused)
             anim.enabled = false;
         else
             anim.enabled = true;
 	}
 	
-	public void StartRunState() => anim.SetBool(state.isRunningBool, true);
+	public void StartRunState() => anim.SetBool(state.IsRunningBool, true);
 
-	public void StopRunState() => anim.SetBool(state.isRunningBool, false);
+	public void StopRunState() => anim.SetBool(state.IsRunningBool, false);
 	
-	public void StartPushState() => anim.SetBool(state.isPushingBool, true);
+	public void StartPushState() => anim.SetBool(state.IsPushingBool, true);
 	
-	public void StopPushState() => anim.SetBool(state.isPushingBool, false);
+	public void StopPushState() => anim.SetBool(state.IsPushingBool, false);
 	
-	public void StartRiseState() => anim.SetBool(state.isRisingBool, true);
+	public void StartRiseState() => anim.SetBool(state.IsRisingBool, true);
 	
-	public void StopRiseState() => anim.SetBool(state.isRisingBool, false);
+	public void StopRiseState() => anim.SetBool(state.IsRisingBool, false);
 	
-	public void StartClimbState() => anim.SetBool(state.isClimbingBool, true);
+	public void StartClimbState() => anim.SetBool(state.IsClimbingBool, true);
 	
-	public void StopClimbState() => anim.SetBool(state.isClimbingBool, false);
+	public void StopClimbState() => anim.SetBool(state.IsClimbingBool, false);
 }

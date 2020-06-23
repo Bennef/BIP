@@ -29,18 +29,19 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Demos/3 Act 1 old.unity
     guid: 2af4c8eb17546884d9d75cb812000f51
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Portfolio/Main Menu Portfolio.unity
     guid: f23cd64158d0e0947b732cafcdc86fb4
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Portfolio/Portfolio.unity
     guid: bfc2f7a86d4d1a74e88e1c1303f7c7b7
   - enabled: 0
     path: Assets/Scenes/Game/2 Vent Lab.unity
     guid: c17fac4b9b70138408a44520832efeed
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Portfolio/Web/Web Scene 1.unity
     guid: 804dc5a7184d8344a9a92e3681ac5d04
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Portfolio/Web/Main Menu Web.unity
     guid: 40137ff1d859c984aaf23738adc56ca9
+  m_configObjects: {}

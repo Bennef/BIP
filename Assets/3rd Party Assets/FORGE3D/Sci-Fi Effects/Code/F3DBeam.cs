@@ -141,7 +141,7 @@ public class F3DBeam : MonoBehaviour
                 
                 case F3DFXType.PlasmaBeam:
                    //We have modified the code to include audio
-                    if (hitPoint.collider.CompareTag(Tags.Player) && hitPoint.transform.GetComponent<PlayerHealth>().value > 0 && !hitPoint.transform.GetComponent<CharacterController>().isDead)
+                    if (hitPoint.collider.CompareTag(Tags.Player) && hitPoint.transform.GetComponent<PlayerHealth>().value > 0 && !hitPoint.transform.GetComponent<CharacterController>().IsDead)
                     {
                         hitPoint.transform.GetComponent<PlayerHealth>().TakeDamage(damage);
                     }
@@ -158,7 +158,7 @@ public class F3DBeam : MonoBehaviour
                     break;
                 
                 case F3DFXType.PlasmaBeamHeavy:
-                    if (hitPoint.collider.CompareTag(Tags.Player) && hitPoint.transform.GetComponent<PlayerHealth>().value > 0 && !hitPoint.transform.GetComponent<CharacterController>().isDead)
+                    if (hitPoint.collider.CompareTag(Tags.Player) && hitPoint.transform.GetComponent<PlayerHealth>().value > 0 && !hitPoint.transform.GetComponent<CharacterController>().IsDead)
                     {
                         hitPoint.transform.GetComponent<PlayerHealth>().TakeDamage(damage);
                     }

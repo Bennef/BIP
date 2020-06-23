@@ -9,7 +9,7 @@ public class CoBotCharacterController : CharacterController
     void OnEnable()
     {
         GetComponent<CoBotMind>().enabled = false;
-        rigidbody = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
     }
     
     // If player is CoBot, be able to look around.
@@ -34,12 +34,12 @@ public class CoBotCharacterController : CharacterController
     
     void FixedUpdate()
     {
-        rigidbody.velocity = new Vector3(0.0f, rigidbody.velocity.y, 0.0f);  // So he doesn't keep heading towards Bip.
+        GetComponent<Rigidbody>().velocity = new Vector3(0.0f, GetComponent<Rigidbody>().velocity.y, 0.0f);  // So he doesn't keep heading towards Bip.
                                                                              // Set Bips animation state to idle.
         if (!CoBotCam.enabled)
             SetCamera(CoBotCam);
 
-        if (!GameManager.Instance.isPaused)
+        if (!GameManager.Instance.IsPaused)
             MouseLook(true);    // Enable looking around.
         else
             MouseLook(false);    // Disable looking around.

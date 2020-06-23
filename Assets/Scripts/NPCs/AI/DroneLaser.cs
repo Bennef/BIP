@@ -26,7 +26,7 @@ public class DroneLaser : MonoBehaviour
 	
 	void FixedUpdate()
 	{
-        if (GameManager.Instance.isPaused)
+        if (GameManager.Instance.IsPaused)
             return;
 		// If Bip is not in range.
         if (!droneJammed && inChaseRange)

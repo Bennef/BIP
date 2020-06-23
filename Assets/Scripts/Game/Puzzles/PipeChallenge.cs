@@ -85,7 +85,7 @@ public class PipeChallenge : MonoBehaviour
         }
 
         // We have died, stop everything.
-        if (startPad.hasBeenPressed && bip.isDead && deathBool == false && !hasBeenCompleted)
+        if (startPad.hasBeenPressed && bip.IsDead && deathBool == false && !hasBeenCompleted)
         {
             challengeFailed = true;
             ResetPuzzle();

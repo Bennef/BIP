@@ -78,7 +78,7 @@ public class DroneBotMind : MindActor
 
 	void Update()
 	{
-        if (GameManager.Instance.isPaused || isDead)
+        if (GameManager.Instance.IsPaused || isDead)
             return;
 		// Run Think. If it returns false, we're dead.
 		if (!Think() || droneHealth.value <= 0)
@@ -140,7 +140,7 @@ public class DroneBotMind : MindActor
 
 	void FixedUpdate()
 	{
-        if (GameManager.Instance.isPaused)
+        if (GameManager.Instance.IsPaused)
             return;
 		// The direction we wish to go in.
 		Vector3 movementDirection;

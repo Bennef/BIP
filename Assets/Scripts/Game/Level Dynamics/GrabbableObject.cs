@@ -52,7 +52,7 @@ public class GrabbableObject : MonoBehaviour
 
 		if (player)
 		{
-			if (!player.GetComponent<Animator>().GetBool(player.GetComponent<PlayerStates>().isGroundedBool) && isGrabbing)
+			if (!player.GetComponent<Animator>().GetBool(player.GetComponent<PlayerStates>().IsGroundedBool) && isGrabbing)
 				LetGo(); 
 		}
   	}
@@ -80,7 +80,7 @@ public class GrabbableObject : MonoBehaviour
 			*/
 			this.gameObject.GetComponent<FixedJoint>().connectedBody = player;
             player.velocity = Vector3.zero;
-			player.gameObject.GetComponent<Animator>().SetBool(player.gameObject.GetComponent<PlayerStates>().isPushingBool, true);
+			player.gameObject.GetComponent<Animator>().SetBool(player.gameObject.GetComponent<PlayerStates>().IsPushingBool, true);
 		}
 	}
     
@@ -116,7 +116,7 @@ public class GrabbableObject : MonoBehaviour
 
 		// Player control shit.
 		if (player)
-			player.gameObject.GetComponent<Animator>().SetBool(player.gameObject.GetComponent<PlayerStates>().isPushingBool, false);
+			player.gameObject.GetComponent<Animator>().SetBool(player.gameObject.GetComponent<PlayerStates>().IsPushingBool, false);
         //isGrabbable = true; // not sure if we need this
     }
 	

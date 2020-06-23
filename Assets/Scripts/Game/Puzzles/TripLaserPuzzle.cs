@@ -58,7 +58,7 @@ public class TripLaserPuzzle : MonoBehaviour
             bipUI.ShowUI(exclamation, 3f);
         }
 
-        if (bip.isDead)
+        if (bip.IsDead)
             StartCoroutine(ResetEverything());
 
         if (ico.isDead && !hasBeenCompleted)

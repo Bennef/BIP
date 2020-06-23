@@ -23,7 +23,7 @@ public class DamageByCollision : MonoBehaviour
 
     void OnCollisionEnter(Collision col)
     {
-        if (type == damageType.instantHit && !charController.isDead && isOn)
+        if (type == damageType.instantHit && !charController.IsDead && isOn)
         {
             if (col.gameObject.CompareTag("Player") && this.transform.GetComponent<Transform>().gameObject.activeSelf == true)
                 player.TakeDamage(damage);  // Player takes damage. 
@@ -32,7 +32,7 @@ public class DamageByCollision : MonoBehaviour
     
     void OnCollisionStay(Collision col)
     {
-        if (type == damageType.continuous && !charController.isDead && isOn)
+        if (type == damageType.continuous && !charController.IsDead && isOn)
         {
             if (col.gameObject.CompareTag("Player") && this.transform.GetComponent<Transform>().gameObject.activeSelf == true)
                 player.TakeDamage(damage);  // Player takes damage.

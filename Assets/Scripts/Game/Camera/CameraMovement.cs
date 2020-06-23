@@ -51,7 +51,7 @@ public class CameraMovement : MonoBehaviour
 	
 	void LateUpdate() 
 	{
-		if (target && !GameManager.Instance.isPaused && !charController.isDead && !isFixed)		// Does target exist? (Not Null)
+		if (target && !GameManager.Instance.IsPaused && !charController.IsDead && !isFixed)		// Does target exist? (Not Null)
 		{
             // Move the camera using mouse or joystick.
             CameraMove();

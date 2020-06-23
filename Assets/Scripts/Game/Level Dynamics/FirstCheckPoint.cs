@@ -6,7 +6,7 @@ public class FirstCheckPoint : MonoBehaviour
     void Start()    // Changed this from Awake to Start - may go badly...
     {
         // If we're not loading a save game
-        if (!GameManager.Instance.isLoadingSaveGame)
+        if (!GameManager.Instance.IsLoadingSaveGame)
         {
             // Set the current checkpoint as the starting position in GameManager.
             //GameManager.Instance.currentCheckpointPos = this.transform.position;

@@ -9,7 +9,7 @@ public class PadActivatesIco : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (bip.isDead)
+        if (bip.IsDead)
         {
             pad.hasBeenPressed = false;
             foreach (HomingIco ico in homingIcos)

@@ -6,11 +6,9 @@ public class PowerUpManager : MonoBehaviour
 	// Stores the items that Bip collects throughout the game. Also stores the powerups and keys.
 	public float blastTime;					// The time in seconds the EMP blast lasts for.
 	public float coolDown;					// To prevent spamming of EMP.
-
 	public GameObject EMPObject;			// A reference to the EMP Game Object.
 	private GameObject bipObject;           // A reference to the player Game Object.
     public Transform head;                  // So we have a position for the pulse.
-	
 	private PlayerMovement playerMovement;	// A reference to the PlayerMovement script for Speed Boost.
 	private PlayerPower powerBar;		    // A reference to the PowerBar script for Speed Boost and EMP.
     private CharacterSoundManager SoundManager;
@@ -30,9 +28,9 @@ public class PowerUpManager : MonoBehaviour
 	// Sends an electromagnetic pulse to a spherical area around Bip.
 	public void EMPBlast()	
 	{
-		if (GameManager.Instance.powerUps.canEMP == true) 
+		if (GameManager.Instance.PowerUps.canEMP == true) 
 		{
-			GameManager.Instance.powerUps.canEMP = false;
+			GameManager.Instance.PowerUps.canEMP = false;
 			EMPObject.SetActive(true);
             
             // Play EMP sound.
@@ -57,15 +55,15 @@ public class PowerUpManager : MonoBehaviour
 	private IEnumerator ChargeWait(float seconds)
 	{
 		yield return new WaitForSeconds(seconds);
-		GameManager.Instance.powerUps.canEMP = true;	// Enable EMP once again.
+		GameManager.Instance.PowerUps.canEMP = true;	// Enable EMP once again.
 	}
 	
 	// Make Bip sprint for a short time. 
 	public void SpeedBoost()
 	{
-		if (GameManager.Instance.powerUps.canBoost)
+		if (GameManager.Instance.PowerUps.canBoost)
 		{
-			GameManager.Instance.powerUps.canBoost = false;
+			GameManager.Instance.PowerUps.canBoost = false;
 			playerMovement.speed = 8;				// Enable Bip to move twice as fast. Changed to 8 for demo
 			powerBar.TakeDamage(128);				// Deplete 50% of power.
 			StartCoroutine(SpeedBoostWait(3));		// Wait for x seconds.
@@ -77,12 +75,12 @@ public class PowerUpManager : MonoBehaviour
 	{
 		yield return new WaitForSeconds(seconds);	// Wait for x seconds while we can run fast.
 		playerMovement.speed = 8;					// Set speed back to normal.
-		GameManager.Instance.powerUps.canBoost = true;		// Enable Speed Boost once again.
+		GameManager.Instance.PowerUps.canBoost = true;		// Enable Speed Boost once again.
 	}
     
     public void DoubleJump()
     {
-        if (GameManager.Instance.powerUps.canDoubleJump)
+        if (GameManager.Instance.PowerUps.canDoubleJump)
         {
             if (powerBar.value >= 16)
             {

@@ -21,7 +21,7 @@ public class BlankSight : MonoBehaviour
     {
         if (other.GetComponent<CharacterController>() != null)
         {
-            if (other.CompareTag(Tags.Player) && other.GetComponent<CharacterController>().isDead == false)
+            if (other.CompareTag(Tags.Player) && other.GetComponent<CharacterController>().IsDead == false)
             {
                 Debug.DrawLine(mind.Head.position, other.transform.Find("Head").position);
                 if (Physics.Linecast(mind.Head.position, other.transform.Find("Head").position, GameManager.Instance.ObstacleAvoidanceLayerMask, QueryTriggerInteraction.Ignore))
@@ -40,7 +40,7 @@ public class BlankSight : MonoBehaviour
     {
         if (other.name == "Bip")
         {
-            if (mind.state != BlankMind.State.Chasing && other.GetComponent<CharacterController>().isDead == false)
+            if (mind.state != BlankMind.State.Chasing && other.GetComponent<CharacterController>().IsDead == false)
             {
                 if (!Physics.Linecast(mind.Head.position, other.transform.Find("Head").position, GameManager.Instance.ObstacleAvoidanceLayerMask, QueryTriggerInteraction.Ignore))
                     aSrc.Play();

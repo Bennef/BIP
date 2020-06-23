@@ -60,11 +60,11 @@ public class PlayerMovement: MonoBehaviour
         // Create a sphere at the player's feet. If the sphere collides with anything on the layer(s) layerMask
         // return true
         if (Physics.CheckSphere(transform.position, 0.1f, layerMask))
-            anim.SetBool(state.isGroundedBool, true); // If sphere collides, we're touching ground.
+            anim.SetBool(state.IsGroundedBool, true); // If sphere collides, we're touching ground.
         else
-            anim.SetBool(state.isGroundedBool, false); // Otherwise, we're in the air.
+            anim.SetBool(state.IsGroundedBool, false); // Otherwise, we're in the air.
 
-        if (!anim.GetBool(state.isGroundedBool) && !anim.GetBool(state.isClimbingBool))
+        if (!anim.GetBool(state.IsGroundedBool) && !anim.GetBool(state.IsClimbingBool))
         {
             // We can double jump if we're airbourne and not grabbing a ledge
             canDoubleJump = true;
@@ -82,10 +82,10 @@ public class PlayerMovement: MonoBehaviour
         if (!controller.enabled)
             return;
 
-        if (movement != Vector3.zero && !anim.GetBool(state.isPushingBool)) 
+        if (movement != Vector3.zero && !anim.GetBool(state.IsPushingBool)) 
 			rigidbody.transform.rotation = Quaternion.LookRotation(movement);
- 
-        if (anim.GetBool(state.isGroundedBool))
+        print(controller.gameObject.name);
+        if (anim.GetBool(state.IsGroundedBool))
         {
             headCollider.enabled = true;
             if (movementType == MovementType.Velocity)
@@ -105,14 +105,14 @@ public class PlayerMovement: MonoBehaviour
 		movement = Vector3.zero;
 
         // Check if Bip is climbing
-		if (anim.GetBool(state.isClimbingBool)) 
+		if (anim.GetBool(state.IsClimbingBool)) 
 		{
             // If he is, disable gravity and override velocity.
 			rigidbody.useGravity = false;
             rigidbody.velocity = Vector3.zero;
 
 			if (Input.GetAxis("Vertical") < 0) 
-				anim.SetBool(state.isClimbingBool, false);
+				anim.SetBool(state.IsClimbingBool, false);
 		} 
 		else 
 		{
@@ -121,7 +121,7 @@ public class PlayerMovement: MonoBehaviour
         }
 
 		// Check if Bip is not already climbing and if there is a ledge accessible. 
-		if (!anim.GetBool(state.isClimbingBool) && !anim.GetBool(state.isGroundedBool)) 
+		if (!anim.GetBool(state.IsClimbingBool) && !anim.GetBool(state.IsGroundedBool)) 
 			DetectClimbableLedge();
 
         // Cap our velocity to a certain amount.
@@ -133,9 +133,9 @@ public class PlayerMovement: MonoBehaviour
 	{
 		if (!isHandlingInput)
 			return;
-		if (anim.GetBool(state.isClimbingBool))
+		if (anim.GetBool(state.IsClimbingBool))
 			return;
-		if (anim.GetBool(state.isPushingBool))
+		if (anim.GetBool(state.IsPushingBool))
 		{
 			ManagePullingMovement(h, v);
 			return;
@@ -182,7 +182,7 @@ public class PlayerMovement: MonoBehaviour
         else
             moveValue = v;
 
-        anim.SetFloat(state.speedFloat, moveValue);
+        anim.SetFloat(state.SpeedFloat, moveValue);
 
 		// Multiply the direction vectors by the Input.GetAxis floats.	
 		movement = forwardMove * moveValue;
@@ -197,11 +197,11 @@ public class PlayerMovement: MonoBehaviour
     // To make Bip jump. 
     public void Jump() 
 	{
-		if (anim.GetBool(state.isPushingBool) || !isHandlingInput)
+		if (anim.GetBool(state.IsPushingBool) || !isHandlingInput)
 			return;
         SoundManager.PlayClip(SoundManager.jump);
         hasJumped = true;
-		anim.SetBool(state.isClimbingBool, false);
+		anim.SetBool(state.IsClimbingBool, false);
 	}
 	
 	// To make Bip jump.
@@ -246,7 +246,7 @@ public class PlayerMovement: MonoBehaviour
 		Vector3 fwd = transform.forward;	// The forward direction of Bip.
 
 		// If player is not rising...
-		if (!anim.GetBool(state.isRisingBool))
+		if (!anim.GetBool(state.IsRisingBool))
 		{
             // Raycast from Bips head forwards.
             //Debug.DrawRay(controller.Head.position, transform.forward * 1f);
@@ -260,7 +260,7 @@ public class PlayerMovement: MonoBehaviour
                 transform.Rotate(0, 270, 0);    // Make him face the wall.
                 rigidbody.position += (hit.distance) * transform.forward;
 
-                anim.SetBool(state.isClimbingBool, true);
+                anim.SetBool(state.IsClimbingBool, true);
                 hasDoubleJumped = false;
             }
         }
@@ -268,7 +268,7 @@ public class PlayerMovement: MonoBehaviour
 	
 	public void Knockback(float strength)
 	{
-		if (this.gameObject.GetComponent<CharacterController>().isDead)
+		if (this.gameObject.GetComponent<CharacterController>().IsDead)
 			return;
 		rigidbody.AddForce(-movement.normalized * strength, ForceMode.Force);
 		isHandlingInput = false;
@@ -293,14 +293,14 @@ public class PlayerMovement: MonoBehaviour
     void OnCollisionEnter(Collision col)
     {
         // If Bip lands on a moving platform...
-        if (anim.GetBool(state.isGroundedBool) && col.transform.CompareTag("Moving Platform"))
+        if (anim.GetBool(state.IsGroundedBool) && col.transform.CompareTag("Moving Platform"))
             movementType = MovementType.MovePosition;
     }
     
     void OnCollisionStay(Collision col)
     {
         // If Bip lands on a moving platform...
-        if (anim.GetBool(state.isGroundedBool) && col.transform.CompareTag("Moving Platform"))
+        if (anim.GetBool(state.IsGroundedBool) && col.transform.CompareTag("Moving Platform"))
             movementType = MovementType.MovePosition;
     }
     

@@ -24,7 +24,7 @@ public class TimedPadAndDoor : MonoBehaviour
         }
         
         // We have died, stop everything.
-        if (pad.hasBeenPressed && bip.isDead && deathBool == false && !hasBeenCompleted)
+        if (pad.hasBeenPressed && bip.IsDead && deathBool == false && !hasBeenCompleted)
         {
             StopCoroutine(routine);
             StartCoroutine(Wait());

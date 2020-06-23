@@ -74,7 +74,7 @@ public class BuddyMind : FriendlyMind
             if (target.position.y > transform.position.y + 1 && currentDistance <= jumpingDistance)
                 StartCoroutine(JumpCo());
 
-            if (anim.GetBool(state.isGroundedBool) && target.position.y >= transform.position.y - 1)
+            if (anim.GetBool(state.IsGroundedBool) && target.position.y >= transform.position.y - 1)
             {
                 if (!Physics.Raycast(transform.position + raycastOffset, transform.forward - raycastOffset, 2f, GameManager.Instance.ObstacleAvoidanceLayerMask, QueryTriggerInteraction.Ignore))
                     Jump();

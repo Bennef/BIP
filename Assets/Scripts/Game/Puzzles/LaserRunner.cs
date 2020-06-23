@@ -16,7 +16,7 @@ public class LaserRunner : MonoBehaviour
         {
             timer += Time.deltaTime;
             
-            if (timer >= 15f || bip.isDead)
+            if (timer >= 15f || bip.IsDead)
                 EndSequence();
         }
 

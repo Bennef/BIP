@@ -4,41 +4,39 @@ using UnityEngine.SceneManagement;
 
 public class CharacterController : MonoBehaviour 
 {
-	// This class handles the interaction between the various Player scripts.
-	// Following MVC, this is a Controller class, though not the only controller in this system
-	private PlayerMovement playerMovement;							// Handles player movement. Controller
-	private PlayerStates state;										// Stores the state of the player. Model.
+    [SerializeField] private bool isDead = false;
+    [SerializeField] private AudioSource mainMusic;
+    [SerializeField] private Transform head;
+    private PlayerMovement playerMovement;							
+	private PlayerStates state;										
 	private Animator anim;
-	private PowerUpManager powerUpManager;							// A reference to the PowerUpManager class.
-	private CharacterSoundManager sound;                            // A Reference to Bip's sound manager.
+	private PowerUpManager powerUpManager;							
+	private CharacterSoundManager sound;                           
     private PauseMenu pauseMenu;
-    protected new Rigidbody rigidbody;
-    public Transform Head;                                          // A Reference to Bip's head.
-    public AudioSource mainMusic;
-    public bool isDead = false;
-    public Transform nextPlayer;                                    // For when we switch character.
-    public CameraMovement cameraMovement;
-    private OverheadUI overheadUI;
+    private Transform nextPlayer; // For when we switch character.
+    private CameraMovement _cameraMovement;
+    private OverheadUI _overheadUI;
+    protected Rigidbody rb;
 
-	// The View is the Unity GameObject and Animator. They don't need seperate classes here.
-	
-	void Start()
+    public bool IsDead { get => isDead; set => isDead = value; }
+    public Transform Head { get => head; set => head = value; }
+
+    void Start()
 	{
-        overheadUI = GetComponentInChildren<OverheadUI>();
+        _cameraMovement = GameObject.Find("Main Camera").GetComponent<CameraMovement>(); 
+        _overheadUI = GetComponentInChildren<OverheadUI>();
         LoadCheckpoint();
     }
     
     void OnEnable()
     {
-        // Setting up references to other objects.
         playerMovement = GetComponent<PlayerMovement>();
         state = GetComponent<PlayerStates>();
         anim = GetComponent<Animator>();
         powerUpManager = GetComponent<PowerUpManager>();
         sound = GetComponent<CharacterSoundManager>();
         pauseMenu = GameObject.Find("Pause Menu Canvas").GetComponent<PauseMenu>();
-
-        rigidbody = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
 
         //GetComponent<BuddyMind>().enabled = false;
         GameManager.Instance.Player = transform;
@@ -60,12 +58,12 @@ public class CharacterController : MonoBehaviour
         mainMusic.volume = 1f;
         GameManager.Instance.ResetPositions();                          // Make sure everything is reset to it's original position.
 		GetComponentInChildren<OverheadUI>().ShrinkImmediately();       // Shrink the Overhead UI.
-		rigidbody.isKinematic = false;
-		rigidbody.velocity = Vector3.zero;
-        anim.SetBool(state.isClimbingBool, false);
+		rb.isKinematic = false;
+		rb.velocity = Vector3.zero;
+        anim.SetBool(state.IsClimbingBool, false);
         transform.position = GameManager.Instance.currentCheckpointPos;// Move Bip to last checkpoint.
         //transform.forward = GameManager.Instance.currentCheckpoint.transform.forward; // Orient Bip how the checkpoint wants him.     // Put this somewhere that happens later, after Bip hits CP
-        cameraMovement.shouldReset = true;
+        _cameraMovement.shouldReset = true;
         
         if (this.gameObject.GetComponent<PlayerHealth>())
             this.gameObject.GetComponent<PlayerHealth>().Reset();
@@ -75,18 +73,17 @@ public class CharacterController : MonoBehaviour
         GameObject.FindGameObjectWithTag(Tags.fader).GetComponent<ScreenFader>().StartCoroutine("FadeToClear");
         if (this.gameObject.GetComponent<PlayerMovement>() && SceneManager.GetActiveScene().name != "Main Menu Portfolio")
             playerMovement.isHandlingInput = true;
-		isDead = false;
+		IsDead = false;
 	}
 	
 	void CheckForDeath()
 	{
-        // We are already dead. Return.
-		if (isDead)
+		if (IsDead)
 			return;
         // If health is 0 or less we are dead.
 		if (this.gameObject.GetComponent<PlayerHealth>() != null && this.gameObject.GetComponent<PlayerHealth>().value <= 0)
 		{
-			isDead = true;
+			IsDead = true;
 			StartCoroutine(Death());
 		}
 	}
@@ -95,8 +92,7 @@ public class CharacterController : MonoBehaviour
 
     public IEnumerator Death()
 	{
-        //GetComponent<Rigidbody>().isKinematic = true;
-        overheadUI.ShrinkImmediately();
+        _overheadUI.ShrinkImmediately();
         playerMovement.isHandlingInput = false;
         mainMusic.volume = 0.4f;
         anim.SetTrigger("Death");
@@ -108,7 +104,7 @@ public class CharacterController : MonoBehaviour
     
     public IEnumerator FallDeath()
     {
-        isDead = true;
+        IsDead = true;
         playerMovement.isHandlingInput = false;
         mainMusic.volume = 0.4f;
         GameObject.FindGameObjectWithTag(Tags.fader).GetComponent<ScreenFader>().StartCoroutine("FadeToBlack");
@@ -125,7 +121,6 @@ public class CharacterController : MonoBehaviour
     
     public virtual void HandleInput()
     {
-        // Input handling.
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
         // Take input and pass it to the PlayerMovement script.
@@ -133,19 +128,19 @@ public class CharacterController : MonoBehaviour
         playerMovement.ManageMovement(horizontalInput, verticalInput);
 
         // Jump.
-        if (Input.GetButtonDown("Jump") && anim.GetBool(state.isGroundedBool) && playerMovement.isHandlingInput)
+        if (Input.GetButtonDown("Jump") && anim.GetBool(state.IsGroundedBool) && playerMovement.isHandlingInput)
             playerMovement.Jump();
 
         // Double jump.
-        if (Input.GetButtonDown("Jump") && !anim.GetBool(state.isGroundedBool) && !anim.GetBool(state.isClimbingBool) && !playerMovement.hasDoubleJumped && playerMovement.isHandlingInput)
+        if (Input.GetButtonDown("Jump") && !anim.GetBool(state.IsGroundedBool) && !anim.GetBool(state.IsClimbingBool) && !playerMovement.hasDoubleJumped && playerMovement.isHandlingInput)
             powerUpManager.DoubleJump();
 
         // Ledge grab jump.
-        if (Input.GetButtonDown("Jump") && anim.GetBool(state.isClimbingBool))
+        if (Input.GetButtonDown("Jump") && anim.GetBool(state.IsClimbingBool))
             playerMovement.Jump();
 
         // Cut jump short for variable height.
-        if (Input.GetButtonUp("Jump") && !anim.GetBool(state.isGroundedBool))
+        if (Input.GetButtonUp("Jump") && !anim.GetBool(state.IsGroundedBool))
             playerMovement.CutJumpShort();
 
         // EMP attack. Bip must have the powerup for this to work.

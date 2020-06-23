@@ -25,7 +25,7 @@ public class FourPressurePads : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (bip.isDead)
+        if (bip.IsDead)
             ResetPuzzle();
 
         if (!hasBeenCompleted)
