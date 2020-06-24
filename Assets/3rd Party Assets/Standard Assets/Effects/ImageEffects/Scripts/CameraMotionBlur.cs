@@ -62,7 +62,7 @@ namespace UnityStandardAssets.ImageEffects
         private Camera _camera;
 
 
-        private void CalculateViewProjection() {
+        void CalculateViewProjection() {
             Matrix4x4 viewMat = _camera.worldToCameraMatrix;
             Matrix4x4 projMat = GL.GetGPUProjectionMatrix (_camera.projectionMatrix, true);
             currentViewProjMat = projMat * viewMat;

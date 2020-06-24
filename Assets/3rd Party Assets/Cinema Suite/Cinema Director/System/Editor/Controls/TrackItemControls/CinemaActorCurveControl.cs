@@ -79,7 +79,7 @@ public class CinemaActorCurveControl : CinemaCurveControl
         createMenu.ShowAsContext();
     }
 
-    private void addCurve(object userData)
+    void addCurve(object userData)
     {
         AddCurveContext arg = userData as AddCurveContext;
         if (arg != null)
@@ -105,7 +105,7 @@ public class CinemaActorCurveControl : CinemaCurveControl
         }
     }
 
-    private void checkToAddNewKeyframes(CinemaActorClipCurve clipCurve, DirectorControlState state)
+    void checkToAddNewKeyframes(CinemaActorClipCurve clipCurve, DirectorControlState state)
     {
         if (state.IsInPreviewMode && IsEditing &&
             clipCurve.Cutscene.State == Cutscene.CutsceneState.Paused && GUIUtility.hotControl == 0 && 

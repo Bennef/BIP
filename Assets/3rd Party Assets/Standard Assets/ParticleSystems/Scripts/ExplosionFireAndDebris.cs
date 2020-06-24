@@ -59,7 +59,7 @@ namespace UnityStandardAssets.Effects
         }
 
 
-        private void AddFire(Transform t, Vector3 pos, Vector3 normal)
+        void AddFire(Transform t, Vector3 pos, Vector3 normal)
         {
             pos += normal*0.5f;
             Transform fire = (Transform) Instantiate(firePrefab, pos, Quaternion.identity);

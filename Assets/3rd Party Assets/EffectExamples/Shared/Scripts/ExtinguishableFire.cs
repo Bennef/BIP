@@ -15,7 +15,7 @@ public class ExtinguishableFire : MonoBehaviour
 
     const float m_FireStartingTime = 2.0f;
 
-    private void Start()
+    void Start()
     {
         m_isExtinguished = true;
 

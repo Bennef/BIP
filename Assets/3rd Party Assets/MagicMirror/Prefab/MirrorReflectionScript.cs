@@ -5,7 +5,7 @@ public class MirrorReflectionScript : MonoBehaviour
 {
     private MirrorCameraScript childScript;
 
-    private void Start()
+    void Start()
     {
         childScript = gameObject.transform.parent.gameObject.GetComponentInChildren<MirrorCameraScript>();
 
@@ -15,7 +15,7 @@ public class MirrorReflectionScript : MonoBehaviour
         }
     }
 
-    private void OnWillRenderObject()
+    void OnWillRenderObject()
     {
         childScript.RenderMirror();
     }

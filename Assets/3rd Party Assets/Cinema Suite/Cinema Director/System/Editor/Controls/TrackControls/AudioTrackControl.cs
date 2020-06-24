@@ -23,7 +23,7 @@ public class AudioTrackControl : GenericTrackControl
         base.UpdateTrackContents(state, position);
     }
 
-    private void handleDragInteraction(Rect position, AudioTrack track, Vector2 translation, Vector2 scale)
+    void handleDragInteraction(Rect position, AudioTrack track, Vector2 translation, Vector2 scale)
     {
         Rect controlBackground = new Rect(0, 0, position.width, position.height);
         switch (Event.current.type)

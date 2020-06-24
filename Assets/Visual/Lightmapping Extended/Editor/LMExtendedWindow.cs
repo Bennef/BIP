@@ -941,7 +941,7 @@ public class LMExtendedWindow : EditorWindow
 	
 	#endregion
 	
-	private void LMColorPicker (string name, ref ILConfig.LMColor color, string tooltip)
+	void LMColorPicker (string name, ref ILConfig.LMColor color, string tooltip)
 	{
 		Color c = EditorGUILayout.ColorField (new GUIContent (name, tooltip), new Color (color.r, color.g, color.b, color.a));
 		color = new ILConfig.LMColor (c.r, c.g, c.b, c.a);

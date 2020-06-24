@@ -111,7 +111,7 @@ namespace CinemaDirector
         /// Enable/Disable all the game objects.
         /// </summary>
         /// <param name="enabled">Enable or Disable</param>
-        private void setActive(bool enabled)
+        void setActive(bool enabled)
         {
             // Enable gameobjects
             for (int i = 0; i < GameObjects.Count; i++)

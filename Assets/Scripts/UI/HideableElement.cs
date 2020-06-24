@@ -1,27 +1,31 @@
-﻿using UnityEngine;
+﻿using Scripts.UI;
+using UnityEngine;
 
-public class HideableElement : MonoBehaviour
+namespace Scripts.UI
 {
-    CanvasGroup canvasGroup;
-    Menu menu;
-    
-    void OnEnable()
+    public class HideableElement : MonoBehaviour
     {
-        canvasGroup = GetComponent<CanvasGroup>();
-        menu = GetComponent<Menu>();
-    }
-    
-    public void Hide()
-    {
-        canvasGroup.alpha = 0f;
-        canvasGroup.blocksRaycasts = false;
-        menu.enabled = false;
-    }
-    
-    public void Show()
-    {
-        canvasGroup.alpha = 1f;
-        canvasGroup.blocksRaycasts = true;
-        menu.enabled = true;
+        CanvasGroup canvasGroup;
+        Menu menu;
+
+        void OnEnable()
+        {
+            canvasGroup = GetComponent<CanvasGroup>();
+            menu = GetComponent<Menu>();
+        }
+
+        public void Hide()
+        {
+            canvasGroup.alpha = 0f;
+            canvasGroup.blocksRaycasts = false;
+            menu.enabled = false;
+        }
+
+        public void Show()
+        {
+            canvasGroup.alpha = 1f;
+            canvasGroup.blocksRaycasts = true;
+            menu.enabled = true;
+        }
     }
 }

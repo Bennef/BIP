@@ -1,82 +1,87 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Scripts.Game;
+using Scripts.Game.Game_Logic;
 
-public class BlankSight : MonoBehaviour
+namespace Scripts.NPCs.AI
 {
-    [SerializeField]
-    private BlankMind mind;                     // The BlankMind of this Blank.
-    [SerializeField]
-    private bool checkingLOS;                   // Is the CheckLineOfSight Coroutine running?
-    [SerializeField]
-    private bool inVisionCone;                  // Is tha target inside of the vision cone collider?
-    private AudioSource aSrc;
-    
-    void Awake()
+    public class BlankSight : MonoBehaviour
     {
-        mind = GetComponentInParent<BlankMind>();
-        aSrc = GetComponentInChildren<AudioSource>();
-    }
-    
-    void OnTriggerStay(Collider other)
-    {
-        if (other.GetComponent<CharacterController>() != null)
+        [SerializeField]
+        private BlankMind mind;                     // The BlankMind of this Blank.
+        [SerializeField]
+        private bool checkingLOS;                   // Is the CheckLineOfSight Coroutine running?
+        [SerializeField]
+        private bool inVisionCone;                  // Is tha target inside of the vision cone collider?
+        private AudioSource aSrc;
+
+        void Awake()
         {
-            if (other.CompareTag(Tags.Player) && other.GetComponent<CharacterController>().IsDead == false)
+            mind = GetComponentInParent<BlankMind>();
+            aSrc = GetComponentInChildren<AudioSource>();
+        }
+
+        void OnTriggerStay(Collider other)
+        {
+            if (other.GetComponent<Player.CharacterController>() != null)
             {
-                Debug.DrawLine(mind.Head.position, other.transform.Find("Head").position);
-                if (Physics.Linecast(mind.Head.position, other.transform.Find("Head").position, GameManager.Instance.ObstacleAvoidanceLayerMask, QueryTriggerInteraction.Ignore))
+                if (other.CompareTag(Tags.Player) && other.GetComponent<Player.CharacterController>().IsDead == false)
                 {
-                    if (!checkingLOS)
-                        StartCoroutine(CheckLineOfSight());
+                    Debug.DrawLine(mind.Head.position, other.transform.Find("Head").position);
+                    if (Physics.Linecast(mind.Head.position, other.transform.Find("Head").position, GameManager.Instance.ObstacleAvoidanceLayerMask, QueryTriggerInteraction.Ignore))
+                    {
+                        if (!checkingLOS)
+                            StartCoroutine(CheckLineOfSight());
+                    }
+                    else
+                        mind.canSeeYou = true;
+                    inVisionCone = true;
                 }
-                else
-                    mind.canSeeYou = true;
-                inVisionCone = true;
             }
         }
-    }
-    
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.name == "Bip")
+
+        void OnTriggerEnter(Collider other)
         {
-            if (mind.state != BlankMind.State.Chasing && other.GetComponent<CharacterController>().IsDead == false)
+            if (other.name == "Bip")
             {
-                if (!Physics.Linecast(mind.Head.position, other.transform.Find("Head").position, GameManager.Instance.ObstacleAvoidanceLayerMask, QueryTriggerInteraction.Ignore))
-                    aSrc.Play();
+                if (mind.state != BlankMind.State.Chasing && other.GetComponent<Player.CharacterController>().IsDead == false)
+                {
+                    if (!Physics.Linecast(mind.Head.position, other.transform.Find("Head").position, GameManager.Instance.ObstacleAvoidanceLayerMask, QueryTriggerInteraction.Ignore))
+                        aSrc.Play();
+                }
             }
         }
-    }
-    
-    void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag(Tags.Player))
+
+        void OnTriggerExit(Collider other)
         {
-            if (!checkingLOS)
-                StartCoroutine(CheckLineOfSight());
+            if (other.CompareTag(Tags.Player))
+            {
+                if (!checkingLOS)
+                    StartCoroutine(CheckLineOfSight());
+            }
+            inVisionCone = false;
         }
-        inVisionCone = false;
-    }
-    
-    public IEnumerator CheckLineOfSight()
-    {
-        checkingLOS = true;
-        yield return new WaitForSeconds(2.0f);
-        if (inVisionCone == false)
-            StartIdle();
-        else if (mind.target.transform.Find("Head") != null)
+
+        public IEnumerator CheckLineOfSight()
         {
-            if (Physics.Linecast(mind.Head.position, mind.target.transform.Find("Head").position, GameManager.Instance.ObstacleAvoidanceLayerMask))
+            checkingLOS = true;
+            yield return new WaitForSeconds(2.0f);
+            if (inVisionCone == false)
                 StartIdle();
+            else if (mind.target.transform.Find("Head") != null)
+            {
+                if (Physics.Linecast(mind.Head.position, mind.target.transform.Find("Head").position, GameManager.Instance.ObstacleAvoidanceLayerMask))
+                    StartIdle();
+            }
+            else
+                mind.canSeeYou = true;
+            checkingLOS = false;
         }
-        else
-            mind.canSeeYou = true;
-        checkingLOS = false;
-    }
-    
-    void StartIdle()
-    {
-        mind.canSeeYou = false;
-        mind.StartCoroutine(mind.IdleWait());
+
+        void StartIdle()
+        {
+            mind.canSeeYou = false;
+            mind.StartCoroutine(mind.IdleWait());
+        }
     }
 }

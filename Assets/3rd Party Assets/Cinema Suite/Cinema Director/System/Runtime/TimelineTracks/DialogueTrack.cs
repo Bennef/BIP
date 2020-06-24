@@ -22,7 +22,7 @@ namespace CinemaDirector
             base.UpdateTrack(time, deltaTime);
         }
 
-        private void setTransform()
+        void setTransform()
         {
             if (anchor != null)
             {

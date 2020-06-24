@@ -101,7 +101,7 @@ namespace CinemaDirector
             set { runtimeRevertMode = value; }
         }
 
-        private void updateRotation(GameObject actor, float runningTime)
+        void updateRotation(GameObject actor, float runningTime)
         {
             // Get the target rotation for the current call
             Quaternion targetRotation = Quaternion.LookRotation(LookAtTarget.transform.position - actor.transform.position);

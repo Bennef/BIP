@@ -167,7 +167,7 @@ namespace UnityStandardAssets.ImageEffects
 
 
         /// Helper function to do gradual adaptation to min/max luminances
-        private void CalculateAdaptation( Texture curTexture )
+        void CalculateAdaptation( Texture curTexture )
         {
             int prevAdaptIndex = curAdaptIndex;
             curAdaptIndex = (curAdaptIndex+1) % 2;

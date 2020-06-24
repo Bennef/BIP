@@ -271,13 +271,13 @@ namespace UnityStandardAssets.ImageEffects
             RenderTexture.ReleaseTemporary(thirdQuarterRezColor);
         }
 
-        private void AddTo(float intensity_, RenderTexture from, RenderTexture to)
+        void AddTo(float intensity_, RenderTexture from, RenderTexture to)
         {
             addBrightStuffBlendOneOneMaterial.SetFloat("_Intensity", intensity_);
             Graphics.Blit(from, to, addBrightStuffBlendOneOneMaterial);
         }
 
-        private void BlendFlares(RenderTexture from, RenderTexture to)
+        void BlendFlares(RenderTexture from, RenderTexture to)
         {
             lensFlareMaterial.SetVector("colorA", new Vector4(flareColorA.r, flareColorA.g, flareColorA.b, flareColorA.a) * lensflareIntensity);
             lensFlareMaterial.SetVector("colorB", new Vector4(flareColorB.r, flareColorB.g, flareColorB.b, flareColorB.a) * lensflareIntensity);
@@ -286,7 +286,7 @@ namespace UnityStandardAssets.ImageEffects
             Graphics.Blit(from, to, lensFlareMaterial);
         }
 
-        private void BrightFilter(float thresh, float useAlphaAsMask, RenderTexture from, RenderTexture to)
+        void BrightFilter(float thresh, float useAlphaAsMask, RenderTexture from, RenderTexture to)
         {
             if (doHdr)
                 brightPassFilterMaterial.SetVector("threshold", new Vector4(thresh, 1.0f, 0.0f, 0.0f));
@@ -296,7 +296,7 @@ namespace UnityStandardAssets.ImageEffects
             Graphics.Blit(from, to, brightPassFilterMaterial);
         }
 
-        private void Vignette(float amount, RenderTexture from, RenderTexture to)
+        void Vignette(float amount, RenderTexture from, RenderTexture to)
         {
             if (lensFlareVignetteMask)
             {

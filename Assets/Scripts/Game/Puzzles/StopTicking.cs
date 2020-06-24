@@ -1,12 +1,15 @@
 ﻿using UnityEngine;
 
-public class StopTicking : MonoBehaviour
+namespace Scripts.Game.Puzzles
 {
-    public LaserRunner laserRunner;
-    
-    private void OnTriggerEnter(Collider other)
+    public class StopTicking : MonoBehaviour
     {
-        if (other.name == "Bip")
-            laserRunner.EndSequence();
+        public LaserRunner laserRunner;
+
+        void OnTriggerEnter(Collider other)
+        {
+            if (other.name == "Bip")
+                laserRunner.EndSequence();
+        }
     }
 }

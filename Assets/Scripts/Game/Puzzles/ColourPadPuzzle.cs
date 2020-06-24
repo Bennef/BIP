@@ -1,25 +1,29 @@
-﻿using UnityEngine;
+﻿using Scripts.Game.Level_Dynamics;
+using UnityEngine;
 
-public class ColourPadPuzzle : MonoBehaviour
+namespace Scripts.Game.Puzzles
 {
-    public LockableDoors doorToUnlock;
-    public int correctCount;
-    public bool hasUnlocked;
-    
-    // Use this for initialization
-    void Start()
+    public class ColourPadPuzzle : MonoBehaviour
     {
-        correctCount = 0;
-        hasUnlocked = false;
-    }
-    
-    // Update is called once per frame
-    void Update()
-    {
-		if (correctCount >= 4 && !hasUnlocked)
+        public LockableDoors doorToUnlock;
+        public int correctCount;
+        public bool hasUnlocked;
+
+        // Use this for initialization
+        void Start()
         {
-            doorToUnlock.UnlockDoor();
-            hasUnlocked = true;
+            correctCount = 0;
+            hasUnlocked = false;
         }
-	}
+
+        // Update is called once per frame
+        void Update()
+        {
+            if (correctCount >= 4 && !hasUnlocked)
+            {
+                doorToUnlock.UnlockDoor();
+                hasUnlocked = true;
+            }
+        }
+    }
 }

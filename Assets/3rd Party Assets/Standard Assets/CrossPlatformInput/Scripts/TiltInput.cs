@@ -43,7 +43,7 @@ namespace UnityStandardAssets.CrossPlatformInput
         private CrossPlatformInputManager.VirtualAxis m_SteerAxis;
 
 
-        private void OnEnable()
+        void OnEnable()
         {
             if (mapping.type == AxisMapping.MappingType.NamedAxis)
             {
@@ -53,7 +53,7 @@ namespace UnityStandardAssets.CrossPlatformInput
         }
 
 
-        private void Update()
+        void Update()
         {
             float angle = 0;
             if (Input.acceleration != Vector3.zero)
@@ -90,7 +90,7 @@ namespace UnityStandardAssets.CrossPlatformInput
         }
 
 
-        private void OnDisable()
+        void OnDisable()
         {
             m_SteerAxis.Remove();
         }

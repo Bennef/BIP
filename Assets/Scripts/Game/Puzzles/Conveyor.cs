@@ -1,23 +1,26 @@
 ﻿using UnityEngine;
 
-public class Conveyor : MonoBehaviour
+namespace Scripts.Game.Puzzles
 {
-    public bool isOn;
-    public Transform targetPos, resetPos;
-    public float speed;
-    protected new Rigidbody rigidbody;
-    
-    private void Start() => rigidbody = GetComponent<Rigidbody>();
-    
-    private void FixedUpdate()
+    public class Conveyor : MonoBehaviour
     {
-        if (isOn)
-            rigidbody.MovePosition(Vector3.MoveTowards(transform.position, targetPos.position, Time.deltaTime * speed));
-    }
-    
-    private void OnTriggerEnter(Collider col)
-    {
-        if (col.GetComponent<Collider>().gameObject.name == "Reset Collider")
-            this.transform.position = resetPos.position;
+        public bool isOn;
+        public Transform targetPos, resetPos;
+        public float speed;
+        protected new Rigidbody rigidbody;
+
+        void Start() => rigidbody = GetComponent<Rigidbody>();
+
+        void FixedUpdate()
+        {
+            if (isOn)
+                rigidbody.MovePosition(Vector3.MoveTowards(transform.position, targetPos.position, Time.deltaTime * speed));
+        }
+
+        void OnTriggerEnter(Collider col)
+        {
+            if (col.GetComponent<Collider>().gameObject.name == "Reset Collider")
+                transform.position = resetPos.position;
+        }
     }
 }

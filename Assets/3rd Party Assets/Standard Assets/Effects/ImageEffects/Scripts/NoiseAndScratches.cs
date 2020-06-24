@@ -84,7 +84,7 @@ namespace UnityStandardAssets.ImageEffects
                 DestroyImmediate( m_MaterialYUV );
         }
 
-        private void SanitizeParameters()
+        void SanitizeParameters()
         {
             grainIntensityMin = Mathf.Clamp( grainIntensityMin, 0.0f, 5.0f );
             grainIntensityMax = Mathf.Clamp( grainIntensityMax, 0.0f, 5.0f );

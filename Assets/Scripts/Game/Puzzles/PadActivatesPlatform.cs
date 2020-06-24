@@ -1,21 +1,26 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Game.Puzzles;
+using Scripts.Game.Level_Dynamics;
+using UnityEngine;
 
-public class PadActivatesPlatform : MonoBehaviour
+namespace Scripts.Game.Puzzles
 {
-    public DoTweenTest[] DoTweenPlatforms;   // The platforms we want to move.
-    public FollowPath[] MovingPlatforms;   // The platforms we want to move.
-    public PressableSwitch pressurePad; // The pad Bip needs to stand on to activate the platforms.
-    private bool complete;
-    
-    private void Update()
+    public class PadActivatesPlatform : MonoBehaviour
     {
-        if (pressurePad.hasBeenPressed && !complete)
+        public DoTweenTest[] DoTweenPlatforms;   // The platforms we want to move.
+        public FollowPath[] MovingPlatforms;   // The platforms we want to move.
+        public PressableSwitch pressurePad; // The pad Bip needs to stand on to activate the platforms.
+        private bool complete;
+
+        void Update()
         {
-            foreach (DoTweenTest platform in DoTweenPlatforms)
-                platform.isOn = true;
-            foreach(FollowPath platform in MovingPlatforms)
-                platform.isActive = true;
-            complete = true;
+            if (pressurePad.hasBeenPressed && !complete)
+            {
+                foreach (DoTweenTest platform in DoTweenPlatforms)
+                    platform.isOn = true;
+                foreach (FollowPath platform in MovingPlatforms)
+                    platform.isActive = true;
+                complete = true;
+            }
         }
     }
 }

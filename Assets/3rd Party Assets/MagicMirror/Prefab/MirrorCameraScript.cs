@@ -16,7 +16,7 @@ public class MirrorCameraScript : MonoBehaviour
     private int oldReflectionTextureSize;
     private static bool renderingMirror;
 
-    private void Start()
+    void Start()
     {
         mirrorScript = GetComponentInParent<MirrorScript>();
         cameraObject = GetComponent<Camera>();
@@ -37,7 +37,7 @@ public class MirrorCameraScript : MonoBehaviour
         CreateRenderTexture();
     }
 
-    private void CreateRenderTexture()
+    void CreateRenderTexture()
     {
         if (reflectionTexture == null || oldReflectionTextureSize != mirrorScript.TextureSize)
         {
@@ -62,12 +62,12 @@ public class MirrorCameraScript : MonoBehaviour
         }
     }
 
-    private void Update()
+    void Update()
     {
         CreateRenderTexture();
     }
 
-    private void UpdateCameraProperties(Camera src, Camera dest)
+    void UpdateCameraProperties(Camera src, Camera dest)
     {
         dest.clearFlags = src.clearFlags;
         dest.backgroundColor = src.backgroundColor;
@@ -173,7 +173,7 @@ public class MirrorCameraScript : MonoBehaviour
     }
 
     // Cleanup all the objects we possibly have created
-    private void OnDisable()
+    void OnDisable()
     {
         if (reflectionTexture)
         {
@@ -190,7 +190,7 @@ public class MirrorCameraScript : MonoBehaviour
         return new Vector4(cnormal.x, cnormal.y, cnormal.z, -Vector3.Dot(cpos, cnormal));
     }
 
-    private void CalculateReflectionMatrix(ref Vector4 plane)
+    void CalculateReflectionMatrix(ref Vector4 plane)
     {
         // Calculates reflection matrix around the given plane
 

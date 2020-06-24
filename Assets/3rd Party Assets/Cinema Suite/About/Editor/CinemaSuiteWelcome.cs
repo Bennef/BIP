@@ -209,7 +209,7 @@ namespace CinemaSuite
             EditorGUILayout.EndHorizontal();
         }
 
-        private void drawProduct(ProductInfo product)
+        void drawProduct(ProductInfo product)
         {
             EditorGUILayout.BeginVertical(skin.FindStyle("Header"));
             Rect foldoutRect = EditorGUILayout.GetControlRect();
@@ -234,7 +234,7 @@ namespace CinemaSuite
             }
         }
 
-        private void loadProductInfo()
+        void loadProductInfo()
         {
 			for (int i = 0; i < availableProductNames.Count; i++)
 			{
@@ -257,7 +257,7 @@ namespace CinemaSuite
 			}
         }
         
-        private void DrawAboutCinemaSuiteSection()
+        void DrawAboutCinemaSuiteSection()
         {
             // Draw the About Cinema Suite Section
             Rect aboutRect = EditorGUILayout.GetControlRect(GUILayout.Width(base.position.width - 22));

@@ -13,9 +13,9 @@ namespace UnityStandardAssets.Effects
         private Collider[] m_Cols;
         private SphereCollider m_Sphere;
 
-        private void OnEnable() => m_Sphere = (GetComponent<Collider>() as SphereCollider);
+        void OnEnable() => m_Sphere = (GetComponent<Collider>() as SphereCollider);
 
-        private void FixedUpdate()
+        void FixedUpdate()
         {
             m_Cols = Physics.OverlapSphere(transform.position + m_Sphere.center, m_Sphere.radius);
             for (int n = 0; n < m_Cols.Length; ++n)
@@ -36,7 +36,7 @@ namespace UnityStandardAssets.Effects
             }
         }
 
-        private void OnDrawGizmosSelected()
+        void OnDrawGizmosSelected()
         {
             //check for editor time simulation to avoid null ref
             if (m_Sphere == null)

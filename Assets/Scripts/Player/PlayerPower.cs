@@ -1,19 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Scripts.Player;
 
-public class PlayerPower : PlayerHealth
+namespace Scripts.Player
 {
-    public override void TakeDamage(float _value)
+    public class PlayerPower : PlayerHealth
     {
-        isRegenerating = false;
-        value -= _value;
-        value = Mathf.Clamp(value, 0, maxValue);
-        StartCoroutine("RegenDelayCo");
-    }
+        public override void TakeDamage(float _value)
+        {
+            isRegenerating = false;
+            value -= _value;
+            value = Mathf.Clamp(value, 0, maxValue);
+            StartCoroutine("RegenDelayCo");
+        }
 
-    IEnumerator RegenDelayCo()
-    {
-        yield return new WaitForSeconds(delay);
-        isRegenerating = true;
+        IEnumerator RegenDelayCo()
+        {
+            yield return new WaitForSeconds(delay);
+            isRegenerating = true;
+        }
     }
 }

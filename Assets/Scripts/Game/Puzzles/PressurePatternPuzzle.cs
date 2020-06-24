@@ -1,22 +1,27 @@
-﻿using UnityEngine;
+﻿using Scripts.Game.Level_Dynamics;
+using UnityEngine;
 
-// In order to unlock the door, every tile in the array must have their "switchDown" value as true.
-public class PressurePatternPuzzle : MonoBehaviour
+namespace Scripts.Game.Puzzles
 {
-    public PressableSwitch[] padsToPress;       // The pads we need to press.
-    public LockableDoors door;                  // The door we want to unlock.
-    
-    // Update is called once per frame
-    void Update()
+
+    // In order to unlock the door, every tile in the array must have their "switchDown" value as true.
+    public class PressurePatternPuzzle : MonoBehaviour
     {
-	    // For each pad in the array...
-        for (int i = 0; i < padsToPress.Length; i++) 
+        public PressableSwitch[] padsToPress;       // The pads we need to press.
+        public LockableDoors door;                  // The door we want to unlock.
+
+        // Update is called once per frame
+        void Update()
         {
-            // If any pads are still up, we keep the door locked.
-            if (!padsToPress[i].switchDown)
-                door.locked = true;
-            else
-                door.locked = false;
+            // For each pad in the array...
+            for (int i = 0; i < padsToPress.Length; i++)
+            {
+                // If any pads are still up, we keep the door locked.
+                if (!padsToPress[i].switchDown)
+                    door.locked = true;
+                else
+                    door.locked = false;
+            }
         }
-	}
+    }
 }

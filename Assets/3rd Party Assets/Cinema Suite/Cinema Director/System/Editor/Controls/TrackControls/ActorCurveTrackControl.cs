@@ -53,7 +53,7 @@ public class ActorCurveTrackControl : CinemaCurveTrackControl
 
 
 
-    private void addNewCurveItem(CurveTrack track)
+    void addNewCurveItem(CurveTrack track)
     {
         Undo.RegisterCreatedObjectUndo(CutsceneItemFactory.CreateActorClipCurve(track), "Created Actor Clip Curve");
     }
@@ -78,7 +78,7 @@ public class ActorCurveTrackControl : CinemaCurveTrackControl
         createMenu.ShowAsContext();
     }
 
-    private void pasteItem(object userData)
+    void pasteItem(object userData)
     {
         PasteContext data = userData as PasteContext;
         if (data != null)

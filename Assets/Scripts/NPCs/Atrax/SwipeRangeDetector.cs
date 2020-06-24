@@ -1,18 +1,21 @@
 ﻿using UnityEngine;
 
-public class SwipeRangeDetector : MonoBehaviour
+namespace Scripts.NPCs.Atrax
 {
-    private AtraxAnimationController _anim;
-    
-    private void OnTriggerEnter(Collider col)
+    public class SwipeRangeDetector : MonoBehaviour
     {
-        if (col.gameObject.CompareTag("Player"))
-            _anim.StartSwipeState();
-    }
-    
-    private void OnTriggerExit(Collider col)
-    {
-        if (col.gameObject.CompareTag("Player"))
-            _anim.StopSwipeState();
+        private AtraxAnimationController _anim;
+
+        void OnTriggerEnter(Collider col)
+        {
+            if (col.gameObject.CompareTag("Player"))
+                _anim.StartSwipeState();
+        }
+
+        void OnTriggerExit(Collider col)
+        {
+            if (col.gameObject.CompareTag("Player"))
+                _anim.StopSwipeState();
+        }
     }
 }

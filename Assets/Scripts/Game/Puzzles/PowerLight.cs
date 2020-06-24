@@ -1,41 +1,45 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Game.Puzzles;
+using UnityEngine;
 
-public class PowerLight : MonoBehaviour
+namespace Scripts.Game.Puzzles
 {
-    private Light _theLight;
-    private PowerTerminal _terminal;
-    private bool _shouldBeLit;
+    public class PowerLight : MonoBehaviour
+    {
+        private Light _theLight;
+        private PowerTerminal _terminal;
+        private bool _shouldBeLit;
 
-    // Use this for initialization
-    void Start() => _theLight.enabled = false;
-    
-    private void Update()
-    {
-        if (_shouldBeLit)
-            _theLight.enabled = true;
-        else
-            _theLight.enabled = false;
-    }
-    
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.CompareTag("Terminal"))
+        // Use this for initialization
+        void Start() => _theLight.enabled = false;
+
+        void Update()
         {
-            _terminal = other.gameObject.GetComponent<PowerTerminal>();
-            if (_terminal.isPowered)
-                _shouldBeLit = true;
+            if (_shouldBeLit)
+                _theLight.enabled = true;
             else
-                _shouldBeLit = false;
+                _theLight.enabled = false;
         }
-    }
-    
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Terminal"))
+
+        void OnTriggerStay(Collider other)
         {
-            _terminal = other.gameObject.GetComponent<PowerTerminal>();
-            if (!_terminal.isPowered)
-                _shouldBeLit = false;
+            if (other.CompareTag("Terminal"))
+            {
+                _terminal = other.gameObject.GetComponent<PowerTerminal>();
+                if (_terminal.isPowered)
+                    _shouldBeLit = true;
+                else
+                    _shouldBeLit = false;
+            }
+        }
+
+        void OnTriggerExit(Collider other)
+        {
+            if (other.CompareTag("Terminal"))
+            {
+                _terminal = other.gameObject.GetComponent<PowerTerminal>();
+                if (!_terminal.isPowered)
+                    _shouldBeLit = false;
+            }
         }
     }
 }

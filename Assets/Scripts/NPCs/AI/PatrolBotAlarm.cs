@@ -1,23 +1,27 @@
-﻿using UnityEngine;
+﻿using Scripts.Game;
+using UnityEngine;
 
-public class PatrolBotAlarm : MonoBehaviour 
+namespace Scripts.NPCs.AI
 {
-    public PatrolBotMind mind;
-    
-    void Awake() => mind = transform.GetComponentInParent<PatrolBotMind>();
-
-    void OnTriggerEnter(Collider other)
+    public class PatrolBotAlarm : MonoBehaviour
     {
-        if (other.CompareTag(Tags.Player))
+        private PatrolBotMind _mind;
+
+        void Awake() => _mind = transform.GetComponentInParent<PatrolBotMind>();
+
+        void OnTriggerEnter(Collider other)
         {
-            mind.inLineOfSight = true;
-			mind.aSrc.PlayOneShot(mind.alarm);
+            if (other.CompareTag(Tags.Player))
+            {
+                _mind.inLineOfSight = true;
+                _mind.aSrc.PlayOneShot(_mind.alarm);
+            }
+        }
+
+        void OnTriggerExit(Collider other)
+        {
+            if (other.CompareTag(Tags.Player))
+                _mind.inLineOfSight = false;
         }
     }
-    
-    void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag(Tags.Player))
-            mind.inLineOfSight = false;
-    }   
 }

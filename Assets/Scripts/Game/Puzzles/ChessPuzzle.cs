@@ -1,24 +1,28 @@
-﻿using UnityEngine;
+﻿using Scripts.Game.Level_Dynamics;
+using UnityEngine;
 
-public class ChessPuzzle : MonoBehaviour
+namespace Assets.Scripts.Game.Puzzles
 {
-    public bool hasBeenCompleted;
-    public int correctPieceCount = 0;
-
-    public LockableDoors doorToUnlock;
-
-    void Update()
+    public class ChessPuzzle : MonoBehaviour
     {
-        if (correctPieceCount > 2)
-            correctPieceCount = 2;
+        public bool hasBeenCompleted;
+        public int correctPieceCount = 0;
 
-        if (correctPieceCount < 0)
-            correctPieceCount = 0;
+        public LockableDoors doorToUnlock;
 
-        if (correctPieceCount >= 2 && !hasBeenCompleted)
+        void Update()
         {
-            doorToUnlock.UnlockDoor();
-            hasBeenCompleted = true;
+            if (correctPieceCount > 2)
+                correctPieceCount = 2;
+
+            if (correctPieceCount < 0)
+                correctPieceCount = 0;
+
+            if (correctPieceCount >= 2 && !hasBeenCompleted)
+            {
+                doorToUnlock.UnlockDoor();
+                hasBeenCompleted = true;
+            }
         }
     }
 }

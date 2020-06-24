@@ -25,7 +25,7 @@ namespace UnityStandardAssets.Utility
         public bool repeatTrigger = false;
 
 
-        private void DoActivateTrigger()
+        void DoActivateTrigger()
         {
             triggerCount--;
 
@@ -87,7 +87,7 @@ namespace UnityStandardAssets.Utility
         }
 
 
-        private void OnTriggerEnter(Collider other)
+        void OnTriggerEnter(Collider other)
         {
             DoActivateTrigger();
         }

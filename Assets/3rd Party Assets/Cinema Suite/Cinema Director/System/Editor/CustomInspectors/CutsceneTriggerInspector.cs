@@ -24,7 +24,7 @@ public class CutsceneTriggerInspector : Editor
     /// <summary>
     /// On inspector enable, load the serialized properties
     /// </summary>
-    private void OnEnable()
+    void OnEnable()
     {
         trigger = new SerializedObject(this.target);
 

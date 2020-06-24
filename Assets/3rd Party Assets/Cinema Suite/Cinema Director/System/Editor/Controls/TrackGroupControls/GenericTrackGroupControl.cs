@@ -13,7 +13,7 @@ public class GenericTrackGroupControl : TrackGroupControl
 {
     private bool lockedState = false;
 
-    private void lockStatus(bool locked)
+    void lockStatus(bool locked)
     {
         lockedState = !lockedState;
         TrackGroup trackGroup = TrackGroup.Behaviour as TrackGroup;
@@ -27,7 +27,7 @@ public class GenericTrackGroupControl : TrackGroupControl
         }
     }
 
-    private void uniformLockStatus()
+    void uniformLockStatus()
     {
         TrackGroup trackGroup = TrackGroup.Behaviour as TrackGroup;
 
@@ -107,7 +107,7 @@ public class GenericTrackGroupControl : TrackGroupControl
     /// Add a new track
     /// </summary>
     /// <param name="userData">TrackContextData for the track to be created.</param>
-    private void addTrack(object userData)
+    void addTrack(object userData)
     {
         TrackContextData trackData = userData as TrackContextData;
         if (trackData != null)

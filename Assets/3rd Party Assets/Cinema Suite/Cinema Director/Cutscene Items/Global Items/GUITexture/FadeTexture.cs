@@ -127,7 +127,7 @@ namespace CinemaDirector
         /// <param name="from">The start color.</param>
         /// <param name="to">The end color.</param>
         /// <param name="transition">The transition amount.</param>
-        private void FadeToColor(Color from, Color to, float transition)
+        void FadeToColor(Color from, Color to, float transition)
         {
             this.target.color = Color.Lerp(from, to, transition);
         }

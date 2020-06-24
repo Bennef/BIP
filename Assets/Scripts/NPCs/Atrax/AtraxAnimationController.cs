@@ -1,50 +1,53 @@
 ﻿using UnityEngine;
 
-public class AtraxAnimationController : MonoBehaviour
+namespace Scripts.NPCs.Atrax
 {
-    private new Rigidbody rigidbody;
-    private Animator anim;
-    private AtraxStates state;
-    
-    // Use this for initialization
-    void Awake()
+    public class AtraxAnimationController : MonoBehaviour
     {
-        rigidbody = GetComponent<Rigidbody>();
-        anim = GetComponent<Animator>();
-        state = GetComponent<AtraxStates>();
-    }
-    
-    // Update is called once per frame
-    void Update()
-    {
-        // If Atrax is moving, and is currently grounded, he's walking.
-        //if (rigidbody.velocity.x > 0f || rigidbody.velocity.z > 0f)
-       // {
-            //StartMovingState();
-       // }
-       // else    // Otherwise he's not walking.
-       // {
-        //    StopMovingState();
-        //}
-    }
-    
-    public void StartMovingState() => anim.SetBool(state.isWalkingBool, true);
-    
-    public void StopMovingState() => anim.SetBool(state.isWalkingBool, false);
-    
-    public void StartSwipeState() => anim.SetBool(state.isSwipingBool, true);
+        private Rigidbody _rb;
+        private Animator _anim;
+        private AtraxStates _state;
 
-    public void StopSwipeState() => anim.SetBool(state.isSwipingBool, false);
-    
-    public void StartJumpState() => anim.SetBool(state.isJumpingBool, true);
-    
-    public void StopJumpState() => anim.SetBool(state.isJumpingBool, false);
-    
-    public void StartTurningLeftState() => anim.SetBool(state.isJumpingBool, true);
-    
-    public void StopTurningLeftState() => anim.SetBool(state.isJumpingBool, false);
-    
-    public void StartTurningRightState() => anim.SetBool(state.isJumpingBool, true);
-    
-    public void StopTurningRightState() => anim.SetBool(state.isJumpingBool, false);
+        // Use this for initialization
+        void Awake()
+        {
+            _rb = GetComponent<Rigidbody>();
+            _anim = GetComponent<Animator>();
+            _state = GetComponent<AtraxStates>();
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            // If Atrax is moving, and is currently grounded, he's walking.
+            //if (rigidbody.velocity.x > 0f || rigidbody.velocity.z > 0f)
+            // {
+            //StartMovingState();
+            // }
+            // else    // Otherwise he's not walking.
+            // {
+            //    StopMovingState();
+            //}
+        }
+
+        public void StartMovingState() => _anim.SetBool(_state.isWalkingBool, true);
+
+        public void StopMovingState() => _anim.SetBool(_state.isWalkingBool, false);
+
+        public void StartSwipeState() => _anim.SetBool(_state.isSwipingBool, true);
+
+        public void StopSwipeState() => _anim.SetBool(_state.isSwipingBool, false);
+
+        public void StartJumpState() => _anim.SetBool(_state.isJumpingBool, true);
+
+        public void StopJumpState() => _anim.SetBool(_state.isJumpingBool, false);
+
+        public void StartTurningLeftState() => _anim.SetBool(_state.isJumpingBool, true);
+
+        public void StopTurningLeftState() => _anim.SetBool(_state.isJumpingBool, false);
+
+        public void StartTurningRightState() => _anim.SetBool(_state.isJumpingBool, true);
+
+        public void StopTurningRightState() => _anim.SetBool(_state.isJumpingBool, false);
+    }
 }

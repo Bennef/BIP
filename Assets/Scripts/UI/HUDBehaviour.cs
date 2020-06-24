@@ -1,51 +1,58 @@
-﻿using UnityEngine;
+﻿using Scripts.Game.Game_Logic;
+using Scripts.Player;
+using UnityEngine;
 using UnityEngine.UI;
 
-public class HUDBehaviour : MonoBehaviour 
+namespace Scripts.UI
 {
-	// Are dataChipCount and bipHealth unique to this class? If so, this is fine, otherwise they should be references to their respective classes, and they should be private. - Luke
-	public int healthValue; 	 // Bips health value.
-	public int powerValue; 		 // Power Bar value.
-	public Slider healthSlider;	 // The slider for health.
-	public Slider powerSlider;	 // The slider for power.
-	public Health health;
-	public PlayerPower powerBar;	 // Ref the PowerBar for info on Power.
-	public GameManager GameManagerScript;
-    public GameObject player;
-    
-    void Start()
-	{
-        GameManagerScript = GameManager.Instance;
-        player = GameObject.Find("Bip");
-	}
-	
-	void Update()
-	{
-        if (player != null)
+    public class HUDBehaviour : MonoBehaviour
+    {
+        private int _healthValue;
+        private int _powerValue;
+        private Slider _healthSlider;
+        private Slider _powerSlider;
+        private Health _health;
+        private PlayerPower _power;
+        //private GameManager GameManagerScript; // Do we have to declare this?
+        private GameObject _player;
+
+        void Start()
         {
-            health = GameManager.Instance.Player.GetComponent<PlayerHealth>(); 
-            GetHUDElementValues();
-            DisplayHUDValues();
+            _player = GameObject.Find("Bip");
+            _healthSlider = GameObject.Find("Health Slider").GetComponent<Slider>();
+            _powerSlider = GameObject.Find("Power Slider").GetComponent<Slider>();
+            //GameManagerScript = GameManager.Instance;
+            _power = _player.GetComponent<PlayerPower>();
         }
-	}
-	
-	// Get the information for the HUD values from the respective classes.
-	public void GetHUDElementValues()
-	{
-        if (GameManager.Instance.Player == null)
-            return;
-                
-        powerBar = GameManager.Instance.Player.GetComponent<PlayerPower>();
-        if (health != null)
-            healthValue = (int)health.value;
-        if (powerBar != null)
-            powerValue = (int)powerBar.value;
-	}
-	
-	// Display the values on the HUD on-screen.
-	public void DisplayHUDValues()
-	{
-		healthSlider.value = healthValue;
-		powerSlider.value = powerValue;
-	}
+
+        void Update()
+        {
+            if (_player != null)
+            {
+                _health = GameManager.Instance.Player.GetComponent<PlayerHealth>();
+                GetHUDElementValues();
+                DisplayHUDValues();
+            }
+        }
+
+        // Get the information for the HUD values from the respective classes.
+        public void GetHUDElementValues()
+        {
+            if (GameManager.Instance.Player == null)
+                return;
+
+            _power = GameManager.Instance.Player.GetComponent<PlayerPower>();
+            if (_health != null)
+                _healthValue = (int)_health.value;
+            if (_power != null)
+                _healthValue = (int)_power.value;
+        }
+
+        // Display the values on the HUD on-screen.
+        public void DisplayHUDValues()
+        {
+            _healthSlider.value = _healthValue;
+            _powerSlider.value = _powerValue;
+        }
+    }
 }

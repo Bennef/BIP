@@ -39,7 +39,7 @@ namespace UnityStandardAssets.Utility
         public Entries entries = new Entries();
 
         
-        private void Awake()
+        void Awake()
         {
             foreach (Entry entry in entries.entries)
             {

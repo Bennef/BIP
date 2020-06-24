@@ -1,16 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Scripts.Game.Game_Logic;
 
-public class DemoEnd : MonoBehaviour 
+namespace Scripts.UI
 {
-    [Tooltip("How long will this screen remain open?")]
-    public float time;
-    
-    void Start() => StartCoroutine("RestartCo"); 
-    
-    IEnumerator RestartCo()
+    public class DemoEnd : MonoBehaviour
     {
-        yield return new WaitForSeconds(time);
-        LocalSceneManager.Instance.LoadScene("Main Menu Demo");
+        [Tooltip("How long will this screen remain open?")]
+        public float time;
+
+        void Start() => StartCoroutine("RestartCo");
+
+        IEnumerator RestartCo()
+        {
+            yield return new WaitForSeconds(time);
+            LocalSceneManager.Instance.LoadScene("Main Menu Demo");
+        }
     }
 }

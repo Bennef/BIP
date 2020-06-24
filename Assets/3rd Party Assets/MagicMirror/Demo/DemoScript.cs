@@ -60,7 +60,7 @@ public class DemoScript : MonoBehaviour
         }
     }
 
-    private void UpdateMovement()
+    void UpdateMovement()
     {
         float speed = 4.0f * Time.deltaTime;
 
@@ -88,7 +88,7 @@ public class DemoScript : MonoBehaviour
         }
     }
 
-    private void RotateMirror()
+    void RotateMirror()
     {
         GameObject Mirror = Mirrors[0];
         float angle = Mirror.transform.rotation.eulerAngles.y;
@@ -110,7 +110,7 @@ public class DemoScript : MonoBehaviour
         }
     }
 
-    private void MoveLightBulb()
+    void MoveLightBulb()
     {
         float x = LightBulb.transform.position.x;
         if (x > 5)
@@ -134,7 +134,7 @@ public class DemoScript : MonoBehaviour
         lightBulbMaterial.SetColor("_EmissionColor", new Color(i, i, i));
     }
 
-    private void UpdateMouseLook()
+    void UpdateMouseLook()
     {
         if (axes == RotationAxes.MouseXAndY)
         {

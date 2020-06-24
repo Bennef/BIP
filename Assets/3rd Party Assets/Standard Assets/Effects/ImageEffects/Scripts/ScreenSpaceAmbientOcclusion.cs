@@ -79,7 +79,7 @@ namespace UnityStandardAssets.ImageEffects
             GetComponent<Camera>().depthTextureMode |= DepthTextureMode.DepthNormals;
         }
 
-        private void CreateMaterials()
+        void CreateMaterials()
         {
             if (!m_SSAOMaterial && m_SSAOShader.isSupported)
             {
@@ -157,7 +157,7 @@ namespace UnityStandardAssets.ImageEffects
         }
 
         /*
-		private void CreateRandomTable (int count, float minLength)
+		void CreateRandomTable (int count, float minLength)
 		{
 			Random.seed = 1337;
 			Vector3[] samples = new Vector3[count];

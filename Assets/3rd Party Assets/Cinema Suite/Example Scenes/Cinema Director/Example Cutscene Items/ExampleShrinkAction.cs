@@ -197,7 +197,7 @@ class ExampleShrinkAction : CinemaActorAction, IRevertable
     }
 
     //Include any other methods you need for your custom item.
-    private void LerpScale (GameObject Actor, Vector3 scaleFrom, Vector3 scaleTo, float transition)
+    void LerpScale (GameObject Actor, Vector3 scaleFrom, Vector3 scaleTo, float transition)
     {
         if (Actor != null)
         {

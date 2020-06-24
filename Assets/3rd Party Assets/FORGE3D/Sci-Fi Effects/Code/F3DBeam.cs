@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
-using System.Collections;
+using Scripts.Player;
+using Scripts.NPCs.AI;
+using Scripts.Game;
+using Scripts.Game.Game_Logic;
 
 [RequireComponent(typeof(LineRenderer))]
 public class F3DBeam : MonoBehaviour
@@ -141,12 +144,16 @@ public class F3DBeam : MonoBehaviour
                 
                 case F3DFXType.PlasmaBeam:
                    //We have modified the code to include audio
-                    if (hitPoint.collider.CompareTag(Tags.Player) && hitPoint.transform.GetComponent<PlayerHealth>().value > 0 && !hitPoint.transform.GetComponent<CharacterController>().IsDead)
+                    if (hitPoint.collider.CompareTag(Tags.Player) 
+                        && hitPoint.transform.GetComponent<PlayerHealth>().value > 0 
+                        && !hitPoint.transform.GetComponent<Scripts.Player.CharacterController>().IsDead)
                     {
                         hitPoint.transform.GetComponent<PlayerHealth>().TakeDamage(damage);
                     }
 
-                    if (hitPoint.collider.CompareTag(Tags.Enemies) && hitPoint.transform.GetComponent<Health>().value > 0 && !hitPoint.transform.GetComponent<DroneBotMind>().isDead)
+                    if (hitPoint.collider.CompareTag(Tags.Enemies) 
+                        && hitPoint.transform.GetComponent<Health>().value > 0
+                        && !hitPoint.transform.GetComponent<DroneBotMind>().isDead)
                     {
                         hitPoint.transform.GetComponent<Health>().TakeDamage(damage);
                     }
@@ -158,7 +165,9 @@ public class F3DBeam : MonoBehaviour
                     break;
                 
                 case F3DFXType.PlasmaBeamHeavy:
-                    if (hitPoint.collider.CompareTag(Tags.Player) && hitPoint.transform.GetComponent<PlayerHealth>().value > 0 && !hitPoint.transform.GetComponent<CharacterController>().IsDead)
+                    if (hitPoint.collider.CompareTag(Tags.Player) 
+                        && hitPoint.transform.GetComponent<PlayerHealth>().value > 0 
+                        && !hitPoint.transform.GetComponent<Scripts.Player.CharacterController>().IsDead)
                     {
                         hitPoint.transform.GetComponent<PlayerHealth>().TakeDamage(damage);
                     }

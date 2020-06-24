@@ -37,7 +37,7 @@ namespace UnityStandardAssets.Utility
         private Vector3 P3;
 
         // Use this for initialization
-        private void Awake()
+        void Awake()
         {
             if (Waypoints.Length > 1)
             {
@@ -126,7 +126,7 @@ namespace UnityStandardAssets.Utility
         }
 
 
-        private void CachePositionsAndDistances()
+        void CachePositionsAndDistances()
         {
             // transfer the position of each point and distances between points to arrays for
             // speed of lookup at runtime
@@ -150,19 +150,19 @@ namespace UnityStandardAssets.Utility
         }
 
 
-        private void OnDrawGizmos()
+        void OnDrawGizmos()
         {
             DrawGizmos(false);
         }
 
 
-        private void OnDrawGizmosSelected()
+        void OnDrawGizmosSelected()
         {
             DrawGizmos(true);
         }
 
 
-        private void DrawGizmos(bool selected)
+        void DrawGizmos(bool selected)
         {
             waypointList.circuit = this;
             if (Waypoints.Length > 1)

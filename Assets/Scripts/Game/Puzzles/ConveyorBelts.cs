@@ -1,18 +1,21 @@
 ﻿using UnityEngine;
 
-public class ConveyorBelts : MonoBehaviour
+namespace Scripts.Game.Puzzles
 {
-    public Conveyor[] platforms;
-   
-    public void SwitchOn()
+    public class ConveyorBelts : MonoBehaviour
     {
-        foreach (Conveyor platform in platforms)
-            platform.isOn = true;
+        public Conveyor[] platforms;
+
+        public void SwitchOn()
+        {
+            foreach (Conveyor platform in platforms)
+                platform.isOn = true;
+        }
+
+        public void SwitchOff()
+        {
+            foreach (Conveyor platform in platforms)
+                platform.isOn = false;
+        }
     }
-    
-    public void SwitchOff()
-    {
-        foreach (Conveyor platform in platforms)
-            platform.isOn = false;
-    }  
 }

@@ -32,28 +32,28 @@ namespace UnityStandardAssets.Utility
 
 #if UNITY_EDITOR
 
-        private void OnEnable()
+        void OnEnable()
         {
             EditorUserBuildSettings.activeBuildTargetChanged += Update;
             EditorApplication.update += Update;
         }
 
 
-        private void OnDisable()
+        void OnDisable()
         {
             EditorUserBuildSettings.activeBuildTargetChanged -= Update;
             EditorApplication.update -= Update;
         }
 
 
-        private void Update()
+        void Update()
         {
             CheckEnableContent();
         }
 #endif
 
 
-        private void CheckEnableContent()
+        void CheckEnableContent()
         {
 #if (UNITY_IPHONE || UNITY_ANDROID || UNITY_WP8 || UNITY_BLACKBERRY )
 		if (m_BuildTargetGroup == BuildTargetGroup.Mobile)
@@ -77,7 +77,7 @@ namespace UnityStandardAssets.Utility
         }
 
 
-        private void EnableContent(bool enabled)
+        void EnableContent(bool enabled)
         {
             if (m_Content.Length > 0)
             {

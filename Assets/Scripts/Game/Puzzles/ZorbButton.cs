@@ -2,44 +2,47 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class ZorbButton : MonoBehaviour
+namespace Scripts.Game.Puzzles
 {
-    public bool complete, canBeHit;
-    public GameObject correctZorb;
-    public int count = 3;
-    public Text text;
-    private AudioSource aSrc;
-    
-    private void Start()
+    public class ZorbButton : MonoBehaviour
     {
-        aSrc = GetComponent<AudioSource>();
-        canBeHit = true;
-    }
-    
-    private void Update()
-    {
-        if (count <= 0)
+        public bool complete, canBeHit;
+        public GameObject correctZorb;
+        public int count = 3;
+        public Text text;
+        private AudioSource aSrc;
+
+        void Start()
         {
-            count = 0;
-            complete = true;
+            aSrc = GetComponent<AudioSource>();
+            canBeHit = true;
         }
-    }
-    
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject == correctZorb && !complete && canBeHit)
+
+        void Update()
         {
-            canBeHit = false;
-            aSrc.Play();
-            StartCoroutine(Wait());
-            count--;
-            text.text = count.ToString();
+            if (count <= 0)
+            {
+                count = 0;
+                complete = true;
+            }
         }
-    }
-    
-    public IEnumerator Wait()
-    {
-        yield return new WaitForSeconds(1f);
-        canBeHit = true;
+
+        void OnCollisionEnter(Collision collision)
+        {
+            if (collision.gameObject == correctZorb && !complete && canBeHit)
+            {
+                canBeHit = false;
+                aSrc.Play();
+                StartCoroutine(Wait());
+                count--;
+                text.text = count.ToString();
+            }
+        }
+
+        public IEnumerator Wait()
+        {
+            yield return new WaitForSeconds(1f);
+            canBeHit = true;
+        }
     }
 }

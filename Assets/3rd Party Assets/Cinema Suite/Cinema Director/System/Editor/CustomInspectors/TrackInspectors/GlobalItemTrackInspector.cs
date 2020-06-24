@@ -109,7 +109,7 @@ public class GlobalItemTrackInspector : Editor
         eventTrack.ApplyModifiedProperties();
     }
 
-    private void AddEvent(object userData)
+    void AddEvent(object userData)
     {
         ContextData data = userData as ContextData;
         if (data != null)

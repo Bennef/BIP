@@ -1,31 +1,34 @@
 ﻿using UnityEngine;
 
-public class ElectricalDischarge : MonoBehaviour
+namespace Scripts.Game.Puzzles
 {
-    public int numberOfElecs;
-    public float spawnTime;
-    public GameObject[] elecs;
-    
-    // Use this for initialization
-    void Start() => SpawnElec();
-
-    public void SpawnElec()
+    public class ElectricalDischarge : MonoBehaviour
     {
-        for (int i = 0; i < numberOfElecs; i++)
+        public int numberOfElecs;
+        public float spawnTime;
+        public GameObject[] elecs;
+
+        // Use this for initialization
+        void Start() => SpawnElec();
+
+        public void SpawnElec()
         {
-            GameObject elec = (GameObject)Instantiate(Resources.Load("Electricity"));
-            Vector3 spawnPosition = Random.onUnitSphere * ((this.transform.localScale.x) * 0.5f) + this.transform.position;
-            elec.transform.position = spawnPosition;
-            elec.transform.localScale = new Vector3(1f, 1f, 1f);
-            elec.transform.rotation = Quaternion.LookRotation(elec.transform.position - this.transform.position);
+            for (int i = 0; i < numberOfElecs; i++)
+            {
+                GameObject elec = (GameObject)Instantiate(Resources.Load("Electricity"));
+                Vector3 spawnPosition = Random.onUnitSphere * (transform.localScale.x * 0.5f) + transform.position;
+                elec.transform.position = spawnPosition;
+                elec.transform.localScale = new Vector3(1f, 1f, 1f);
+                elec.transform.rotation = Quaternion.LookRotation(elec.transform.position - transform.position);
+            }
         }
-    }
-    
-    public void HideElec()
-    {
-        elecs = GameObject.FindGameObjectsWithTag("Electrical");
 
-        foreach (GameObject elec in elecs)
-            elec.SetActive(false);
+        public void HideElec()
+        {
+            elecs = GameObject.FindGameObjectsWithTag("Electrical");
+
+            foreach (GameObject elec in elecs)
+                elec.SetActive(false);
+        }
     }
 }

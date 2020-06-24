@@ -19,14 +19,14 @@ namespace UnityStandardAssets.Utility
         private float m_OriginalStrength = 1;
 
 
-        private void Start()
+        void Start()
         {
             m_OriginalStrength = sunLight.shadowStrength;
         }
 
 
         // Update is called once per frame
-        private void Update()
+        void Update()
         {
             Ray ray = new Ray(Camera.main.transform.position, -Vector3.up);
             RaycastHit hit;

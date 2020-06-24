@@ -13,13 +13,13 @@ namespace UnityStandardAssets.Effects
         private ParticleSystem m_ParticleSystem;
 
 
-        private void Start()
+        void Start()
         {
             m_ParticleSystem = GetComponent<ParticleSystem>();
         }
 
 
-        private void OnParticleCollision(GameObject other)
+        void OnParticleCollision(GameObject other)
         {
             int safeLength = m_ParticleSystem.GetSafeCollisionEventSize();
 

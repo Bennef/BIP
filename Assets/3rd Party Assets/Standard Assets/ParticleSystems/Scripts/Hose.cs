@@ -16,7 +16,7 @@ namespace UnityStandardAssets.Effects
 
 
         // Update is called once per frame
-        private void Update()
+        void Update()
         {
             m_Power = Mathf.Lerp(m_Power, Input.GetMouseButton(0) ? maxPower : minPower, Time.deltaTime*changeSpeed);
 

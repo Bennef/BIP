@@ -50,7 +50,7 @@ namespace UnityStandardAssets.Utility
         private float speed; // current speed of this object (calculated from delta since last frame)
 
         // setup script properties
-        private void Start()
+        void Start()
         {
             // we use a transform to represent the point to aim for, and the point which
             // is considered for upcoming changes-of-speed. This allows this component
@@ -80,7 +80,7 @@ namespace UnityStandardAssets.Utility
         }
 
 
-        private void Update()
+        void Update()
         {
             if (progressStyle == ProgressStyle.SmoothAlongRoute)
             {
@@ -137,7 +137,7 @@ namespace UnityStandardAssets.Utility
         }
 
 
-        private void OnDrawGizmos()
+        void OnDrawGizmos()
         {
             if (Application.isPlaying)
             {

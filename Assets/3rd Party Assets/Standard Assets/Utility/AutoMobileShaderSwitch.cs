@@ -12,7 +12,7 @@ namespace UnityStandardAssets.Utility
         [SerializeField] private ReplacementList m_ReplacementList;
 
         // Use this for initialization
-        private void OnEnable()
+        void OnEnable()
         {
 #if UNITY_IPHONE || UNITY_ANDROID || UNITY_WP8 || UNITY_BLACKBERRY
 			var renderers = FindObjectsOfType<Renderer>();

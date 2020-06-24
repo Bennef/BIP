@@ -121,7 +121,7 @@ public class GenericTrackControl : TimelineTrackControl
         createMenu.ShowAsContext();
     }
 
-    private void showObjectPicker(ContextData data)
+    void showObjectPicker(ContextData data)
     {
         // Create an Object Picker with a dynamic type.
         MethodInfo method = typeof(EditorGUIUtility).GetMethod("ShowObjectPicker");
@@ -131,7 +131,7 @@ public class GenericTrackControl : TimelineTrackControl
         savedData = data;
     }
 
-    private void addCutsceneItem(object userData)
+    void addCutsceneItem(object userData)
     {
         ContextData data = userData as ContextData;
         if (data != null)
@@ -148,7 +148,7 @@ public class GenericTrackControl : TimelineTrackControl
         }
     }
 
-    private void addCutsceneItem(ContextData data, UnityEngine.Object pickedObject)
+    void addCutsceneItem(ContextData data, UnityEngine.Object pickedObject)
     {
         GameObject item = CutsceneItemFactory.CreateCutsceneItem(data.Track, data.Type, data.Label, pickedObject, data.Firetime).gameObject;
         Undo.RegisterCreatedObjectUndo(item, string.Format("Create {0}", item.name));
@@ -171,7 +171,7 @@ public class GenericTrackControl : TimelineTrackControl
         return new ContextData(this.controlID, type, requiredObject, (TargetTrack.Behaviour as TimelineTrack), category, label, state.ScrubberPosition);
     }
 
-    private void pasteItem(object userData)
+    void pasteItem(object userData)
     {
         PasteContext data = userData as PasteContext;
         if (data != null)

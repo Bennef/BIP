@@ -24,7 +24,7 @@ namespace UnityStandardAssets.Utility
         }
 
 
-        private void CheckStatus(Camera camera)
+        void CheckStatus(Camera camera)
         {
             if (camera == null)
             {

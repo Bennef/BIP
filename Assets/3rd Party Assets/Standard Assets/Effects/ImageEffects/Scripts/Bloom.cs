@@ -310,14 +310,14 @@ namespace UnityStandardAssets.ImageEffects
             RenderTexture.ReleaseTemporary (secondQuarterRezColor);
         }
 
-        private void AddTo (float intensity_, RenderTexture from, RenderTexture to)
+        void AddTo (float intensity_, RenderTexture from, RenderTexture to)
         {
             screenBlend.SetFloat ("_Intensity", intensity_);
             to.MarkRestoreExpected(); // additive blending, RT restore expected
             Graphics.Blit (from, to, screenBlend, 9);
         }
 
-        private void BlendFlares (RenderTexture from, RenderTexture to)
+        void BlendFlares (RenderTexture from, RenderTexture to)
         {
             lensFlareMaterial.SetVector ("colorA", new Vector4 (flareColorA.r, flareColorA.g, flareColorA.b, flareColorA.a) * lensflareIntensity);
             lensFlareMaterial.SetVector ("colorB", new Vector4 (flareColorB.r, flareColorB.g, flareColorB.b, flareColorB.a) * lensflareIntensity);
@@ -327,19 +327,19 @@ namespace UnityStandardAssets.ImageEffects
             Graphics.Blit (from, to, lensFlareMaterial);
         }
 
-        private void BrightFilter (float thresh, RenderTexture from, RenderTexture to)
+        void BrightFilter (float thresh, RenderTexture from, RenderTexture to)
         {
             brightPassFilterMaterial.SetVector ("_Threshhold", new Vector4 (thresh, thresh, thresh, thresh));
             Graphics.Blit (from, to, brightPassFilterMaterial, 0);
         }
 
-        private void BrightFilter (Color threshColor,  RenderTexture from, RenderTexture to)
+        void BrightFilter (Color threshColor,  RenderTexture from, RenderTexture to)
         {
             brightPassFilterMaterial.SetVector ("_Threshhold", threshColor);
             Graphics.Blit (from, to, brightPassFilterMaterial, 1);
         }
 
-        private void Vignette (float amount, RenderTexture from, RenderTexture to)
+        void Vignette (float amount, RenderTexture from, RenderTexture to)
         {
             if (lensFlareVignetteMask)
             {

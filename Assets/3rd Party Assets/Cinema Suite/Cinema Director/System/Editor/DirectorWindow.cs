@@ -87,7 +87,7 @@ public class DirectorWindow : EditorWindow
     /// <summary>
     /// Update the current cutscene
     /// </summary>
-    private void DirectorUpdate()
+    void DirectorUpdate()
     {
         // Restrict the Repaint rate
         double delta = (DateTime.Now - previousTime).TotalSeconds;
@@ -320,7 +320,7 @@ public class DirectorWindow : EditorWindow
     /// Draw and update the toolbar for the director control
     /// </summary>
     /// <param name="toolbarArea">The area for the toolbar</param>
-    private void updateToolbar(Rect toolbarArea)
+    void updateToolbar(Rect toolbarArea)
     {
         EditorGUILayout.BeginHorizontal(EditorStyles.toolbar);
 
@@ -492,7 +492,7 @@ public class DirectorWindow : EditorWindow
         EditorGUILayout.EndHorizontal();
     }
 
-    private void chooseResizeOption(object userData)
+    void chooseResizeOption(object userData)
     {
         int selection = (int) userData;
 
@@ -540,7 +540,7 @@ public class DirectorWindow : EditorWindow
     /// <summary>
     /// Load textures from Resources folder.
     /// </summary>
-    private void loadTextures()
+    void loadTextures()
     {
         string dir = "Cinema Suite/Cinema Director/";
         string suffix = EditorGUIUtility.isProSkin ? "_Light" : "_Dark";
@@ -624,7 +624,7 @@ public class DirectorWindow : EditorWindow
     /// Add a new track group to the current cutscene.
     /// </summary>
     /// <param name="userData">TrackGroupContextData containing track group label and type</param>
-    private void AddTrackGroup(object userData)
+    void AddTrackGroup(object userData)
     {
         TrackGroupContextData data = userData as TrackGroupContextData;
         if (data != null)

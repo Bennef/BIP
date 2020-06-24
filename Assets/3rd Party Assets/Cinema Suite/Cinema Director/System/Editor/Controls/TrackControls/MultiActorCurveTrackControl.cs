@@ -50,7 +50,7 @@ public class MultiActorCurveTrackControl : CinemaCurveTrackControl
         GUI.color = temp;
     }
 
-    private void addNewCurveItem(MultiCurveTrack track)
+    void addNewCurveItem(MultiCurveTrack track)
     {
         Undo.RegisterCreatedObjectUndo(CutsceneItemFactory.CreateMultiActorClipCurve(track), "Created Multi Actor Clip Curve");
     }
@@ -75,7 +75,7 @@ public class MultiActorCurveTrackControl : CinemaCurveTrackControl
         createMenu.ShowAsContext();
     }
 
-    private void pasteItem(object userData)
+    void pasteItem(object userData)
     {
         PasteContext data = userData as PasteContext;
         if (data != null)

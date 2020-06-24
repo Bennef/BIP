@@ -11,7 +11,7 @@ namespace UnityStandardAssets.Effects
         private ParticleSystem[] m_Systems;
 
 
-        private void Start()
+        void Start()
         {
             m_Systems = GetComponentsInChildren<ParticleSystem>();
         }

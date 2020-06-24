@@ -1,17 +1,22 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Game.Puzzles;
+using Scripts.Game.Level_Dynamics;
+using UnityEngine;
 
-public class PadOpensDoorWhenHeld : MonoBehaviour
+namespace Scripts.Game.Puzzles
 {
-    public PressableSwitch pad;
-    public LockableDoors doorToOpen;
-    public bool hasBeenCompleted;
-    
-    // Update is called once per frame
-    void Update()
+    public class PadOpensDoorWhenHeld : MonoBehaviour
     {
-        if (pad.switchDown && doorToOpen.locked)
-            doorToOpen.UnlockDoor();
-        else if (!pad.switchDown &&!doorToOpen.locked)
-            doorToOpen.LockDoor();
-	}
+        public PressableSwitch pad;
+        public LockableDoors doorToOpen;
+        public bool hasBeenCompleted;
+
+        // Update is called once per frame
+        void Update()
+        {
+            if (pad.switchDown && doorToOpen.locked)
+                doorToOpen.UnlockDoor();
+            else if (!pad.switchDown && !doorToOpen.locked)
+                doorToOpen.LockDoor();
+        }
+    }
 }

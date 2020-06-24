@@ -1,19 +1,23 @@
-﻿using UnityEngine;
+﻿using Scripts.Game.Level_Dynamics;
+using UnityEngine;
 
-public class LightReceivers : MonoBehaviour
+namespace Scripts.Game.Puzzles
 {
-    public MeshRenderer receiverA, receiverB;
-    public LockableDoors doorToUnlock;
-    
-    // Update is called once per frame
-    void Update()
+    public class LightReceivers : MonoBehaviour
     {
-        if (receiverA.enabled && receiverB.enabled)
+        public MeshRenderer receiverA, receiverB;
+        public LockableDoors doorToUnlock;
+
+        // Update is called once per frame
+        void Update()
         {
-            if (doorToUnlock.locked)
-                doorToUnlock.UnlockDoor(); 
+            if (receiverA.enabled && receiverB.enabled)
+            {
+                if (doorToUnlock.locked)
+                    doorToUnlock.UnlockDoor();
+            }
+            else if (!doorToUnlock.locked)
+                doorToUnlock.LockDoor();
         }
-        else if (!doorToUnlock.locked)
-            doorToUnlock.LockDoor();
-    }   
+    }
 }

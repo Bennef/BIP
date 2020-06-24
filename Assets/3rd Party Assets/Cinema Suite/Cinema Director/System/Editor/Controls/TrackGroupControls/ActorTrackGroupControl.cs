@@ -50,7 +50,7 @@ public class ActorTrackGroupControl : GenericTrackGroupControl
         GUI.color = temp;
     }
 
-    private void focusActor()
+    void focusActor()
     {
         Selection.activeTransform = (TrackGroup.Behaviour as ActorTrackGroup).Actor;
     }

@@ -11,14 +11,14 @@ namespace UnityStandardAssets.Effects
         private Light m_Light;
 
 
-        private void Start()
+        void Start()
         {
             m_Rnd = Random.value*100;
             m_Light = GetComponent<Light>();
         }
 
 
-        private void Update()
+        void Update()
         {
             if (m_Burning)
             {

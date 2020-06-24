@@ -25,7 +25,7 @@ public class ActorTrackGroupInspector : Editor
     /// <summary>
     /// Load texture assets on awake.
     /// </summary>
-    private void Awake()
+    void Awake()
     {
         if (inspectorIcon == null)
         {
@@ -40,7 +40,7 @@ public class ActorTrackGroupInspector : Editor
     /// <summary>
     /// On inspector enable, load the serialized properties
     /// </summary>
-    private void OnEnable()
+    void OnEnable()
     {
         this.actor = base.serializedObject.FindProperty("actor");
         this.optimizable = serializedObject.FindProperty("canOptimize");

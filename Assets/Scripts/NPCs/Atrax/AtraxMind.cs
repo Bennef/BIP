@@ -1,33 +1,35 @@
-﻿using UnityEngine;
+﻿using Scripts.NPCs.AI;
+using UnityEngine;
 
-public class AtraxMind : Mind
+namespace Scripts.NPCs.Atrax
 {
-    [Tooltip("Turning Speed")]
-    public float turningSpeed;		
-    AtraxStates state;
-    Animator anim;
-    public BoxCollider swipeCollider;
-    
-    // Use this for initialization
-    void Awake()
+    public class AtraxMind : Mind
     {
-        //rigidbody = GetComponent<Rigidbody>();
-        state = GetComponent<AtraxStates>();
-        anim = GetComponent<Animator>();
-    }
-    
-    void FixedUpdate()
-    {
-        Quaternion rotation = CalculateRotationOnlyY();
-        Move();
-        //GetComponent<NavMeshAgent>().SetDestination(target.position);
-    }
-    
-    protected override void Move()
-    {
-        if (anim.GetBool("isWalking") == true)
+        [Tooltip("Turning Speed")]
+        public float turningSpeed;
+        private AtraxStates _state;
+        private Animator _anim;
+        public BoxCollider swipeCollider;
+
+        // Use this for initialization
+        void Awake()
         {
-            Debug.Log("s");
+            _state = GetComponent<AtraxStates>();
+            _anim = GetComponent<Animator>();
+        }
+
+        void FixedUpdate()
+        {
+            Quaternion rotation = CalculateRotationOnlyY();
+            Move();
+        }
+
+        protected override void Move()
+        {
+            if (_anim.GetBool("isWalking") == true)
+            {
+                Debug.Log("walking");
+            }
         }
     }
 }

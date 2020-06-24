@@ -14,7 +14,7 @@ namespace UnityStandardAssets.Utility
         private Rigidbody Rigidbody;
 
         // Use this for initialization
-        private void Start()
+        void Start()
         {
             originalStructure = new List<Transform>(GetComponentsInChildren<Transform>());
             originalPosition = transform.position;

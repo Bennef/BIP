@@ -1,21 +1,24 @@
 ﻿using UnityEngine;
 
-public class SlidingTile : MonoBehaviour
+namespace Scripts.Game.Puzzles
 {
-    public bool isBeingStoodOn, canMove, isPlacedCorrectly;
-    public Transform correctPos;
-    
-    private void Update()
+    public class SlidingTile : MonoBehaviour
     {
-        if (transform.position == correctPos.position)
-            isPlacedCorrectly = true;
-        else
-            isPlacedCorrectly = false;
-    }
-    
-    private void OnCollisionStay(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-            isBeingStoodOn = true;
+        public bool isBeingStoodOn, canMove, isPlacedCorrectly;
+        public Transform correctPos;
+
+        void Update()
+        {
+            if (transform.position == correctPos.position)
+                isPlacedCorrectly = true;
+            else
+                isPlacedCorrectly = false;
+        }
+
+        void OnCollisionStay(Collision collision)
+        {
+            if (collision.gameObject.CompareTag("Player"))
+                isBeingStoodOn = true;
+        }
     }
 }

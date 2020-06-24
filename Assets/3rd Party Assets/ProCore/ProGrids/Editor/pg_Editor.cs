@@ -504,7 +504,7 @@ NoParseForYou:
 		SceneView.RepaintAll();
 	}
 
-	private void LoadGUIResources()
+	void LoadGUIResources()
 	{
 		if (gc_GridEnabled.image_on == null)
 			gc_GridEnabled.image_on = pg_IconUtility.LoadIcon("ProGrids2_GUI_Vis_On.png");
@@ -824,7 +824,7 @@ NoParseForYou:
 		EditorPrefs.SetBool(pg_Constant.ProGridsIsExtended, menuOpen);
 	}
 
-	private void OpenProGridsPopup()
+	void OpenProGridsPopup()
 	{
 		if ( EditorUtility.DisplayDialog(
 			"Upgrade to ProGrids",				// Title
@@ -1170,7 +1170,7 @@ NoParseForYou:
 
 	GameObject go;
 
-	private void DrawGridOrthographic(Camera cam)
+	void DrawGridOrthographic(Camera cam)
 	{
 		Axis camAxis = AxisWithVector(Camera.current.transform.TransformDirection(Vector3.forward).normalized);
 
@@ -1197,7 +1197,7 @@ NoParseForYou:
 
 	int PRIMARY_COLOR_INCREMENT = 10;
 	Color previousColor;
-	private void DrawGridOrthographic(Camera cam, Axis camAxis, Color primaryColor, Color secondaryColor)
+	void DrawGridOrthographic(Camera cam, Axis camAxis, Color primaryColor, Color secondaryColor)
 	{
 		previousColor = Handles.color;
 		Handles.color = primaryColor;
@@ -1495,7 +1495,7 @@ NoParseForYou:
 		RepaintSceneView();
 	}
 
-	private void SnapToGrid(Transform[] transforms)
+	void SnapToGrid(Transform[] transforms)
 	{
 		Undo.RecordObjects(transforms as Object[], "Snap to Grid");
 
@@ -1566,7 +1566,7 @@ NoParseForYou:
 	[SerializeField] static List<System.Action<float>> pushToGridListeners = new List<System.Action<float>>();
 	[SerializeField] static List<System.Action<bool>> toolbarEventSubscribers = new List<System.Action<bool>>();
 
-	private void PushToGrid(float snapValue)
+	void PushToGrid(float snapValue)
 	{
 		foreach(System.Action<float> listener in pushToGridListeners)
 			listener(snapValue);
@@ -1578,7 +1578,7 @@ NoParseForYou:
 			instance.OnHandleMove_Internal(worldDirection);
 	}
 
-	private void OnHandleMove_Internal(Vector3 worldDirection)
+	void OnHandleMove_Internal(Vector3 worldDirection)
 	{
 		if ( predictiveGrid && firstMove && !fullGrid )
 		{

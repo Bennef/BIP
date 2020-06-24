@@ -104,7 +104,7 @@ namespace UnityStandardAssets.ImageEffects
             return GetComponent<Camera>().WorldToViewportPoint((worldDist-GetComponent<Camera>().nearClipPlane) * GetComponent<Camera>().transform.forward + GetComponent<Camera>().transform.position).z / (GetComponent<Camera>().farClipPlane-GetComponent<Camera>().nearClipPlane);
         }
 
-        private void WriteCoc ( RenderTexture fromTo, bool fgDilate) {
+        void WriteCoc ( RenderTexture fromTo, bool fgDilate) {
             dofHdrMaterial.SetTexture("_FgOverlap", null);
 
             if (nearBlur && fgDilate) {

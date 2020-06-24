@@ -1,18 +1,22 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Game.Puzzles;
+using UnityEngine;
 
-public class ChessCollider : MonoBehaviour
+namespace Scripts.Game.Puzzles
 {
-    [SerializeField] private ChessPuzzle chessPuzzle;
-    
-    void OnTriggerEnter(Collider other)
+    public class ChessCollider : MonoBehaviour
     {
-        if (other.name == "Chess Collider")
-            chessPuzzle.correctPieceCount++;
-    }
-    
-    void OnTriggerExit(Collider other)
-    {
-        if (other.name == "Chess Collider")
-            chessPuzzle.correctPieceCount--;
+        [SerializeField] private ChessPuzzle chessPuzzle;
+
+        void OnTriggerEnter(Collider other)
+        {
+            if (other.name == "Chess Collider")
+                chessPuzzle.correctPieceCount++;
+        }
+
+        void OnTriggerExit(Collider other)
+        {
+            if (other.name == "Chess Collider")
+                chessPuzzle.correctPieceCount--;
+        }
     }
 }

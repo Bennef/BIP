@@ -1,18 +1,23 @@
 ﻿using UnityEngine;
 
-public class TargetTile : MonoBehaviour
+namespace Scripts.Game.Puzzles
 {
-    public bool isCorrect = false;
-    
-    private void OnTriggerEnter(Collider other)
+    public class TargetTile : MonoBehaviour
     {
-        if (other.CompareTag("Moveable"))
-            isCorrect = true;
-    }
-    
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Moveable"))
-            isCorrect = false;
+        [SerializeField] private bool isCorrect = false;
+
+        public bool IsCorrect { get => isCorrect; set => isCorrect = value; }
+
+        void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("Moveable"))
+                isCorrect = true;
+        }
+
+        void OnTriggerExit(Collider other)
+        {
+            if (other.CompareTag("Moveable"))
+                isCorrect = false;
+        }
     }
 }

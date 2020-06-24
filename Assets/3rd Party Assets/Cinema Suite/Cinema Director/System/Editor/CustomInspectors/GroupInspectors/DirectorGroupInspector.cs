@@ -23,7 +23,7 @@ public class DirectorGroupInspector : Editor
     /// <summary>
     /// Load texture assets on awake.
     /// </summary>
-    private void Awake()
+    void Awake()
     {
         if (inspectorIcon == null)
         {
@@ -38,7 +38,7 @@ public class DirectorGroupInspector : Editor
     /// <summary>
     /// On inspector enable, load the serialized properties
     /// </summary>
-    private void OnEnable()
+    void OnEnable()
     {
         this.optimizable = serializedObject.FindProperty("canOptimize");
     }

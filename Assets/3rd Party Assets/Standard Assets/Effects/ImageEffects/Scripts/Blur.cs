@@ -69,7 +69,7 @@ namespace UnityStandardAssets.ImageEffects
         }
 
         // Downsamples the texture to a quarter resolution.
-        private void DownSample4x (RenderTexture source, RenderTexture dest)
+        void DownSample4x (RenderTexture source, RenderTexture dest)
         {
             float off = 1.0f;
             Graphics.BlitMultiTap (source, dest, material,

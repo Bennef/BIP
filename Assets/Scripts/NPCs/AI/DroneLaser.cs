@@ -1,70 +1,74 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Scripts.Game.Game_Logic;
 
-public class DroneLaser : MonoBehaviour 
+namespace Scripts.NPCs.AI
 {
-	// Handles drone lasers.
-	public Transform target;			// Bip will be the target.
+    public class DroneLaser : MonoBehaviour
+    {
+        // Handles drone lasers.
+        public Transform target;            // Bip will be the target.
 
-	public float fireRate;				// How quickly lasers fire.
-	public Vector3 startPosition;		// Start position of drone.
-		
-	public bool inChaseRange = false;	// True if Bip is in chasing range.
-	public bool droneJammed;			// True if near a signal jammer.
-	public bool isFiring = false;		// True if currently firing.
+        public float fireRate;              // How quickly lasers fire.
+        public Vector3 startPosition;       // Start position of drone.
 
-	GameObject prefab;					// The laser pulse.
+        public bool inChaseRange = false;   // True if Bip is in chasing range.
+        public bool droneJammed;            // True if near a signal jammer.
+        public bool isFiring = false;       // True if currently firing.
 
-	private AudioSource audioSource;
-	
-	// Use this for initialization.
-	void Start() 
-	{
-		prefab = Resources.Load("laser_impulse_projectile_001") as GameObject;
-		audioSource = GetComponent<AudioSource>();
-	}
-	
-	void FixedUpdate()
-	{
-        if (GameManager.Instance.IsPaused)
-            return;
-		// If Bip is not in range.
-        if (!droneJammed && inChaseRange)
-		{
-			transform.rotation = Quaternion.LookRotation (target.position - transform.position);
-			if (isFiring == false)
-				StartCoroutine ("FireLaserCo");
-		}
-	}
-	
-	public IEnumerator FireLaserCo()
-	{
-		isFiring = true;
-		yield return new WaitForSeconds(fireRate);
+        GameObject prefab;                  // The laser pulse.
 
-		FireLaser();
-		isFiring = false;
-	}
-	
-	// Fire the laser at poor Bip.
-	public void FireLaser()
-	{
-		// Create a projectile.
-		GameObject projectile = Instantiate(prefab) as GameObject;
+        private AudioSource audioSource;
 
-		// Position it in the right place.
-		projectile.transform.position = transform.position;
+        // Use this for initialization.
+        void Start()
+        {
+            prefab = Resources.Load("laser_impulse_projectile_001") as GameObject;
+            audioSource = GetComponent<AudioSource>();
+        }
 
-		// Rotate the projectile to it's correct rotation.
-		projectile.transform.rotation = transform.rotation;
+        void FixedUpdate()
+        {
+            if (GameManager.Instance.IsPaused)
+                return;
+            // If Bip is not in range.
+            if (!droneJammed && inChaseRange)
+            {
+                transform.rotation = Quaternion.LookRotation(target.position - transform.position);
+                if (isFiring == false)
+                    StartCoroutine("FireLaserCo");
+            }
+        }
 
-		// Get the projectile's rigidbody.
-		Rigidbody rb = projectile.GetComponent<Rigidbody>();
+        public IEnumerator FireLaserCo()
+        {
+            isFiring = true;
+            yield return new WaitForSeconds(fireRate);
 
-		// Make the damn thing fly towards target.
-		rb.velocity = transform.forward * 40;
+            FireLaser();
+            isFiring = false;
+        }
 
-		// Play the sound. 
-		audioSource.Play();
-	}
+        // Fire the laser at poor Bip.
+        public void FireLaser()
+        {
+            // Create a projectile.
+            GameObject projectile = Instantiate(prefab) as GameObject;
+
+            // Position it in the right place.
+            projectile.transform.position = transform.position;
+
+            // Rotate the projectile to it's correct rotation.
+            projectile.transform.rotation = transform.rotation;
+
+            // Get the projectile's rigidbody.
+            Rigidbody rb = projectile.GetComponent<Rigidbody>();
+
+            // Make the damn thing fly towards target.
+            rb.velocity = transform.forward * 40;
+
+            // Play the sound. 
+            audioSource.Play();
+        }
+    }
 }

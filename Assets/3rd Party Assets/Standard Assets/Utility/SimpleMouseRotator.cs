@@ -29,13 +29,13 @@ namespace UnityStandardAssets.Utility
         private Quaternion m_OriginalRotation;
 
 
-        private void Start()
+        void Start()
         {
             m_OriginalRotation = transform.localRotation;
         }
 
 
-        private void Update()
+        void Update()
         {
             // we make initial calculations from the original local rotation
             transform.localRotation = m_OriginalRotation;

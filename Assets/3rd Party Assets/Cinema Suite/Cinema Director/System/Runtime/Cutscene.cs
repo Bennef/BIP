@@ -351,7 +351,7 @@ namespace CinemaDirector
         /// Bake all Track Groups who are Bakeable.
         /// This is necessary for things like mecanim previewing.
         /// </summary>
-        private void bake()
+        void bake()
         {
             if (Application.isEditor)
             {
@@ -490,7 +490,7 @@ namespace CinemaDirector
         /// An important call to make before sampling the cutscene, to initialize all track groups 
         /// and save states of all actors/game objects.
         /// </summary>
-        private void initialize()
+        void initialize()
         {
             saveRevertData();
             
@@ -505,7 +505,7 @@ namespace CinemaDirector
         /// <summary>
         /// Cache all the revert data.
         /// </summary>
-        private void saveRevertData()
+        void saveRevertData()
         {
             revertCache.Clear();
             // Build the cache of revert info.
@@ -531,7 +531,7 @@ namespace CinemaDirector
         /// <summary>
         /// Revert all data that has been manipulated by the Cutscene.
         /// </summary>
-        private void revert()
+        void revert()
         {
             for (int i = 0; i < revertCache.Count; i++)
             {
@@ -614,7 +614,7 @@ namespace CinemaDirector
         /// <summary>
         /// Prepare all track groups for resuming from pause.
         /// </summary>
-        private void resume()
+        void resume()
         {
             for (int i = 0; i < this.TrackGroups.Length; i++)
             {

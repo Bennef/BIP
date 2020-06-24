@@ -11,14 +11,14 @@ namespace UnityStandardAssets.Utility
         private float m_LastRealTime;
 
 
-        private void Start()
+        void Start()
         {
             m_LastRealTime = Time.realtimeSinceStartup;
         }
 
 
         // Update is called once per frame
-        private void Update()
+        void Update()
         {
             float deltaTime = Time.deltaTime;
             if (ignoreTimescale)

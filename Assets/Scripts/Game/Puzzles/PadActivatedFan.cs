@@ -1,21 +1,25 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Game.Puzzles;
+using UnityEngine;
 
-public class PadActivatedFan : MonoBehaviour
+namespace Scripts.Game.Puzzles
 {
-    public FanForce fan;
-    public PressableSwitch pad;
-    
-    void Start()
+    public class PadActivatedFan : MonoBehaviour
     {
-        fan = GetComponentInChildren<FanForce>();
-        pad = GetComponentInChildren<PressableSwitch>();
-	}
- 
-    void Update()
-    {
-	    if (pad.switchDown)
-            fan.isOn = true;
-        else
-            fan.isOn = false;
-	}
+        public FanForce fan;
+        public PressableSwitch pad;
+
+        void Start()
+        {
+            fan = GetComponentInChildren<FanForce>();
+            pad = GetComponentInChildren<PressableSwitch>();
+        }
+
+        void Update()
+        {
+            if (pad.switchDown)
+                fan.isOn = true;
+            else
+                fan.isOn = false;
+        }
+    }
 }

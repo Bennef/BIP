@@ -18,7 +18,7 @@ namespace UnityStandardAssets.Effects
 
 
         // implementing one method from monobehviour to ensure that the enable/disable tickbox appears in the inspector
-        private void Start()
+        void Start()
         {
             m_ObjectResetter = GetComponent<ObjectResetter>();
         }

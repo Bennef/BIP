@@ -85,7 +85,7 @@ public class CinemaShotControl : CinemaActionControl
         createMenu.ShowAsContext();
     }
 
-    private void focusShot(object userData)
+    void focusShot(object userData)
     {
         CinemaShot shot = userData as CinemaShot;
         if (shot.shotCamera != null)
@@ -101,7 +101,7 @@ public class CinemaShotControl : CinemaActionControl
         }
     }
 
-    private void setCamera(object userData)
+    void setCamera(object userData)
     {
         ContextSetCamera arg = userData as ContextSetCamera;
         if (arg != null)

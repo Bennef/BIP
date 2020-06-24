@@ -1,12 +1,16 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Game.Puzzles;
+using UnityEngine;
 
-public class ResetAlarm : MonoBehaviour
+namespace Scripts.Game.Puzzles
 {
-    public TripLaserPuzzle tripLaserPuzzle;
-    
-    public void OnTriggerEnter(Collider other)
+    public class ResetAlarm : MonoBehaviour
     {
-        if (other.name == "Collider front")
-            tripLaserPuzzle.ResetCo();
+        public TripLaserPuzzle tripLaserPuzzle;
+
+        public void OnTriggerEnter(Collider other)
+        {
+            if (other.name == "Collider front")
+                tripLaserPuzzle.ResetCo();
+        }
     }
 }

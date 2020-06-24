@@ -1,33 +1,38 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Game.Puzzles;
+using Scripts.NPCs.AI;
+using UnityEngine;
 
-public class PadActivatesIco : MonoBehaviour
+namespace Scripts.Game.Puzzles
 {
-    [SerializeField] private HomingIco[] homingIcos;
-    [SerializeField] private PressableSwitch pad;
-    [SerializeField] private CharacterController bip;
-    
-    // Update is called once per frame
-    void Update()
+    public class PadActivatesIco : MonoBehaviour
     {
-        if (bip.IsDead)
-        {
-            pad.hasBeenPressed = false;
-            foreach (HomingIco ico in homingIcos)
-                ico.GetComponent<SphereCollider>().enabled = false;
-        }
+        [SerializeField] private HomingIco[] homingIcos;
+        [SerializeField] private PressableSwitch pad;
+        [SerializeField] private Player.CharacterController bip;
 
-        foreach (HomingIco ico in homingIcos)
+        // Update is called once per frame
+        void Update()
         {
-            if (!ico.isDead)
+            if (bip.IsDead)
             {
-                if (pad.firstPattern.enabled)
-                {
+                pad.hasBeenPressed = false;
+                foreach (HomingIco ico in homingIcos)
                     ico.GetComponent<SphereCollider>().enabled = false;
-                    ico.isInRange = false;
+            }
+
+            foreach (HomingIco ico in homingIcos)
+            {
+                if (!ico.isDead)
+                {
+                    if (pad.firstPattern.enabled)
+                    {
+                        ico.GetComponent<SphereCollider>().enabled = false;
+                        ico.isInRange = false;
+                    }
+                    else if (pad.secondPattern.enabled)
+                        ico.GetComponent<SphereCollider>().enabled = true;
                 }
-                else if (pad.secondPattern.enabled)
-                    ico.GetComponent<SphereCollider>().enabled = true;
             }
         }
-	}
+    }
 }

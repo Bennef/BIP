@@ -126,7 +126,7 @@ namespace CinemaDirector
         /// <param name="from">The starting colour</param>
         /// <param name="to">The final colour</param>
         /// <param name="transition">the Lerp transition value</param>
-        private void FadeToColor(Color from, Color to, float transition)
+        void FadeToColor(Color from, Color to, float transition)
         {
 			Image image = gameObject.GetComponent<Image>();
 			if (image != null) 

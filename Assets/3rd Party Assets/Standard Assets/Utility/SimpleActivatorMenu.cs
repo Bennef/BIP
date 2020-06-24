@@ -15,7 +15,7 @@ namespace UnityStandardAssets.Utility
         private int m_CurrentActiveObject;
 
 
-        private void OnEnable()
+        void OnEnable()
         {
             // active object starts from first in array
             m_CurrentActiveObject = 0;

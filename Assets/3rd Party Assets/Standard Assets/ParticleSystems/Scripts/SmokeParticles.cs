@@ -9,7 +9,7 @@ namespace UnityStandardAssets.Effects
         public AudioClip[] extinguishSounds;
 
 
-        private void Start()
+        void Start()
         {
             GetComponent<AudioSource>().clip = extinguishSounds[Random.Range(0, extinguishSounds.Length)];
             GetComponent<AudioSource>().Play();

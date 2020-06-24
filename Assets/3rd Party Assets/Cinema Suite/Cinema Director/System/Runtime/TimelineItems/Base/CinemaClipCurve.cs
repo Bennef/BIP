@@ -98,7 +98,7 @@ namespace CinemaDirector
             return value;
         }
 
-        private void updateKeyframeTime(float oldTime, float newTime)
+        void updateKeyframeTime(float oldTime, float newTime)
         {
             for (int i = 0; i < curveData.Count; i++)
             {

@@ -20,7 +20,7 @@ public class MultiActorTrackGroupInspector : Editor
     /// <summary>
     /// On inspector enable, load the serialized properties
     /// </summary>
-    private void OnEnable()
+    void OnEnable()
     {
         //this.actors = base.serializedObject.FindProperty("actors");
     }
