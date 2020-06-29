@@ -1,5 +1,4 @@
-﻿using Assets.Scripts.Game.Puzzles;
-using Scripts.NPCs.AI;
+﻿using Scripts.NPCs.AI;
 using UnityEngine;
 
 namespace Scripts.Game.Puzzles
@@ -10,7 +9,12 @@ namespace Scripts.Game.Puzzles
         [SerializeField] private PressableSwitch pad;
         [SerializeField] private Player.CharacterController bip;
 
-        // Update is called once per frame
+        void Start()
+        {
+            bip = GameObject.Find("Bip").GetComponent<Player.CharacterController>();
+            pad = GameObject.Find("Pressure Pad Ico").GetComponentInChildren<PressableSwitch>();
+        }
+
         void Update()
         {
             if (bip.IsDead)

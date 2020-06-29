@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-using Scripts.Player;
 using Scripts.Game.Game_Logic;
 
 namespace Scripts.Player
