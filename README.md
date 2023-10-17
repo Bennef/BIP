@@ -8,4 +8,4 @@ Work on BIP started in 2015 and it has been developed over the last few years. I
 
 Developed with Unity and Visual Studio.
 
-More from me, Ben Fowler on my [portfolio site.](https://benrfowler.weebly.com/projects.html)
+More from me on my [portfolio site.](https://benrfowler.weebly.com/projects.html)
